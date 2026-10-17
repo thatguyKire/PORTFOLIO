@@ -306,7 +306,7 @@
 
   /* ---------- credentials ---------- */
   .creds { display: grid; gap: 12px; }
-  @media (min-width: 820px) { .creds { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 820px) { .creds { grid-template-columns: repeat(2, 1fr); } }
   .cred { position: relative; overflow: hidden; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); display: flex; flex-direction: column; }
   .cred::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%); }
   .cred:hover::before { opacity: 1; }
@@ -612,11 +612,6 @@
           <h4>Artificial Intelligence Fundamentals</h4>
           <p>Core AI concepts, machine learning, neural networks, and trustworthy AI.</p>
           <a href="https://www.credly.com/badges/3faa1c77-dac7-47b8-a1bf-51d536927c77" target="_blank" rel="noopener">Verify on Credly ↗</a>
-        </div>
-        <div class="cred" data-r style="--d:.2s">
-          <span class="issuer">PSITE Central Visayas · Apr 2026</span>
-          <h4>Cebu ICT Student Congress 2026</h4>
-          <p>Participant: “IT Education in the Exponential Era,” UC New Cebu Coliseum.</p>
         </div>
       </div>
       <div class="edu" data-r>
