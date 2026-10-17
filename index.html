@@ -728,7 +728,9 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     size();
-    addEventListener('resize', size);
+    // The hero's height changes after load (web fonts swap in, text rewraps), so track the element, not just the window.
+    if (window.ResizeObserver) new ResizeObserver(function () { size(); }).observe(hero);
+    else { addEventListener('resize', size); if (document.fonts) document.fonts.ready.then(size); }
     function add(x, y, s) {
       pts.push({ x: x, y: y, t: performance.now(), s: s });
       if (!running) { running = true; requestAnimationFrame(draw); }
@@ -752,10 +754,10 @@
     }
     hero.addEventListener('pointermove', function (e) {
       if (e.pointerType === 'touch') return;
-      var r = hero.getBoundingClientRect(), now = performance.now();
+      var r = cv.getBoundingClientRect(), now = performance.now();
       if (now - lastT > 90) sid++;
       lastT = now; touched = true;
-      add(e.clientX - r.left, e.clientY - r.top, sid);
+      add((e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height, sid);
     });
     hero.addEventListener('pointerleave', function () { sid++; });
 
