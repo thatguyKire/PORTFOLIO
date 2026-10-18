@@ -13,7 +13,7 @@
   .tag { color: #555; font-size: 9.6pt; margin-top: 2pt; }
   .contact { color: #333; font-size: 9.4pt; margin-top: 2pt; }
   .contact span + span::before { content: "|"; margin: 0 5pt; color: #888; }
-  h2 { font-size: 9.6pt; font-weight: 700; color: #1f3864; text-transform: uppercase; border-bottom: 1.4pt solid #1f3864; padding-bottom: 1pt; margin: 5.5pt 0 2.5pt; }
+  h2 { font-size: 9.6pt; font-weight: 700; color: #1f3864; text-transform: uppercase; border-bottom: 1.4pt solid #1f3864; padding-bottom: 1pt; margin: 4pt 0 2.5pt; }
   .proj { margin-bottom: 3pt; }
   .proj h3 { font-size: 10.6pt; color: #1f3864; }
   .proj h3 .link { font-size: 8.8pt; font-weight: 400; color: #555; margin-left: 4pt; }
@@ -54,7 +54,8 @@
     <li>Built a complete three-tier system solo — Spring Boot REST + WebSocket API, a native Kotlin Android app for customers (QR-scan to start a machine, Stripe wallet top-up), and a React + TypeScript dashboard for shop attendants.</li>
     <li>Led a v1.0.0 security overhaul guided by a STRIDE threat model: JWT on every endpoint with role and ownership checks, verified Google ID tokens, rate limiting and account lockout, and Android Keystore token encryption.</li>
     <li>Made payments tamper-proof with Stripe Checkout, signature-verified webhooks, and idempotent, row-locked wallet crediting.</li>
-    <li>Wrote 32 backend tests on embedded PostgreSQL, added Flyway migrations, and documented the system (SRS, SDD, ADRs).</li>
+    <li>Added Terms, a Privacy Policy (Data Privacy Act of 2012), sign-up consent, and a guard against live Stripe keys.</li>
+    <li>Wrote 34 backend tests on embedded PostgreSQL, added Flyway migrations, and documented the system (SRS, SDD, ADRs).</li>
   </ul>
 </div>
 
@@ -70,13 +71,14 @@
 </div>
 
 <div class="proj">
-  <h3>COLLABoard — Real-Time Collaborative Whiteboard<span class="link">collaboard-z4sx.onrender.com</span></h3>
-  <div class="role">Lead Developer &amp; Backend Developer &nbsp;|&nbsp; 3-member team (CSIT327-G4)</div>
+  <h3>InkHive — Real-Time Collaborative Whiteboard<span class="link">collaboard-z4sx.onrender.com</span></h3>
+  <div class="role">Lead Developer &amp; Backend Developer &nbsp;|&nbsp; 3-member team (CSIT327-G4) &nbsp;|&nbsp; formerly COLLABoard</div>
   <div class="env"><b>Environment:</b> Python, Django 5.2, Django Channels, Daphne (ASGI), WebSockets, SQLite/PostgreSQL, JavaScript, Render</div>
   <ul>
     <li>Led a 3-person team and authored most of the codebase for a live classroom whiteboard: teacher-hosted sessions, QR/code join, per-student draw permissions, chat, file uploads, attendance, and PNG/PDF export.</li>
     <li>Re-architected real-time sync from Supabase to in-process Django Channels WebSockets with presence, late-joiner board state, and server-enforced permissions; deployed to production on Render.</li>
-    <li>Hardened it for launch (CSP, brute-force lockout, WebSocket origin checks, flood limits), with 97 tests (29 security).</li>
+    <li>Hardened it for launch (CSP, brute-force lockout, upload content checks, flood limits) and added Terms, a Privacy Policy, data export, and account deletion; 127 tests (29 security).</li>
+    <li>Built a one-click portfolio demo mode: password-less shared accounts, rate-limited sign-in, and a daily data reset.</li>
   </ul>
 </div>
 
@@ -90,7 +92,7 @@
   <p><b>Mobile &amp; Frontend:</b> Android (Kotlin), Jetpack Compose, Room, Hilt, React, TypeScript, Tailwind CSS</p>
   <p><b>Databases:</b> PostgreSQL, SQLite, MySQL, Supabase, Flyway migrations</p>
   <p><b>Cloud &amp; AI:</b> AWS Cloud Foundations, Render deployment, AI Fundamentals, Machine Learning Foundations</p>
-  <p><b>Security &amp; Testing:</b> Threat modeling (STRIDE), auth hardening, rate limiting, JUnit, Django test suites</p>
+  <p><b>Security &amp; Testing:</b> Threat modeling (STRIDE), auth hardening, rate limiting, data privacy (DPA 2012), JUnit, Django test suites</p>
   <p><b>Systems Modeling:</b> UML (Use Case, Class, Sequence, Activity), ERD, SRS/SDD documentation</p>
   <p><b>Tools &amp; DevOps:</b> Git, GitHub, Docker, Postman, Stripe API, Android Studio</p>
 </div>

@@ -6,7 +6,7 @@
 <title>Erik Samuel Bien — Portfolio</title>
 <meta name="description" content="Erik Samuel Bien — BSIT student building tested, security-hardened full-stack and Android applications. Spring Boot, Django, Kotlin, React.">
 <meta property="og:title" content="Erik Samuel Bien — Portfolio">
-<meta property="og:description" content="Full-stack & Android developer. LabaLink, PlayIT, COLLABoard.">
+<meta property="og:description" content="Full-stack & Android developer. LabaLink, PlayIT, InkHive.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23f5f1e8'%3EE%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -244,7 +244,7 @@
   .steps li { font: 500 11px/1 var(--mono); padding: 6px 9px; border-radius: 999px; background: var(--chip); color: var(--ink-3); }
   .steps li.on { background: var(--ink); color: var(--bg); }
 
-  /* COLLABoard */
+  /* InkHive */
   .demo-collab { display: flex; flex-direction: column; background: var(--surface); }
   .wb-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 34px 14px 10px; border-bottom: 1px solid var(--line); }
   .tools { display: flex; align-items: center; gap: 7px; }
@@ -304,6 +304,36 @@
   .skill-cap { min-height: 24px; margin: 16px 2px 0; font: 400 13px/1.5 var(--mono); color: var(--ink-3); }
   .skill-cap b { color: var(--ink); font-weight: 500; }
 
+  /* ---------- proof: a test run scrubbed by scroll ---------- */
+  .proof { padding: 0; border-block: 1px solid var(--line); }
+  .proof-pin { padding: 72px 0; }
+  .proof-grid { display: grid; gap: 36px; align-items: center; }
+  @media (min-width: 960px) { .proof-grid { grid-template-columns: 1fr 1.05fr; gap: 64px; } }
+  .proof-say { font: 400 clamp(34px, 5vw, 64px)/1.06 var(--serif); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
+  .proof-say span { transition: opacity .2s linear; }
+  .proof-sub { margin: 22px 0 0; max-width: 440px; color: var(--ink-2); font-size: 15px; }
+  .runner { padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); font: 400 12px/1.4 var(--mono); color: var(--ink-3); }
+  .run-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .run-count b { font: 400 34px/1 var(--serif); letter-spacing: -.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .suite { margin-top: 16px; }
+  .suite-h { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .suite-h b { font: 600 13px/1.3 var(--sans); color: var(--ink); transition: color .3s; }
+  .suite.on .suite-h b { color: var(--brand); }
+  .dots { display: grid; grid-template-columns: repeat(auto-fill, minmax(10px, 1fr)); gap: 4px; }
+  @media (min-width: 960px) { .runner { padding: 26px; } .dots { grid-template-columns: repeat(auto-fill, minmax(12px, 1fr)); gap: 5px; } }
+  .dots i { aspect-ratio: 1; border-radius: 3px; background: var(--chip); transition: background .25s, transform .35s var(--spring); }
+  .dots i.pass { background: var(--ok); }
+  .dots i.sec.pass { background: var(--accent); }
+  .dots i.running { background: var(--brand); transform: scale(1.4); }
+  .run-now { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .run-now b { color: var(--ok); font-weight: 500; }
+  .run-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; }
+  .run-key span { display: inline-flex; align-items: center; gap: 6px; }
+  .run-key i { width: 9px; height: 9px; border-radius: 2px; background: var(--ok); }
+  .run-key i.sec { background: var(--accent); }
+  .js .proof.scrub .proof-track { height: 300vh; }
+  .js .proof.scrub .proof-pin { position: sticky; top: 64px; display: grid; align-items: center; min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); padding: 24px 0; }
+
   /* ---------- credentials ---------- */
   .creds { display: grid; gap: 12px; }
   @media (min-width: 820px) { .creds { grid-template-columns: repeat(2, 1fr); } }
@@ -347,7 +377,7 @@
     .js .hl path { stroke-dashoffset: 0; transition: none; }
     .status i, .badge.live::before, .demo-tag::before, .ws i, .beam, .drum i, .wave.on i { animation: none !important; }
   }
-  @media print { .nav, .progress, .hero-cta, .p-links, .marquee, .demo { display: none; } .js [data-r], .js .ml > span { opacity: 1; transform: none; } .stack.stacking .project { position: static; } }
+  @media print { .nav, .progress, .hero-cta, .p-links, .marquee, .demo { display: none; } .js [data-r], .js .ml > span { opacity: 1; transform: none; } .stack.stacking .project { position: static; } .js .proof.scrub .proof-track { height: auto; } .js .proof.scrub .proof-pin { position: static; } .proof-say span { opacity: 1 !important; } .contact { clip-path: none !important; } }
 </style>
 </head>
 <body>
@@ -401,7 +431,7 @@
 
       <div class="stats" data-r style="--d:.6s">
         <div class="stat"><b data-count="3">3</b><span>major projects shipped across web &amp; Android</span></div>
-        <div class="stat"><b data-count="129">129</b><span>automated tests in LabaLink &amp; COLLABoard</span></div>
+        <div class="stat"><b data-count="161">161</b><span>automated tests in LabaLink &amp; InkHive</span></div>
         <div class="stat"><b data-count="1">1</b><span>app live in production on Render</span></div>
         <div class="stat"><b data-count="2">2</b><span>certifications: AWS Cloud &amp; IBM AI</span></div>
       </div>
@@ -432,8 +462,8 @@
             <p class="p-role">Solo developer · IT342 Application Development</p>
             <ul class="p-list">
               <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST + WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
-              <li><strong>Security-first v1.0.0</strong>: STRIDE threat model, JWT with role and ownership checks, verified Google sign-in, rate limiting, and account lockout.</li>
-              <li><strong>Payments that can't be replayed</strong>: Stripe Checkout, signed webhooks, and idempotent wallet credits, backed by <strong>32 tests</strong> on real PostgreSQL.</li>
+              <li><strong>Security-first v1.0.0</strong>: STRIDE threat model, JWT with role and ownership checks, verified Google sign-in, lockout, and a privacy policy.</li>
+              <li><strong>Payments that can't be replayed</strong>: Stripe Checkout, signed webhooks, and idempotent wallet credits; the server won't start with a live key. <strong>34 tests</strong> on real PostgreSQL.</li>
             </ul>
             <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Kotlin</span><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">PostgreSQL</span><span class="chip">Stripe</span><span class="chip">Flyway</span></div>
             <div class="p-links"><a class="btn sm" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Source</a></div>
@@ -486,17 +516,17 @@
           </figure>
         </article>
 
-        <!-- 03 COLLABoard -->
+        <!-- 03 InkHive -->
         <article class="project" style="--i:2">
           <div class="p-body" data-r>
             <div class="p-top"><span class="p-num">03 / 03</span><span class="badge live">Live</span><span class="badge">Lead · Team of 3</span></div>
-            <h3>COLLABoard</h3>
+            <h3>InkHive</h3>
             <p class="p-sub">Real-time collaborative whiteboard for classrooms</p>
-            <p class="p-role">Lead &amp; backend developer · CSIT327-G4</p>
+            <p class="p-role">Lead &amp; backend developer · CSIT327-G4 · formerly COLLABoard</p>
             <ul class="p-list">
               <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
-              <li><strong>Rebuilt real-time sync</strong> on Django Channels WebSockets with presence and late-joiner board state, then deployed it on Render.</li>
-              <li><strong>Hardened for launch</strong>: CSP, brute-force lockout, WebSocket origin checks, and flood limits, verified by <strong>97 tests (29 security)</strong>.</li>
+              <li><strong>Rebuilt real-time sync</strong> on Django Channels WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
+              <li><strong>Launch-ready</strong>: CSP, brute-force lockout, upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
             </ul>
             <div class="chips"><span class="chip">Python</span><span class="chip">Django 5.2</span><span class="chip">Channels</span><span class="chip">Daphne</span><span class="chip">WebSockets</span><span class="chip">SQLite</span><span class="chip">Render</span></div>
             <div class="p-links">
@@ -504,7 +534,7 @@
               <a class="btn sm" href="https://github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Source</a>
             </div>
           </div>
-          <figure class="demo demo-collab" data-r style="--d:.15s" role="img" aria-label="Animated mock-up of COLLABoard: a teacher and a student draw on a shared whiteboard in real time, with live presence and chat.">
+          <figure class="demo demo-collab" data-r style="--d:.15s" role="img" aria-label="Animated mock-up of InkHive: a teacher and a student draw on a shared whiteboard in real time, with live presence and chat.">
             <span class="demo-tag">Live mock-up</span>
             <div class="wb-top">
               <div class="tools">
@@ -551,6 +581,26 @@
     </div>
   </section>
 
+  <section class="proof" aria-labelledby="proof-h">
+    <div class="proof-track">
+      <div class="proof-pin">
+        <div class="wrap proof-grid">
+          <div>
+            <h2 class="proof-say" id="proof-h">It isn't done until the tests have tried to break it.</h2>
+            <p class="proof-sub">Each square is one real automated test from LabaLink and InkHive, all 161 passing. The orange ones attack the app on purpose: tampered login tokens, password brute force, files disguised as images.</p>
+          </div>
+          <div class="runner" aria-hidden="true">
+            <div class="run-head"><span>Test run</span><span class="run-count"><b data-run>161</b> / 161 passed</span></div>
+            <div class="suite" data-suite="laba"><div class="suite-h"><b>LabaLink</b><span>JUnit · 34 tests</span></div><div class="dots"></div></div>
+            <div class="suite" data-suite="ink"><div class="suite-h"><b>InkHive</b><span>Django · 127 tests</span></div><div class="dots"></div></div>
+            <div class="run-now" data-now><b>✓ 161 passed, 0 failed</b></div>
+            <div class="run-key"><span><i></i>passed</span><span><i class="sec"></i>security test, passed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="skills">
     <div class="wrap">
       <div class="sec-head" data-r="mask">
@@ -564,7 +614,7 @@
         <div class="nodes" data-r>
           <button class="node" type="button" data-n="laba" style="--c:#3b6fd8"><i></i>LabaLink</button>
           <button class="node" type="button" data-n="play" style="--c:#2a9d8f"><i></i>PlayIT</button>
-          <button class="node" type="button" data-n="collab" style="--c:#e0802f"><i></i>COLLABoard</button>
+          <button class="node" type="button" data-n="collab" style="--c:#e0802f"><i></i>InkHive</button>
           <button class="node" type="button" data-n="course" style="--c:#8b5cf6"><i></i>Coursework &amp; certs</button>
         </div>
         <div class="skills" data-r>
@@ -584,7 +634,7 @@
             <button type="button" class="chip" data-p="course">AWS</button><button type="button" class="chip" data-p="collab">Render</button><button type="button" class="chip" data-p="course">Docker</button><button type="button" class="chip" data-p="laba play collab">Git / GitHub</button><button type="button" class="chip" data-p="laba">Stripe API</button><button type="button" class="chip" data-p="play">Speech recognition</button><button type="button" class="chip" data-p="course">AI / ML foundations</button>
           </div></div>
           <div class="skill"><h4>Security &amp; Design</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba">STRIDE threat modeling</button><button type="button" class="chip" data-p="laba collab">Auth hardening</button><button type="button" class="chip" data-p="laba collab play">Automated testing</button><button type="button" class="chip" data-p="laba play collab">UML / ERD</button><button type="button" class="chip" data-p="laba play collab">SRS / SDD</button>
+            <button type="button" class="chip" data-p="laba">STRIDE threat modeling</button><button type="button" class="chip" data-p="laba collab">Auth hardening</button><button type="button" class="chip" data-p="laba collab play">Automated testing</button><button type="button" class="chip" data-p="laba play collab">UML / ERD</button><button type="button" class="chip" data-p="laba play collab">SRS / SDD</button><button type="button" class="chip" data-p="laba collab">Data privacy (DPA 2012)</button>
           </div></div>
         </div>
         <p class="skill-cap" aria-live="polite"></p>
@@ -804,7 +854,95 @@
     });
   }
 
-  var nav = $('#nav'), prog = $('#prog'), lastY = -1, lastT = performance.now(), vel = 0, dir = 1;
+  /* ---------- proof: scrolling runs the real test suites ---------- */
+  // Every test name below is real (LabaLink: JUnit methods, InkHive: Django test_ methods).
+  // [1 = lives in a dedicated security test file, names]
+  var SUITES = [
+    { id: 'laba', pre: '', groups: [
+      [0, 'bookingRequiresTheRealQrCode bookingIsPricedByServerAndChargedToWallet insufficientBalanceIsRejected bookingsArePrivateToOwnerAndAttendants cancellingRefundsAndFreesTheMachine machinesWithHistoryCannotBeDeleted legacyDataSurvivesAndMoneyBecomesExactDecimal topUpLimitsAreEnforced walletIsCreditedOnlyOnceAndOnlyWhenPaid webhookCreditsWallet forgedWebhooksAreRejected amountMismatchIsNeverCredited customersCannotTouchOtherPeoplesPayments'],
+      [1, 'authEndpointsAreThrottledPerClient stripeWebhooksAreNeverThrottled protectedEndpointsRequireAuthentication legacyTrustTheClientGoogleEndpointIsGone googleEndpointRejectsUnverifiableTokens oauth2ExchangeRejectsUnknownCodes registrationCannotSelfAssignAttendantRole registrationEnforcesPasswordPolicy customersCannotUseAttendantEndpoints qrTokensAreOnlyVisibleToAttendants tamperedAndRevokedTokensAreRejected repeatedFailedLoginsLockTheAccount unknownEmailAndWrongPasswordLookIdentical responsesCarrySecurityHeaders corsOnlyAllowsConfiguredOrigins errorsNeverLeakInternals'],
+      [0, 'rejectsLiveKeys acceptsTestOrMissingKeys'],
+      [1, 'connectWithoutValidTokenIsRejected customersCannotSubscribeToTheAttendantFeed walletUpdatesReachOnlyTheirOwner']
+    ] },
+    { id: 'ink', pre: 'test_', groups: [
+      [0, 'student_signup_logs_in_and_goes_to_dashboard student_requires_student_id teachers_do_not_collide_on_empty_student_id cannot_sign_up_as_admin weak_password_rejected_once_per_rule duplicate_email_rejected login_with_username login_with_email_case_insensitive wrong_password role_redirects superuser_becomes_admin logout_is_post'],
+      [0, 'participant_can_chat outsider_forbidden disabled_chat_blocks_sending message_length_limit'],
+      [1, 'headers_on_every_page no_inline_scripts_or_third_party_assets healthz lockout_after_five_failures_even_with_right_password account_limit_cannot_be_dodged_by_switching_ip email_and_username_count_as_same_account other_accounts_unaffected success_resets_pair_counter admin_login_is_throttled_too x_forwarded_for_ignored_unless_behind_proxy signup_flood_blocked join_code_scanning_blocked chat_spam_blocked weak_short_password_rejected html_disguised_as_image_rejected svg_rejected fake_pdf_and_docx_rejected png_named_jpg_rejected genuine_files_accepted tricky_filename_is_sanitised anonymous_redirected_to_login outsider_gets_404 participant_can_download_with_safe_headers duplicate_session_members_can_see_shared_snapshot path_traversal_and_unknown_paths presence_sync_requires_csrf_token state_changing_endpoints_reject_missing_token refuses_to_start_with_default_secret_key starts_with_strong_secret_key'],
+      [0, 'teacher_metrics_are_real student_counted_once_across_sessions student_dashboard_has_chart_host admin_dashboard_shows_real_counts students_blocked_from_teacher_dashboard pages_render anonymous_pages edit_profile_email_validation'],
+      [0, 'no_demo_unless_turned_on login_page_offers_demo_and_hides_signup signup_is_turned_off teacher_button_signs_in_to_a_sample_class student_button demo_accounts_have_no_password demo_accounts_cannot_lock_others_out demo_resets_after_a_day_without_touching_real_accounts seed_command demo_login_is_rate_limited'],
+      [0, 'terms_and_privacy_are_public auth_pages_link_to_terms signup_requires_agreement signup_records_agreement pages_redirect_to_accept other_requests_are_refused exempt_pages_still_work accept_requires_the_box accept_records_and_returns accept_ignores_offsite_next changed_terms_ask_again export_contains_own_data_only teacher_export_lists_created_sessions wrong_password_or_no_confirm_keeps_account password_guessing_is_limited staff_cannot_self_delete teacher_deletion_removes_sessions_and_files student_deletion_removes_their_uploads_only deleting_a_session_removes_its_files_but_keeps_shared_snapshots backup_copies_data_and_deletes_old_backups'],
+      [0, 'announcement_reaches_participants_only double_submit_is_suppressed_but_later_repeat_allowed students_cannot_announce student_sees_own_session_announcements mark_all_read_requires_post cannot_mark_someone_elses'],
+      [0, 'outsider_and_anonymous_are_rejected teacher_strokes_reach_student_but_not_sender view_only_student_cannot_draw_until_teacher_allows students_cannot_send_teacher_events presence_tracks_who_is_online sync_request_is_relayed flooding_is_capped_and_garbage_ignored'],
+      [0, 'create_session_generates_readable_code duplicate_title_rejected_for_same_teacher_only title_too_long create_get_redirects_to_list students_cannot_manage_sessions duplicate_session delete_requires_owner search qr_points_to_join_page join_with_code_case_insensitive rejoin_does_not_duplicate invalid_code join_prefills_code_from_qr_link outsider_cannot_open_whiteboard participant_is_routed_to_student_view teacher_view toggle_draw_permission_owner_only presence_sync_with_nobody_present presence_sync_keeps_present_users record_stroke record_stroke_view_only_rejected toggle_chat save_snapshot_then_export_pdf snapshot_must_be_png snapshot_owner_only pdf_without_snapshot attendance_csv teacher_upload_is_recorded pdf_is_not_an_image student_needs_draw_permission rejects_unsupported_type']
+    ] }
+  ];
+  var proof = $('.proof'), pTrack, pPin, pGrid, pWords = [], pTests = [], pSuites = [], pCount, pNow, pDone = -1, scrub = false;
+  if (proof) {
+    pTrack = $('.proof-track', proof); pPin = $('.proof-pin', proof); pGrid = $('.proof-grid', proof);
+    pCount = $('[data-run]', proof); pNow = $('[data-now]', proof);
+    SUITES.forEach(function (s) {
+      var box = $('[data-suite="' + s.id + '"]', proof), dots = $('.dots', box), first = pTests.length;
+      s.groups.forEach(function (g) {
+        g[1].split(' ').forEach(function (n) {
+          var d = document.createElement('i');
+          if (g[0]) d.className = 'sec';
+          dots.appendChild(d);
+          pTests.push({ dot: d, name: s.pre + n });
+        });
+      });
+      pSuites.push({ el: box, from: first, to: pTests.length });
+    });
+    // Split the sentence into words so it can ink in one word at a time.
+    var say = $('.proof-say', proof), words = say.textContent.trim().split(/\s+/);
+    say.textContent = '';
+    words.forEach(function (w, i) {
+      var s = document.createElement('span');
+      s.textContent = w;
+      say.appendChild(s);
+      if (i < words.length - 1) say.appendChild(document.createTextNode(' '));
+      pWords.push(s);
+    });
+  }
+  function setupProof() {
+    if (!proof) return;
+    // Pin only when the whole scene fits on screen below the nav.
+    scrub = !RM && innerWidth >= 360 && pGrid.offsetHeight + 112 <= innerHeight;
+    proof.classList.toggle('scrub', scrub);
+    pDone = -1;
+    updateProof();
+  }
+  function updateProof() {
+    if (!proof) return;
+    var p = 1;
+    if (scrub) {
+      var dist = pTrack.offsetHeight - pPin.offsetHeight;
+      p = dist > 0 ? clamp((64 - pTrack.getBoundingClientRect().top) / dist, 0, 1) : 1;
+    }
+    // Choreography: the sentence inks in (0–38%), then the suites run (14–90%), then the result holds.
+    var w = clamp(p / 0.38, 0, 1) * pWords.length;
+    pWords.forEach(function (s, i) { s.style.opacity = scrub ? (0.14 + 0.86 * clamp(w - i, 0, 1)).toFixed(2) : ''; });
+    var n = pTests.length, done = Math.round(clamp((p - 0.14) / 0.76, 0, 1) * n);
+    if (done === pDone) return;
+    pDone = done;
+    pTests.forEach(function (t, i) { t.dot.classList.toggle('pass', i < done); t.dot.classList.toggle('running', i === done && p > 0.14); });
+    pSuites.forEach(function (s) { s.el.classList.toggle('on', done >= s.from && done < s.to && p > 0.14); });
+    pCount.textContent = done;
+    pNow.textContent = '';
+    var b = document.createElement('b');
+    if (done === n) { b.textContent = '✓ ' + n + ' passed, 0 failed'; pNow.appendChild(b); }
+    else if (done) { b.textContent = '✓ '; pNow.appendChild(b); pNow.appendChild(document.createTextNode(pTests[done - 1].name)); }
+    else pNow.textContent = '$ ./mvnw test && python manage.py test modules';
+  }
+
+  /* ---------- contact card opens up as it scrolls in ---------- */
+  var cta = $('.contact');
+  function updateContact() {
+    if (!cta || RM) return;
+    var q = clamp((innerHeight - cta.getBoundingClientRect().top) / (innerHeight * 0.65), 0, 1), e = 1 - Math.pow(1 - q, 2);
+    cta.style.clipPath = e < 1 ? 'inset(0 ' + ((1 - e) * 8).toFixed(2) + '% round ' + (24 + (1 - e) * 56).toFixed(1) + 'px)' : '';
+  }
+
+  var nav = $('#nav'), prog = $('#prog'), lastY = -1, lastT = performance.now(), vel = 0, dir = 1, skew = 0;
   function frame(now) {
     var dt = Math.min(50, now - lastT); lastT = now;
     var y = window.scrollY, dy = lastY < 0 ? 0 : y - lastY;
@@ -814,21 +952,26 @@
       prog.style.transform = 'scaleX(' + (h > 0 ? y / h : 0).toFixed(4) + ')';
       nav.classList.toggle('scrolled', y > 8);
       updateStack();
+      updateProof();
+      updateContact();
       lastY = y;
     }
     vel += (Math.abs(dy) - vel) * 0.08;
     if (mqVis && !RM && half) {
       mx -= dir * (0.045 + vel * 0.015) * dt;
       if (mx <= -half) mx += half; else if (mx > 0) mx -= half;
-      track.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,0,0)';
+      // The words lean into the direction of travel, harder the faster you scroll.
+      skew += (dir * Math.min(9, vel * 0.3) - skew) * 0.12;
+      track.style.transform = 'translate3d(' + mx.toFixed(1) + 'px,0,0) skewX(' + skew.toFixed(2) + 'deg)';
     }
     requestAnimationFrame(frame);
   }
-  measure(); setupStack();
+  function relayout() { measure(); setupStack(); setupProof(); updateContact(); }
+  relayout();
   requestAnimationFrame(frame);
-  addEventListener('resize', function () { measure(); setupStack(); });
-  addEventListener('load', function () { measure(); setupStack(); });
-  if (document.fonts) document.fonts.ready.then(function () { measure(); setupStack(); });
+  addEventListener('resize', relayout);
+  addEventListener('load', relayout);
+  if (document.fonts) document.fonts.ready.then(relayout);
 
   /* ---------- nav: highlight the section in view ---------- */
   var links = $$('.nav-links a');
@@ -994,7 +1137,7 @@
     })();
   })();
 
-  /* ---------- demo 3: COLLABoard shared whiteboard ---------- */
+  /* ---------- demo 3: InkHive shared whiteboard ---------- */
   (function () {
     var el = $('.demo-collab');
     if (!el) return;
@@ -1112,7 +1255,7 @@
     var map = $('.skillmap');
     if (!map) return;
     var nodes = $$('.node', map), chips = $$('.chip[data-p]', map), grid = $('.skills', map), cap = $('.skill-cap', map), pinned = null;
-    var NAMES = { laba: 'LabaLink', play: 'PlayIT', collab: 'COLLABoard', course: 'coursework & certifications' };
+    var NAMES = { laba: 'LabaLink', play: 'PlayIT', collab: 'InkHive', course: 'coursework & certifications' };
     var HINT = (FINE ? 'Hover' : 'Tap') + ' a skill to see where I used it, or pick a project.';
     cap.textContent = HINT;
     chips.forEach(function (c, i) { c.style.setProperty('--d', (i * 0.022).toFixed(3) + 's'); });
