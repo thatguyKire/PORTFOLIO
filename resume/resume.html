@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <title>Erik Samuel L. Bien — Resume</title>
 <style>
-  @page { size: Letter; margin: 0.4in 0.55in 0.35in; }
+  @page { size: Letter; margin: 0.36in 0.55in 0.3in; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 9.4pt; line-height: 1.2; color: #222; }
+  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 9.2pt; line-height: 1.18; color: #222; }
   a { color: inherit; text-decoration: none; }
   header { text-align: center; margin-bottom: 4pt; }
   h1 { font-size: 20pt; color: #1f3864; letter-spacing: .3pt; line-height: 1.1; }
   .tag { color: #555; font-size: 9.6pt; margin-top: 2pt; }
   .contact { color: #333; font-size: 9.4pt; margin-top: 2pt; }
   .contact span + span::before { content: "|"; margin: 0 5pt; color: #888; }
-  h2 { font-size: 9.6pt; font-weight: 700; color: #1f3864; text-transform: uppercase; border-bottom: 1.4pt solid #1f3864; padding-bottom: 1pt; margin: 4pt 0 2.5pt; }
-  .proj { margin-bottom: 3pt; }
+  h2 { font-size: 9.6pt; font-weight: 700; color: #1f3864; text-transform: uppercase; border-bottom: 1.4pt solid #1f3864; padding-bottom: 1pt; margin: 3.6pt 0 2.2pt; }
+  .proj { margin-bottom: 2pt; }
   .proj h3 { font-size: 10.6pt; color: #1f3864; }
   .proj h3 .link { font-size: 8.8pt; font-weight: 400; color: #555; margin-left: 4pt; }
   .role, .env { font-style: italic; color: #555; font-size: 9.2pt; }
   .env b { color: #333; }
   ul { margin: 1.5pt 0 0 22pt; }
-  li { margin-bottom: 1pt; padding-left: 3pt; }
+  li { margin-bottom: .5pt; padding-left: 3pt; }
   li::marker { font-size: 8pt; }
   .skills p { margin-bottom: 1pt; }
   .muted { color: #555; }
@@ -42,7 +42,7 @@
 <h2>Education</h2>
 <p><b>Bachelor of Science in Information Technology (BSIT), 4th Year</b></p>
 <p class="muted">Cebu Institute of Technology – University (CIT-U), Cebu City &nbsp;|&nbsp; Expected Graduation: 2027</p>
-<p><b>Relevant Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, Database Management Systems, Application Development (Web &amp; Mobile), Capstone Project</p>
+<p><b>Relevant Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, DBMS, Web &amp; Mobile Development</p>
 
 <h2>Technical Projects</h2>
 
@@ -53,9 +53,19 @@
   <ul>
     <li>Built a complete three-tier system solo — Spring Boot REST + WebSocket API, a native Kotlin Android app for customers (QR-scan to start a machine, Stripe wallet top-up), and a React + TypeScript dashboard for shop attendants.</li>
     <li>Led a v1.0.0 security overhaul guided by a STRIDE threat model: JWT on every endpoint with role and ownership checks, verified Google ID tokens, rate limiting and account lockout, and Android Keystore token encryption.</li>
-    <li>Made payments tamper-proof with Stripe Checkout, signature-verified webhooks, and idempotent, row-locked wallet crediting.</li>
-    <li>Added Terms, a Privacy Policy (Data Privacy Act of 2012), sign-up consent, and a guard against live Stripe keys.</li>
-    <li>Wrote 34 backend tests on embedded PostgreSQL, added Flyway migrations, and documented the system (SRS, SDD, ADRs).</li>
+    <li>Made payments tamper-proof with Stripe Checkout, signed webhooks, idempotent row-locked crediting, and a block on live Stripe keys.</li>
+    <li>Wrote 34 backend tests on embedded PostgreSQL, Flyway migrations, a Privacy Policy (Data Privacy Act), and the SRS, SDD, and ADRs.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <h3>Seoul-Mate Minimart — Live Menu Website for a Korean Store<span class="link">github.com/thatguyKire/seoul-mate-minimart</span></h3>
+  <div class="role">Solo Developer &nbsp;|&nbsp; In progress (7 of 11 build steps done), Masbate City</div>
+  <div class="env"><b>Environment:</b> React 19, TypeScript, Vite, Supabase (PostgreSQL + RLS, Realtime, Edge Functions), Vitest, Playwright, pgTAP, GitHub Actions</div>
+  <ul>
+    <li>Building a three-language (English, Filipino, Korean) menu site where stock changes reach open pages within seconds.</li>
+    <li>Security first: Row Level Security on every table, a staff panel with optional two-factor login and session limits, photos checked by content and stripped of metadata, and a rate-limited contact function.</li>
+    <li>108 unit tests, 109 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all run in CI.</li>
   </ul>
 </div>
 
@@ -66,7 +76,7 @@
   <ul>
     <li>Co-developing an offline-first Android phonics app (Marungko approach) with on-device speech evaluation for low-end phones.</li>
     <li>Built child-focused accessibility and UX features — sound captions, mouth-shape cues, 64 dp touch targets, non-punitive feedback — and fixed core game logic in the Blend It word-building activity.</li>
-    <li>Authored the SRS, SDD, and Software Test Document with UML diagrams; wrote Python scripts for the image-asset pipeline.</li>
+    <li>Authored the SRS, SDD, and test document; built a Python release tool that checks every figure against the JUnit results and APK.</li>
   </ul>
 </div>
 
@@ -77,8 +87,7 @@
   <ul>
     <li>Led a 3-person team and authored most of the codebase for a live classroom whiteboard: teacher-hosted sessions, QR/code join, per-student draw permissions, chat, file uploads, attendance, and PNG/PDF export.</li>
     <li>Re-architected real-time sync from Supabase to in-process Django Channels WebSockets with presence, late-joiner board state, and server-enforced permissions; deployed to production on Render.</li>
-    <li>Hardened it for launch (CSP, brute-force lockout, upload content checks, flood limits) and added Terms, a Privacy Policy, data export, and account deletion; 127 tests (29 security).</li>
-    <li>Built a one-click portfolio demo mode: password-less shared accounts, rate-limited sign-in, and a daily data reset.</li>
+    <li>Hardened it for launch (CSP, brute-force lockout, upload content checks, flood limits); added Terms, a Privacy Policy, data export, account deletion, and a one-click demo mode; 127 tests (29 security).</li>
   </ul>
 </div>
 
@@ -87,14 +96,12 @@
 
 <h2>Skills and Competencies</h2>
 <div class="skills">
-  <p><b>Languages:</b> Java, Kotlin, Python, PHP, JavaScript/TypeScript, SQL, HTML/CSS</p>
-  <p><b>Backend:</b> Spring Boot, Spring Security (JWT/OAuth2), Django, Django Channels, REST APIs, WebSocket (STOMP)</p>
-  <p><b>Mobile &amp; Frontend:</b> Android (Kotlin), Jetpack Compose, Room, Hilt, React, TypeScript, Tailwind CSS</p>
-  <p><b>Databases:</b> PostgreSQL, SQLite, MySQL, Supabase, Flyway migrations</p>
-  <p><b>Cloud &amp; AI:</b> AWS Cloud Foundations, Render deployment, AI Fundamentals, Machine Learning Foundations</p>
-  <p><b>Security &amp; Testing:</b> Threat modeling (STRIDE), auth hardening, rate limiting, data privacy (DPA 2012), JUnit, Django test suites</p>
-  <p><b>Systems Modeling:</b> UML (Use Case, Class, Sequence, Activity), ERD, SRS/SDD documentation</p>
-  <p><b>Tools &amp; DevOps:</b> Git, GitHub, Docker, Postman, Stripe API, Android Studio</p>
+  <p><b>Languages:</b> Java, Kotlin, Python, TypeScript/JavaScript, PHP, SQL, HTML/CSS</p>
+  <p><b>Backend:</b> Spring Boot, Spring Security (JWT/OAuth2), Django, Django Channels, Supabase Edge Functions, REST APIs, WebSocket (STOMP)</p>
+  <p><b>Frontend &amp; Mobile:</b> React 19, TypeScript, Vite, Tailwind CSS, i18n, Android (Kotlin), Jetpack Compose, Room, Hilt</p>
+  <p><b>Data, Cloud &amp; AI:</b> PostgreSQL (Row Level Security), SQLite, MySQL, Supabase, Flyway; AWS Cloud Foundations, Render; AI &amp; ML Fundamentals</p>
+  <p><b>Security &amp; Testing:</b> STRIDE threat models, auth hardening, rate limiting, Data Privacy Act; JUnit, Django tests, Vitest, Playwright, pgTAP</p>
+  <p><b>Tools &amp; Modeling:</b> Git, GitHub Actions CI, Docker, Postman, Stripe API, Android Studio; UML, ERD, SRS/SDD documentation</p>
 </div>
 
 <h2>Trainings and Certifications</h2>

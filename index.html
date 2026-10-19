@@ -6,7 +6,7 @@
 <title>Erik Samuel Bien — Portfolio</title>
 <meta name="description" content="Erik Samuel Bien — BSIT student building tested, security-hardened full-stack and Android applications. Spring Boot, Django, Kotlin, React.">
 <meta property="og:title" content="Erik Samuel Bien — Portfolio">
-<meta property="og:description" content="Full-stack & Android developer. LabaLink, PlayIT, InkHive.">
+<meta property="og:description" content="Full-stack & Android developer. LabaLink, Seoul-Mate, PlayIT, InkHive.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' text-anchor='middle' fill='%23f5f1e8'%3EE%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,6 +67,27 @@
   .js [data-r] { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease) var(--d, 0s), transform .9s var(--ease) var(--d, 0s); }
   .js [data-r].in { opacity: 1; transform: none; }
   .js [data-r="mask"] { opacity: 1; transform: none; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  /* letters rise one at a time (hero name, project titles) */
+  .w { display: inline-block; white-space: nowrap; }
+  .ch { display: inline-block; }
+  .js .ml > span.split { transform: none; }
+  .js .split .ch { transform: translateY(118%) rotate(7deg); transition: transform .95s var(--ease) calc(var(--d, 0s) + var(--k) * 26ms); }
+  .js .in .split .ch { transform: none; }
+  /* the tagline is written left to right, with the pen's nib on the leading edge */
+  .js .ml > span.pen { transform: none; }
+  .pen { position: relative; }
+  .pen > em { display: inline-block; }
+  .js .pen > em { clip-path: inset(-30% 101% -45% -3%); transition: clip-path 1.3s cubic-bezier(.65,.05,.3,1) var(--d, 0s); }
+  .js .in .pen > em { clip-path: inset(-30% -4% -45% -3%); }
+  .nib { position: absolute; left: 0; top: .12em; bottom: .14em; width: .06em; border-radius: .04em; background: var(--accent); box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent); opacity: 0; pointer-events: none; }
+  .js .in .pen .nib { animation: nib 1.3s cubic-bezier(.65,.05,.3,1) var(--d, 0s) both; }
+  @keyframes nib { 0% { left: 0; opacity: 0; } 6%, 86% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+  /* demo panels wipe open from the bottom while their contents settle */
+  .js .demo[data-r] { opacity: 1; transform: none; clip-path: inset(100% 0 0 0 round 18px); transition: clip-path 1.2s cubic-bezier(.7,0,.2,1) var(--d, 0s); }
+  .js .demo[data-r].in { clip-path: inset(0 round 18px); }
+  .js .demo[data-r] > * { transform: translateY(48px); transition: transform 1.5s var(--ease) var(--d, 0s); }
+  .js .demo[data-r].in > * { transform: none; }
 
   /* ---------- progress + nav ---------- */
   .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 30; pointer-events: none; }
@@ -108,7 +129,7 @@
   .hl { position: relative; display: inline-block; }
   .hl svg { position: absolute; left: -1%; bottom: -.02em; width: 102%; height: .26em; overflow: visible; }
   .hl path { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
-  .js .hl path { stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s var(--ease) 1.05s; }
+  .js .hl path { stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease) 1.8s; }
   .js .in .hl path { stroke-dashoffset: 0; }
   .hero .lede { font-size: clamp(18px, 2.2vw, 21px); line-height: 1.5; color: var(--ink-2); max-width: 640px; margin: 24px 0 0; }
   .hero .lede strong { color: var(--ink); font-weight: 500; }
@@ -146,14 +167,15 @@
   .project::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; background: var(--bg); opacity: var(--dim, 0); pointer-events: none; }
   @media (min-width: 640px) { .project { padding: 32px; } }
   @media (min-width: 960px) { .project { grid-template-columns: 1fr 1.02fr; padding: 40px; gap: 44px; align-items: center; } }
-  .stack.stacking .project { position: sticky; top: calc(84px + var(--i) * 16px); }
+  .stack.stacking .project { position: sticky; top: calc(84px + var(--i) * 12px); }
   .stack.stacking .project:not(:last-child) { margin-bottom: 28vh; }
   .p-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .p-num { font: 500 13px/1 var(--mono); color: var(--ink-3); }
   .badge { font: 500 11px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; padding: 6px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .badge.wip { background: color-mix(in srgb, var(--amber) 16%, transparent); color: var(--amber); }
   .badge.live { background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); display: inline-flex; align-items: center; gap: 6px; }
   .badge.live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pulse 1.6s infinite; }
-  .project h3 { font: 400 clamp(32px, 4vw, 44px)/1.05 var(--serif); letter-spacing: -.025em; margin: 16px 0 6px; }
+  .project h3 { font: 400 clamp(32px, 4vw, 44px)/1.05 var(--serif); letter-spacing: -.025em; margin: 16px 0 6px; overflow: hidden; padding-bottom: .08em; margin-bottom: calc(6px - .08em); }
   .p-sub { color: var(--ink-2); font-size: 17px; margin: 0; }
   .p-role { font: 400 13px/1.5 var(--mono); color: var(--ink-3); margin: 12px 0 0; }
   .p-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 11px; }
@@ -270,6 +292,56 @@
   .wb-foot b { color: var(--ink); font-weight: 500; }
   .ws i { display: inline-block; width: 6px; height: 6px; margin-right: 6px; border-radius: 50%; background: var(--ok); animation: pulse 1.8s infinite; }
 
+  /* Seoul-Mate (the store's own pink) */
+  .demo-seoul { display: grid; place-items: center; --pink: #e8508a; }
+  .sm-wrap { display: flex; align-items: center; justify-content: center; padding: 44px 16px 24px; width: 100%; }
+  .sm-staff { flex: none; width: 162px; padding: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); font-size: 11px; }
+  .sm-staff-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .sm-staff-h b { font-size: 12px; font-weight: 600; }
+  .sm-staff-h small { font: 400 10px/1 var(--mono); color: var(--ink-3); }
+  .sm-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 0 0; margin-top: 7px; border-top: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; transition: color .25s; }
+  .sm-row span { overflow: hidden; text-overflow: ellipsis; }
+  .sm-row.hot { color: var(--ink); }
+  .tg { flex: none; position: relative; width: 26px; height: 15px; border-radius: 99px; background: var(--ink-3); transition: background .25s, box-shadow .3s; }
+  .tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .35s var(--spring); }
+  .tg.on { background: var(--pink); }
+  .tg.on::after { transform: translateX(11px); }
+  .tg.tap { box-shadow: 0 0 0 6px color-mix(in srgb, var(--pink) 25%, transparent); }
+  .sm-wire { position: relative; flex: none; width: 58px; height: 0; border-top: 2px dashed var(--line); }
+  .sm-wire small { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); font: 500 9px/1 var(--mono); color: var(--ink-3); white-space: nowrap; }
+  .sm-wire i { position: absolute; left: 0; top: -5px; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 10px 2px color-mix(in srgb, var(--pink) 55%, transparent); opacity: 0; }
+  .sm-wire.go i { animation: wireX .65s var(--ease) both; }
+  @keyframes wireX { 0% { left: 0; opacity: 0; } 15%, 85% { opacity: 1; } 100% { left: calc(100% - 8px); opacity: 0; } }
+  @keyframes wireY { 0% { top: 0; opacity: 0; } 15%, 85% { opacity: 1; } 100% { top: calc(100% - 8px); opacity: 0; } }
+  .phone.sm-phone { width: 192px; padding: 22px 11px 12px; gap: 7px; }
+  .sm-bar { display: flex; justify-content: space-between; align-items: center; }
+  .sm-logo { font: 700 13px/1 var(--sans); color: var(--pink); letter-spacing: -.01em; }
+  .sm-lang { display: inline-flex; padding: 2px; border-radius: 99px; background: var(--chip); font: 600 9px/1 var(--mono); }
+  .sm-lang i { font-style: normal; padding: 4px 5px; border-radius: 99px; color: var(--ink-3); transition: background .3s, color .3s; }
+  .sm-lang i.on { background: var(--pink); color: #fff; }
+  .sm-search { padding: 7px 9px; border: 1px solid var(--line); border-radius: 10px; font-size: 10.5px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sm-h { font: 600 12px/1 var(--sans); margin-top: 3px; }
+  .sm-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 9px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); transition: opacity .35s; }
+  .sm-item > div { min-width: 0; }
+  .sm-item b { display: block; font-size: 11.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sm-item small { display: block; font: 500 10px/1.5 var(--mono); color: var(--ink-3); }
+  .tag { flex: none; font: 600 9.5px/1 var(--sans); padding: 5px 6px; border-radius: 5px; background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); white-space: nowrap; transition: background .3s, color .3s; }
+  .sm-item.out { opacity: .62; }
+  .sm-item.out .tag { background: var(--chip); color: var(--ink-3); }
+  .sm-item.flash { animation: smFlash 1.1s var(--ease); }
+  @keyframes smFlash { 20% { border-color: var(--pink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--pink) 30%, transparent); } }
+  .sm-phone [data-sm-title], .sm-phone [data-sm-search], .sm-item b, .tag { transition: opacity .18s, background .3s, color .3s; }
+  .sm-phone.swap [data-sm-title], .sm-phone.swap [data-sm-search], .sm-phone.swap .sm-item b, .sm-phone.swap .tag { opacity: 0; }
+  @container (max-width: 450px) {
+    .sm-wrap { flex-direction: column; padding-top: 40px; }
+    .sm-staff { width: 192px; padding: 9px 11px; }
+    .sm-staff .sm-row:not(.key) { display: none; }
+    .sm-wire { width: 0; height: 34px; border-top: 0; border-left: 2px dashed var(--line); }
+    .sm-wire small { left: 12px; bottom: auto; top: 50%; transform: translateY(-50%); }
+    .sm-wire i { left: -5px; top: 0; }
+    .sm-wire.go i { animation-name: wireY; }
+  }
+
   /* ---------- also built ---------- */
   .also { margin: 56px 0 18px; }
   .grid-sm { display: grid; gap: 12px; grid-template-columns: 1fr; }
@@ -308,6 +380,7 @@
   .proof { padding: 0; border-block: 1px solid var(--line); }
   .proof-pin { padding: 72px 0; }
   .proof-grid { display: grid; gap: 36px; align-items: center; }
+  .proof-grid > * { min-width: 0; } /* let the one-line test name ellipsize instead of widening the page */
   @media (min-width: 960px) { .proof-grid { grid-template-columns: 1fr 1.05fr; gap: 64px; } }
   .proof-say { font: 400 clamp(34px, 5vw, 64px)/1.06 var(--serif); letter-spacing: -.03em; margin: 0; text-wrap: balance; }
   .proof-say span { transition: opacity .2s linear; }
@@ -375,9 +448,13 @@
     html { scroll-behavior: auto; }
     .js [data-r], .js .ml > span, .js .skills .chip { opacity: 1 !important; transform: none !important; transition: none !important; }
     .js .hl path { stroke-dashoffset: 0; transition: none; }
+    .js .split .ch, .js .demo[data-r] > * { transform: none !important; transition: none !important; }
+    .js .pen > em, .js .demo[data-r] { clip-path: none !important; }
+    .nib { display: none; }
     .status i, .badge.live::before, .demo-tag::before, .ws i, .beam, .drum i, .wave.on i { animation: none !important; }
   }
-  @media print { .nav, .progress, .hero-cta, .p-links, .marquee, .demo { display: none; } .js [data-r], .js .ml > span { opacity: 1; transform: none; } .stack.stacking .project { position: static; } .js .proof.scrub .proof-track { height: auto; } .js .proof.scrub .proof-pin { position: static; } .proof-say span { opacity: 1 !important; } .contact { clip-path: none !important; } }
+  @media print { .nav, .progress, .hero-cta, .p-links, .marquee, .demo { display: none; } .js [data-r], .js .ml > span { opacity: 1; transform: none; } .stack.stacking .project { position: static; } .js .proof.scrub .proof-track { height: auto; } .js .proof.scrub .proof-pin { position: static; } .proof-say span { opacity: 1 !important; } .contact { clip-path: none !important; } .js .split .ch { transform: none; } .js .pen > em { clip-path: none; } .hero .wrap { transform: none !important; opacity: 1 !important; } }
+  @media (max-width: 639px) { .dots { grid-template-columns: repeat(auto-fill, minmax(8px, 1fr)); gap: 3px; } }
 </style>
 </head>
 <body>
@@ -417,21 +494,21 @@
     <div class="wrap">
       <span class="status" data-r><i></i>Open to internship opportunities</span>
       <h1>
-        <span class="ml"><span>Erik Samuel Bien</span></span>
-        <span class="ml" style="--d:.12s"><span><em>builds software that <span class="hl">holds up.<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 40 3, 72 11, 110 6 S 168 3, 197 7"/></svg></span></em></span></span>
+        <span class="ml"><span class="split" style="--d:.05s">Erik Samuel Bien</span></span>
+        <span class="ml" style="--d:.55s"><span class="pen"><em>builds software that <span class="hl">holds up.<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 8 C 40 3, 72 11, 110 6 S 168 3, 197 7"/></svg></span></em><i class="nib" aria-hidden="true"></i></span></span>
       </h1>
-      <p class="lede" data-r style="--d:.35s">4th-year BSIT student at CIT-U. I build <strong>full-stack web and Android apps</strong>, from Spring Boot and Django backends to Kotlin and React clients, and I write the tests and threat models along with the features.</p>
-      <div class="hero-cta" data-r style="--d:.45s">
+      <p class="lede" data-r style="--d:.7s">4th-year BSIT student at CIT-U. I build <strong>full-stack web and Android apps</strong>, from Spring Boot, Django and Supabase backends to Kotlin and React clients, and I write the tests and threat models along with the features.</p>
+      <div class="hero-cta" data-r style="--d:.8s">
         <a class="btn primary" href="#work">See my work</a>
         <a class="btn" href="Bien_Resume.pdf" download><svg><use href="#i-dl"/></svg>Download resume</a>
         <a class="btn" href="https://github.com/thatguyKire" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
       </div>
-      <div class="meta" data-r style="--d:.55s"><span>Cebu Institute of Technology – University</span><span>Masbate City, PH</span><span>Class of 2027</span></div>
-      <p class="ink-hint" data-r style="--d:.7s"><b>✎</b> psst, this header is a whiteboard. Move your cursor.</p>
+      <div class="meta" data-r style="--d:.9s"><span>Cebu Institute of Technology – University</span><span>Masbate City, PH</span><span>Class of 2027</span></div>
+      <p class="ink-hint" data-r style="--d:1.05s"><b>✎</b> psst, this header is a whiteboard. Move your cursor.</p>
 
-      <div class="stats" data-r style="--d:.6s">
-        <div class="stat"><b data-count="3">3</b><span>major projects shipped across web &amp; Android</span></div>
-        <div class="stat"><b data-count="161">161</b><span>automated tests in LabaLink &amp; InkHive</span></div>
+      <div class="stats" data-r style="--d:.95s">
+        <div class="stat"><b data-count="4">4</b><span>major projects across web &amp; Android</span></div>
+        <div class="stat"><b data-count="269">269</b><span>unit &amp; integration tests across 3 projects</span></div>
         <div class="stat"><b data-count="1">1</b><span>app live in production on Render</span></div>
         <div class="stat"><b data-count="2">2</b><span>certifications: AWS Cloud &amp; IBM AI</span></div>
       </div>
@@ -439,14 +516,14 @@
   </header>
 
   <div class="marquee" aria-hidden="true">
-    <div class="track"><span>Spring Boot</span><i>✦</i><span class="o">Kotlin</span><i>✦</i><span>Django</span><i>✦</i><span class="o">React</span><i>✦</i><span>Jetpack Compose</span><i>✦</i><span class="o">PostgreSQL</span><i>✦</i><span>WebSockets</span><i>✦</i><span class="o">Stripe</span><i>✦</i><span>TypeScript</span><i>✦</i><span class="o">AWS</span><i>✦</i></div>
+    <div class="track"><span>Spring Boot</span><i>✦</i><span class="o">Kotlin</span><i>✦</i><span>Django</span><i>✦</i><span class="o">React</span><i>✦</i><span>Supabase</span><i>✦</i><span class="o">Playwright</span><i>✦</i><span>Jetpack Compose</span><i>✦</i><span class="o">PostgreSQL</span><i>✦</i><span>WebSockets</span><i>✦</i><span class="o">Stripe</span><i>✦</i><span>TypeScript</span><i>✦</i><span class="o">AWS</span><i>✦</i></div>
   </div>
 
   <section id="work">
     <div class="wrap">
       <div class="sec-head" data-r="mask">
         <div>
-          <span class="ml"><span class="eyebrow">Selected work · 3 projects</span></span>
+          <span class="ml"><span class="eyebrow">Selected work · 4 projects</span></span>
           <h2><span class="ml" style="--d:.08s"><span>Projects that run,</span></span><span class="ml" style="--d:.16s"><span><em>not just compile.</em></span></span></h2>
         </div>
         <p data-r style="--d:.2s">Each demo on the right is a working mock-up of how the real thing behaves.</p>
@@ -456,7 +533,7 @@
         <!-- 01 LabaLink -->
         <article class="project" style="--i:0">
           <div class="p-body" data-r>
-            <div class="p-top"><span class="p-num">01 / 03</span><span class="badge">v1.0.0 · Solo build</span></div>
+            <div class="p-top"><span class="p-num">01 / 04</span><span class="badge">v1.0.0 · Solo build</span></div>
             <h3>LabaLink</h3>
             <p class="p-sub">Smart laundry booking &amp; payment platform</p>
             <p class="p-role">Solo developer · IT342 Application Development</p>
@@ -484,17 +561,55 @@
           </figure>
         </article>
 
-        <!-- 02 PlayIT -->
+        <!-- 02 Seoul-Mate -->
         <article class="project" style="--i:1">
           <div class="p-body" data-r>
-            <div class="p-top"><span class="p-num">02 / 03</span><span class="badge">Capstone · Team of 3</span></div>
+            <div class="p-top"><span class="p-num">02 / 04</span><span class="badge wip">In progress</span><span class="badge">Solo build</span></div>
+            <h3>Seoul-Mate</h3>
+            <p class="p-sub">Live menu website for a Korean minimart in Masbate City</p>
+            <p class="p-role">Solo developer · React + Supabase</p>
+            <ul class="p-list">
+              <li><strong>Stock changes reach open pages within seconds</strong>, in English, Filipino and Korean, with search, store hours and ordering through Messenger.</li>
+              <li><strong>Security first</strong>: Row Level Security on every table, staff login with optional two-factor, photo uploads checked by content and stripped of location data.</li>
+              <li><strong>Tested at three levels</strong>: 108 unit tests, 109 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all in CI.</li>
+            </ul>
+            <div class="chips"><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Supabase</span><span class="chip">PostgreSQL RLS</span><span class="chip">Edge Functions</span><span class="chip">Vitest</span><span class="chip">Playwright</span><span class="chip">GitHub Actions</span></div>
+            <div class="p-links"><a class="btn sm" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Source</a></div>
+          </div>
+          <figure class="demo demo-seoul" data-r style="--d:.15s" role="img" aria-label="Animated mock-up of Seoul-Mate: staff switch Buldak ramen to out of stock, the change travels over Supabase Realtime, and the menu open on a phone updates without a reload, in English, Korean and Filipino.">
+            <span class="demo-tag">Live mock-up</span>
+            <div class="sm-wrap">
+              <div class="sm-staff">
+                <div class="sm-staff-h"><b>Staff panel</b><small>/admin</small></div>
+                <div class="sm-row"><span>Shin Ramyun</span><i class="tg on"></i></div>
+                <div class="sm-row key"><span>Buldak Ramen</span><i class="tg on"></i></div>
+                <div class="sm-row"><span>Honey Butter Chip</span><i class="tg on"></i></div>
+              </div>
+              <div class="sm-wire"><small>Realtime</small><i></i></div>
+              <div class="phone sm-phone">
+                <div class="sm-bar"><b class="sm-logo">Seoul-Mate</b><span class="sm-lang"><i class="on">EN</i><i>FIL</i><i>KO</i></span></div>
+                <div class="sm-search" data-sm-search>Try ramyun, chips or sheet mask</div>
+                <b class="sm-h" data-sm-title>Menu</b>
+                <div class="sm-item"><div><b>Shin Ramyun</b><small>₱70.00</small></div><span class="tag">In stock</span></div>
+                <div class="sm-item"><div><b>Buldak Hot Chicken Ramen</b><small>₱85.00</small></div><span class="tag">In stock</span></div>
+                <div class="sm-item"><div><b>Honey Butter Chip</b><small>₱95.00</small></div><span class="tag">In stock</span></div>
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <!-- 03 PlayIT -->
+        <article class="project" style="--i:2">
+          <div class="p-body" data-r>
+            <div class="p-top"><span class="p-num">03 / 04</span><span class="badge">Capstone · Team of 3</span></div>
             <h3>PlayIT</h3>
-            <p class="p-sub">Offline English phonics app for Grade 1 Filipino learners</p>
+            <p class="p-sub">Offline English phonics app for Grade 1 learners</p>
             <p class="p-role">Developer · IT411 Capstone</p>
             <ul class="p-list">
-              <li>An <strong>offline-first Android app</strong> that teaches phonics with the Marungko approach and <strong>on-device speech recognition</strong>, made for 2 GB phones with no internet.</li>
-              <li>Built <strong>child-friendly accessibility</strong>: sound captions, mouth-shape cues, 64 dp touch targets, and "no red" feedback for 6–7-year-olds.</li>
-              <li>Fixed core <strong>Blend It</strong> game logic (tiles are never dealt in the answer's order) and wrote the SRS, SDD, and test documents.</li>
+              <li>An <strong>offline-first Android app</strong> for 2 GB phones that teaches Marungko phonics with <strong>on-device speech recognition</strong>.</li>
+              <li><strong>Child-friendly accessibility</strong>: sound captions, mouth-shape cues, 64 dp touch targets, and "no red" feedback.</li>
+              <li>Fixed core <strong>Blend It</strong> game logic so tiles are never dealt in answer order, and wrote the SRS, SDD, and test docs.</li>
+              <li><strong>Release QA</strong>: a Python tool that stops the submission if any number disagrees with the JUnit results or APK checksum.</li>
             </ul>
             <div class="chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">Clean + MVVM</span><span class="chip">Room</span><span class="chip">Hilt</span><span class="chip">Vosk ASR</span></div>
             <div class="p-links"><a class="btn sm" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Team repo</a></div>
@@ -516,10 +631,10 @@
           </figure>
         </article>
 
-        <!-- 03 InkHive -->
-        <article class="project" style="--i:2">
+        <!-- 04 InkHive -->
+        <article class="project" style="--i:3">
           <div class="p-body" data-r>
-            <div class="p-top"><span class="p-num">03 / 03</span><span class="badge live">Live</span><span class="badge">Lead · Team of 3</span></div>
+            <div class="p-top"><span class="p-num">04 / 04</span><span class="badge live">Live</span><span class="badge">Lead · Team of 3</span></div>
             <h3>InkHive</h3>
             <p class="p-sub">Real-time collaborative whiteboard for classrooms</p>
             <p class="p-role">Lead &amp; backend developer · CSIT327-G4 · formerly COLLABoard</p>
@@ -587,13 +702,14 @@
         <div class="wrap proof-grid">
           <div>
             <h2 class="proof-say" id="proof-h">It isn't done until the tests have tried to break it.</h2>
-            <p class="proof-sub">Each square is one real automated test from LabaLink and InkHive, all 161 passing. The orange ones attack the app on purpose: tampered login tokens, password brute force, files disguised as images.</p>
+            <p class="proof-sub">Each square is one real automated test from LabaLink, InkHive and Seoul-Mate, all 269 passing. The orange ones attack the app on purpose: tampered login tokens, password brute force, files disguised as images, message floods.</p>
           </div>
           <div class="runner" aria-hidden="true">
-            <div class="run-head"><span>Test run</span><span class="run-count"><b data-run>161</b> / 161 passed</span></div>
+            <div class="run-head"><span>Test run</span><span class="run-count"><b data-run>269</b> / 269 passed</span></div>
             <div class="suite" data-suite="laba"><div class="suite-h"><b>LabaLink</b><span>JUnit · 34 tests</span></div><div class="dots"></div></div>
             <div class="suite" data-suite="ink"><div class="suite-h"><b>InkHive</b><span>Django · 127 tests</span></div><div class="dots"></div></div>
-            <div class="run-now" data-now><b>✓ 161 passed, 0 failed</b></div>
+            <div class="suite" data-suite="seoul"><div class="suite-h"><b>Seoul-Mate</b><span>Vitest · 108 tests</span></div><div class="dots"></div></div>
+            <div class="run-now" data-now><b>✓ 269 passed, 0 failed</b></div>
             <div class="run-key"><span><i></i>passed</span><span><i class="sec"></i>security test, passed</span></div>
           </div>
         </div>
@@ -613,28 +729,29 @@
       <div class="skillmap">
         <div class="nodes" data-r>
           <button class="node" type="button" data-n="laba" style="--c:#3b6fd8"><i></i>LabaLink</button>
+          <button class="node" type="button" data-n="seoul" style="--c:#e8508a"><i></i>Seoul-Mate</button>
           <button class="node" type="button" data-n="play" style="--c:#2a9d8f"><i></i>PlayIT</button>
           <button class="node" type="button" data-n="collab" style="--c:#e0802f"><i></i>InkHive</button>
           <button class="node" type="button" data-n="course" style="--c:#8b5cf6"><i></i>Coursework &amp; certs</button>
         </div>
         <div class="skills" data-r>
           <div class="skill"><h4>Languages</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba">Java</button><button type="button" class="chip" data-p="laba play">Kotlin</button><button type="button" class="chip" data-p="collab play">Python</button><button type="button" class="chip" data-p="laba">TypeScript</button><button type="button" class="chip" data-p="collab laba">JavaScript</button><button type="button" class="chip" data-p="course">PHP</button><button type="button" class="chip" data-p="laba collab play">SQL</button><button type="button" class="chip" data-p="collab laba">HTML/CSS</button>
+            <button type="button" class="chip" data-p="laba">Java</button><button type="button" class="chip" data-p="laba play">Kotlin</button><button type="button" class="chip" data-p="collab play">Python</button><button type="button" class="chip" data-p="laba seoul">TypeScript</button><button type="button" class="chip" data-p="collab laba">JavaScript</button><button type="button" class="chip" data-p="course">PHP</button><button type="button" class="chip" data-p="laba collab play seoul">SQL</button><button type="button" class="chip" data-p="collab laba seoul">HTML/CSS</button>
           </div></div>
           <div class="skill"><h4>Backend</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba">Spring Boot</button><button type="button" class="chip" data-p="laba">Spring Security</button><button type="button" class="chip" data-p="laba">JWT / OAuth2</button><button type="button" class="chip" data-p="collab">Django</button><button type="button" class="chip" data-p="collab">Django Channels</button><button type="button" class="chip" data-p="laba collab">REST APIs</button><button type="button" class="chip" data-p="laba collab">WebSocket</button>
+            <button type="button" class="chip" data-p="laba">Spring Boot</button><button type="button" class="chip" data-p="laba">Spring Security</button><button type="button" class="chip" data-p="laba">JWT / OAuth2</button><button type="button" class="chip" data-p="collab">Django</button><button type="button" class="chip" data-p="collab">Django Channels</button><button type="button" class="chip" data-p="laba collab">REST APIs</button><button type="button" class="chip" data-p="laba collab seoul">WebSocket / Realtime</button><button type="button" class="chip" data-p="seoul">Edge Functions</button>
           </div></div>
           <div class="skill"><h4>Mobile &amp; Frontend</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba play">Android</button><button type="button" class="chip" data-p="play">Jetpack Compose</button><button type="button" class="chip" data-p="play">Room</button><button type="button" class="chip" data-p="play">Hilt</button><button type="button" class="chip" data-p="laba">React</button><button type="button" class="chip" data-p="laba">Tailwind CSS</button>
+            <button type="button" class="chip" data-p="laba play">Android</button><button type="button" class="chip" data-p="play">Jetpack Compose</button><button type="button" class="chip" data-p="play">Room</button><button type="button" class="chip" data-p="play">Hilt</button><button type="button" class="chip" data-p="laba seoul">React</button><button type="button" class="chip" data-p="laba">Tailwind CSS</button><button type="button" class="chip" data-p="seoul">i18n (EN · FIL · KO)</button><button type="button" class="chip" data-p="seoul play">Accessibility</button>
           </div></div>
           <div class="skill"><h4>Data</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba collab">PostgreSQL</button><button type="button" class="chip" data-p="collab play course">SQLite</button><button type="button" class="chip" data-p="course">MySQL</button><button type="button" class="chip" data-p="collab">Supabase</button><button type="button" class="chip" data-p="laba">Flyway</button>
+            <button type="button" class="chip" data-p="laba collab seoul">PostgreSQL</button><button type="button" class="chip" data-p="collab play course">SQLite</button><button type="button" class="chip" data-p="course">MySQL</button><button type="button" class="chip" data-p="collab seoul">Supabase</button><button type="button" class="chip" data-p="seoul">Row Level Security</button><button type="button" class="chip" data-p="laba">Flyway</button>
           </div></div>
           <div class="skill"><h4>Cloud, AI &amp; DevOps</h4><div class="chips">
-            <button type="button" class="chip" data-p="course">AWS</button><button type="button" class="chip" data-p="collab">Render</button><button type="button" class="chip" data-p="course">Docker</button><button type="button" class="chip" data-p="laba play collab">Git / GitHub</button><button type="button" class="chip" data-p="laba">Stripe API</button><button type="button" class="chip" data-p="play">Speech recognition</button><button type="button" class="chip" data-p="course">AI / ML foundations</button>
+            <button type="button" class="chip" data-p="course">AWS</button><button type="button" class="chip" data-p="collab">Render</button><button type="button" class="chip" data-p="course">Docker</button><button type="button" class="chip" data-p="laba play collab seoul">Git / GitHub</button><button type="button" class="chip" data-p="seoul">GitHub Actions CI</button><button type="button" class="chip" data-p="laba">Stripe API</button><button type="button" class="chip" data-p="play">Speech recognition</button><button type="button" class="chip" data-p="course">AI / ML foundations</button>
           </div></div>
           <div class="skill"><h4>Security &amp; Design</h4><div class="chips">
-            <button type="button" class="chip" data-p="laba">STRIDE threat modeling</button><button type="button" class="chip" data-p="laba collab">Auth hardening</button><button type="button" class="chip" data-p="laba collab play">Automated testing</button><button type="button" class="chip" data-p="laba play collab">UML / ERD</button><button type="button" class="chip" data-p="laba play collab">SRS / SDD</button><button type="button" class="chip" data-p="laba collab">Data privacy (DPA 2012)</button>
+            <button type="button" class="chip" data-p="laba">STRIDE threat modeling</button><button type="button" class="chip" data-p="laba collab seoul">Auth hardening</button><button type="button" class="chip" data-p="laba collab play seoul">Automated testing</button><button type="button" class="chip" data-p="seoul">End-to-end tests (Playwright)</button><button type="button" class="chip" data-p="laba play collab seoul">UML / ERD</button><button type="button" class="chip" data-p="laba play collab seoul">SRS / SDD</button><button type="button" class="chip" data-p="laba collab seoul">Data privacy (DPA 2012)</button>
           </div></div>
         </div>
         <p class="skill-cap" aria-live="polite"></p>
@@ -720,6 +837,29 @@
       })(t0);
     });
   }
+
+  /* ---------- split text into letters that rise one at a time ---------- */
+  // Screen readers get the plain text; the animated copy is hidden from them.
+  function splitLetters(el) {
+    var text = el.textContent.trim(), k = 0, vis = document.createElement('span'), sr = document.createElement('span');
+    sr.className = 'sr'; sr.textContent = text;
+    vis.setAttribute('aria-hidden', 'true');
+    text.split(' ').forEach(function (word, i) {
+      var w = document.createElement('span');
+      w.className = 'w';
+      Array.prototype.forEach.call(word, function (c) {
+        var ch = document.createElement('span');
+        ch.className = 'ch'; ch.textContent = c; ch.style.setProperty('--k', k++);
+        w.appendChild(ch);
+      });
+      if (i) vis.appendChild(document.createTextNode(' '));
+      vis.appendChild(w);
+    });
+    el.textContent = '';
+    el.appendChild(sr); el.appendChild(vis);
+  }
+  $$('.hero .split').forEach(splitLetters);
+  $$('.project h3').forEach(function (h) { h.classList.add('split'); h.style.setProperty('--d', '.12s'); splitLetters(h); });
 
   /* ---------- theme + footer ---------- */
   $('#theme').addEventListener('click', function () {
@@ -830,9 +970,9 @@
   function measure() { if (track) half = track.scrollWidth / 2; }
   if (mq && HAS_IO) new IntersectionObserver(function (es) { mqVis = es[0].isIntersecting; }).observe(mq);
 
-  var stack = $('.stack'), cards = $$('.project', stack), stacking = false, TOP = 84, STEP = 16;
+  var stack = $('.stack'), cards = $$('.project', stack), stacking = false, TOP = 84, STEP = 12;
   function setupStack() {
-    var ok = innerWidth >= 960 && cards.every(function (c, i) { return c.offsetHeight + TOP + i * STEP + 32 < innerHeight; });
+    var ok = innerWidth >= 960 && cards.every(function (c, i) { return c.offsetHeight + TOP + i * STEP + 16 < innerHeight; });
     stacking = ok;
     stack.classList.toggle('stacking', ok);
     if (!ok || RM) cards.forEach(function (c) { c.style.transform = ''; c.style.setProperty('--dim', 0); });
@@ -855,16 +995,17 @@
   }
 
   /* ---------- proof: scrolling runs the real test suites ---------- */
-  // Every test name below is real (LabaLink: JUnit methods, InkHive: Django test_ methods).
-  // [1 = lives in a dedicated security test file, names]
+  // Every test name below is real (LabaLink: JUnit methods, InkHive: Django test_ methods,
+  // Seoul-Mate: Vitest test titles). [1 = security test, names]: a security test lives
+  // in a dedicated security test file, or (Seoul-Mate) cites a security requirement (NFR-SEC).
   var SUITES = [
-    { id: 'laba', pre: '', groups: [
+    { id: 'laba', pre: '', sep: ' ', groups: [
       [0, 'bookingRequiresTheRealQrCode bookingIsPricedByServerAndChargedToWallet insufficientBalanceIsRejected bookingsArePrivateToOwnerAndAttendants cancellingRefundsAndFreesTheMachine machinesWithHistoryCannotBeDeleted legacyDataSurvivesAndMoneyBecomesExactDecimal topUpLimitsAreEnforced walletIsCreditedOnlyOnceAndOnlyWhenPaid webhookCreditsWallet forgedWebhooksAreRejected amountMismatchIsNeverCredited customersCannotTouchOtherPeoplesPayments'],
       [1, 'authEndpointsAreThrottledPerClient stripeWebhooksAreNeverThrottled protectedEndpointsRequireAuthentication legacyTrustTheClientGoogleEndpointIsGone googleEndpointRejectsUnverifiableTokens oauth2ExchangeRejectsUnknownCodes registrationCannotSelfAssignAttendantRole registrationEnforcesPasswordPolicy customersCannotUseAttendantEndpoints qrTokensAreOnlyVisibleToAttendants tamperedAndRevokedTokensAreRejected repeatedFailedLoginsLockTheAccount unknownEmailAndWrongPasswordLookIdentical responsesCarrySecurityHeaders corsOnlyAllowsConfiguredOrigins errorsNeverLeakInternals'],
       [0, 'rejectsLiveKeys acceptsTestOrMissingKeys'],
       [1, 'connectWithoutValidTokenIsRejected customersCannotSubscribeToTheAttendantFeed walletUpdatesReachOnlyTheirOwner']
     ] },
-    { id: 'ink', pre: 'test_', groups: [
+    { id: 'ink', pre: 'test_', sep: ' ', groups: [
       [0, 'student_signup_logs_in_and_goes_to_dashboard student_requires_student_id teachers_do_not_collide_on_empty_student_id cannot_sign_up_as_admin weak_password_rejected_once_per_rule duplicate_email_rejected login_with_username login_with_email_case_insensitive wrong_password role_redirects superuser_becomes_admin logout_is_post'],
       [0, 'participant_can_chat outsider_forbidden disabled_chat_blocks_sending message_length_limit'],
       [1, 'headers_on_every_page no_inline_scripts_or_third_party_assets healthz lockout_after_five_failures_even_with_right_password account_limit_cannot_be_dodged_by_switching_ip email_and_username_count_as_same_account other_accounts_unaffected success_resets_pair_counter admin_login_is_throttled_too x_forwarded_for_ignored_unless_behind_proxy signup_flood_blocked join_code_scanning_blocked chat_spam_blocked weak_short_password_rejected html_disguised_as_image_rejected svg_rejected fake_pdf_and_docx_rejected png_named_jpg_rejected genuine_files_accepted tricky_filename_is_sanitised anonymous_redirected_to_login outsider_gets_404 participant_can_download_with_safe_headers duplicate_session_members_can_see_shared_snapshot path_traversal_and_unknown_paths presence_sync_requires_csrf_token state_changing_endpoints_reject_missing_token refuses_to_start_with_default_secret_key starts_with_strong_secret_key'],
@@ -874,6 +1015,20 @@
       [0, 'announcement_reaches_participants_only double_submit_is_suppressed_but_later_repeat_allowed students_cannot_announce student_sees_own_session_announcements mark_all_read_requires_post cannot_mark_someone_elses'],
       [0, 'outsider_and_anonymous_are_rejected teacher_strokes_reach_student_but_not_sender view_only_student_cannot_draw_until_teacher_allows students_cannot_send_teacher_events presence_tracks_who_is_online sync_request_is_relayed flooding_is_capped_and_garbage_ignored'],
       [0, 'create_session_generates_readable_code duplicate_title_rejected_for_same_teacher_only title_too_long create_get_redirects_to_list students_cannot_manage_sessions duplicate_session delete_requires_owner search qr_points_to_join_page join_with_code_case_insensitive rejoin_does_not_duplicate invalid_code join_prefills_code_from_qr_link outsider_cannot_open_whiteboard participant_is_routed_to_student_view teacher_view toggle_draw_permission_owner_only presence_sync_with_nobody_present presence_sync_keeps_present_users record_stroke record_stroke_view_only_rejected toggle_chat save_snapshot_then_export_pdf snapshot_must_be_png snapshot_owner_only pdf_without_snapshot attendance_csv teacher_upload_is_recorded pdf_is_not_an_image student_needs_draw_permission rejects_unsupported_type']
+    ] },
+    { id: 'seoul', pre: '', sep: '|', groups: [
+      [0, 'sends the root to the browser language|prefers the saved choice over the browser language|offers each language in its own language, linking to the same page and filter|switches language without a reload and remembers the choice|marks English fallback text with lang="en" (FR-21, NFR-ACC-05)|sends an unknown language prefix back to the root|shows a page-not-found message for unknown pages|shows items by category with price, availability and a photo placeholder|labels sample items outside production (D-010)|shows when stock last changed, in Philippine time|filters to one category and back to all|shows a plain error with Messenger and phone links, then recovers on retry|shows skeleton cards while loading, not a full-screen loader (FR-10)|filters as the visitor types and says how many match|shows typed markup as text, with a Messenger link, when nothing matches|lists hours for each day, with next-day closing|has a tap-to-call link and a Messenger button on every page|explains ordering, pickup and payment'],
+      [0, 'keeps an active session|ends after 60 minutes without activity|ends 12 hours after login, however active|turns database refusals into what staff are told|recognizes JPEG, PNG and WebP by their first bytes|refuses other files, whatever their name or stated type|refuses photos over 5 MB before reading them|reads pesos as staff type them, to whole centavos|refuses anything that is not a price|writes centavos back without needless decimals|makes a web address name from an English name|trims text and stores empty translations as null, so visitors see English (FR-21)|reports one error per field, matching the database rules|caps the price at 100,000 pesos|accepts a good category and refuses a bad web address name'],
+      [0, 'starts in the loading state, then shows the menu|reloads 300 ms after the last change event, once per burst|checks the version when the subscription starts, and reloads only if it changed|pauses and polls every 10 seconds while the live connection is down|stops polling and catches up when the connection comes back|shows the error state when the first load fails, and recovers on retry|retries a failed first load by itself when the live connection comes up|keeps the last good menu when a reload fails|stops listening and publishing when stopped|groups items by category in staff order|keeps out-of-stock items on the menu (FR-04)|filters to one category|shows everything for an unknown category in the address|combines the category filter and search|offers only categories that have items as filters|is the latest change among the items|is undefined for an empty menu'],
+      [0, 'keeps only the five UTM values|drops values with characters the contact function would refuse|stores nothing before the visitor chooses|saves the campaign details for the session once the visitor accepts|discards them when the visitor declines, also after accepting earlier (FR-56)|saves straight away on a later visit by someone who accepted before|gives each language its own instance|uses the right plural forms per language|inserts visitor input as it is, without expanding i18next syntax inside it (FR-15)|uses the saved choice first|ignores a saved value that is not a site language|uses the first supported browser language|treats Tagalog as Filipino|falls back to English|swaps the language prefix and keeps the rest of the path|uses the page language when there is text for it|falls back to English and says so, so the text can be marked up with lang="en"|has the same keys in every language, so nothing falls back by accident|has no empty text in the staff panel|has no empty text|uses no em dashes, in any language, the staff panel or the store facts|keeps every interpolation from the English text'],
+      [0, 'lowercases, collapses spaces and applies NFKC|matches item names, ignoring case and extra spaces|matches descriptions and category names|needs every word, in any order|matches the page language and English together|returns everything for an empty query|treats markup and SQL as plain text that matches nothing|filters 1,000 items well within 100 ms (NFR-PERF-05)|have the same sections in every language|cover what the privacy policy must explain|use only the known placeholders and no em dashes|has the same entries in every language, none empty|remembers an explicit choice and applies it to <html>|shows a calendar date in each language|copies the text and announces "Copied"|selects the text and explains what to do when the clipboard is blocked|says when closing is early the next morning|leaves same-day closing as it is|has the hours the owner confirmed, Monday to Sunday|shows pesos with the ₱ sign in every language|keeps centavos exact|shows database times in Philippine time, whatever the test machine time zone|moves to the next day after 4 PM UTC|formats store clock times per language|names weekdays from Monday'],
+      [0, 'stores a valid message and answers ok, with CORS for the site only'],
+      [1, 'refuses other origins, before reading anything (NFR-SEC-12)'],
+      [0, 'answers the browser preflight for the site|refuses anything that is not JSON, or too large'],
+      [1, 'names the invalid fields, and nothing else (NFR-SEC-09, NFR-SEC-15)'],
+      [0, 'accepts an email or a Philippine mobile number only|refuses unknown fields, odd UTM values and control characters'],
+      [1, 'answers ok to a filled honeypot and stores nothing (NFR-SEC-17)|limits each IP to 5 messages in 10 minutes, with Retry-After (NFR-SEC-16)'],
+      [0, 'hides failures behind a plain server error, and logs no personal data|refuses to work without its salt, rather than storing unsalted hashes']
     ] }
   ];
   var proof = $('.proof'), pTrack, pPin, pGrid, pWords = [], pTests = [], pSuites = [], pCount, pNow, pDone = -1, scrub = false;
@@ -883,7 +1038,7 @@
     SUITES.forEach(function (s) {
       var box = $('[data-suite="' + s.id + '"]', proof), dots = $('.dots', box), first = pTests.length;
       s.groups.forEach(function (g) {
-        g[1].split(' ').forEach(function (n) {
+        g[1].split(s.sep).forEach(function (n) {
           var d = document.createElement('i');
           if (g[0]) d.className = 'sec';
           dots.appendChild(d);
@@ -931,7 +1086,7 @@
     var b = document.createElement('b');
     if (done === n) { b.textContent = '✓ ' + n + ' passed, 0 failed'; pNow.appendChild(b); }
     else if (done) { b.textContent = '✓ '; pNow.appendChild(b); pNow.appendChild(document.createTextNode(pTests[done - 1].name)); }
-    else pNow.textContent = '$ ./mvnw test && python manage.py test modules';
+    else pNow.textContent = '$ ./mvnw test && python manage.py test modules && npm test';
   }
 
   /* ---------- contact card opens up as it scrolls in ---------- */
@@ -940,6 +1095,17 @@
     if (!cta || RM) return;
     var q = clamp((innerHeight - cta.getBoundingClientRect().top) / (innerHeight * 0.65), 0, 1), e = 1 - Math.pow(1 - q, 2);
     cta.style.clipPath = e < 1 ? 'inset(0 ' + ((1 - e) * 8).toFixed(2) + '% round ' + (24 + (1 - e) * 56).toFixed(1) + 'px)' : '';
+  }
+
+  /* ---------- hero drifts back and fades as you scroll past it ---------- */
+  var heroEl = $('.hero'), heroWrap = $('.hero .wrap'), heroGone = false;
+  function updateHero(y) {
+    if (!heroWrap || RM) return;
+    var h = heroEl.offsetHeight, p = clamp(y / h, 0, 1);
+    if (p >= 1 && heroGone) return; // already parked out of view
+    heroGone = p >= 1;
+    heroWrap.style.transform = y > 0 ? 'translate3d(0,' + (Math.min(y, h) * 0.24).toFixed(1) + 'px,0)' : '';
+    heroWrap.style.opacity = p > 0.3 ? (1 - (p - 0.3) * 1.1).toFixed(3) : '';
   }
 
   var nav = $('#nav'), prog = $('#prog'), lastY = -1, lastT = performance.now(), vel = 0, dir = 1, skew = 0;
@@ -951,6 +1117,7 @@
       var h = root.scrollHeight - innerHeight;
       prog.style.transform = 'scaleX(' + (h > 0 ? y / h : 0).toFixed(4) + ')';
       nav.classList.toggle('scrolled', y > 8);
+      updateHero(y);
       updateStack();
       updateProof();
       updateContact();
@@ -1064,7 +1231,73 @@
     })();
   })();
 
-  /* ---------- demo 2: PlayIT "Blend it" ---------- */
+  /* ---------- demo 2: Seoul-Mate live menu ---------- */
+  (function () {
+    var el = $('.demo-seoul');
+    if (!el) return;
+    // Sample items, prices, labels and search hints as they are in the Seoul-Mate repo.
+    // Its Filipino item names are not written yet, so they fall back to English there too.
+    var L = {
+      en: { title: 'Menu', search: 'Try ramyun, chips or sheet mask', yes: 'In stock', no: 'Out of stock', names: ['Shin Ramyun', 'Buldak Hot Chicken Ramen', 'Honey Butter Chip'] },
+      fil: { title: 'Menu', search: 'Hal. ramyun, chips o sheet mask', yes: 'May stock', no: 'Ubos na', names: ['Shin Ramyun', 'Buldak Hot Chicken Ramen', 'Honey Butter Chip'] },
+      ko: { title: '메뉴', search: '예: 라면, 과자, 마스크팩', yes: '재고 있음', no: '품절', names: ['신라면', '불닭볶음면', '허니버터칩'] }
+    };
+    var ORDER = ['en', 'fil', 'ko'];
+    var phone = $('.sm-phone', el), pills = $$('.sm-lang i', el), title = $('[data-sm-title]', el), search = $('[data-sm-search]', el),
+        items = $$('.sm-item', el), row = $('.sm-row.key', el), toggle = $('.tg', row), wire = $('.sm-wire', el);
+    var lang = 'en', stock = [true, true, true];
+
+    function paint() {
+      var t = L[lang];
+      title.textContent = t.title; search.textContent = t.search;
+      items.forEach(function (it, i) {
+        $('b', it).textContent = t.names[i];
+        $('.tag', it).textContent = stock[i] ? t.yes : t.no;
+        it.classList.toggle('out', !stock[i]);
+      });
+      pills.forEach(function (p, i) { p.classList.toggle('on', ORDER[i] === lang); });
+      phone.setAttribute('lang', lang);
+    }
+    function setLang(l) {
+      phone.classList.add('swap');
+      return sleep(190).then(function () { lang = l; paint(); phone.classList.remove('swap'); });
+    }
+    // Staff flip the switch, the change crosses the wire, and the open menu follows.
+    function flip(i, on) {
+      row.classList.add('hot'); toggle.classList.add('tap'); toggle.classList.toggle('on', on);
+      return sleep(280).then(function () {
+        toggle.classList.remove('tap');
+        wire.classList.remove('go'); void wire.offsetWidth; wire.classList.add('go');
+        return sleep(620);
+      }).then(function () {
+        row.classList.remove('hot');
+        stock[i] = on; paint();
+        items[i].classList.remove('flash'); void items[i].offsetWidth; items[i].classList.add('flash');
+      });
+    }
+
+    paint();
+    if (RM) { stock[1] = false; toggle.classList.remove('on'); paint(); return; }
+    if (dio) dio.observe(el);
+    (async function run() {
+      for (;;) {
+        await gate(el);
+        await wait(el, 1500);
+        await flip(1, false);
+        await wait(el, 1800);
+        await setLang('ko');
+        await wait(el, 2000);
+        await setLang('fil');
+        await wait(el, 1400);
+        await flip(1, true);
+        await wait(el, 1800);
+        await setLang('en');
+        await wait(el, 400);
+      }
+    })();
+  })();
+
+  /* ---------- demo 3: PlayIT "Blend it" ---------- */
   (function () {
     var el = $('.demo-play');
     if (!el) return;
@@ -1137,7 +1370,7 @@
     })();
   })();
 
-  /* ---------- demo 3: InkHive shared whiteboard ---------- */
+  /* ---------- demo 4: InkHive shared whiteboard ---------- */
   (function () {
     var el = $('.demo-collab');
     if (!el) return;
@@ -1255,7 +1488,7 @@
     var map = $('.skillmap');
     if (!map) return;
     var nodes = $$('.node', map), chips = $$('.chip[data-p]', map), grid = $('.skills', map), cap = $('.skill-cap', map), pinned = null;
-    var NAMES = { laba: 'LabaLink', play: 'PlayIT', collab: 'InkHive', course: 'coursework & certifications' };
+    var NAMES = { laba: 'LabaLink', seoul: 'Seoul-Mate', play: 'PlayIT', collab: 'InkHive', course: 'coursework & certifications' };
     var HINT = (FINE ? 'Hover' : 'Tap') + ' a skill to see where I used it, or pick a project.';
     cap.textContent = HINT;
     chips.forEach(function (c, i) { c.style.setProperty('--d', (i * 0.022).toFixed(3) + 's'); });
