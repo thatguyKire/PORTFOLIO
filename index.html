@@ -409,7 +409,7 @@
 
   /* ---------- credentials ---------- */
   .creds { display: grid; gap: 12px; }
-  @media (min-width: 820px) { .creds { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 820px) { .creds { grid-template-columns: repeat(3, 1fr); } }
   .cred { position: relative; overflow: hidden; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); display: flex; flex-direction: column; }
   .cred::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%); }
   .cred:hover::before { opacity: 1; }
@@ -510,7 +510,7 @@
         <div class="stat"><b data-count="4">4</b><span>major projects across web &amp; Android</span></div>
         <div class="stat"><b data-count="269">269</b><span>unit &amp; integration tests across 3 projects</span></div>
         <div class="stat"><b data-count="1">1</b><span>app live in production on Render</span></div>
-        <div class="stat"><b data-count="2">2</b><span>certifications: AWS Cloud &amp; IBM AI</span></div>
+        <div class="stat"><b data-count="3">3</b><span>training badges: AWS Cloud, AWS Generative AI &amp; IBM AI</span></div>
       </div>
     </div>
   </header>
@@ -748,7 +748,7 @@
             <button type="button" class="chip" data-p="laba collab seoul">PostgreSQL</button><button type="button" class="chip" data-p="collab play course">SQLite</button><button type="button" class="chip" data-p="course">MySQL</button><button type="button" class="chip" data-p="collab seoul">Supabase</button><button type="button" class="chip" data-p="seoul">Row Level Security</button><button type="button" class="chip" data-p="laba">Flyway</button>
           </div></div>
           <div class="skill"><h4>Cloud, AI &amp; DevOps</h4><div class="chips">
-            <button type="button" class="chip" data-p="course">AWS</button><button type="button" class="chip" data-p="collab">Render</button><button type="button" class="chip" data-p="course">Docker</button><button type="button" class="chip" data-p="laba play collab seoul">Git / GitHub</button><button type="button" class="chip" data-p="seoul">GitHub Actions CI</button><button type="button" class="chip" data-p="laba">Stripe API</button><button type="button" class="chip" data-p="play">Speech recognition</button><button type="button" class="chip" data-p="course">AI / ML foundations</button>
+            <button type="button" class="chip" data-p="course">AWS</button><button type="button" class="chip" data-p="collab">Render</button><button type="button" class="chip" data-p="course">Docker</button><button type="button" class="chip" data-p="laba play collab seoul">Git / GitHub</button><button type="button" class="chip" data-p="seoul">GitHub Actions CI</button><button type="button" class="chip" data-p="laba">Stripe API</button><button type="button" class="chip" data-p="play">Speech recognition</button><button type="button" class="chip" data-p="course">AI / ML foundations</button><button type="button" class="chip" data-p="course">Generative AI (Amazon Bedrock)</button>
           </div></div>
           <div class="skill"><h4>Security &amp; Design</h4><div class="chips">
             <button type="button" class="chip" data-p="laba">STRIDE threat modeling</button><button type="button" class="chip" data-p="laba collab seoul">Auth hardening</button><button type="button" class="chip" data-p="laba collab play seoul">Automated testing</button><button type="button" class="chip" data-p="seoul">End-to-end tests (Playwright)</button><button type="button" class="chip" data-p="laba play collab seoul">UML / ERD</button><button type="button" class="chip" data-p="laba play collab seoul">SRS / SDD</button><button type="button" class="chip" data-p="laba collab seoul">Data privacy (DPA 2012)</button>
@@ -770,11 +770,17 @@
       <div class="creds">
         <div class="cred" data-r>
           <span class="issuer">AWS Academy · Oct 2026</span>
+          <h4>Generative AI Foundations</h4>
+          <p>AWS Academy Graduate training badge, 12 course hours covering foundation models, Amazon Bedrock, prompt engineering, and responsible AI.</p>
+          <a href="https://www.credly.com/badges/976f8e14-cea6-4e4d-8c51-9113375560bd" target="_blank" rel="noopener">Verify on Credly ↗</a>
+        </div>
+        <div class="cred" data-r style="--d:.1s">
+          <span class="issuer">AWS Academy · Oct 2026</span>
           <h4>Cloud Foundations</h4>
           <p>AWS Academy Graduate training badge, 20 course hours covering core AWS services, architecture, security, and pricing.</p>
           <a href="https://www.credly.com/go/bSIKMmgk" target="_blank" rel="noopener">Verify on Credly ↗</a>
         </div>
-        <div class="cred" data-r style="--d:.1s">
+        <div class="cred" data-r style="--d:.2s">
           <span class="issuer">IBM SkillsBuild · Jul 2026</span>
           <h4>Artificial Intelligence Fundamentals</h4>
           <p>Core AI concepts, machine learning, neural networks, and trustworthy AI.</p>
