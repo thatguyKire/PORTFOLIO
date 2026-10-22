@@ -271,6 +271,7 @@
   .note { display: grid; gap: 0.75rem; padding-block: 1.5rem; }
   .note dt { font-size: var(--step-head); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
   .note dd { margin: 0; }
+  .note-name { display: block; }
   /* each project's own screen under its name, showing a claim from its note */
   .note-shot { position: relative; display: block; width: 100%; max-width: 26rem; margin-top: 1.5rem; aspect-ratio: 3 / 2; overflow: hidden; background: var(--surface); container-type: size; }
   .note-shot .c-big { font-size: 30cqh; }
@@ -502,6 +503,29 @@
     .motion .badge[data-in] img { transform: scale(0.94); }
     .motion .badge[data-in].is-in img { transform: none; transition: transform 1100ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
 
+    /* the manner follows the part. A short heading rises a letter at a time from behind its baseline,
+       30ms apart; from four words it rises a word at a time. Each word stays whole on its line. */
+    .wd { display: inline-block; white-space: nowrap; }
+    .motion [data-in="chars"], .motion [data-in="words"] { opacity: 1; transform: none; clip-path: inset(-0.5em -0.5em -0.3em -0.5em); }
+    .motion [data-in="chars"] .ch, .motion [data-in="words"] .ch { display: inline-block; transform: translate3d(0, calc(100% + 0.35em), 0); }
+    .motion [data-in="chars"].is-in .ch { transform: none; transition: transform 800ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 30ms); }
+    .motion [data-in="words"].is-in .ch { transform: none; transition: transform 900ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 70ms); }
+    /* a project's screen opens like a shutter while the app inside settles, then its tags and tiles stamp */
+    .motion [data-in="open"] { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); }
+    .motion [data-in="open"] .crop { transform: scale(1.12); }
+    .motion [data-in="open"].is-in { clip-path: inset(0); transition: clip-path 1100ms var(--ease-in-out) calc(var(--i, 0) * 80ms); }
+    .motion [data-in="open"].is-in .crop { transform: none; transition: transform 1300ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
+    .motion [data-in="open"].is-in .c-pill, .motion [data-in="open"].is-in .c-tiles i:not(.off) { animation: stamp 380ms var(--ease-out) 900ms both; }
+    /* a skill bar slides out from the left */
+    .motion [data-in="bar"] { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); }
+    .motion [data-in="bar"].is-in { clip-path: inset(0); transition: clip-path 900ms var(--ease-expo) calc(var(--i, 0) * 70ms); }
+    /* the verdict panel opens from the top */
+    .motion [data-in="drop"] { opacity: 1; transform: none; clip-path: inset(0 0 100% 0); }
+    .motion [data-in="drop"].is-in { clip-path: inset(0); transition: clip-path 1000ms var(--ease-in-out) calc(var(--i, 0) * 80ms); }
+    /* About's paragraph: words wait at 45% ink and fill in reading order as it rises (the script marks them) */
+    .fill .w { opacity: 0.45; transition: opacity 300ms ease; }
+    .fill .w.on { opacity: 1; }
+
     /* press */
     .nav .theme:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
     .bars summary:active { transform: scale(0.99); }
@@ -538,6 +562,7 @@
     .flip, .field { background: none; }
     [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop, .shot * { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .shot .crop.was-on { visibility: hidden; }
+    .fill .w { opacity: 1 !important; }
     /* the app screens and the band are pictures: print their grounds even when backgrounds are off */
     [data-ui], .band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     /* the work stage lets go of its pin and prints one project a page, each title whole */
@@ -749,7 +774,7 @@
       <h3 class="head">The details</h3>
       <dl>
     <div class="note" id="note-laba">
-      <dt>LabaLink<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+      <dt><span class="note-name">LabaLink</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><span><b>LabaLink</b> · Wallet</span><i class="c-pill">Paid</i></span>
         <span class="c-big">₱300.00</span>
         <span class="c-item"><span>Top-up +₱200.00<small>Signed by Stripe, credited once</small></span></span>
@@ -766,7 +791,7 @@
       </dd>
     </div>
     <div class="note" id="note-seoul">
-      <dt>Seoul-Mate<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+      <dt><span class="note-name">Seoul-Mate</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><b>Seoul-Mate</b><span class="c-lang"><i class="on">EN</i><i>FIL</i><i>KO</i></span></span>
         <span class="c-item"><span><b>Buldak Ramen</b><small>₱85.00</small></span><i class="c-pill off">Sold out</i></span>
         <span class="c-item"><span><b>Honey Butter Chip</b><small>₱95.00</small></span><i class="c-pill">In stock</i></span>
@@ -783,7 +808,7 @@
       </dd>
     </div>
     <div class="note" id="note-play">
-      <dt>PlayIT<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+      <dt><span class="note-name">PlayIT</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><span><b>PlayIT</b> · Find it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
         <span>Tap the letter that says <b>/m/</b></span>
         <span class="c-tiles"><i class="off">s</i><i>m</i><i class="off">a</i></span>
@@ -801,7 +826,7 @@
       </dd>
     </div>
     <div class="note" id="note-ink">
-      <dt>InkHive<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+      <dt><span class="note-name">InkHive</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><b>InkHive</b><span>Session ended</span></span>
         <span class="c-item"><span><b>Fractions, Grade 5</b><small>Attendance saved</small></span><i class="c-pill">PDF</i></span>
         <span class="c-item"><span><b>Whiteboard</b><small>Exported for the class</small></span><i class="c-pill">PNG</i></span>
@@ -1261,10 +1286,12 @@
     b.appendChild(roll);
   });
 
-  /* ---------- entrances: each section's parts arrive once, in reading order ---------- */
-  // A group is watched; when its top passes 90% of the screen its parts show, 80ms apart and four steps at
-  // most. "Line" parts rise from behind their own baseline. The marks come off once they have played, so
-  // the page is left exactly as it was built.
+  /* ---------- entrances: each section's parts arrive once, in reading order, each in its own manner ---------- */
+  // A group is watched; when its top passes 90% of the screen its parts arrive, 80ms apart and four steps
+  // at most. A part is an element, or [element, manner]: "line" rises from behind its own baseline; "chars"
+  // and "words" rise a letter or a word at a time; "open" opens a picture like a shutter; "bar" slides out
+  // from the left; "drop" opens a panel from the top; no manner rises 24px. The marks come off once they
+  // have played, so the page is left exactly as it was built.
   if (!RM && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -1272,59 +1299,106 @@
         io.unobserve(e.target);
         var parts = e.target.inParts;
         parts.forEach(function (el) { el.classList.add('is-in'); });
-        setTimeout(function () {
-          parts.forEach(function (el) {
-            el.removeAttribute('data-in');
-            el.classList.remove('is-in');
-            el.style.removeProperty('--i');
-            var r = el.inRise;
-            if (r) { while (r.firstChild) el.insertBefore(r.firstChild, r); el.removeChild(r); }
-            $$('.rise', el).forEach(function (s) { s.classList.remove('rise'); s.style.removeProperty('--i'); });
-          });
-        }, 1700);
+        setTimeout(function () { parts.forEach(settle); }, 1700);
       });
     }, { rootMargin: '0px 0px -10% 0px' });
-    var enter = function (box, parts, lines) {
+    var settle = function (el) {
+      el.removeAttribute('data-in');
+      el.classList.remove('is-in');
+      el.style.removeProperty('--i');
+      if (el.inText != null) { el.textContent = el.inText; el.removeAttribute('aria-label'); }
+      var r = el.inRise;
+      if (r) { while (r.firstChild) el.insertBefore(r.firstChild, r); el.removeChild(r); }
+      $$('.rise', el).forEach(function (s) { s.classList.remove('rise'); s.style.removeProperty('--i'); });
+    };
+    // A heading is split into letters (or words) for its rise. Screen readers get the whole heading from
+    // its label meanwhile, and the plain text comes back when the rise is over.
+    var split = function (el, byWord) {
+      var text = el.textContent, n = 0, box = document.createElement('span');
+      el.inText = text;
+      el.setAttribute('aria-label', text);
+      box.setAttribute('aria-hidden', 'true');
+      text.split(' ').forEach(function (word, wi) {
+        if (wi) box.appendChild(document.createTextNode(' '));
+        var w = document.createElement('span');
+        w.className = 'wd';
+        (byWord ? [word] : word.split('')).forEach(function (c) {
+          var s = document.createElement('span');
+          s.className = 'ch';
+          s.textContent = c;
+          s.style.setProperty('--c', n++);
+          w.appendChild(s);
+        });
+        box.appendChild(w);
+      });
+      el.textContent = '';
+      el.appendChild(box);
+    };
+    var enter = function (box, parts) {
       if (!box) return;
-      box.inParts = parts.filter(Boolean).map(function (el, i) {
-        var line = !!lines && lines.indexOf(el) > -1;
-        if (line && !$('.rise', el)) {
+      box.inParts = parts.map(function (p) { return p && p.nodeType ? [p, ''] : p; }).filter(function (p) { return p && p[0]; }).map(function (p, i) {
+        var el = p[0], kind = p[1];
+        if (kind === 'line' && !$('.rise', el)) {
           var s = document.createElement('span');
           s.className = 'rise';
           while (el.firstChild) s.appendChild(el.firstChild);
           el.appendChild(s);
           el.inRise = s;
         }
-        el.setAttribute('data-in', line ? 'line' : '');
+        if (kind === 'chars' || kind === 'words') split(el, kind === 'words');
+        el.setAttribute('data-in', kind);
         el.style.setProperty('--i', Math.min(i, 3));
         return el;
       });
       io.observe(box);
     };
     var rows = $$('.about-row'), email = $('.email');
-    enter($('.work-head'), [$('#work-h'), $('.work-head p')], [$('#work-h')]);
-    enter($('.notes > h3'), [$('.notes > h3')], [$('.notes > h3')]);
-    $$('.note').forEach(function (n) { enter(n, [$('dt', n), $('dd', n)]); });
+    enter($('.work-head'), [[$('#work-h'), 'chars'], $('.work-head p')]);
+    enter($('.notes > h3'), [[$('.notes > h3'), 'chars']]);
+    $$('.note').forEach(function (n) { enter(n, [[$('.note-name', n) || $('dt', n), 'line'], [$('.note-shot', n), 'open'], $('dd', n)]); });
     enter($('.band-note'), [$('.band-note')]);
-    enter($('.try-head'), [$('#proof-h'), $('.try-head p')], [$('#proof-h')]);
+    enter($('.try-head'), [[$('#proof-h'), 'words'], $('.try-head p')]);
     enter(attackList, $$('li', attackList));
-    enter(verdict, [verdict]);
-    enter($('.skills-word'), [$('#skills-h'), $('.skills-word p')], [$('#skills-h')]);
-    enter($('.bars'), $$('.bars details'));
-    enter(rows[0], [$('#about-h'), $('.facts'), $('.about-para')], [$('#about-h')]);
-    enter(rows[1], [$('h3', rows[1])].concat($$('.badge')));
-    enter(rows[2], [$('h3', rows[2]), $('.course')]);
+    enter(verdict, [[verdict, 'drop']]);
+    // STACK rises whole: split into letters, a word this large would lose its kerning and shift when it rejoined
+    enter($('.skills-word'), [[$('#skills-h'), 'line'], $('.skills-word p')]);
+    enter($('.bars'), $$('.bars details').map(function (d) { return [d, 'bar']; }));
+    enter(rows[0], [[$('#about-h'), 'chars'], $('.facts')]);
+    enter(rows[1], [[$('h3', rows[1]), 'chars']].concat($$('.badge')));
+    enter(rows[2], [[$('h3', rows[2]), 'chars']].concat($$('.course li')));
     // the address rises in its two halves, the second a step behind
     $$('span', email).forEach(function (s, i) { s.classList.add('rise'); s.style.setProperty('--i', i + 1); });
-    enter($('.contact-in'), [$('.contact-say'), email, $('.corners')], [email]);
-    enter($('.kire-fit'), [$('.kire')], [$('.kire')]);
+    enter($('.contact-in'), [$('.contact-say'), [email, 'line'], $('.corners')]);
     enter($('.foot-rows'), [$('.foot-rows'), $('.foot-legal')]);
     root.classList.add('motion');
   }
 
+  /* ---------- About: the paragraph fills with ink as it is read ---------- */
+  // Its words wait at 45% ink and fill in reading order as the paragraph rises from 85% to 40% of the
+  // screen. It only fills, never empties, so scrolling back up doesn't dim what has been read.
+  var para = $('.about-para'), paraWords = [], filled = 0;
+  if (para && !RM) {
+    para.textContent.trim().split(/\s+/).forEach(function (word, i, all) {
+      if (!i) para.textContent = '';
+      var s = document.createElement('span');
+      s.className = 'w';
+      s.textContent = word;
+      para.appendChild(s);
+      if (i < all.length - 1) para.appendChild(document.createTextNode(' '));
+      paraWords.push(s);
+    });
+    para.classList.add('fill');
+  }
+  function fillFrame() {
+    if (filled >= paraWords.length) return;
+    var top = para.getBoundingClientRect().top, vh = innerHeight;
+    var n = Math.round(clamp((0.85 * vh - top) / (0.45 * vh), 0, 1) * paraWords.length);
+    for (; filled < n; filled++) paraWords[filled].classList.add('on');
+  }
+
   /* ---------- one scroll loop for every scroll effect ---------- */
   var ticking = false;
-  function frame() { ticking = false; tearFrame(); }
+  function frame() { ticking = false; tearFrame(); fillFrame(); }
   function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onScroll);

@@ -374,7 +374,7 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 - Verify: slow-motion film of the stage; nothing hidden under reduced motion.
 
 ### Task 17: Entrances that differ with the content
-- [ ] Short headings rise letter by letter; the skill bars slide out from the left; the verdict panel opens; note pictures open like a shutter; the About paragraph fills with ink as it is read; lists arrive row by row.
+- [x] Short headings rise letter by letter; the skill bars slide out from the left; the verdict panel opens; note pictures open like a shutter; the About paragraph fills with ink as it is read; lists arrive row by row.
 - Verify: entrance film; screen readers still get whole headings; reduced motion shows the finished page.
 
 ### Task 18: Scroll moments
