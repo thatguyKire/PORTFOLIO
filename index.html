@@ -491,8 +491,20 @@
   @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
   @media print {
+    /* paper is light whatever the screen theme: teal on paper */
+    :root, :root[data-theme="light"] { --bg: #f7f9f8; --surface: #ebf0ee; --surface-2: #e1e9e6; --ink: #06525c; --muted: #2f737d; --accent: #06525c; --accent-ink: #f7f9f8; color-scheme: light; }
     [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+    .shot .crop.was-on { visibility: hidden; }
+    /* the app screens and the band are pictures: print their grounds even when backgrounds are off */
+    [data-ui], .band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    /* the work stage lets go of its pin and prints one project a page, each title whole */
+    .js .track { height: auto; }
+    .js .stage { position: relative; height: auto; overflow: visible; }
+    .js .layer { position: relative; inset: auto; height: 100svh; opacity: 1; visibility: visible; break-inside: avoid; }
+    .pane, .tear .half { transform: none !important; }
+    .layer-meta.is-off { opacity: 1; visibility: visible; }
     .nav .theme, .hero-foot .btn { display: none; }
+    .nav .btn { background: none; color: var(--ink); padding: 0; }
     .contact, .foot { background: none; color: var(--ink); }
   }
 </style>

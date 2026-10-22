@@ -59,7 +59,7 @@ The work comes in two parts.
 - [x] Task 12: Motion layer: shutter, screen cycling, entrances and control feedback
 
 ### Part 2, Phase 4: finish
-- [ ] Task 13: Gate, critique and regression
+- [x] Task 13: Gate, critique and regression
 - [ ] Task 14: Ship: merge to `main`, push, check live
 
 ### Checkpoint C: ready to ship

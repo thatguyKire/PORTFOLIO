@@ -326,12 +326,12 @@ It also runs the design gate when Node and the skill are present.
 - Write the before-and-after table into `SPEC-redesign.md`.
 
 **Acceptance criteria:**
-- [ ] `lint.mjs` and `inspect.mjs` both report 0 FAIL, and every warning is fixed or defended in one sentence.
-- [ ] Every success criterion in both specs passes, and first load is under 1.5 MB.
-- [ ] The critique for the last round is written down.
+- [x] `lint.mjs` and `inspect.mjs` both report 0 FAIL, and every warning is fixed or defended in one sentence.
+- [x] Every success criterion in both specs passes, and first load is under 1.5 MB. (about 310 KB; SPEC.md #11, the live URL, is checked in Task 14)
+- [x] The critique for the last round is written down.
 
 **Verification:**
-- [ ] The command outputs and screenshots, listed in the report to Erik.
+- [x] The command outputs and screenshots, listed in the report to Erik.
 
 **Dependencies:** Task 12
 

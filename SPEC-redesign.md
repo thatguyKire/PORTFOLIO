@@ -223,6 +223,22 @@ The new token names come from the direction sheet:
 8. Every success criterion in `SPEC.md` still passes.
 9. First load, with fonts and images, is under 1.5 MB.
 
+## Before and after
+
+Measured with the design tool's own scripts on 2026-10-22. Before is the page that was live on `main`.
+
+| | Before | After |
+|---|---|---|
+| `inspect.mjs` at 1440, 768 and 390 | 16 FAIL, 10 WARN | 0 FAIL, 3 WARN, each defended in `tasks/critique.md` |
+| `lint.mjs` | 50 FAIL | 0 FAIL, 0 WARN |
+| Typefaces | Fraunces, Inter and JetBrains Mono, with italic accent words | TikTok Sans only, no italics |
+| Pictures | none of Erik's own | 9 app screens rebuilt in HTML and 3 real badge images |
+| Elements moving on load and scroll | 431 to 466, nearly all of them the ink trail and the 269-dot test run | 68 to 84: the name, the screen, the stage, the band and each section's entrance |
+| `index.html` | 116 KB | 78 KB |
+| First load | not measured | about 310 KB: the page, about 154 KB of font, 78 KB of badges |
+| Reduced motion | not measured | the finished page, with nothing hidden and nothing cycling |
+| Print | not measured | teal on paper, every section, one project a page |
+
 ## Decisions
 
 Erik answered these on 2026-10-22.

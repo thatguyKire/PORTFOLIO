@@ -57,3 +57,33 @@ Remaining, none of which a stranger would name first:
 3. Warnings defended: 10 font sizes (each display line is fitted to its own box by measurement),
    no video (Erik chose no found imagery), and an "empty middle" measured across the band's moving line.
 ```
+
+## Round 3 (2026-10-22, the full name and the motion layer)
+
+Gate: `lint.mjs` 0 FAIL 0 WARN. `inspect.mjs` 0 FAIL, 3 WARN at 1440, 768 and 390 (run with
+`--allow blank-gap`; `check-gaps.mjs` runs that rule over the whole page and finds no blank stretch).
+Moving elements: 81 at 1440, 84 at 768, 68 at 390.
+
+```
+ROUND 3
+Seen in one second: ERIK in huge wide capitals with a live LabaLink screen beside it, SAMUEL BIEN
+  fitted under both; on a phone ERIK / screen / SAMUEL BIEN.
+Idea (one sentence): unchanged; the full name now opens the page and KIRE still closes it.
+Live thing: Try to break it, unchanged; BLOCKED now drops behind its baseline while the attack is
+  tried and rises when the guard holds.
+Motion: the name rises from behind its baselines and the screen opens from ERIK's side, settled by
+  1.2s; the screen then pushes through the four apps every 4s, each with one beat of its own (the
+  washer timer counts down, the sold-out tag stamps, the tiles blend in, the stroke draws). Sections
+  enter once in reading order, with headings, STACK, the email and KIRE rising from a mask. Buttons
+  roll their label, attack choices grow their square, bars turn + into ×.
+Layout words by section: unchanged from round 2.
+Scores: design 8.5 · usability 8 · creativity 8.5 · content 8 → overall 8.3
+Caps applied: none.
+Remaining, none of which a stranger would name first:
+1. The three defended warnings: 12 font sizes (each display line is fitted to its own box by
+   measurement), no video (Erik chose no found imagery; the cycling app screen is the moving picture),
+   and an "empty middle" measured across the band's moving line.
+2. The page runs 13 screens on desktop and 15 on a phone, about four of them the work stage, which
+   holds one project per screen.
+3. Korean text in the Seoul-Mate screens falls back to the system font, as TikTok Sans has no Hangul.
+```
