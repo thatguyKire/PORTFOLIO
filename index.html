@@ -54,6 +54,14 @@
     --accent-ink: #f7f9f8;
     color-scheme: light;
   }
+  /* Colour by chapter, cut hard at the section edges: Proof turns the page over (paper on the dark page,
+     teal on the light one) and Skills is a field of the brighter teal. Each sets the same tokens, so
+     everything inside takes the chapter's colours. */
+  .flip { --bg: #eef5f3; --surface: #dfeae7; --surface-2: #d2e2de; --ink: #05333a; --muted: #2f6b72; --accent: #05333a; --accent-ink: #eef5f3; color-scheme: light; }
+  .field { --bg: #06525c; --surface: #0b5d68; --surface-2: #116874; --muted: #b8d8d4; }
+  :root[data-theme="light"] .flip { --bg: #06525c; --surface: #0b5d68; --surface-2: #116874; --ink: #f7f9f8; --muted: #b8d8d4; --accent: #f7f9f8; --accent-ink: #06525c; color-scheme: dark; }
+  :root[data-theme="light"] .field { --bg: #dcebe7; --surface: #cde1dc; --surface-2: #c0d8d2; --muted: #2a6871; }
+  .flip, .field { background: var(--bg); color: var(--ink); }
 
   /* ---------- base ---------- */
   *, *::before, *::after { box-sizing: border-box; }
@@ -263,6 +271,12 @@
   .note { display: grid; gap: 0.75rem; padding-block: 1.5rem; }
   .note dt { font-size: var(--step-head); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
   .note dd { margin: 0; }
+  /* each project's own screen under its name, showing a claim from its note */
+  .note-shot { position: relative; display: block; width: 100%; max-width: 26rem; margin-top: 1.5rem; aspect-ratio: 3 / 2; overflow: hidden; background: var(--surface); container-type: size; }
+  .note-shot .c-big { font-size: 30cqh; }
+  .note-shot .c-tiles i { width: 30cqh; height: 30cqh; font-size: 20cqh; }
+  .c-tiles i.off { background: var(--bg); color: var(--ink); }
+  .c-pill.off { background: color-mix(in srgb, currentColor 22%, transparent); color: inherit; }
   .note ul { padding-left: 1.1em; margin-top: 0.75rem; max-width: 68ch; }
   .note li + li { margin-top: 0.4rem; }
   .note-stack { margin-top: 0.9rem; color: var(--muted); }
@@ -274,7 +288,7 @@
   }
   /* ---------- proof: test names running off both edges, then the live thing ---------- */
   .proof { padding-bottom: calc(var(--section) / 2); }
-  .band { background: var(--ink); color: var(--bg); height: 34vh; min-height: 11rem; display: flex; align-items: center; overflow: hidden; }
+  .band { height: 34vh; min-height: 11rem; display: flex; align-items: center; overflow: hidden; }
   .band-track { display: flex; width: max-content; animation: band var(--band-dur, 160s) linear infinite; }
   .band ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; white-space: nowrap; font-size: 8vw; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
   /* a solid round dot a third of the cap height between names */
@@ -492,7 +506,8 @@
 
   @media print {
     /* paper is light whatever the screen theme: teal on paper */
-    :root, :root[data-theme="light"] { --bg: #f7f9f8; --surface: #ebf0ee; --surface-2: #e1e9e6; --ink: #06525c; --muted: #2f737d; --accent: #06525c; --accent-ink: #f7f9f8; color-scheme: light; }
+    :root, :root[data-theme="light"], .flip, .field, :root[data-theme="light"] .flip, :root[data-theme="light"] .field { --bg: #f7f9f8; --surface: #ebf0ee; --surface-2: #e1e9e6; --ink: #06525c; --muted: #2f737d; --accent: #06525c; --accent-ink: #f7f9f8; color-scheme: light; }
+    .flip, .field { background: none; }
     [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .shot .crop.was-on { visibility: hidden; }
     /* the app screens and the band are pictures: print their grounds even when backgrounds are off */
@@ -705,7 +720,11 @@
       <h3 class="head">The details</h3>
       <dl>
     <div class="note" id="note-laba">
-      <dt>LabaLink</dt>
+      <dt>LabaLink<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+        <span class="c-top"><span><b>LabaLink</b> · Wallet</span><i class="c-pill">Paid</i></span>
+        <span class="c-big">₱300.00</span>
+        <span class="c-item"><span>Top-up +₱200.00<small>Signed by Stripe, credited once</small></span></span>
+      </span></span></dt>
       <dd>
       <p>Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
       <ul>
@@ -718,7 +737,11 @@
       </dd>
     </div>
     <div class="note" id="note-seoul">
-      <dt>Seoul-Mate</dt>
+      <dt>Seoul-Mate<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+        <span class="c-top"><b>Seoul-Mate</b><span class="c-lang"><i class="on">EN</i><i>FIL</i><i>KO</i></span></span>
+        <span class="c-item"><span><b>Buldak Ramen</b><small>₱85.00</small></span><i class="c-pill off">Sold out</i></span>
+        <span class="c-item"><span><b>Honey Butter Chip</b><small>₱95.00</small></span><i class="c-pill">In stock</i></span>
+      </span></span></dt>
       <dd>
       <p>Live menu website for a Korean minimart in Masbate City · Solo build, in progress</p>
       <ul>
@@ -731,7 +754,11 @@
       </dd>
     </div>
     <div class="note" id="note-play">
-      <dt>PlayIT</dt>
+      <dt>PlayIT<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+        <span class="c-top"><span><b>PlayIT</b> · Find it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
+        <span>Tap the letter that says <b>/m/</b></span>
+        <span class="c-tiles"><i class="off">s</i><i>m</i><i class="off">a</i></span>
+      </span></span></dt>
       <dd>
       <p>Offline English phonics app for Grade 1 learners · Capstone, team of 3 · IT411</p>
       <ul>
@@ -745,7 +772,11 @@
       </dd>
     </div>
     <div class="note" id="note-ink">
-      <dt>InkHive</dt>
+      <dt>InkHive<span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
+        <span class="c-top"><b>InkHive</b><span>Session ended</span></span>
+        <span class="c-item"><span><b>Fractions, Grade 5</b><small>Attendance saved</small></span><i class="c-pill">PDF</i></span>
+        <span class="c-item"><span><b>Whiteboard</b><small>Exported for the class</small></span><i class="c-pill">PNG</i></span>
+      </span></span></dt>
       <dd>
       <p>Real-time collaborative whiteboard for classrooms · Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
       <ul>
@@ -772,7 +803,7 @@
     </div>
   </section>
 
-  <section class="proof" id="proof" aria-labelledby="proof-h">
+  <section class="proof flip" id="proof" aria-labelledby="proof-h">
     <div class="band marquee">
       <div class="band-track">
         <ul aria-label="Some of the real test names">
@@ -829,7 +860,7 @@
     </div>
   </section>
 
-  <section class="sec" id="skills" aria-labelledby="skills-h">
+  <section class="sec field" id="skills" aria-labelledby="skills-h">
     <div class="wrap skills-grid">
       <div class="skills-word">
         <h2 class="wide stack-word" id="skills-h">Stack</h2>

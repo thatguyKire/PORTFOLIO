@@ -344,12 +344,12 @@ It also runs the design gate when Node and the skill are present.
 **Description:** Fast-forward `main` to `redesign`, push, and confirm GitHub Pages serves the new page.
 
 **Acceptance criteria:**
-- [ ] The live URL serves the redesign.
-- [ ] The resume download, the Credly links and the repo links work on the live site.
+- [x] The live URL serves the redesign.
+- [x] The resume download, the Credly links and the repo links work on the live site.
 
 **Verification:**
-- [ ] `curl` the live page for a new-page string.
-- [ ] Console check on the live URL.
+- [x] `curl` the live page for a new-page string.
+- [x] Console check on the live URL.
 
 **Dependencies:** Task 13, and Erik's go-ahead at Checkpoint C
 
@@ -358,4 +358,29 @@ It also runs the design gate when Node and the skill are present.
 **Estimated scope:** Small
 
 ### Checkpoint C: ready to ship
-- [ ] Erik has seen the finished page and says merge.
+- [x] Erik has seen the finished page and says merge (2026-10-22: "you can merge it to main since i like this design better"). `main` was fast-forwarded to `faa7ac7` and pushed the same day.
+
+## Phase 5: Upgrade
+
+Erik, 2026-10-22: "the design is kind feel like too empty like on the background and the motion design is kind of bland too".
+
+### Task 15: Fuller grounds
+- [x] Colour by chapter, hard cuts: Proof (band and Try) on paper, Skills on a brighter teal field, Contact and footer stay paper. Both themes, AA contrast in each.
+- [x] Each project in the details gets its own app screen under its name, showing that note's first claim.
+- Verify: screenshots at 1440, 768 and 390 in both themes; inspector 0 FAIL.
+
+### Task 16: A live work stage
+- [ ] When a project arrives on the stage its screens deal in row by row and play one beat: LabaLink's timer runs, Seoul-Mate's toggle flips and the menu's 품절 stamps a moment later, PlayIT's tiles drop into their slots, InkHive's strokes draw.
+- Verify: slow-motion film of the stage; nothing hidden under reduced motion.
+
+### Task 17: Entrances that differ with the content
+- [ ] Short headings rise letter by letter; the skill bars slide out from the left; the verdict panel opens; note pictures open like a shutter; the About paragraph fills with ink as it is read; lists arrive row by row.
+- Verify: entrance film; screen readers still get whole headings; reduced motion shows the finished page.
+
+### Task 18: Scroll moments
+- [ ] The name pulls apart as the hero leaves; the test band answers the scroll's speed; BLOCKED stamps down and strikes the attempt through; the footer reads ERIK and swaps its letters into KIRE as it arrives.
+- Verify: film of each moment; reduced motion and no-JS show the finished page.
+
+### Task 19: Gate and ship
+- [ ] check.sh all PASS, no console errors, no sideways scroll from 320 to 1440, print still whole.
+- [ ] Merge to `main`, push, confirm the live page.

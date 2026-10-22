@@ -60,10 +60,17 @@ The work comes in two parts.
 
 ### Part 2, Phase 4: finish
 - [x] Task 13: Gate, critique and regression
-- [ ] Task 14: Ship: merge to `main`, push, check live
+- [x] Task 14: Ship: merge to `main`, push, check live
 
 ### Checkpoint C: ready to ship
-- [ ] Every success criterion in both specs passes. Erik approves the merge.
+- [x] Every success criterion in both specs passes. Erik approves the merge.
+
+### Part 2, Phase 5: upgrade (fuller grounds, richer motion)
+- [x] Task 15: Fuller grounds: colour by chapter, a screen beside each project note
+- [ ] Task 16: A live work stage
+- [ ] Task 17: Entrances that differ with the content
+- [ ] Task 18: Scroll moments: the name pulls apart, the band answers the scroll, BLOCKED stamps, ERIK becomes KIRE
+- [ ] Task 19: Gate and ship
 
 ## Risks and Mitigations
 
