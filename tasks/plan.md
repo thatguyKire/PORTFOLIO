@@ -28,16 +28,16 @@ The work comes in two parts.
 ## Task List
 
 ### Part 1: content fixes (on `main`)
-- [ ] Task 1: Resume fixes: Playwright, the InkHive address and the references
-- [ ] Task 2: Live-site fixes: InkHive link and the "live on Render" stat
-- [ ] Task 3: `check.sh`, the one-command check. **Only if Erik says yes.**
+- [x] Task 1: Resume fixes: Playwright, the InkHive address and the references
+- [x] Task 2: Live-site fixes: InkHive link and the "live on Render" stat
+- [x] Task 3: `check.sh`, the one-command check. **Only if Erik says yes.**
 
 ### Checkpoint 0: published
-- [ ] The live resume and site pass the content `grep` and the one-page check
+- [x] The live resume and site pass the content `grep` and the one-page check
 
 ### Part 2, Phase 1: foundation (on `redesign`)
-- [ ] Task 4: New foundation, with all content in the new order
-- [ ] Task 5: Hero: the monument name with an app screen between ERIK and BIEN
+- [x] Task 4: New foundation, with all content in the new order
+- [x] Task 5: Hero: the monument name with an app screen between ERIK and BIEN
 
 ### Checkpoint A: first screen review
 - [ ] Erik sees the first screen at phone, tablet and desktop width, in light and dark, and approves the direction before the rest is built
