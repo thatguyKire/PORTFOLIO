@@ -47,7 +47,7 @@ The work comes in two parts.
 - [x] Task 7: PlayIT and InkHive panels, and the "Also built" list
 - [x] Task 8: Proof: the test-name band and Try to break it
 - [x] Task 9: Skills: STACK and the six bars
-- [ ] Task 10: About: side facts, paragraph and badges
+- [x] Task 10: About: side facts, paragraph and badges
 - [ ] Task 11: Contact (the email as display type) and the KIRE footer
 
 ### Checkpoint B: the whole page, without motion
