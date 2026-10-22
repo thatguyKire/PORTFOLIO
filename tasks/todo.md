@@ -370,7 +370,7 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 - Verify: screenshots at 1440, 768 and 390 in both themes; inspector 0 FAIL.
 
 ### Task 16: A live work stage
-- [ ] When a project arrives on the stage its screens deal in row by row and play one beat: LabaLink's timer runs, Seoul-Mate's toggle flips and the menu's 품절 stamps a moment later, PlayIT's tiles drop into their slots, InkHive's strokes draw.
+- [x] When a project arrives on the stage its screens deal in row by row and play one beat: LabaLink's timer runs, Seoul-Mate's toggle flips and the menu's 품절 stamps a moment later, PlayIT's tiles drop into their slots, InkHive's strokes draw.
 - Verify: slow-motion film of the stage; nothing hidden under reduced motion.
 
 ### Task 17: Entrances that differ with the content

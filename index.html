@@ -238,7 +238,7 @@
   .ui-tg { flex: none; width: 2.6em; height: 1.45em; background: var(--ink); position: relative; }
   .ui-tg::after { content: ""; position: absolute; top: 0.2em; right: 0.2em; width: 1.05em; height: 1.05em; background: var(--bg); }
   .ui-tg.off { background: color-mix(in srgb, currentColor 24%, transparent); }
-  .ui-tg.off::after { right: auto; left: 0.2em; background: var(--ink); }
+  .ui-tg.off::after { transform: translateX(-1.15em); background: var(--ink); }
   .ui-feed { display: grid; gap: 0.35em; font-size: 0.9em; }
   .ui-feed span { background: var(--bg); padding: 0.6em 0.9em; }
   .ui-lang { display: flex; gap: 0.8em; }
@@ -466,7 +466,30 @@
     .shot .crop.wipe .c-tiles i:nth-child(2) { animation-delay: 470ms; }
     .shot .crop.wipe .c-tiles i:nth-child(3) { animation-delay: 560ms; }
     .shot .crop.wipe .c-item .c-pill { animation: stamp 380ms var(--ease-out) 700ms both; }
-    .shot .crop.wipe .c-board path { stroke-dasharray: 1; animation: draw 1300ms var(--ease-out) 300ms both; }
+    /* strokes are drawn by a wipe from the left, not by dashes: the boards stretch their drawings, and a
+       non-scaling stroke measures its dashes on screen, so a dash never matches the stretched length */
+    .shot .crop.wipe .c-board svg { animation: pen 1300ms var(--ease-out) 300ms both; }
+
+    /* the work stage: as a project arrives, its two screens deal in row by row, the right a step behind,
+       then each plays one beat of its own (the script adds .deal and each row's --d) */
+    .deal .ui-top > *, .deal .ui-bot > * { animation: lift 600ms var(--ease-out) both; animation-delay: calc(150ms + var(--d, 0) * 70ms); }
+    .deal .ui-meter i { transform-origin: left; animation: fill 1200ms var(--ease-out) 500ms both; }
+    /* Seoul-Mate: staff switch Buldak Ramen off, and a moment later the open menu shows it sold out */
+    .deal .b-flip { animation: tg-ground 260ms ease 1000ms both; }
+    .deal .b-flip::after { animation: tg-knob 320ms var(--ease-out) 1000ms both; }
+    .deal .b-late { animation: lift 400ms var(--ease-out) 1100ms both; }
+    .deal .b-stamp { animation: stamp 380ms var(--ease-out) 1700ms both; }
+    /* PlayIT: the dealt tiles leave the tray one at a time and fill the slots, s, u, m; the stars fill */
+    .deal .slots i { animation: drop 420ms var(--ease-out) both; }
+    .deal .slots i:nth-child(1), .deal .ui-tiles i.gone:nth-child(2) { animation-delay: 700ms; }
+    .deal .slots i:nth-child(2), .deal .ui-tiles i.gone:nth-child(3) { animation-delay: 820ms; }
+    .deal .slots i:nth-child(3), .deal .ui-tiles i.gone:nth-child(1) { animation-delay: 940ms; }
+    .deal .ui-tiles i.gone { animation-name: used; animation-duration: 240ms; animation-timing-function: ease; animation-fill-mode: both; }
+    .deal .ui-stars i { animation: stamp 320ms var(--ease-out) 1100ms both; }
+    .deal .ui-stars i:nth-child(2) { animation-delay: 1180ms; }
+    .deal .ui-stars i:nth-child(3) { animation-delay: 1260ms; }
+    /* InkHive: Ana's 1/2, then the teacher's line, draw themselves */
+    .deal .ui-board svg { animation: pen 1600ms var(--ease-out) 500ms both; }
 
     /* scroll entrances, once: parts rise 24px in reading order, 80ms apart; lines rise from a mask
        that leaves room under them for descenders (the g in gmail, the y in Try) */
@@ -502,13 +525,18 @@
   @keyframes settle { from { transform: scale(1.12); } }
   @keyframes lift { from { opacity: 0; transform: translate3d(0, 12px, 0); } }
   @keyframes stamp { from { opacity: 0; transform: scale(1.3); } }
-  @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  @keyframes pen { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+  @keyframes fill { from { transform: scaleX(0); } }
+  @keyframes tg-ground { from { background: var(--ink); } }
+  @keyframes tg-knob { from { transform: none; background: var(--bg); } }
+  @keyframes drop { from { opacity: 0; transform: translate3d(0, -0.8em, 0); } }
+  @keyframes used { from { background: var(--ink); color: var(--bg); opacity: 1; } }
 
   @media print {
     /* paper is light whatever the screen theme: teal on paper */
     :root, :root[data-theme="light"], .flip, .field, :root[data-theme="light"] .flip, :root[data-theme="light"] .field { --bg: #f7f9f8; --surface: #ebf0ee; --surface-2: #e1e9e6; --ink: #06525c; --muted: #2f737d; --accent: #06525c; --accent-ink: #f7f9f8; color-scheme: light; }
     .flip, .field { background: none; }
-    [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+    [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop, .shot * { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .shot .crop.was-on { visibility: hidden; }
     /* the app screens and the band are pictures: print their grounds even when backgrounds are off */
     [data-ui], .band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -517,6 +545,7 @@
     .js .stage { position: relative; height: auto; overflow: visible; }
     .js .layer { position: relative; inset: auto; height: 100svh; opacity: 1; visibility: visible; break-inside: avoid; }
     .pane, .tear .half { transform: none !important; }
+    .layer *, .layer *::after { animation: none !important; }
     .layer-meta.is-off { opacity: 1; visibility: visible; }
     .nav .theme, .hero-foot .btn { display: none; }
     .nav .btn { background: none; color: var(--ink); padding: 0; }
@@ -549,7 +578,7 @@
         <span class="shot" data-ui aria-hidden="true">
           <span class="crop is-on">
             <span class="c-top"><span><b>LabaLink</b> · Washer 03</span><i class="c-pill">Active</i></span>
-            <span class="c-big">42:18</span>
+            <span class="c-big" data-clock>42:18</span>
             <span class="c-meter"><i></i></span>
           </span>
           <span class="crop">
@@ -562,7 +591,7 @@
           </span>
           <span class="crop">
             <span class="c-top"><b>InkHive</b><span>3 live</span></span>
-            <span class="c-board"><svg viewBox="0 0 160 60" preserveAspectRatio="none"><path d="M8 46 C 30 8, 52 54, 80 26 S 122 10, 152 36" pathLength="1"/></svg><span class="c-cur">Teacher</span></span>
+            <span class="c-board"><svg viewBox="0 0 160 60" preserveAspectRatio="none"><path d="M8 46 C 30 8, 52 54, 80 26 S 122 10, 152 36"/></svg><span class="c-cur">Teacher</span></span>
           </span>
         </span>
       </span>
@@ -588,7 +617,7 @@
               <div class="ui-top">
                 <div class="ui-bar"><b>LabaLink</b><span>Wallet <b>₱240.00</b></span></div>
                 <div class="ui-row"><span><b>Washer 03</b><small>Started by QR scan, paid from wallet</small></span><i class="ui-pill">Active</i></div>
-                <div class="ui-big">42:18</div>
+                <div class="ui-big" data-clock>42:18</div>
                 <div class="ui-meter" style="--w: 30%"><i></i></div>
               </div>
               <div class="ui-bot">
@@ -603,7 +632,7 @@
                 <div class="ui-bar"><b>Attendant dashboard</b><span>Shop 1</span></div>
                 <div class="ui-row"><span>Washer 01</span><span>12:40</span><i class="ui-pill">Active</i></div>
                 <div class="ui-row"><span>Washer 02</span><span></span><i class="ui-pill off">Ready</i></div>
-                <div class="ui-row"><span>Washer 03</span><span>42:18</span><i class="ui-pill">Active</i></div>
+                <div class="ui-row"><span>Washer 03</span><span data-clock>42:18</span><i class="ui-pill">Active</i></div>
               </div>
               <div class="ui-bot">
                 <div class="ui-bar"><b>Live</b><span>WebSocket · STOMP</span></div>
@@ -625,7 +654,7 @@
               <div class="ui-top">
                 <div class="ui-bar"><b>Staff panel</b><span>/admin</span></div>
                 <div class="ui-row"><span>Shin Ramyun</span><i class="ui-tg"></i></div>
-                <div class="ui-row"><span><b>Buldak Ramen</b><small>Out of stock, just now</small></span><i class="ui-tg off"></i></div>
+                <div class="ui-row"><span><b>Buldak Ramen</b><small class="b-late">Out of stock, just now</small></span><i class="ui-tg off b-flip"></i></div>
                 <div class="ui-row"><span>Honey Butter Chip</span><i class="ui-tg"></i></div>
               </div>
               <div class="ui-bot">
@@ -643,7 +672,7 @@
                 <div class="ui-row"><span><b>신라면</b><small>₱70.00</small></span><i class="ui-pill">재고 있음</i></div>
               </div>
               <div class="ui-bot">
-                <div class="ui-row"><span><b>불닭볶음면</b><small>₱85.00</small></span><i class="ui-pill off">품절</i></div>
+                <div class="ui-row"><span><b>불닭볶음면</b><small>₱85.00</small></span><i class="ui-pill off b-stamp">품절</i></div>
                 <div class="ui-row"><span><b>허니버터칩</b><small>₱95.00</small></span><i class="ui-pill">재고 있음</i></div>
               </div>
             </div>
@@ -1075,23 +1104,59 @@
     if (navigator.clipboard) navigator.clipboard.writeText(copyBtn.getAttribute('data-copy')).then(done, function () {});
   });
 
+  /* ---------- LabaLink's Washer 03: one clock, shown in the hero and twice on the work stage ---------- */
+  // Each place that shows it asks for a tick every second while it is in view; a tick less than 0.9s
+  // after the last is dropped, so the clock never runs fast when two of them are on screen.
+  var washer = { secs: 42 * 60 + 18, at: 0, els: $$('[data-clock]') };
+  function tickWasher() {
+    var now = Date.now();
+    if (now - washer.at < 900) return;
+    washer.at = now;
+    washer.secs = Math.max(0, washer.secs - 1);
+    var t = Math.floor(washer.secs / 60) + ':' + ('0' + washer.secs % 60).slice(-2);
+    washer.els.forEach(function (el) { el.textContent = t; });
+  }
+
   /* ---------- work: the title tears at the seam as each project crosses the stage ---------- */
   // t is a project's position on the stage: -1 arriving, 0 centred, +1 leaving. The halves hold aligned
   // for |t| < 0.15 so the line under the title can be read, then tear. Projects hand over at t = ±0.5,
   // at full tear, with a short CSS fade; the first arrives and the last leaves over a longer run.
   var track = $('.track');
   var layers = $$('.layer').map(function (el) {
-    return { el: el, l: $$('.pane.l, .half.l', el), r: $$('.pane.r, .half.r', el), meta: $('.layer-meta', el) };
+    // each screen's rows are numbered for the deal, the right screen a step behind the left
+    $$('.pane', el).forEach(function (pane, side) {
+      $$('.ui-top > *, .ui-bot > *', pane).forEach(function (row, i) { row.style.setProperty('--d', Math.min(i + side, 5)); });
+    });
+    return { el: el, l: $$('.pane.l, .half.l', el), r: $$('.pane.r, .half.r', el), meta: $('.layer-meta', el), live: false };
   });
+  // A project is live while it is on the stage and the stage covers the middle of the screen. Each time it
+  // goes live its screens deal in again; LabaLink's clock runs while it is live.
+  var stageClock = null;
+  function setLive(o, live) {
+    if (o.live === live) return;
+    o.live = live;
+    if (RM) return;
+    o.el.classList.remove('deal');
+    if (live) { void o.el.offsetWidth; o.el.classList.add('deal'); }
+    if (o === layers[0]) runStageClock();
+  }
+  function runStageClock() {
+    var go = layers[0].live && !document.hidden;
+    if (go && !stageClock) stageClock = setInterval(tickWasher, 1000);
+    if (!go && stageClock) { clearInterval(stageClock); stageClock = null; }
+  }
+  document.addEventListener('visibilitychange', runStageClock);
   function tearFrame() {
     var box = track.getBoundingClientRect(), vh = innerHeight;
-    if (box.bottom < -vh || box.top > 2 * vh) return;
+    var seen = box.top < vh / 2 && box.bottom > vh / 2;
+    if (box.bottom < -vh || box.top > 2 * vh) { layers.forEach(function (o) { setLive(o, false); }); return; }
     var p = -box.top / (0.95 * vh), last = layers.length - 1;
     layers.forEach(function (o, i) {
       var t = p - i, edge = (i === 0 && t < 0) || (i === last && t > 0);
       var f = RM ? 0 : (t < 0 ? -1 : 1) * clamp((Math.abs(t) - 0.15) / (edge ? 0.85 : 0.35), 0, 1);
       var shown = edge || (t >= -0.5 && t < 0.5);
       o.el.classList.toggle('is-on', shown);
+      setLive(o, shown && seen);
       if (!shown) return;
       // the line under the title lies in the halves' path, so it only shows while they hold aligned
       o.meta.classList.toggle('is-off', f !== 0);
@@ -1148,11 +1213,11 @@
   }
 
   /* ---------- hero: the screen beside ERIK runs through the four apps ---------- */
-  // Every four seconds the next app pushes the last one out from the same edge; LabaLink's timer counts
+  // Every four seconds the next app pushes the last one out from the same edge; LabaLink's clock counts
   // down while it shows. None of it runs under reduced motion, and it pauses off screen or in a hidden tab.
   var crops = $$('.shot .crop');
   if (crops.length && !RM) {
-    var at = 0, beats = 0, secs = 42 * 60 + 18, clock = $('.c-big', crops[0]), ticker = null, heroSeen = true;
+    var at = 0, beats = 0, ticker = null, heroSeen = true;
     var nextApp = function () {
       var old = crops[at];
       at = (at + 1) % crops.length;
@@ -1167,7 +1232,7 @@
       });
     };
     var beat = function () {
-      if (at === 0) { secs = Math.max(0, secs - 1); clock.textContent = Math.floor(secs / 60) + ':' + ('0' + secs % 60).slice(-2); }
+      if (at === 0) tickWasher();
       if (++beats % 4 === 0) nextApp();
     };
     var runApps = function () {
