@@ -137,14 +137,18 @@ Motion is built in two passes. The page must look finished with all motion off, 
 |---|---|---|
 | **Signature** | The hero picture opens from one edge with a clip-path shutter over about 1.1s while the photo inside settles from 112% to 100% scale. It runs once and is the page's one loud moment. | The picture is simply there |
 | **Work tear** | Scroll-linked: panels move ±20% of screen height and title halves ±30%, meeting exactly when the project is centred. | The halves stay aligned and the projects crossfade |
-| **Test-name band** | A slow 40-second loop drifting left | Paused |
-| **Section entrances** | In every section the heading, then the text, then the picture rise 16–32px and fade in, 60–90ms apart, once. Content stays visible if the script fails. | Shown at rest |
+| **Hero exit** | Scroll-linked: as the hero leaves, ERIK and its screen drift left and SAMUEL BIEN drifts right, up to 8% of the line's width. | Still |
+| **Live work stage** | As each project arrives, its two screens deal in row by row and play one beat: LabaLink's clock runs, Seoul-Mate's staff switch flips and the menu's 품절 stamps a moment later, PlayIT's tiles fill their slots, InkHive's board draws. | The finished screens |
+| **Test-name band** | Runs left at 110px a second. The scroll's speed is added in its own direction, so scrolling back up runs it backwards, then it eases off. It stops under a mouse pointer and rests off screen. | Paused |
+| **Section entrances** | Once, in reading order, 80ms apart, in a manner that follows the part. Short headings rise a letter at a time and "Try to break it" a word at a time. Project screens open like a shutter, skill bars slide out from the left and the verdict panel opens from the top. Lists arrive row by row. Content stays visible if the script fails. | Shown at rest |
+| **About ink fill** | The paragraph's words wait at 45% ink and fill in reading order as it rises from 85% to 40% of the screen. It never empties again. | Full ink |
 | **Controls** | Press, hover and focus feedback on every button, link, skill bar and attack choice. The contact email line turns to the accent colour on hover. | Colour changes only |
-| **Try to break it** | Choosing an attack plays a short blocked-then-passed sequence. | The result shows instantly |
+| **Try to break it** | Choosing an attack plays a short sequence. BLOCKED drops out, then stamps back down from 125%, and the attempt is struck through. | The result shows instantly, struck through |
+| **Footer** | The word arrives reading ERIK. Once it is wholly on screen its letters trade places, scroll-linked, into KIRE, which holds for the last stretch of the page. | KIRE |
 
 **Motion rules:**
-- Animate transform and opacity only.
-- All scroll effects share the existing single rAF loop.
+- Animate transform, opacity and clip-path only, plus colour on small interface parts (a switch's ground, a struck-through line).
+- All scroll effects share the existing single rAF loop; the band runs its own loop only while it is on screen.
 - The design inspector must count at least 8 elements that move on load and scroll; the target is 16.
 
 ## Commands
@@ -232,10 +236,11 @@ Measured with the design tool's own scripts on 2026-10-22. Before is the page th
 | `inspect.mjs` at 1440, 768 and 390 | 16 FAIL, 10 WARN | 0 FAIL, 3 WARN, each defended in `tasks/critique.md` |
 | `lint.mjs` | 50 FAIL | 0 FAIL, 0 WARN |
 | Typefaces | Fraunces, Inter and JetBrains Mono, with italic accent words | TikTok Sans only, no italics |
-| Pictures | none of Erik's own | 9 app screens rebuilt in HTML and 3 real badge images |
-| Elements moving on load and scroll | 431 to 466, nearly all of them the ink trail and the 269-dot test run | 68 to 84: the name, the screen, the stage, the band and each section's entrance |
-| `index.html` | 116 KB | 78 KB |
-| First load | not measured | about 310 KB: the page, about 154 KB of font, 78 KB of badges |
+| Pictures | none of Erik's own | 13 app screens rebuilt in HTML (the hero, eight on the work stage, one beside each project's notes) and 3 real badge images |
+| Grounds | one dark teal throughout | colour by chapter, cut hard at section edges: Proof on paper, Skills on a brighter teal field, Contact and footer on paper (teal and pale fields in the light theme) |
+| Elements moving on load and scroll | 431 to 466, nearly all of them the ink trail and the 269-dot test run | 261 at 1440 (68 to 84 before the upgrade): the name, the screen, the stage and its screens, the band, every section's entrance, the ink fill and KIRE |
+| `index.html` | 116 KB | 98 KB |
+| First load | not measured | about 330 KB: the page, about 154 KB of font, 78 KB of badges |
 | Reduced motion | not measured | the finished page, with nothing hidden and nothing cycling |
 | Print | not measured | teal on paper, every section, one project a page |
 
@@ -252,3 +257,4 @@ Erik answered these on 2026-10-22.
 | 5 | First screen (Checkpoint A) | Direction approved |
 | 6 | The full name (Checkpoint B) | Add Samuel: the hero reads ERIK [screen] / SAMUEL BIEN, and the nav, page title and social title say Erik Samuel Bien. Approved to go on to the motion layer. |
 | 7 | The design gate on a long page | The inspector photographs at most 12 screens and this page is 13 to 15, so the entrances further down never play during its walk. check.sh runs it with `--allow blank-gap` and runs that same rule over the whole page in `check-gaps.mjs`, after a real wheel scroll to the bottom. |
+| 8 | After going live (2026-10-22): "too empty on the background", "the motion design is kind of bland" | Merged as it was, then upgraded on the same direction. Fuller grounds: colour by chapter and a screen beside each project's notes. Richer motion: a live work stage, entrances that differ with the content, the About ink fill, the name pulling apart, a band that answers the scroll, BLOCKED stamping, and ERIK turning into KIRE. No new colours beyond the teal family, no texture or gradient, no cursor effects. |

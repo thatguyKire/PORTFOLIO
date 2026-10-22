@@ -87,3 +87,33 @@ Remaining, none of which a stranger would name first:
    holds one project per screen.
 3. Korean text in the Seoul-Mate screens falls back to the system font, as TikTok Sans has no Hangul.
 ```
+
+## Round 4 (2026-10-22, the upgrade: fuller grounds, richer motion)
+
+Erik's verdict on the live page: "too empty on the background" and "the motion design is kind of
+bland". Gate after the upgrade: `lint.mjs` 0 FAIL 0 WARN. `inspect.mjs` 0 FAIL, the same 3 WARN.
+`check-gaps.mjs` finds no blank stretch. Moving elements: 261 at 1440 (81 before).
+
+```
+ROUND 4
+Seen in one second: unchanged first screen; below it the page now changes colour by chapter (dark
+  work and details, paper Proof, brighter teal Stack, dark About, paper Contact and footer).
+Fullness: every project note has its own app screen beside it, showing one of its claims, so the
+  details' left third is no longer a column of four names.
+Motion, by part: the name pulls apart as the hero leaves; each project deals its screens in and
+  plays one beat (Seoul-Mate's staff switch flips, then the open menu shows 품절); headings rise a
+  letter at a time; screens open like shutters; bars slide out; the verdict panel opens; About fills
+  with ink as it is read; the band answers the scroll; BLOCKED stamps and strikes the attempt; the
+  footer arrives as ERIK and becomes KIRE.
+Bug found and fixed: InkHive's strokes were drawn with dashes, which a non-scaling stroke measures on
+  screen, so the hero's line showed a gap (live since round 3). They are now revealed with a wipe.
+Scores: design 9 · usability 8 · creativity 9 · content 8.5 → overall 8.6
+Caps applied: none.
+Remaining:
+1. The three defended warnings, unchanged.
+2. The hero screen and the band move for longer than 5 seconds with no pause control. Both stop for
+   reduced motion and when off screen, and the band stops under a mouse, but WCAG 2.2.2 asks for a
+   control anyone can use.
+3. For a short stretch mid-swap, KIRE's letters overlap and read as one shape (they are one colour).
+4. The page runs about 13 screens on desktop and 16 on a phone.
+```

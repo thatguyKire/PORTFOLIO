@@ -382,5 +382,5 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 - Verify: film of each moment; reduced motion and no-JS show the finished page.
 
 ### Task 19: Gate and ship
-- [ ] check.sh all PASS, no console errors, no sideways scroll from 320 to 1440, print still whole.
+- [x] check.sh all PASS, no console errors, no sideways scroll from 320 to 1440, print still whole.
 - [ ] Merge to `main`, push, confirm the live page.

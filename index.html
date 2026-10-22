@@ -432,9 +432,11 @@
     .kire:hover { text-decoration-color: currentColor; }
   }
   .kire:focus-visible { text-decoration-color: currentColor; }
-  /* split into letters for the swap (script only), KIRE's underline becomes a bar that grows from the left */
+  /* For the swap (script only) the word stays set as text, kept clear, with its four letters laid over it,
+     each on its own glyph; its underline becomes a bar that grows from the left. */
   .kire.is-split { position: relative; text-decoration: none; }
-  .kire.is-split .k { display: inline-block; }
+  .kire.is-split .kire-src { color: transparent; }
+  .kire.is-split .k { position: absolute; top: 0; }
   .kire.is-split::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0.035em; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--t-ui) var(--ease-out); }
   @media (hover: hover) and (pointer: fine) { .kire.is-split:hover::after { transform: none; } }
   .kire.is-split:focus-visible::after { transform: none; }
@@ -575,7 +577,7 @@
     /* paper is light whatever the screen theme: teal on paper */
     :root, :root[data-theme="light"], .flip, .field, :root[data-theme="light"] .flip, :root[data-theme="light"] .field { --bg: #f7f9f8; --surface: #ebf0ee; --surface-2: #e1e9e6; --ink: #06525c; --muted: #2f737d; --accent: #06525c; --accent-ink: #f7f9f8; color-scheme: light; }
     .flip, .field { background: none; }
-    [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop, .shot * { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
+    [data-in], [data-in] .rise, [data-in] .ch, .rise, .hero-foot, .shot, .crop, .shot * { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .shot .crop.was-on { visibility: hidden; }
     .fill .w { opacity: 1 !important; }
     .name-a, .name-b, .kire .k { transform: none !important; }
@@ -1342,26 +1344,40 @@
   // Kire is Erik, backwards. The word arrives reading ERIK, and once it is wholly on screen its letters trade
   // places, locked to the scrollbar: the letters moving left pass over, the ones moving right pass under.
   // It reads KIRE, as built, for the last stretch of the page. The link keeps its name in its label.
-  var kire = $('.kire'), kireLetters = [], kireP = -1;
+  var kire = $('.kire'), kireText = null, kireLetters = [], kireP = -1;
   var kireArc = [0.3, 0.12, -0.05, -0.08];
   if (kire && !RM) {
-    kire.textContent.split('').forEach(function (c) {
+    var src = document.createElement('span');
+    src.className = 'kire-src';
+    src.textContent = kire.textContent;
+    kire.textContent = '';
+    kire.appendChild(src);
+    kireText = src.firstChild;
+    kireText.nodeValue.split('').forEach(function (c) {
       var s = document.createElement('span');
       s.className = 'k';
+      s.setAttribute('aria-hidden', 'true');
       s.textContent = c;
       kireLetters.push(s);
+      kire.appendChild(s);
     });
-    kire.textContent = '';
-    kireLetters.forEach(function (s) { kire.appendChild(s); });
     kire.classList.add('is-split');
   }
-  // Where each letter sits in KIRE, and where it would sit in ERIK (the same letters in reverse order).
+  // Each letter is laid on its own glyph of the set word (so KIRE keeps its kerning), and given the
+  // distance to where it would sit in ERIK: the same letters in reverse order, each at its own advance.
   function measureKire() {
-    var x = 0;
-    kireLetters.forEach(function (s) { s.style.transform = ''; });
-    for (var i = kireLetters.length - 1; i >= 0; i--) {
-      kireLetters[i].kDx = x - kireLetters[i].offsetLeft;
-      x += kireLetters[i].offsetWidth;
+    var rg = document.createRange(), left = kire.getBoundingClientRect().left, x = [], n = kireLetters.length;
+    for (var i = 0; i < n; i++) {
+      rg.setStart(kireText, i);
+      rg.setEnd(kireText, i + 1);
+      var r = rg.getBoundingClientRect();
+      x.push(r.left - left);
+      if (i === n - 1) x.push(r.right - left);
+    }
+    for (var j = n - 1, at = x[0]; j >= 0; j--) {
+      kireLetters[j].style.left = x[j].toFixed(1) + 'px';
+      kireLetters[j].kDx = at - x[j];
+      at += x[j + 1] - x[j];
     }
     kireP = -1;
   }
