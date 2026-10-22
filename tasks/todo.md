@@ -383,4 +383,4 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 
 ### Task 19: Gate and ship
 - [x] check.sh all PASS, no console errors, no sideways scroll from 320 to 1440, print still whole.
-- [ ] Merge to `main`, push, confirm the live page.
+- [x] Merge to `main`, push, confirm the live page (2026-10-22, `e8ce9bc`: served byte for byte, no console errors at 390 and 1440).
