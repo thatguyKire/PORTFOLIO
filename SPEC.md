@@ -59,7 +59,7 @@ git push origin main
 curl -s https://thatguykire.github.io/PORTFOLIO/ | grep -c "<text from the change>"
 ```
 
-Proposed: put these checks into one script, `check.sh`, so a single command (`bash check.sh`) runs all of them and prints pass or fail for each. The plan will include it if you approve.
+`bash check.sh` runs the content checks above plus the design gate and prints PASS, FAIL or SKIP for each. `bash check.sh --quick` skips the design gate, which takes about a minute.
 
 ## Project Structure
 
@@ -72,6 +72,8 @@ README.md           → what each file is
 CLAUDE.md           → git commit and PR rules
 SPEC.md             → this file: the rules for every change
 SPEC-redesign.md    → the new look and motion
+check.sh            → runs every check: bash check.sh (or --quick)
+tasks/              → the build plan (plan.md) and task list (todo.md)
 .gitignore          → keeps the design tool's working folder (.taste-skill/) out of git
 ```
 
@@ -185,10 +187,7 @@ These come from Erik's answers on 2026-10-22. They will be tasks in the plan.
 | 2 | Phone number | Erik's own number goes on the resume and the site |
 | 3 | CodeChum certificates | Leave them off |
 | 4 | InkHive live link | Remove it until the Render deploy is updated |
-| 5 | Check script | Proposed (see Commands), waiting for a yes or no |
+| 5 | Check script | Yes: `check.sh` |
 | 6 | References on the resume | "Available on request", with no names, phones or emails |
 | 7 | Dark mode | Light by default; keep the toggle |
 
-## Open Questions
-
-1. **Check script:** yes or no to `check.sh` (see Commands)?
