@@ -262,9 +262,10 @@
   .atk[aria-pressed="true"] { color: var(--ink); }
   .atk[aria-pressed="true"]::before { background: currentColor; }
   @media (hover: hover) and (pointer: fine) { .atk:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; } }
-  .verdict { background: var(--surface); padding: clamp(1.5rem, 3vw, 3rem); display: grid; align-content: start; gap: 1.25rem; }
+  .verdict { background: var(--surface); padding: clamp(1.5rem, 3vw, 3rem); display: grid; align-content: start; gap: 1.25rem; container-type: inline-size; }
   .v-try { color: var(--muted); }
-  .v-status { font-size: clamp(3rem, 7.5vw, 7rem); transition: opacity 0.2s ease; }
+  /* "BLOCKED" in the wide cut is about 6.4em long; 15cqw keeps it inside the panel at any width */
+  .v-status { font-size: min(15cqw, 7rem); transition: opacity 0.2s ease; }
   .verdict.is-trying .v-status { opacity: 0.25; }
   .verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; }
   .v-guard, .v-proof { transition: opacity 0.3s ease; }
@@ -278,10 +279,25 @@
   @media (max-width: 899px) { .verdict { order: -1; } .try-head { order: -2; } }
   @media (max-width: 759px) { .band { height: 22vh; } .band ul { font-size: 15vw; } }
   @media (prefers-reduced-motion: reduce) { .band-track { animation-play-state: paused; } }
-  .bars details { background: var(--surface); margin-top: 6px; }
-  .bars summary { min-height: 3.5rem; display: flex; align-items: center; padding: 0 1.125rem; font-weight: 500; cursor: pointer; }
-  .bars dl { padding: 0 1.25rem 1.25rem; display: grid; grid-template-columns: 1fr auto; gap: 0.875rem 1.5rem; }
-  .bars dd { text-align: right; color: var(--muted); }
+  /* ---------- skills: one giant word filling its column, filled bars that open in place ---------- */
+  .skills-grid { display: grid; gap: 2rem var(--gutter); }
+  .skills-word { container-type: inline-size; }
+  /* "STACK" in the wide cut measures 4.57em, so 21.7cqw fits it to the column edge to edge */
+  .stack-word { font-size: 21.7cqw; margin-left: -0.03em; }
+  .skills-word p { margin-top: 1.5rem; max-width: 34ch; }
+  .bars { display: grid; gap: 6px; align-content: start; }
+  .bars details { background: var(--surface); }
+  .bars summary { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 1.125rem; font-weight: 500; cursor: pointer; list-style: none; transition: background-color var(--t-hover) ease; }
+  .bars summary::-webkit-details-marker { display: none; }
+  .bars summary::after { content: "+"; font-size: 1.5em; font-weight: 400; line-height: 1; }
+  .bars details[open] summary::after { content: "\2212"; }
+  @media (hover: hover) and (pointer: fine) { .bars summary:hover { background: var(--surface-2); } }
+  .bars dl { margin: 0; padding: 0.25rem 1.25rem 1.25rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 0.875rem 1.5rem; }
+  .bars dd { margin: 0; text-align: right; color: var(--muted); }
+  @media (min-width: 900px) {
+    .skills-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+    .skills-word { position: sticky; top: 2rem; }
+  }
   .facts { display: grid; gap: 1.25rem; margin-bottom: 2rem; }
   .facts dt { color: var(--muted); }
   .record { margin-top: 2.5rem; display: grid; gap: 2rem; }
@@ -610,8 +626,8 @@
           <li data-project="Seoul-Mate"><strong class="atk-name">Type SQL into the menu search</strong> <span class="atk-guard">Search treats markup and SQL as plain text.</span> <span class="muted">Seoul-Mate · <code>treats markup and SQL as plain text that matches nothing</code> · passed</span></li>
         </ul>
         <div class="verdict" id="verdict" hidden>
-          <p class="v-try"></p>
           <p class="v-status wide" aria-hidden="true">Blocked</p>
+          <p class="v-try"></p>
           <p class="v-guard lead"></p>
           <p class="v-proof">Proved by <code data-v="test"></code> in <span data-v="project"></span>. Passed.</p>
           <p class="sr" aria-live="polite" data-v="say"></p>
@@ -621,9 +637,11 @@
   </section>
 
   <section class="sec" id="skills" aria-labelledby="skills-h">
-    <div class="wrap">
-      <h2 class="head" id="skills-h">Stack</h2>
-      <p>Every skill with the project where I used it.</p>
+    <div class="wrap skills-grid">
+      <div class="skills-word">
+        <h2 class="wide stack-word" id="skills-h">Stack</h2>
+        <p>Every skill, with the project where I used it. Open a group to see them.</p>
+      </div>
       <div class="bars">
         <details open>
           <summary>Languages</summary>
