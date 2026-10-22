@@ -30,7 +30,7 @@ The work comes in two parts.
 ### Part 1: content fixes (on `main`)
 - [x] Task 1: Resume fixes: Playwright, the InkHive address and the references
 - [x] Task 2: Live-site fixes: InkHive link and the "live on Render" stat
-- [x] Task 3: `check.sh`, the one-command check. **Only if Erik says yes.**
+- [x] Task 3: `check.sh`, the one-command check (Erik said yes)
 
 ### Checkpoint 0: published
 - [x] The live resume and site pass the content `grep` and the one-page check
