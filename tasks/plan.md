@@ -43,8 +43,8 @@ The work comes in two parts.
 - [x] Erik sees the first screen at phone, tablet and desktop width, in light and dark, and approves the direction before the rest is built (approved 2026-10-22, with dark as the default)
 
 ### Part 2, Phase 2: sections
-- [ ] Task 6: Work stage, with the tearing title, and the LabaLink and Seoul-Mate panels
-- [ ] Task 7: PlayIT and InkHive panels, and the "Also built" list
+- [x] Task 6: Work stage, with the tearing title, and the LabaLink and Seoul-Mate panels
+- [x] Task 7: PlayIT and InkHive panels, and the "Also built" list
 - [ ] Task 8: Proof: the test-name band and Try to break it
 - [ ] Task 9: Skills: STACK and the six bars
 - [ ] Task 10: About: side facts, paragraph and badges

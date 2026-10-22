@@ -18,6 +18,7 @@
   :root {
     --bg: #05333a;
     --surface: #0b424b;
+    --surface-2: #104c55;
     --ink: #eef5f3;
     --muted: #a8cbc7;
     --accent: #eef5f3;
@@ -44,6 +45,7 @@
   :root[data-theme="light"] {
     --bg: #f7f9f8;
     --surface: #ebf0ee;
+    --surface-2: #e1e9e6;
     --ink: #06525c;
     --muted: #2f737d;
     --accent: #06525c;
@@ -139,7 +141,7 @@
   .c-tiles i { font-style: normal; display: grid; place-items: center; width: 44cqh; height: 44cqh; background: var(--ink); color: var(--bg); font-size: 30cqh; font-weight: 600; }
   .c-stars { display: flex; gap: 1.5cqw; }
   .c-stars i { width: 6cqh; height: 6cqh; background: var(--ink); }
-  .c-stars i:last-child { background: none; outline: 1px solid var(--ink); outline-offset: -1px; }
+  .c-stars i:last-child { background: color-mix(in srgb, currentColor 30%, transparent); }
   .c-board { flex: 1; min-height: 0; position: relative; background: var(--bg); }
   .c-board svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .c-board path { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
@@ -147,15 +149,97 @@
 
   /* ---------- sections, plain until their tasks ---------- */
   .sec > .wrap > h2 { margin-bottom: 1.5rem; }
-  .proj { padding-block: 2.5rem; }
-  .proj h3 { font-size: var(--step-head); line-height: 1.05; letter-spacing: -0.02em; }
-  .proj-what { margin-top: 0.4rem; color: var(--muted); }
-  .proj ul { margin-top: 1rem; padding-left: 1.2em; max-width: 68ch; }
-  .proj li + li { margin-top: 0.4rem; }
-  .proj-stack { margin-top: 1rem; color: var(--muted); }
-  .proj-link { display: inline-block; margin-top: 0.75rem; padding-block: 0.6rem; }
-  .also { margin-top: 2rem; }
-  .also li { padding-block: 0.5rem; }
+  /* ---------- work: title torn at the seam ---------- */
+  /* Without JS the projects simply stack, one screen each. With JS the stage pins and they cross it. */
+  .work { padding-block: calc(var(--section) / 2); }
+  .work-head { display: grid; gap: 1rem; margin-bottom: 2.5rem; }
+  @media (min-width: 900px) {
+    .work-head { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); align-items: end; }
+    .work-head p { justify-self: end; text-align: right; max-width: 40ch; }
+  }
+  .js .track { height: calc(100svh + (var(--n) - 1) * 95svh); }
+  .stage { position: relative; }
+  .js .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+  .layer { position: relative; height: 100svh; overflow: hidden; }
+  .js .layer { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s; }
+  .js .layer.is-on { opacity: 1; visibility: visible; }
+  /* Panes overhang the stage by 20svh both ways, so their travel never shows an edge. */
+  .pane { position: absolute; top: -20svh; bottom: -20svh; width: 50%; background: var(--surface); will-change: transform; }
+  .pane.l { left: 0; }
+  .pane.r { left: 50%; background: var(--surface-2); }
+  .frame { position: absolute; top: 20svh; left: 0; right: 0; height: 100svh; container-type: size; }
+  /* Each name splits into its own two words exactly on the seam: LABA|LINK, SEOUL|-MATE, PLAY|IT, INK|HIVE. */
+  .tear { position: absolute; z-index: 2; left: 0; right: 0; top: 50%; height: 0.85em; translate: 0 -62%; font-size: min(10.5vw, 9.5rem); pointer-events: none; white-space: nowrap; }
+  .tear .half { position: absolute; top: 0; will-change: transform; }
+  .tear .half.l { right: 50%; }
+  .tear .half.r { left: 50%; }
+  .layer-meta { position: absolute; z-index: 2; top: 58%; left: 50%; translate: -50% 0; width: min(46ch, calc(100% - 2 * var(--margin))); text-align: center; }
+  .layer-meta a { display: inline-block; padding-block: 0.6rem; }
+  .layer-meta { transition: opacity 0.25s ease, visibility 0.25s; }
+  .layer-meta.is-off { opacity: 0; visibility: hidden; }
+  @media (max-width: 759px) { .tear { font-size: 10vw; } .layer-meta { top: 58%; } }
+
+  /* app screens inside the panes: everything sized in em from one container-relative base */
+  .ui { position: absolute; inset: 0; font: 400 min(1.9cqh, 3.6cqw)/1.25 var(--font); font-stretch: 100%; color: var(--ink); text-transform: none; letter-spacing: 0; }
+  .ui i { font-style: normal; }
+  .ui b { font-weight: 600; }
+  .ui-top, .ui-bot { position: absolute; left: 2.2em; right: 2.2em; display: grid; gap: 0.5em; }
+  .ui-top { top: 12%; }
+  .ui-bot { bottom: 8%; }
+  .ui-bar { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding-bottom: 0.4em; }
+  .ui-row { display: flex; justify-content: space-between; align-items: center; gap: 1em; background: var(--bg); padding: 0.85em 1em; }
+  .ui-row small, .ui-sub { display: block; font-size: 0.82em; opacity: 0.72; }
+  .ui-pill { background: var(--ink); color: var(--bg); padding: 0.3em 0.65em; font-size: 0.8em; font-weight: 600; white-space: nowrap; }
+  .ui-pill.off { background: color-mix(in srgb, currentColor 22%, transparent); color: inherit; }
+  .ui-big { font-size: 4.2em; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .ui-meter { height: 0.5em; background: var(--bg); }
+  .ui-meter i { display: block; height: 100%; width: var(--w, 30%); background: var(--ink); }
+  .ui-btn { background: var(--ink); color: var(--bg); text-align: center; padding: 1em; font-weight: 600; }
+  .ui-tg { flex: none; width: 2.6em; height: 1.45em; background: var(--ink); position: relative; }
+  .ui-tg::after { content: ""; position: absolute; top: 0.2em; right: 0.2em; width: 1.05em; height: 1.05em; background: var(--bg); }
+  .ui-tg.off { background: color-mix(in srgb, currentColor 24%, transparent); }
+  .ui-tg.off::after { right: auto; left: 0.2em; background: var(--ink); }
+  .ui-feed { display: grid; gap: 0.35em; font-size: 0.9em; }
+  .ui-feed span { background: var(--bg); padding: 0.6em 0.9em; }
+  .ui-lang { display: flex; gap: 0.8em; }
+  .ui-lang i { opacity: 0.55; }
+  .ui-lang i.on { opacity: 1; font-weight: 600; text-decoration: underline; text-underline-offset: 0.25em; }
+  .ui-search { background: var(--bg); padding: 0.85em 1em; opacity: 0.8; }
+  .ui-steps { display: flex; gap: 0.4em; font-size: 0.85em; }
+  .ui-steps i { flex: 1; text-align: center; padding: 0.5em 0; background: var(--bg); opacity: 0.6; }
+  .ui-steps i.on { opacity: 1; background: var(--ink); color: var(--bg); font-weight: 600; }
+  .ui-letter { display: flex; align-items: center; gap: 1.2em; background: var(--bg); padding: 1em 1.2em; }
+  .ui-letter > b { font-size: 4.5em; line-height: 0.9; }
+  .ui-tiles { display: flex; justify-content: center; gap: 0.6em; }
+  .ui-tiles i { display: grid; place-items: center; width: 3.2em; height: 3.2em; background: var(--ink); color: var(--bg); font-size: 1.6em; font-weight: 600; }
+  .ui-tiles.slots i { background: var(--bg); color: var(--ink); }
+  .ui-tiles i.gone { background: color-mix(in srgb, currentColor 14%, transparent); color: inherit; opacity: 0.6; }
+  .ui-stars { display: flex; gap: 0.3em; }
+  .ui-stars i { width: 0.9em; height: 0.9em; background: var(--ink); }
+  .ui-board { position: relative; height: 13em; background: var(--bg); }
+  .ui-board svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ui-board path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+  .ui-cur { position: absolute; background: var(--ink); color: var(--bg); padding: 0.2em 0.5em; font-size: 0.8em; }
+  .ui-av { display: inline-grid; place-items: center; width: 1.8em; height: 1.8em; background: var(--ink); color: var(--bg); font-size: 0.85em; font-weight: 600; margin-left: 0.2em; }
+  .ui-qr { width: 5.5em; height: 5.5em; background: var(--bg); padding: 0.5em; display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.12em; }
+  .ui-qr i { background: var(--ink); }
+  .ui-qr i:nth-child(3n + 2), .ui-qr i:nth-child(5n + 1) { background: none; }
+
+  /* the details under the stage: name in the left third, the facts in the right two-thirds */
+  .notes { padding-top: calc(var(--section) / 2); }
+  .notes > h3 { margin-bottom: 1.5rem; }
+  .note { display: grid; gap: 0.75rem; padding-block: 1.5rem; }
+  .note dt { font-size: var(--step-head); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+  .note dd { margin: 0; }
+  .note ul { padding-left: 1.1em; margin-top: 0.75rem; max-width: 68ch; }
+  .note li + li { margin-top: 0.4rem; }
+  .note-stack { margin-top: 0.9rem; color: var(--muted); }
+  .note a { display: inline-block; margin-top: 0.5rem; padding-block: 0.6rem; }
+  .note .also-list { padding-left: 0; }
+  .also-list li + li { margin-top: 0.75rem; }
+  @media (min-width: 900px) {
+    .note { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); }
+  }
   .attacks { margin-top: 1.5rem; display: grid; gap: 1rem; }
   .attacks li { background: var(--surface); padding: 1rem 1.25rem; }
   .band-names { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; color: var(--muted); overflow-wrap: anywhere; }
@@ -231,68 +315,216 @@
     </div>
   </header>
 
-  <section class="sec" id="work" aria-labelledby="work-h">
-    <div class="wrap">
+  <section class="work" id="work" aria-labelledby="work-h">
+    <div class="wrap work-head">
       <h2 class="head" id="work-h">Selected work</h2>
+      <p>Four apps I built or led, each shown through its own screens. The full details follow.</p>
+    </div>
+    <div class="track" style="--n: 4">
+      <div class="stage">
+
+        <article class="layer is-on" aria-labelledby="t-laba">
+          <div class="pane l"><div class="frame" data-ui role="img" aria-label="LabaLink's Android app: Washer 03 is running with 42 minutes left, paid from a 240-peso wallet.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>LabaLink</b><span>Wallet <b>₱240.00</b></span></div>
+                <div class="ui-row"><span><b>Washer 03</b><small>Started by QR scan, paid from wallet</small></span><i class="ui-pill">Active</i></div>
+                <div class="ui-big">42:18</div>
+                <div class="ui-meter" style="--w: 30%"><i></i></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-row"><span>Charged<small>Priced by the server</small></span><b>₱60.00</b></div>
+                <div class="ui-btn">Scan machine QR</div>
+              </div>
+            </div>
+          </div></div>
+          <div class="pane r"><div class="frame" data-ui role="img" aria-label="LabaLink's attendant dashboard: machine statuses and a live event feed over WebSocket.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>Attendant dashboard</b><span>Shop 1</span></div>
+                <div class="ui-row"><span>Washer 01</span><span>12:40</span><i class="ui-pill">Active</i></div>
+                <div class="ui-row"><span>Washer 02</span><span></span><i class="ui-pill off">Ready</i></div>
+                <div class="ui-row"><span>Washer 03</span><span>42:18</span><i class="ui-pill">Active</i></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-bar"><b>Live</b><span>WebSocket · STOMP</span></div>
+                <div class="ui-feed">
+                  <span>Booking started on Washer 03</span>
+                  <span>Wallet +₱60.00 · Stripe webhook verified</span>
+                  <span>Dryer 01 finished</span>
+                </div>
+              </div>
+            </div>
+          </div></div>
+          <h3 class="tear wide" id="t-laba"><span class="half l">Laba</span><span class="half r">Link</span></h3>
+          <p class="layer-meta">Laundry booking with a Stripe wallet. Solo build, v1.0.0, 34 tests.<br><a class="link" href="#note-laba">The details</a> · <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a></p>
+        </article>
+
+        <article class="layer" aria-labelledby="t-seoul">
+          <div class="pane l"><div class="frame" data-ui role="img" aria-label="Seoul-Mate's staff panel: Buldak Ramen has just been switched to out of stock.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>Staff panel</b><span>/admin</span></div>
+                <div class="ui-row"><span>Shin Ramyun</span><i class="ui-tg"></i></div>
+                <div class="ui-row"><span><b>Buldak Ramen</b><small>Out of stock, just now</small></span><i class="ui-tg off"></i></div>
+                <div class="ui-row"><span>Honey Butter Chip</span><i class="ui-tg"></i></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-row"><span>Saved<small>Open menus update in seconds</small></span><i class="ui-pill">Realtime</i></div>
+                <div class="ui-row"><span>Two-factor on<small>Session ends after 60 minutes idle</small></span></div>
+              </div>
+            </div>
+          </div></div>
+          <div class="pane r"><div class="frame" data-ui role="img" aria-label="Seoul-Mate's menu on a phone in Korean, showing Buldak Ramen as sold out.">
+            <div class="ui" lang="ko">
+              <div class="ui-top">
+                <div class="ui-bar"><b lang="en">Seoul-Mate</b><span class="ui-lang" lang="en"><i>EN</i><i>FIL</i><i class="on">KO</i></span></div>
+                <div class="ui-search">라면, 과자 검색</div>
+                <div class="ui-bar"><b>메뉴</b><span>라면</span></div>
+                <div class="ui-row"><span><b>신라면</b><small>₱70.00</small></span><i class="ui-pill">재고 있음</i></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-row"><span><b>불닭볶음면</b><small>₱85.00</small></span><i class="ui-pill off">품절</i></div>
+                <div class="ui-row"><span><b>허니버터칩</b><small>₱95.00</small></span><i class="ui-pill">재고 있음</i></div>
+              </div>
+            </div>
+          </div></div>
+          <h3 class="tear wide" id="t-seoul"><span class="half l">Seoul</span><span class="half r">-Mate</span></h3>
+          <p class="layer-meta">A live menu for a Korean minimart in Masbate City, in three languages. Solo build, in progress.<br><a class="link" href="#note-seoul">The details</a> · <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a></p>
+        </article>
+
+        <article class="layer" aria-labelledby="t-play">
+          <div class="pane l"><div class="frame" data-ui role="img" aria-label="PlayIT's Say it step: the letter m with a sound caption and a mouth-shape cue.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>PlayIT</b><span class="ui-stars"><i></i><i></i><i></i></span></div>
+                <div class="ui-steps"><i>Hear it</i><i class="on">Say it</i><i>Find it</i><i>Blend it</i></div>
+                <div class="ui-letter"><b>m</b><span><b>/m/ as in mango</b><span class="ui-sub">Sound caption</span></span></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-row"><span>Lips together, then hum<small>Mouth-shape cue</small></span></div>
+                <div class="ui-btn">Say it</div>
+              </div>
+            </div>
+          </div></div>
+          <div class="pane r"><div class="frame" data-ui role="img" aria-label="PlayIT's Blend It activity: the tiles s, u and m are blended into the word sum.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>Blend it</b><span>Offline</span></div>
+                <div class="ui-tiles slots"><i>s</i><i>u</i><i>m</i></div>
+                <div class="ui-bar"><span>s · u · m</span><b>sum</b></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-tiles"><i class="gone">m</i><i class="gone">s</i><i class="gone">u</i></div>
+                <div class="ui-row"><span>Nice blending!<small>No red, no buzzers</small></span></div>
+              </div>
+            </div>
+          </div></div>
+          <h3 class="tear wide" id="t-play"><span class="half l">Play</span><span class="half r">IT</span></h3>
+          <p class="layer-meta">An offline phonics app for Grade 1 learners on low-end phones. Capstone, team of 3.<br><a class="link" href="#note-play">The details</a> · <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a></p>
+        </article>
+
+        <article class="layer" aria-labelledby="t-ink">
+          <div class="pane l"><div class="frame" data-ui role="img" aria-label="InkHive's teacher board: the teacher and a student draw on one whiteboard in real time.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>InkHive</b><span><i class="ui-av">T</i><i class="ui-av">A</i><i class="ui-av">B</i> 3 live</span></div>
+                <div class="ui-row"><span>Session: Fractions, Grade 5</span><span>Code <b>K7Q-42M</b></span></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-board"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><path d="M150 108 C 180 70, 220 118, 280 74"/><path d="M40 32 L 50 22 L 50 64 M 64 66 L 88 18 M 96 34 C 100 20, 124 20, 122 37 C 120 50, 100 55, 96 66 L 126 66"/></svg><span class="ui-cur" style="left: 62%; top: 20%">Teacher</span><span class="ui-cur" style="left: 18%; top: 66%">Ana</span></div>
+                <div class="ui-row"><span>WebSocket connected</span><i class="ui-pill">Live</i></div>
+              </div>
+            </div>
+          </div></div>
+          <div class="pane r"><div class="frame" data-ui role="img" aria-label="InkHive's join code and QR, with per-student draw permissions set by the teacher.">
+            <div class="ui">
+              <div class="ui-top">
+                <div class="ui-bar"><b>Join with code</b><span>or scan</span></div>
+                <div class="ui-row"><span class="ui-big">K7Q-42M</span></div>
+                <div class="ui-qr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <div class="ui-bot">
+                <div class="ui-bar"><b>Who can draw</b><span>Set by the teacher</span></div>
+                <div class="ui-row"><span>Ana</span><i class="ui-tg"></i></div>
+                <div class="ui-row"><span>Ben<small>View only</small></span><i class="ui-tg off"></i></div>
+              </div>
+            </div>
+          </div></div>
+          <h3 class="tear wide" id="t-ink"><span class="half l">Ink</span><span class="half r">Hive</span></h3>
+          <p class="layer-meta">A real-time classroom whiteboard. Lead and backend developer, team of 3, 127 tests.<br><a class="link" href="#note-ink">The details</a> · <a class="link" href="https://github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard" target="_blank" rel="noopener">Source on GitHub</a></p>
+        </article>
+      </div>
     </div>
 
-    <article class="proj wrap" id="labalink">
-      <h3>LabaLink</h3>
-      <p class="proj-what">Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
+    <div class="wrap notes">
+      <h3 class="head">The details</h3>
+      <dl>
+    <div class="note" id="note-laba">
+      <dt>LabaLink</dt>
+      <dd>
+      <p>Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
       <ul>
         <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST and WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
         <li><strong>Security-first v1.0.0</strong>: STRIDE threat model, JWT with role and ownership checks, verified Google sign-in, lockout, and a privacy policy.</li>
         <li><strong>Payments that can't be replayed</strong>: Stripe Checkout, signed webhooks, and idempotent wallet credits; the server won't start with a live key. <strong>34 tests</strong> on real PostgreSQL.</li>
       </ul>
-      <p class="proj-stack">Java, Spring Boot, Kotlin, React, TypeScript, PostgreSQL, Stripe, Flyway</p>
-      <a class="proj-link link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
-    </article>
-
-    <article class="proj wrap" id="seoul-mate">
-      <h3>Seoul-Mate</h3>
-      <p class="proj-what">Live menu website for a Korean minimart in Masbate City · Solo build, in progress</p>
+      <p class="note-stack">Java, Spring Boot, Kotlin, React, TypeScript, PostgreSQL, Stripe, Flyway</p>
+      <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
+      </dd>
+    </div>
+    <div class="note" id="note-seoul">
+      <dt>Seoul-Mate</dt>
+      <dd>
+      <p>Live menu website for a Korean minimart in Masbate City · Solo build, in progress</p>
       <ul>
         <li><strong>Stock changes reach open pages within seconds</strong>, in English, Filipino and Korean, with search, store hours and ordering through Messenger.</li>
         <li><strong>Security first</strong>: Row Level Security on every table, staff login with optional two-factor, photo uploads checked by content and stripped of location data.</li>
         <li><strong>Tested at three levels</strong>: 108 unit tests, 109 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all in CI.</li>
       </ul>
-      <p class="proj-stack">React 19, TypeScript, Supabase, PostgreSQL RLS, Edge Functions, Vitest, GitHub Actions</p>
-      <a class="proj-link link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a>
-    </article>
-
-    <article class="proj wrap" id="playit">
-      <h3>PlayIT</h3>
-      <p class="proj-what">Offline English phonics app for Grade 1 learners · Capstone, team of 3 · IT411</p>
+      <p class="note-stack">React 19, TypeScript, Supabase, PostgreSQL RLS, Edge Functions, Vitest, GitHub Actions</p>
+      <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a>
+      </dd>
+    </div>
+    <div class="note" id="note-play">
+      <dt>PlayIT</dt>
+      <dd>
+      <p>Offline English phonics app for Grade 1 learners · Capstone, team of 3 · IT411</p>
       <ul>
         <li>An <strong>offline-first Android app</strong> for 2 GB phones that teaches Marungko phonics with <strong>on-device speech recognition</strong>.</li>
         <li><strong>Child-friendly accessibility</strong>: sound captions, mouth-shape cues, 64 dp touch targets, and "no red" feedback.</li>
         <li>Fixed core <strong>Blend It</strong> game logic so tiles are never dealt in answer order, and wrote the SRS, SDD, and test docs.</li>
         <li><strong>Release QA</strong>: a Python tool that stops the submission if any number disagrees with the JUnit results or APK checksum.</li>
       </ul>
-      <p class="proj-stack">Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk speech recognition</p>
-      <a class="proj-link link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a>
-    </article>
-
-    <article class="proj wrap" id="inkhive">
-      <h3>InkHive</h3>
-      <p class="proj-what">Real-time collaborative whiteboard for classrooms · Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
+      <p class="note-stack">Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk speech recognition</p>
+      <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a>
+      </dd>
+    </div>
+    <div class="note" id="note-ink">
+      <dt>InkHive</dt>
+      <dd>
+      <p>Real-time collaborative whiteboard for classrooms · Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
       <ul>
         <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
         <li><strong>Rebuilt real-time sync</strong> on Django Channels WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
         <li><strong>Launch-ready</strong>: CSP, brute-force lockout, upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
       </ul>
-      <p class="proj-stack">Python, Django 5.2, Channels, Daphne, WebSockets, SQLite</p>
-      <a class="proj-link link" href="https://github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard" target="_blank" rel="noopener">Source on GitHub</a>
-    </article>
-
-    <div class="wrap also">
-      <h3 class="head">Also built</h3>
+      <p class="note-stack">Python, Django 5.2, Channels, Daphne, WebSockets, SQLite</p>
+      <a class="link" href="https://github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard" target="_blank" rel="noopener">Source on GitHub</a>
+      </dd>
+    </div>
+    <div class="note" id="also">
+      <dt>Also built</dt>
+      <dd>
       <ul class="also-list">
         <li><strong>TaskFlow MVC</strong>: a zero-dependency PHP 8.3 MVC framework built from scratch, with a front controller, repositories, and a task-manager app on top. <span class="muted">PHP, SQLite</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/Hotel_Management_System" target="_blank" rel="noopener"><strong>Hotel Management System</strong></a>: a Python app for managing hotel rooms, guests, and reservations. <span class="muted">Python</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/Blog_Platform" target="_blank" rel="noopener"><strong>Blog Platform</strong></a>: a Python blogging platform with posts and user accounts. <span class="muted">Python</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/MangaReader" target="_blank" rel="noopener"><strong>MangaReader</strong></a>: a practice website built with only HTML and CSS. <span class="muted">HTML, CSS</span></li>
       </ul>
+      </dd>
+    </div>
+      </dl>
     </div>
   </section>
 
@@ -476,8 +708,11 @@
 (function () {
   'use strict';
   var root = document.documentElement;
+  var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function $(s, el) { return (el || document).querySelector(s); }
+  function $$(s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
   /* ---------- theme: dark unless the visitor picked light ---------- */
   var themeBtn = $('#theme');
@@ -502,6 +737,42 @@
     var done = function () { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy email'; }, 1600); };
     if (navigator.clipboard) navigator.clipboard.writeText(copyBtn.getAttribute('data-copy')).then(done, function () {});
   });
+
+  /* ---------- work: the title tears at the seam as each project crosses the stage ---------- */
+  // t is a project's position on the stage: -1 arriving, 0 centred, +1 leaving. The halves hold aligned
+  // for |t| < 0.15 so the line under the title can be read, then tear. Projects hand over at t = ±0.5,
+  // at full tear, with a short CSS fade; the first arrives and the last leaves over a longer run.
+  var track = $('.track');
+  var layers = $$('.layer').map(function (el) {
+    return { el: el, l: $$('.pane.l, .half.l', el), r: $$('.pane.r, .half.r', el), meta: $('.layer-meta', el) };
+  });
+  function tearFrame() {
+    var box = track.getBoundingClientRect(), vh = innerHeight;
+    if (box.bottom < -vh || box.top > 2 * vh) return;
+    var p = -box.top / (0.95 * vh), last = layers.length - 1;
+    layers.forEach(function (o, i) {
+      var t = p - i, edge = (i === 0 && t < 0) || (i === last && t > 0);
+      var f = RM ? 0 : (t < 0 ? -1 : 1) * clamp((Math.abs(t) - 0.15) / (edge ? 0.85 : 0.35), 0, 1);
+      var shown = edge || (t >= -0.5 && t < 0.5);
+      o.el.classList.toggle('is-on', shown);
+      if (!shown) return;
+      // the line under the title lies in the halves' path, so it only shows while they hold aligned
+      o.meta.classList.toggle('is-off', f !== 0);
+      // panes travel 20svh, title halves 30svh, in opposite directions
+      o.l[0].style.transform = 'translate3d(0,' + (-f * 20) + 'svh,0)';
+      o.r[0].style.transform = 'translate3d(0,' + (f * 20) + 'svh,0)';
+      o.l[1].style.transform = 'translate3d(0,' + (-f * 30) + 'svh,0)';
+      o.r[1].style.transform = 'translate3d(0,' + (f * 30) + 'svh,0)';
+    });
+  }
+
+  /* ---------- one scroll loop for every scroll effect ---------- */
+  var ticking = false;
+  function frame() { ticking = false; tearFrame(); }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  frame();
 })();
 </script>
 </body>
