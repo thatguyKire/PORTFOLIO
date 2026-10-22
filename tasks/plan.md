@@ -51,8 +51,9 @@ The work comes in two parts.
 - [x] Task 11: Contact (the email as display type) and the KIRE footer
 
 ### Checkpoint B: the whole page, without motion
-- [ ] `inspect.mjs` reports 0 FAIL at 1440, 768 and 390px. The motion count is the one exception, because motion comes next.
-- [ ] First critique round written down. Erik reviews the full-page screenshots.
+- [x] `inspect.mjs` reports 0 FAIL at 1440, 768 and 390px. The motion count is the one exception, because motion comes next.
+- [x] First critique round written down (tasks/critique.md, two rounds, 8.0).
+- [ ] Erik reviews the full page.
 
 ### Part 2, Phase 3: motion
 - [ ] Task 12: Motion layer: shutter, screen cycling, entrances and control feedback
