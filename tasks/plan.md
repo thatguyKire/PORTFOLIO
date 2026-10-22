@@ -23,7 +23,7 @@ The work comes in two parts.
   - The app screens are rebuilt in HTML and CSS, with `data-ui` on each panel's root so the design gate counts them as interface pictures.
   - The badges are real PNGs in `assets/`.
   - No found photos, and no bitmap mock-ups.
-- **Light is the default.** The theme script sets dark only when the visitor has chosen it with the toggle.
+- **Dark is the default.** The dark tokens sit on `:root`, so no-JS visitors get dark too. The theme script sets `data-theme="light"` only when the visitor has chosen light with the toggle.
 
 ## Task List
 
@@ -40,7 +40,7 @@ The work comes in two parts.
 - [x] Task 5: Hero: the monument name with an app screen between ERIK and BIEN
 
 ### Checkpoint A: first screen review
-- [ ] Erik sees the first screen at phone, tablet and desktop width, in light and dark, and approves the direction before the rest is built
+- [x] Erik sees the first screen at phone, tablet and desktop width, in light and dark, and approves the direction before the rest is built (approved 2026-10-22, with dark as the default)
 
 ### Part 2, Phase 2: sections
 - [ ] Task 6: Work stage, with the tearing title, and the LabaLink and Seoul-Mate panels
@@ -79,4 +79,4 @@ The work comes in two parts.
 
 ## Open Questions
 
-- **Check script (Task 3):** yes or no? If no, the checks stay as commands in `SPEC.md`.
+None. Check script approved on 2026-10-22.

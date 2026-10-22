@@ -45,7 +45,7 @@ Why this one over the other two dealt options:
 | **Type** | **TikTok Sans**, one variable family. The display is weight 800, stretched to 150% width, in capitals with tight tracking. Body text is normal width at weight 400. **No italics anywhere, no serif, no monospace.** |
 | **Type sizes** | Five only: the monument, section heading (28–40px), lead (20–26px), body (17–19px), small (13–14px). |
 | **Colour** | **Teal on paper.** Ground `#f7f9f8`, surface `#ebf0ee`, ink `#06525c`, soft ink `#2f737d`. Teal is used for every word and shape, with no black. The accent is the same teal filled solid, on the one button and the inverted closing band. |
-| **Dark mode** | Light by default, whatever the visitor's system setting. The toggle switches to dark (the same roles inverted: deep teal ground, paper-white text) and remembers the choice. |
+| **Dark mode** | Dark by default, whatever the visitor's system setting: the same roles inverted, deep teal `#05333a` ground and paper-white `#eef5f3` text. The toggle switches to light (teal on paper) and remembers the choice. |
 | **Shape** | Square corners everywhere. One button style: solid teal, square, 44px tall or more. |
 | **Frame** | One pair of tight outer margins (20–32px) on every section. Sections are 120–240px apart on desktop. |
 
@@ -232,4 +232,5 @@ Erik answered these on 2026-10-22.
 | 1 | Photo of Erik for the hero | None yet. Use no found city photo either. The hero frame shows his own app screens. |
 | 2 | App screenshots | None. Rebuild the mock-ups as panels. |
 | 3 | Remove the ink trail, the dot test run and the stats row | Yes |
-| 4 | Dark mode | Light by default; keep the toggle |
+| 4 | Dark mode | Dark by default; the toggle switches to light. Changed from light-by-default at the first-screen review. |
+| 5 | First screen (Checkpoint A) | Direction approved |

@@ -7,21 +7,21 @@
 <meta name="description" content="Erik Samuel Bien, 4th-year BSIT student at CIT-U. He builds full-stack web and Android apps, then tries to break them: LabaLink, Seoul-Mate, PlayIT and InkHive.">
 <meta property="og:title" content="Erik Bien — Portfolio">
 <meta property="og:description" content="Full-stack and Android developer. LabaLink, Seoul-Mate, PlayIT, InkHive. 269 tests that try to break them.">
-<meta name="theme-color" content="#f7f9f8">
+<meta name="theme-color" content="#05333a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2306525c'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='900' font-size='36' text-anchor='middle' fill='%23f7f9f8'%3EE%3C/text%3E%3C/svg%3E">
-<script>document.documentElement.classList.add("js");try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<script>document.documentElement.classList.add("js");try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
 <style>
-  /* ---------- tokens: Teal on paper ---------- */
+  /* ---------- tokens: Teal on paper, inverted. Dark is the default; light is opt-in through the toggle. ---------- */
   :root {
-    --bg: #f7f9f8;
-    --surface: #ebf0ee;
-    --ink: #06525c;
-    --muted: #2f737d;
-    --accent: #06525c;
-    --accent-ink: #f7f9f8;
+    --bg: #05333a;
+    --surface: #0b424b;
+    --ink: #eef5f3;
+    --muted: #a8cbc7;
+    --accent: #eef5f3;
+    --accent-ink: #05333a;
     --font: "TikTok Sans", "Helvetica Neue", Arial, sans-serif;
 
     --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
@@ -38,17 +38,17 @@
     --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
     --t-press: 140ms;
     --t-hover: 180ms;
-    color-scheme: light;
-  }
-  /* Dark is opt-in through the toggle; the system setting is ignored on purpose. */
-  :root[data-theme="dark"] {
-    --bg: #05333a;
-    --surface: #0b424b;
-    --ink: #eef5f3;
-    --muted: #a8cbc7;
-    --accent: #eef5f3;
-    --accent-ink: #05333a;
     color-scheme: dark;
+  }
+  /* The system setting is ignored on purpose: the page is dark until the visitor picks light. */
+  :root[data-theme="light"] {
+    --bg: #f7f9f8;
+    --surface: #ebf0ee;
+    --ink: #06525c;
+    --muted: #2f737d;
+    --accent: #06525c;
+    --accent-ink: #f7f9f8;
+    color-scheme: light;
   }
 
   /* ---------- base ---------- */
@@ -124,6 +124,7 @@
   .crop { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 4cqh; padding: 8cqh 6cqw; font: 400 11cqh/1.15 var(--font); font-stretch: 100%; letter-spacing: 0; text-transform: none; color: var(--ink); }
   .crop:not(.is-on) { visibility: hidden; }
   .crop b { font-weight: 600; }
+  .crop i { font-style: normal; }
   .c-top { display: flex; justify-content: space-between; align-items: center; gap: 4cqw; }
   .c-pill { font-style: normal; background: var(--ink); color: var(--bg); padding: 1.5cqh 3cqw; font-size: 0.85em; }
   .c-big { font-size: 42cqh; font-weight: 600; line-height: 0.9; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
@@ -194,7 +195,7 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <button class="theme" id="theme" type="button" aria-label="Switch to dark mode">Dark</button>
+    <button class="theme" id="theme" type="button" aria-label="Switch to light mode">Light</button>
     <a class="btn" href="Bien_Resume.pdf" download>Resume</a>
   </div>
 </nav>
@@ -478,17 +479,17 @@
 
   function $(s, el) { return (el || document).querySelector(s); }
 
-  /* ---------- theme: light unless the visitor picked dark ---------- */
+  /* ---------- theme: dark unless the visitor picked light ---------- */
   var themeBtn = $('#theme');
   function paintTheme() {
-    var dark = root.getAttribute('data-theme') === 'dark';
-    themeBtn.textContent = dark ? 'Light' : 'Dark';
-    themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    var light = root.getAttribute('data-theme') === 'light';
+    themeBtn.textContent = light ? 'Dark' : 'Light';
+    themeBtn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
   }
   themeBtn.addEventListener('click', function () {
-    var dark = root.getAttribute('data-theme') !== 'dark';
-    if (dark) root.setAttribute('data-theme', 'dark'); else root.removeAttribute('data-theme');
-    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (e) {}
+    var light = root.getAttribute('data-theme') !== 'light';
+    if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
     paintTheme();
   });
   paintTheme();

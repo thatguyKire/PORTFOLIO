@@ -83,7 +83,7 @@ The current page order is Nav, Hero with stats, Projects, Proof, Skills, Credent
 
 **CSS:**
 - Colors come only from tokens on `:root`.
-- Light is the default, even when the visitor's system is set to dark. Dark mode is opt-in: the toggle sets `data-theme="dark"`, which redefines the same tokens, and the choice is remembered in `localStorage`.
+- Dark is the default, even when the visitor's system is set to light, and also without JavaScript. Light mode is opt-in: the toggle sets `data-theme="light"`, which redefines the same tokens, and the choice is remembered in `localStorage`.
 - Write mobile-first `min-width` breakpoints.
 - Compact one-line rules are fine.
 
@@ -121,7 +121,7 @@ There is no test framework. Every change is checked against this list:
 | Content | Numbers match their sources | 34 (LabaLink) + 127 (InkHive) + 108 (Seoul-Mate) = 269. Project and badge counts match. |
 | Runtime | No console errors | headless Chrome or DevTools, page loaded and scrolled to the bottom |
 | Layout | No sideways scroll and nothing clipped | widths 375, 768 and 1280px, and a 1366×768 laptop |
-| Themes | Light by default, also when the system is dark. The toggle switches to dark and remembers it. Both are readable. | load with the system in light and in dark, then use the toggle and reload |
+| Themes | Dark by default, also when the system is light. The toggle switches to light and remembers it. Both are readable. | load with the system in light and in dark, then use the toggle and reload |
 | Motion | Reduced motion shows all content with no movement | emulate `prefers-reduced-motion: reduce` |
 | Print | Printing gives a clean static page | print preview |
 | Resume | Exactly one page, and the links click through | the `pdftotext` command, then open the PDF |
@@ -189,5 +189,5 @@ These come from Erik's answers on 2026-10-22. They will be tasks in the plan.
 | 4 | InkHive live link | Remove it until the Render deploy is updated |
 | 5 | Check script | Yes: `check.sh` |
 | 6 | References on the resume | "Available on request", with no names, phones or emails |
-| 7 | Dark mode | Light by default; keep the toggle |
+| 7 | Dark mode | Dark by default; the toggle switches to light (changed from light-by-default at the first-screen review) |
 
