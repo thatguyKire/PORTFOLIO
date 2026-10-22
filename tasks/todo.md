@@ -378,7 +378,7 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 - Verify: entrance film; screen readers still get whole headings; reduced motion shows the finished page.
 
 ### Task 18: Scroll moments
-- [ ] The name pulls apart as the hero leaves; the test band answers the scroll's speed; BLOCKED stamps down and strikes the attempt through; the footer reads ERIK and swaps its letters into KIRE as it arrives.
+- [x] The name pulls apart as the hero leaves; the test band answers the scroll's speed; BLOCKED stamps down and strikes the attempt through; the footer reads ERIK and swaps its letters into KIRE as it arrives.
 - Verify: film of each moment; reduced motion and no-JS show the finished page.
 
 ### Task 19: Gate and ship

@@ -69,7 +69,7 @@ The work comes in two parts.
 - [x] Task 15: Fuller grounds: colour by chapter, a screen beside each project note
 - [x] Task 16: A live work stage
 - [x] Task 17: Entrances that differ with the content
-- [ ] Task 18: Scroll moments: the name pulls apart, the band answers the scroll, BLOCKED stamps, ERIK becomes KIRE
+- [x] Task 18: Scroll moments: the name pulls apart, the band answers the scroll, BLOCKED stamps, ERIK becomes KIRE
 - [ ] Task 19: Gate and ship
 
 ## Risks and Mitigations
