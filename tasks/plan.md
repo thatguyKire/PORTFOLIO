@@ -48,7 +48,7 @@ The work comes in two parts.
 - [x] Task 8: Proof: the test-name band and Try to break it
 - [x] Task 9: Skills: STACK and the six bars
 - [x] Task 10: About: side facts, paragraph and badges
-- [ ] Task 11: Contact (the email as display type) and the KIRE footer
+- [x] Task 11: Contact (the email as display type) and the KIRE footer
 
 ### Checkpoint B: the whole page, without motion
 - [ ] `inspect.mjs` reports 0 FAIL at 1440, 768 and 390px. The motion count is the one exception, because motion comes next.

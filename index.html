@@ -88,7 +88,7 @@
 
   /* ---------- nav: wordmark left, the rest spread across the right half ---------- */
   .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem var(--margin); font-size: var(--step-small); }
-  .nav .mark { font-weight: 800; font-size: 0.9375rem; text-decoration: none; }
+  .nav .mark { font-weight: 800; font-size: var(--step-small); text-decoration: none; }
   .nav-right { display: flex; align-items: center; gap: 1.25rem; }
   .nav-links { display: none; }
   .nav-links a { text-decoration: none; padding: 0.75rem 0; }
@@ -326,15 +326,47 @@
     .badges { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .about-para { max-width: 56vw; }
   }
-  .contact { background: var(--ink); color: var(--bg); }
-  .contact a { color: inherit; }
-  .email { font-size: clamp(1.75rem, 6.4vw, 7rem); font-weight: 400; letter-spacing: -0.03em; line-height: 1; overflow-wrap: anywhere; }
-  .reach { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 1rem 2rem; }
-  .reach a, .reach button { padding-block: 0.6rem; text-decoration: underline; }
-  .foot { background: var(--ink); color: var(--bg); padding-bottom: 2rem; }
-  .foot a { color: inherit; }
-  .kire { display: block; font-size: 24vw; text-decoration: none; }
-  .foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+  /* ---------- contact: the screen inverts and the email address becomes the display line ---------- */
+  .contact, .foot { background: var(--ink); color: var(--bg); }
+  .contact a, .foot a { color: inherit; }
+  .contact ::selection, .foot ::selection { background: var(--bg); color: var(--ink); }
+  .contact :focus-visible, .foot :focus-visible { outline-color: var(--bg); }
+  .contact-in { min-height: min(100svh, 44rem); display: grid; grid-template-rows: auto 1fr auto auto; padding-block: 2.5rem; }
+  .contact-say { font-size: var(--step-lead); font-weight: 500; line-height: 1.3; max-width: 24ch; }
+  .email-fit { grid-row: 3; container-type: inline-size; margin-bottom: clamp(2.5rem, 10vh, 7rem); }
+  /* the address measures 12.07em in the text face; 8.28cqw runs it margin to margin (checked at 768 and 1440) */
+  .email { display: block; font-size: 8.28cqw; font-weight: 400; letter-spacing: -0.03em; line-height: 1; text-decoration: none; white-space: nowrap; }
+  .email span { text-decoration: underline; text-decoration-thickness: 0.04em; text-underline-offset: 0.12em; text-decoration-color: transparent; transition: text-decoration-color var(--t-hover) ease; }
+  .email:hover span, .email:focus-visible span { text-decoration-color: currentColor; }
+  .corners { grid-row: 4; display: grid; gap: 1.5rem; font-size: var(--step-small); }
+  .corners p { max-width: none; }
+  .corners a, .corners button { display: inline-block; padding-block: 0.55rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; }
+  .corner-r { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+  @media (min-width: 760px) {
+    .corners { grid-template-columns: 1fr auto; align-items: end; }
+    .corner-r { justify-content: flex-end; }
+  }
+  @media (max-width: 759px) {
+    .contact-in { min-height: min(86svh, 38rem); }
+    .email { white-space: normal; font-size: 13cqw; }
+    .email span { display: block; }
+    .corner-r { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ---------- footer: the handle, Erik backwards, at full width ---------- */
+  /* more than 140px of air above KIRE, so nothing in Contact reads as its label */
+  .foot { padding-block: 10rem 2rem; }
+  .kire-fit { container-type: inline-size; }
+  /* KIRE in the wide cut measures 3.03em; 32.9cqw spans the content width (checked at 390 and 1440) */
+  .kire { display: block; width: max-content; font-size: 32.9cqw; text-decoration: none; }
+  .foot-rows { display: grid; gap: 2rem var(--gutter); margin-top: 2.5rem; }
+  .foot-rows ul { display: grid; gap: 0.15rem; align-content: start; list-style: none; margin: 0; padding: 0; }
+  .foot-rows ul a { display: inline-block; padding-block: 0.45rem; }
+  .foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 4rem; }
+  .foot-legal a { padding-block: 0.5rem; }
+  @media (min-width: 900px) {
+    .foot-rows { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); }
+  }
 
   @media print {
     .nav .theme, .hero-foot .btn { display: none; }
@@ -798,30 +830,46 @@
     </div>
   </section>
 
-  <section class="sec contact" id="contact" aria-labelledby="contact-h">
-    <div class="wrap">
-      <h2 class="lead" id="contact-h">Looking for an internship where I can ship real software. Write to me.</h2>
-      <a class="email" href="mailto:eriksamuelbien@gmail.com">eriksamuelbien@gmail.com</a>
-      <div class="reach">
-        <a href="tel:+639202437737">0920 243 7737</a>
-        <span>Masbate City and Cebu City, Philippines</span>
-        <button type="button" id="copy" data-copy="eriksamuelbien@gmail.com">Copy email</button>
-        <a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/eriksamuel-bien" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="Bien_Resume.pdf" download>Resume (PDF)</a>
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-in">
+      <h2 class="contact-say" id="contact-h">Looking for an internship where I can ship real software.</h2>
+      <div class="email-fit">
+        <a class="email" href="mailto:eriksamuelbien@gmail.com"><span>eriksamuelbien@</span><span>gmail.com</span></a>
+      </div>
+      <div class="corners">
+        <p class="corner-l"><a href="tel:+639202437737">0920 243 7737</a><br>Masbate City and Cebu City, Philippines</p>
+        <p class="corner-r">
+          <a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/eriksamuel-bien" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="Bien_Resume.pdf" download>Resume (PDF)</a>
+          <button type="button" id="copy" data-copy="eriksamuelbien@gmail.com">Copy email</button>
+        </p>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
-  <div class="wrap">
-    <a class="kire wide" href="https://github.com/thatguyKire" target="_blank" rel="noopener" aria-label="thatguyKire on GitHub">Kire</a>
-    <p class="small">Erik, backwards. That's me on GitHub: thatguyKire.</p>
-    <div class="foot-row small">
-      <span>© <span id="yr">2026</span> Erik Samuel L. Bien</span>
-      <a href="#top">Back to top</a>
-    </div>
+  <div class="wrap kire-fit">
+    <a class="kire wide" href="https://github.com/thatguyKire" target="_blank" rel="noopener" aria-label="Kire: thatguyKire on GitHub">Kire</a>
+  </div>
+  <div class="wrap foot-rows">
+    <p>Kire is Erik, backwards. It's my handle on GitHub: thatguyKire.</p>
+    <ul aria-label="Sections">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#proof">Proof</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <ul aria-label="Elsewhere">
+      <li><a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/eriksamuel-bien" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="Bien_Resume.pdf" download>Resume (PDF)</a></li>
+    </ul>
+  </div>
+  <div class="wrap foot-legal small">
+    <span>© <span id="yr">2026</span> Erik Samuel L. Bien</span>
+    <a href="#top">Back to top</a>
   </div>
 </footer>
 
