@@ -115,12 +115,14 @@
     .hero-foot p { grid-column: 6 / span 4; }
     .hero-foot .btn { grid-column: 11 / -1; justify-self: end; }
   }
-  @media (max-width: 759px) {
+  /* phones and portrait tablets: word, screen, word, so the name fills the first screen */
+  @media (max-width: 899px) {
     .hero { grid-template-rows: 1fr auto auto 1fr; gap: 2rem; }
     .name { flex-direction: column; align-items: center; gap: 0.06em; font-size: 19vw; line-height: 0.9; white-space: normal; }
     .shot { width: 100%; height: auto; aspect-ratio: 3 / 2; margin: 0; }
     .hero-foot { grid-row: 3; align-self: start; }
   }
+  @media (min-width: 600px) and (max-width: 899px) { .shot { aspect-ratio: 2 / 1; } }
 
   /* ---------- app screens, cropped (also used by the work panels) ---------- */
   .crop { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 4cqh; padding: 8cqh 6cqw; font: 400 11cqh/1.15 var(--font); font-stretch: 100%; letter-spacing: 0; text-transform: none; color: var(--ink); }
@@ -177,7 +179,16 @@
   .layer-meta a { display: inline-block; padding-block: 0.6rem; }
   .layer-meta { transition: opacity 0.25s ease, visibility 0.25s; }
   .layer-meta.is-off { opacity: 0; visibility: hidden; }
-  @media (max-width: 759px) { .tear { font-size: 10vw; } .layer-meta { top: 58%; } }
+  @media (max-width: 759px) {
+    .tear { font-size: 10vw; }
+    .layer-meta { top: 58%; }
+    /* the strips are only half a phone wide, so the screens inside are set larger and closer to the edges */
+    .pane .ui { font-size: 4.6cqw; }
+    .pane .ui-top, .pane .ui-bot { left: 1.1em; right: 1.1em; }
+    .pane .ui-top { top: 9%; }
+    .pane .ui-bot { bottom: 6%; }
+    .pane .ui-big { font-size: 3.4em; white-space: nowrap; }
+  }
 
   /* app screens inside the panes: everything sized in em from one container-relative base */
   .ui { position: absolute; inset: 0; font: 400 min(1.9cqh, 3.6cqw)/1.25 var(--font); font-stretch: 100%; color: var(--ink); text-transform: none; letter-spacing: 0; }
@@ -270,11 +281,14 @@
   .verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; }
   .v-guard, .v-proof { transition: opacity 0.3s ease; }
   .v-proof code { font-weight: 600; }
+  /* desktop: heading row, the attacks as one wrapping line of choices, then the verdict at full width */
   @media (min-width: 900px) {
-    .try { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; }
-    .try-head { grid-column: 1; }
-    .attacks { grid-column: 1; }
-    .verdict { grid-column: 2; grid-row: 1 / span 2; }
+    .try-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--gutter); align-items: end; }
+    .try-head p { margin-top: 0; }
+    .attacks.is-live { display: flex; flex-wrap: wrap; gap: 0 2.25rem; }
+    .attacks.is-live .atk { width: auto; }
+    .verdict { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: 3rem; align-items: center; }
+    .v-status { grid-row: 1 / span 3; font-size: 7.8cqw; }
   }
   @media (max-width: 899px) { .verdict { order: -1; } .try-head { order: -2; } }
   @media (max-width: 759px) { .band { height: 22vh; } .band ul { font-size: 15vw; } }
