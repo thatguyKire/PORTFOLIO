@@ -45,7 +45,7 @@ The work comes in two parts.
 ### Part 2, Phase 2: sections
 - [x] Task 6: Work stage, with the tearing title, and the LabaLink and Seoul-Mate panels
 - [x] Task 7: PlayIT and InkHive panels, and the "Also built" list
-- [ ] Task 8: Proof: the test-name band and Try to break it
+- [x] Task 8: Proof: the test-name band and Try to break it
 - [ ] Task 9: Skills: STACK and the six bars
 - [ ] Task 10: About: side facts, paragraph and badges
 - [ ] Task 11: Contact (the email as display type) and the KIRE footer

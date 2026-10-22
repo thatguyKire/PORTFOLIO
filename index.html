@@ -240,9 +240,44 @@
   @media (min-width: 900px) {
     .note { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); }
   }
-  .attacks { margin-top: 1.5rem; display: grid; gap: 1rem; }
+  /* ---------- proof: test names running off both edges, then the live thing ---------- */
+  .proof { padding-bottom: calc(var(--section) / 2); }
+  .band { background: var(--ink); color: var(--bg); height: 34vh; min-height: 11rem; display: flex; align-items: center; overflow: hidden; }
+  .band-track { display: flex; width: max-content; animation: band var(--band-dur, 160s) linear infinite; }
+  .band ul { display: flex; align-items: center; list-style: none; margin: 0; padding: 0; white-space: nowrap; font-size: 8vw; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  /* a solid round dot a third of the cap height between names */
+  .band li::after { content: ""; display: inline-block; width: 0.24em; height: 0.24em; margin: 0 0.45em; vertical-align: 0.24em; border-radius: 50%; background: currentColor; }
+  @keyframes band { to { transform: translateX(-50%); } }
+  .band-note { margin-top: 1.25rem; }
+  .try { margin-top: calc(var(--section) / 2); display: grid; gap: 1.5rem 2.5rem; }
+  .try-head p { margin-top: 0.75rem; }
+  .attacks { display: grid; gap: 1rem; }
   .attacks li { background: var(--surface); padding: 1rem 1.25rem; }
-  .band-names { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; color: var(--muted); overflow-wrap: anywhere; }
+  .attacks code { overflow-wrap: anywhere; }
+  /* with JS the list becomes a set of choices and the verdict panel shows the result */
+  .attacks.is-live { gap: 0; }
+  .attacks.is-live li { background: none; padding: 0; }
+  .atk { display: flex; align-items: baseline; width: 100%; text-align: left; padding: 0.5rem 0; min-height: 2.75rem; font-size: var(--step-lead); line-height: 1.25; color: var(--muted); transition: color var(--t-hover) ease; }
+  .atk::before { content: ""; flex: none; width: 0.42em; height: 0.42em; margin-right: 0.55em; background: transparent; transition: background-color var(--t-hover) ease; }
+  .atk[aria-pressed="true"] { color: var(--ink); }
+  .atk[aria-pressed="true"]::before { background: currentColor; }
+  @media (hover: hover) and (pointer: fine) { .atk:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; } }
+  .verdict { background: var(--surface); padding: clamp(1.5rem, 3vw, 3rem); display: grid; align-content: start; gap: 1.25rem; }
+  .v-try { color: var(--muted); }
+  .v-status { font-size: clamp(3rem, 7.5vw, 7rem); transition: opacity 0.2s ease; }
+  .verdict.is-trying .v-status { opacity: 0.25; }
+  .verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; }
+  .v-guard, .v-proof { transition: opacity 0.3s ease; }
+  .v-proof code { font-weight: 600; }
+  @media (min-width: 900px) {
+    .try { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto 1fr; }
+    .try-head { grid-column: 1; }
+    .attacks { grid-column: 1; }
+    .verdict { grid-column: 2; grid-row: 1 / span 2; }
+  }
+  @media (max-width: 899px) { .verdict { order: -1; } .try-head { order: -2; } }
+  @media (max-width: 759px) { .band { height: 22vh; } .band ul { font-size: 15vw; } }
+  @media (prefers-reduced-motion: reduce) { .band-track { animation-play-state: paused; } }
   .bars details { background: var(--surface); margin-top: 6px; }
   .bars summary { min-height: 3.5rem; display: flex; align-items: center; padding: 0 1.125rem; font-weight: 500; cursor: pointer; }
   .bars dl { padding: 0 1.25rem 1.25rem; display: grid; grid-template-columns: 1fr auto; gap: 0.875rem 1.5rem; }
@@ -528,35 +563,60 @@
     </div>
   </section>
 
-  <section class="sec" id="proof" aria-labelledby="proof-h">
+  <section class="proof" id="proof" aria-labelledby="proof-h">
+    <div class="band marquee">
+      <div class="band-track">
+        <ul aria-label="Some of the real test names">
+          <li>bookingRequiresTheRealQrCode</li>
+          <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
+          <li>switches language without a reload and remembers the choice</li>
+          <li>walletIsCreditedOnlyOnceAndOnlyWhenPaid</li>
+          <li>test_join_code_scanning_blocked</li>
+          <li>refuses photos over 5 MB before reading them</li>
+          <li>repeatedFailedLoginsLockTheAccount</li>
+          <li>test_png_named_jpg_rejected</li>
+          <li>keeps the last good menu when a reload fails</li>
+          <li>errorsNeverLeakInternals</li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>bookingRequiresTheRealQrCode</li>
+          <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
+          <li>switches language without a reload and remembers the choice</li>
+          <li>walletIsCreditedOnlyOnceAndOnlyWhenPaid</li>
+          <li>test_join_code_scanning_blocked</li>
+          <li>refuses photos over 5 MB before reading them</li>
+          <li>repeatedFailedLoginsLockTheAccount</li>
+          <li>test_png_named_jpg_rejected</li>
+          <li>keeps the last good menu when a reload fails</li>
+          <li>errorsNeverLeakInternals</li>
+        </ul>
+      </div>
+    </div>
     <div class="wrap">
-      <ul class="band-names" aria-label="Some of the real test names">
-        <li>bookingRequiresTheRealQrCode</li>
-        <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
-        <li>switches language without a reload and remembers the choice</li>
-        <li>walletIsCreditedOnlyOnceAndOnlyWhenPaid</li>
-        <li>test_join_code_scanning_blocked</li>
-        <li>refuses photos over 5 MB before reading them</li>
-        <li>repeatedFailedLoginsLockTheAccount</li>
-        <li>test_png_named_jpg_rejected</li>
-        <li>keeps the last good menu when a reload fails</li>
-        <li>errorsNeverLeakInternals</li>
-        <li>test_chat_spam_blocked</li>
-        <li>ends 12 hours after login, however active</li>
-      </ul>
       <p class="band-note">Real names from the 269 automated tests across LabaLink (34), InkHive (127) and Seoul-Mate (108). All of them pass.</p>
 
-      <h2 class="head" id="proof-h">Try to break it</h2>
-      <p>Pick an attack. Each one is stopped by code I wrote, and a test proves it on every change.</p>
-      <ul class="attacks">
-        <li><strong>Send a tampered login token.</strong> The API refuses tampered and revoked tokens. <span class="muted">LabaLink · <code>tamperedAndRevokedTokensAreRejected</code> · passed</span></li>
-        <li><strong>Keep guessing a password.</strong> After five failures the account locks, even if the next guess is right. <span class="muted">InkHive · <code>test_lockout_after_five_failures_even_with_right_password</code> · passed</span></li>
-        <li><strong>Upload a web page renamed as a photo.</strong> Uploads are checked by what they contain, not by their name. <span class="muted">InkHive · <code>test_html_disguised_as_image_rejected</code> · passed</span></li>
-        <li><strong>Fake a Stripe payment.</strong> A webhook without Stripe's signature is rejected, so no wallet is credited. <span class="muted">LabaLink · <code>forgedWebhooksAreRejected</code> · passed</span></li>
-        <li><strong>Flood the whiteboard with messages.</strong> Messages over the limit are dropped and malformed ones ignored. <span class="muted">InkHive · <code>test_flooding_is_capped_and_garbage_ignored</code> · passed</span></li>
-        <li><strong>Sign up as an admin.</strong> Sign-up can't create an admin account. <span class="muted">InkHive · <code>test_cannot_sign_up_as_admin</code> · passed</span></li>
-        <li><strong>Type SQL into the menu search.</strong> Search treats markup and SQL as plain text. <span class="muted">Seoul-Mate · <code>treats markup and SQL as plain text that matches nothing</code> · passed</span></li>
-      </ul>
+      <div class="try">
+        <div class="try-head">
+          <h2 class="head" id="proof-h">Try to break it</h2>
+          <p>Pick an attack. Each one is stopped by code I wrote, and a test proves it on every change.</p>
+        </div>
+        <ul class="attacks" id="attacks">
+          <li data-project="LabaLink"><strong class="atk-name">Send a tampered login token</strong> <span class="atk-guard">The API refuses tampered and revoked tokens.</span> <span class="muted">LabaLink · <code>tamperedAndRevokedTokensAreRejected</code> · passed</span></li>
+          <li data-project="InkHive"><strong class="atk-name">Keep guessing a password</strong> <span class="atk-guard">After five failures the account locks, even if the next guess is right.</span> <span class="muted">InkHive · <code>test_lockout_after_five_failures_even_with_right_password</code> · passed</span></li>
+          <li data-project="InkHive"><strong class="atk-name">Upload a web page renamed as a photo</strong> <span class="atk-guard">Uploads are checked by what they contain, not by their name.</span> <span class="muted">InkHive · <code>test_html_disguised_as_image_rejected</code> · passed</span></li>
+          <li data-project="LabaLink"><strong class="atk-name">Fake a Stripe payment</strong> <span class="atk-guard">A webhook without Stripe's signature is rejected, so no wallet is credited.</span> <span class="muted">LabaLink · <code>forgedWebhooksAreRejected</code> · passed</span></li>
+          <li data-project="InkHive"><strong class="atk-name">Flood the whiteboard with messages</strong> <span class="atk-guard">Messages over the limit are dropped and malformed ones ignored.</span> <span class="muted">InkHive · <code>test_flooding_is_capped_and_garbage_ignored</code> · passed</span></li>
+          <li data-project="InkHive"><strong class="atk-name">Sign up as an admin</strong> <span class="atk-guard">Sign-up can't create an admin account.</span> <span class="muted">InkHive · <code>test_cannot_sign_up_as_admin</code> · passed</span></li>
+          <li data-project="Seoul-Mate"><strong class="atk-name">Type SQL into the menu search</strong> <span class="atk-guard">Search treats markup and SQL as plain text.</span> <span class="muted">Seoul-Mate · <code>treats markup and SQL as plain text that matches nothing</code> · passed</span></li>
+        </ul>
+        <div class="verdict" id="verdict" hidden>
+          <p class="v-try"></p>
+          <p class="v-status wide" aria-hidden="true">Blocked</p>
+          <p class="v-guard lead"></p>
+          <p class="v-proof">Proved by <code data-v="test"></code> in <span data-v="project"></span>. Passed.</p>
+          <p class="sr" aria-live="polite" data-v="say"></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -764,6 +824,50 @@
       o.l[1].style.transform = 'translate3d(0,' + (-f * 30) + 'svh,0)';
       o.r[1].style.transform = 'translate3d(0,' + (f * 30) + 'svh,0)';
     });
+  }
+
+  /* ---------- proof band: a steady reading speed whatever the names' length ---------- */
+  var bandTrack = $('.band-track');
+  if (bandTrack) bandTrack.style.setProperty('--band-dur', Math.round(bandTrack.scrollWidth / 2 / 110) + 's');
+
+  /* ---------- try to break it ---------- */
+  // Without JS the list shows every attack with its guard and test. With JS each attack becomes a
+  // choice, and the verdict panel plays a short "trying, then blocked" beat before showing the proof.
+  var attackList = $('#attacks'), verdict = $('#verdict');
+  if (attackList && verdict) {
+    var v = {
+      tryLine: $('.v-try', verdict), guard: $('.v-guard', verdict),
+      test: $('[data-v="test"]', verdict), project: $('[data-v="project"]', verdict), say: $('[data-v="say"]', verdict)
+    };
+    var attacks = $$('li', attackList).map(function (li) {
+      var a = { name: $('.atk-name', li).textContent, guard: $('.atk-guard', li).textContent, test: $('code', li).textContent, project: li.getAttribute('data-project') };
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'atk'; b.textContent = a.name; b.setAttribute('aria-pressed', 'false');
+      li.textContent = ''; li.appendChild(b);
+      a.button = b;
+      return a;
+    });
+    var beat;
+    var pick = function (i, quiet) {
+      var a = attacks[i];
+      attacks.forEach(function (o) { o.button.setAttribute('aria-pressed', String(o === a)); });
+      clearTimeout(beat);
+      v.tryLine.textContent = 'You try to ' + a.name.charAt(0).toLowerCase() + a.name.slice(1) + '.';
+      var land = function () {
+        v.guard.textContent = a.guard;
+        v.test.textContent = a.test;
+        v.project.textContent = a.project;
+        verdict.classList.remove('is-trying');
+        if (!quiet) v.say.textContent = 'Blocked. ' + a.guard + ' Proved by the test ' + a.test + ' in ' + a.project + '. Passed.';
+      };
+      if (quiet || RM) { land(); return; }
+      verdict.classList.add('is-trying');
+      beat = setTimeout(land, 520);
+    };
+    attacks.forEach(function (a, i) { a.button.addEventListener('click', function () { pick(i); }); });
+    attackList.classList.add('is-live');
+    verdict.hidden = false;
+    pick(Math.floor(Math.random() * attacks.length), true);
   }
 
   /* ---------- one scroll loop for every scroll effect ---------- */
