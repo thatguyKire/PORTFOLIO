@@ -51,8 +51,13 @@ elif ! command -v node >/dev/null || [ ! -f "$T/inspect.mjs" ]; then
 else
   lint=$(node "$T/lint.mjs" index.html 2>&1 | grep -E '^RESULT')
   case "$lint" in *" 0 FAIL"*) pass "Design lint: ${lint#RESULT: }" ;; *) fail "Design lint: ${lint#RESULT: }" ;; esac
-  insp=$(node "$T/inspect.mjs" index.html --out .taste-skill/check 2>&1 | grep -E '^RESULT')
+  # The inspector walks at most 12 screens and this page is longer, so the entrances below that never
+  # play during its walk. Its blank-gap rule is run instead by check-gaps.mjs over the whole page.
+  insp=$(node "$T/inspect.mjs" index.html --out .taste-skill/check --allow blank-gap 2>&1 | grep -E '^RESULT')
   case "$insp" in *" 0 FAIL"*) pass "Design inspector: ${insp#RESULT: }" ;; *) fail "Design inspector: ${insp#RESULT: }" "screenshots in .taste-skill/check/" ;; esac
+  gaps=$(node check-gaps.mjs "$T" index.html 2>&1)
+  if [ $? -eq 0 ]; then pass "Whole page scrolled: ${gaps}"
+  else fail "Blank stretches after scrolling the whole page" "$gaps"; fi
 fi
 
 exit $failed

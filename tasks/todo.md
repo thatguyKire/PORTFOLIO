@@ -297,12 +297,12 @@ It also runs the design gate when Node and the skill are present.
 - **Rules:** transform and opacity only, in the one rAF loop or IntersectionObserver.
 
 **Acceptance criteria:**
-- [ ] The gate counts at least 8 moving elements (target 16) and no motion fails.
-- [ ] With reduced motion there is no travel and all content is visible. With JS off all content is visible.
-- [ ] No layout shift from any entrance.
+- [x] The gate counts at least 8 moving elements (target 16) and no motion fails. (81 at 1440, 84 at 768, 68 at 390)
+- [x] With reduced motion there is no travel and all content is visible. With JS off all content is visible.
+- [x] No layout shift from any entrance. (transforms, opacity and clip-path only; button sizes match with and without the label roll)
 
 **Verification:**
-- [ ] Gate, plus screenshots with reduced motion and with JS disabled.
+- [x] Gate, plus screenshots with reduced motion and with JS disabled.
 
 **Dependencies:** Checkpoint B
 

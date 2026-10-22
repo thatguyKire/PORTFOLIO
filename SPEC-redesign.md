@@ -235,3 +235,4 @@ Erik answered these on 2026-10-22.
 | 4 | Dark mode | Dark by default; the toggle switches to light. Changed from light-by-default at the first-screen review. |
 | 5 | First screen (Checkpoint A) | Direction approved |
 | 6 | The full name (Checkpoint B) | Add Samuel: the hero reads ERIK [screen] / SAMUEL BIEN, and the nav, page title and social title say Erik Samuel Bien. Approved to go on to the motion layer. |
+| 7 | The design gate on a long page | The inspector photographs at most 12 screens and this page is 13 to 15, so the entrances further down never play during its walk. check.sh runs it with `--allow blank-gap` and runs that same rule over the whole page in `check-gaps.mjs`, after a real wheel scroll to the bottom. |

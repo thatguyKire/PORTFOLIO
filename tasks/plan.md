@@ -56,7 +56,7 @@ The work comes in two parts.
 - [x] Erik reviews the full page (2026-10-22: add Samuel to the name, then go on).
 
 ### Part 2, Phase 3: motion
-- [ ] Task 12: Motion layer: shutter, screen cycling, entrances and control feedback
+- [x] Task 12: Motion layer: shutter, screen cycling, entrances and control feedback
 
 ### Part 2, Phase 4: finish
 - [ ] Task 13: Gate, critique and regression

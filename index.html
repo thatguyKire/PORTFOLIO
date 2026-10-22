@@ -37,8 +37,10 @@
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+    --ease-exit: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     --t-press: 140ms;
     --t-hover: 180ms;
+    --t-ui: 240ms;
     color-scheme: dark;
   }
   /* The system setting is ignored on purpose: the page is dark until the visitor picks light. */
@@ -91,9 +93,13 @@
   .nav .mark { font-weight: 800; font-size: var(--step-small); text-decoration: none; }
   .nav-right { display: flex; align-items: center; gap: 1.25rem; }
   .nav-links { display: none; }
-  .nav-links a { text-decoration: none; padding: 0.75rem 0; }
-  .nav-links a:hover { text-decoration: underline; }
-  .nav .theme { min-height: 2.75rem; padding: 0 0.25rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; }
+  .nav-links a { padding: 0.75rem 0; text-decoration-color: transparent; transition: text-decoration-color var(--t-hover) ease; }
+  .nav-links a:focus-visible { text-decoration-color: currentColor; }
+  .nav .theme { min-height: 2.75rem; padding: 0 0.25rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; transition: text-decoration-color var(--t-hover) ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-links a:hover { text-decoration-color: currentColor; }
+    .nav .theme:hover { text-decoration-color: transparent; }
+  }
   .nav .btn { min-height: 2.75rem; padding: 0 1rem; }
   @media (min-width: 960px) {
     .nav-right { width: 50%; justify-content: space-between; }
@@ -283,18 +289,22 @@
   /* with JS the list becomes a set of choices and the verdict panel shows the result */
   .attacks.is-live { gap: 0; }
   .attacks.is-live li { background: none; padding: 0; }
-  .atk { display: flex; align-items: baseline; width: 100%; text-align: left; padding: 0.5rem 0; min-height: 2.75rem; font-size: var(--step-lead); line-height: 1.25; color: var(--muted); transition: color var(--t-hover) ease; }
-  .atk::before { content: ""; flex: none; width: 0.42em; height: 0.42em; margin-right: 0.55em; background: transparent; transition: background-color var(--t-hover) ease; }
+  .atk { display: flex; align-items: baseline; width: 100%; text-align: left; padding: 0.5rem 0; min-height: 2.75rem; font-size: var(--step-lead); line-height: 1.25; color: var(--muted); transition: color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  /* the chosen attack's square grows in from its centre */
+  .atk::before { content: ""; flex: none; width: 0.42em; height: 0.42em; margin-right: 0.55em; background: currentColor; opacity: 0; transform: scale(0.5); transition: opacity var(--t-hover) ease, transform var(--t-ui) var(--ease-out); }
   .atk[aria-pressed="true"] { color: var(--ink); }
-  .atk[aria-pressed="true"]::before { background: currentColor; }
+  .atk[aria-pressed="true"]::before { opacity: 1; transform: none; }
   @media (hover: hover) and (pointer: fine) { .atk:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; } }
   .verdict { background: var(--surface); padding: clamp(1.5rem, 3vw, 3rem); display: grid; align-content: start; gap: 1.25rem; container-type: inline-size; }
   .v-try { color: var(--muted); }
   /* "BLOCKED" in the wide cut is about 6.4em long; 15cqw keeps it inside the panel at any width */
-  .v-status { font-size: min(15cqw, 7rem); transition: opacity 0.2s ease; }
-  .verdict.is-trying .v-status { opacity: 0.25; }
-  .verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; }
-  .v-guard, .v-proof { transition: opacity 0.3s ease; }
+  .v-status { font-size: min(15cqw, 7rem); }
+  /* While an attack is tried, BLOCKED drops behind its own baseline; when the guard holds it rises again. */
+  .v-status { clip-path: inset(-0.5em -0.5em 0 -0.5em); }
+  .v-status span { display: inline-block; transition: transform 420ms var(--ease-out); }
+  .verdict.is-trying .v-status span { transform: translate3d(0, 105%, 0); transition: transform 160ms var(--ease-exit); }
+  .verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; transform: translate3d(0, 8px, 0); }
+  .v-guard, .v-proof { transition: opacity 0.3s ease, transform 420ms var(--ease-out); }
   .v-proof code { font-weight: 600; }
   /* desktop: heading row, the attacks as one wrapping line of choices, then the verdict at full width */
   @media (min-width: 900px) {
@@ -316,10 +326,11 @@
   .skills-word p { margin-top: 1.5rem; max-width: 34ch; }
   .bars { display: grid; gap: 6px; align-content: start; }
   .bars details { background: var(--surface); }
-  .bars summary { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 1.125rem; font-weight: 500; cursor: pointer; list-style: none; transition: background-color var(--t-hover) ease; }
+  .bars summary { min-height: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 1.125rem; font-weight: 500; cursor: pointer; list-style: none; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
   .bars summary::-webkit-details-marker { display: none; }
-  .bars summary::after { content: "+"; font-size: 1.5em; font-weight: 400; line-height: 1; }
-  .bars details[open] summary::after { content: "\2212"; }
+  /* the plus turns a quarter and a half into a cross when the bar is open */
+  .bars summary::after { content: "+"; font-size: 1.5em; font-weight: 400; line-height: 1; transition: transform var(--t-ui) var(--ease-out); }
+  .bars details[open] summary::after { transform: rotate(135deg); }
   @media (hover: hover) and (pointer: fine) { .bars summary:hover { background: var(--surface-2); } }
   .bars dl { margin: 0; padding: 0.25rem 1.25rem 1.25rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 0.875rem 1.5rem; }
   .bars dd { margin: 0; text-align: right; color: var(--muted); }
@@ -369,7 +380,7 @@
   .email:hover span, .email:focus-visible span { text-decoration-color: currentColor; }
   .corners { grid-row: 4; display: grid; gap: 1.5rem; font-size: var(--step-small); }
   .corners p { max-width: none; }
-  .corners a, .corners button { display: inline-block; padding-block: 0.55rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; }
+  .corners a, .corners button { display: inline-block; padding-block: 0.55rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; transition: text-decoration-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
   .corner-r { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
   @media (min-width: 760px) {
     .corners { grid-template-columns: 1fr auto; align-items: end; }
@@ -387,17 +398,100 @@
   .foot { padding-block: 10rem 2rem; }
   .kire-fit { container-type: inline-size; }
   /* KIRE in the wide cut measures 3.03em; 32.9cqw spans the content width (checked at 390 and 1440) */
-  .kire { display: block; width: max-content; font-size: 32.9cqw; text-decoration: none; }
+  .kire { display: block; width: max-content; font-size: 32.9cqw; text-decoration: underline; text-decoration-thickness: 0.035em; text-underline-offset: 0.05em; text-decoration-color: transparent; transition: text-decoration-color var(--t-hover) ease; }
   .foot-rows { display: grid; gap: 2rem var(--gutter); margin-top: 2.5rem; }
   .foot-rows ul { display: grid; gap: 0.15rem; align-content: start; list-style: none; margin: 0; padding: 0; }
   .foot-rows ul a { display: inline-block; padding-block: 0.45rem; }
   .foot-legal { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 4rem; }
   .foot-legal a { padding-block: 0.5rem; }
+  .foot-rows a, .foot-legal a { transition: text-decoration-color var(--t-hover) ease; }
   @media (min-width: 900px) {
     .foot-rows { grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr); }
   }
+  /* links that are underlined at rest let the line go under the pointer; KIRE gains one */
+  @media (hover: hover) and (pointer: fine) {
+    .corners a:hover, .corners button:hover, .foot-rows a:hover, .foot-legal a:hover { text-decoration-color: transparent; }
+    .kire:hover { text-decoration-color: currentColor; }
+  }
+  .kire:focus-visible { text-decoration-color: currentColor; }
+
+  /* ---------- motion: added on top of the finished, still page ---------- */
+  /* Every hidden starting state sits under no-preference, and the scroll entrances also need html.motion,
+     which the script sets only once it has marked the parts it will show. With JS off or motion reduced,
+     the page is the finished page. */
+  /* a line mask clips only below the line; the name is in capitals, so the edge is its own baseline */
+  .ln { display: block; clip-path: inset(-0.5em -0.5em 0 -0.5em); }
+  .rise { display: inline-block; }
+  /* the screen opens from ERIK's side: from the left beside it, from the top under it */
+  .shot { --shut: inset(0 100% 0 0); --gone: inset(0 0 0 100%); }
+  @media (max-width: 899px) { .shot { --shut: inset(0 0 100% 0); --gone: inset(100% 0 0 0); } }
+
+  /* the solid buttons roll their label under the pointer */
+  .btn-roll { display: grid; overflow: clip; }
+  .btn-roll > span { grid-area: 1 / 1; transition: transform var(--t-ui) var(--ease-out); }
+  .btn-roll > span + span { transform: translate3d(0, 105%, 0); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover .btn-roll > span:first-child { transform: translate3d(0, -105%, 0); }
+    .btn:hover .btn-roll > span + span { transform: none; }
+    .band:hover .band-track { animation-play-state: paused; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* load, settled by 1.2s: ERIK and SAMUEL BIEN rise from behind their baselines, the screen opens
+       while the app inside settles from 112%, then the sentence and button arrive */
+    .js .name .rise { animation: rise 900ms var(--ease-expo) both; animation-delay: calc(100ms + var(--i, 0) * 90ms); }
+    .js .shot { animation: shut 1000ms var(--ease-in-out) 150ms both; }
+    .js .shot .crop { animation: settle 1100ms var(--ease-expo) 100ms both; }
+    .js .hero-foot { animation: lift 500ms var(--ease-out) 420ms both; }
+
+    /* the cycle: the next app pushes the last one out from the same edge (they never overlap),
+       then plays one beat of its own: the tiles blend in, the sold-out tag stamps, the stroke draws */
+    .shot .crop.was-on { visibility: visible; animation: gone 700ms var(--ease-in-out) both; }
+    .shot .crop.wipe { animation: shut 700ms var(--ease-in-out) both; }
+    .shot .crop.wipe .c-tiles i { animation: lift 450ms var(--ease-out) 380ms both; }
+    .shot .crop.wipe .c-tiles i:nth-child(2) { animation-delay: 470ms; }
+    .shot .crop.wipe .c-tiles i:nth-child(3) { animation-delay: 560ms; }
+    .shot .crop.wipe .c-item .c-pill { animation: stamp 380ms var(--ease-out) 700ms both; }
+    .shot .crop.wipe .c-board path { stroke-dasharray: 1; animation: draw 1300ms var(--ease-out) 300ms both; }
+
+    /* scroll entrances, once: parts rise 24px in reading order, 80ms apart; lines rise from a mask
+       that leaves room under them for descenders (the g in gmail, the y in Try) */
+    .motion [data-in] { opacity: 0; transform: translate3d(0, 24px, 0); }
+    .motion [data-in="line"] { opacity: 1; transform: none; clip-path: inset(-0.5em -0.5em -0.3em -0.5em); }
+    .motion [data-in="line"] .rise { transform: translate3d(0, calc(100% + 0.35em), 0); }
+    .motion [data-in].is-in { opacity: 1; transform: none; transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-expo); transition-delay: calc(var(--i, 0) * 80ms); }
+    .motion [data-in="line"].is-in .rise { transform: none; transition: transform 1000ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
+    /* a badge's picture settles from a slightly smaller size as its text rises */
+    .motion .badge[data-in] img { transform: scale(0.94); }
+    .motion .badge[data-in].is-in img { transform: none; transition: transform 1100ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
+
+    /* press */
+    .nav .theme:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
+    .bars summary:active { transform: scale(0.99); }
+  }
+  /* reduced motion keeps colour and opacity changes and drops the rest */
+  @media (prefers-reduced-motion: reduce) {
+    .btn:active { transform: none; }
+    .btn-roll > span, .atk::before, .bars summary::after, .v-status span, .v-guard, .v-proof { transition: none; }
+  }
+  /* the bars open to their real height where the browser can animate to auto */
+  @supports (interpolate-size: allow-keywords) {
+    @media (prefers-reduced-motion: no-preference) {
+      .bars { interpolate-size: allow-keywords; }
+      .bars details::details-content { block-size: 0; overflow-y: clip; transition: block-size 320ms var(--ease-out), content-visibility 320ms allow-discrete; }
+      .bars details[open]::details-content { block-size: auto; }
+    }
+  }
+  @keyframes rise { from { transform: translate3d(0, 105%, 0); } }
+  @keyframes shut { from { clip-path: var(--shut); } to { clip-path: inset(0); } }
+  @keyframes gone { from { clip-path: inset(0); } to { clip-path: var(--gone); } }
+  @keyframes settle { from { transform: scale(1.12); } }
+  @keyframes lift { from { opacity: 0; transform: translate3d(0, 12px, 0); } }
+  @keyframes stamp { from { opacity: 0; transform: scale(1.3); } }
+  @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
   @media print {
+    [data-in], [data-in] .rise, .rise, .hero-foot, .shot, .crop { opacity: 1 !important; transform: none !important; clip-path: none !important; animation: none !important; }
     .nav .theme, .hero-foot .btn { display: none; }
     .contact, .foot { background: none; color: var(--ink); }
   }
@@ -424,7 +518,7 @@
   <header class="hero wrap" id="top">
     <h1 class="name wide" aria-label="Erik Samuel Bien">
       <span class="name-a">
-        <span>Erik</span>
+        <span class="ln"><span class="rise">Erik</span></span>
         <span class="shot" data-ui aria-hidden="true">
           <span class="crop is-on">
             <span class="c-top"><span><b>LabaLink</b> · Washer 03</span><i class="c-pill">Active</i></span>
@@ -441,11 +535,11 @@
           </span>
           <span class="crop">
             <span class="c-top"><b>InkHive</b><span>3 live</span></span>
-            <span class="c-board"><svg viewBox="0 0 160 60" preserveAspectRatio="none"><path d="M8 46 C 30 8, 52 54, 80 26 S 122 10, 152 36"/></svg><span class="c-cur">Teacher</span></span>
+            <span class="c-board"><svg viewBox="0 0 160 60" preserveAspectRatio="none"><path d="M8 46 C 30 8, 52 54, 80 26 S 122 10, 152 36" pathLength="1"/></svg><span class="c-cur">Teacher</span></span>
           </span>
         </span>
       </span>
-      <span class="name-b">Samuel Bien</span>
+      <span class="name-b ln"><span class="rise" style="--i: 1">Samuel Bien</span></span>
     </h1>
     <div class="hero-foot">
       <p class="lead">4th-year IT student who builds web and Android apps, then tries to break them. Open to internships.</p>
@@ -713,7 +807,7 @@
           <li data-project="Seoul-Mate"><strong class="atk-name">Type SQL into the menu search</strong> <span class="atk-guard">Search treats markup and SQL as plain text.</span> <span class="muted">Seoul-Mate · <code>treats markup and SQL as plain text that matches nothing</code> · passed</span></li>
         </ul>
         <div class="verdict" id="verdict" hidden>
-          <p class="v-status wide" aria-hidden="true">Blocked</p>
+          <p class="v-status wide" aria-hidden="true"><span>Blocked</span></p>
           <p class="v-try"></p>
           <p class="v-guard lead"></p>
           <p class="v-proof">Proved by <code data-v="test"></code> in <span data-v="project"></span>. Passed.</p>
@@ -1008,6 +1102,116 @@
     attackList.classList.add('is-live');
     verdict.hidden = false;
     pick(Math.floor(Math.random() * attacks.length), true);
+  }
+
+  /* ---------- hero: the screen beside ERIK runs through the four apps ---------- */
+  // Every four seconds the next app pushes the last one out from the same edge; LabaLink's timer counts
+  // down while it shows. None of it runs under reduced motion, and it pauses off screen or in a hidden tab.
+  var crops = $$('.shot .crop');
+  if (crops.length && !RM) {
+    var at = 0, beats = 0, secs = 42 * 60 + 18, clock = $('.c-big', crops[0]), ticker = null, heroSeen = true;
+    var nextApp = function () {
+      var old = crops[at];
+      at = (at + 1) % crops.length;
+      crops.forEach(function (c) { c.classList.remove('was-on'); });
+      old.classList.remove('is-on', 'wipe');
+      old.classList.add('was-on');
+      crops[at].classList.add('is-on', 'wipe');
+      old.addEventListener('animationend', function done(e) {
+        if (e.animationName !== 'gone') return;
+        old.removeEventListener('animationend', done);
+        old.classList.remove('was-on');
+      });
+    };
+    var beat = function () {
+      if (at === 0) { secs = Math.max(0, secs - 1); clock.textContent = Math.floor(secs / 60) + ':' + ('0' + secs % 60).slice(-2); }
+      if (++beats % 4 === 0) nextApp();
+    };
+    var runApps = function () {
+      var go = heroSeen && !document.hidden;
+      if (go && !ticker) ticker = setInterval(beat, 1000);
+      if (!go && ticker) { clearInterval(ticker); ticker = null; }
+    };
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { heroSeen = e[0].isIntersecting; runApps(); }).observe($('.shot'));
+    document.addEventListener('visibilitychange', runApps);
+    runApps();
+  }
+
+  /* ---------- the band rests while it is off screen ---------- */
+  if (bandTrack && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { bandTrack.style.animationPlayState = e[0].isIntersecting ? '' : 'paused'; }).observe($('.band'));
+  }
+
+  /* ---------- buttons: a second copy of the label waits below and rolls up under the pointer ---------- */
+  if (!RM) $$('.btn').forEach(function (b) {
+    var roll = document.createElement('span'), a = document.createElement('span'), c = document.createElement('span');
+    roll.className = 'btn-roll';
+    a.textContent = c.textContent = b.textContent;
+    c.setAttribute('aria-hidden', 'true');
+    roll.appendChild(a); roll.appendChild(c);
+    b.textContent = '';
+    b.appendChild(roll);
+  });
+
+  /* ---------- entrances: each section's parts arrive once, in reading order ---------- */
+  // A group is watched; when its top passes 90% of the screen its parts show, 80ms apart and four steps at
+  // most. "Line" parts rise from behind their own baseline. The marks come off once they have played, so
+  // the page is left exactly as it was built.
+  if (!RM && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var parts = e.target.inParts;
+        parts.forEach(function (el) { el.classList.add('is-in'); });
+        setTimeout(function () {
+          parts.forEach(function (el) {
+            el.removeAttribute('data-in');
+            el.classList.remove('is-in');
+            el.style.removeProperty('--i');
+            var r = el.inRise;
+            if (r) { while (r.firstChild) el.insertBefore(r.firstChild, r); el.removeChild(r); }
+            $$('.rise', el).forEach(function (s) { s.classList.remove('rise'); s.style.removeProperty('--i'); });
+          });
+        }, 1700);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    var enter = function (box, parts, lines) {
+      if (!box) return;
+      box.inParts = parts.filter(Boolean).map(function (el, i) {
+        var line = !!lines && lines.indexOf(el) > -1;
+        if (line && !$('.rise', el)) {
+          var s = document.createElement('span');
+          s.className = 'rise';
+          while (el.firstChild) s.appendChild(el.firstChild);
+          el.appendChild(s);
+          el.inRise = s;
+        }
+        el.setAttribute('data-in', line ? 'line' : '');
+        el.style.setProperty('--i', Math.min(i, 3));
+        return el;
+      });
+      io.observe(box);
+    };
+    var rows = $$('.about-row'), email = $('.email');
+    enter($('.work-head'), [$('#work-h'), $('.work-head p')], [$('#work-h')]);
+    enter($('.notes > h3'), [$('.notes > h3')], [$('.notes > h3')]);
+    $$('.note').forEach(function (n) { enter(n, [$('dt', n), $('dd', n)]); });
+    enter($('.band-note'), [$('.band-note')]);
+    enter($('.try-head'), [$('#proof-h'), $('.try-head p')], [$('#proof-h')]);
+    enter(attackList, $$('li', attackList));
+    enter(verdict, [verdict]);
+    enter($('.skills-word'), [$('#skills-h'), $('.skills-word p')], [$('#skills-h')]);
+    enter($('.bars'), $$('.bars details'));
+    enter(rows[0], [$('#about-h'), $('.facts'), $('.about-para')], [$('#about-h')]);
+    enter(rows[1], [$('h3', rows[1])].concat($$('.badge')));
+    enter(rows[2], [$('h3', rows[2]), $('.course')]);
+    // the address rises in its two halves, the second a step behind
+    $$('span', email).forEach(function (s, i) { s.classList.add('rise'); s.style.setProperty('--i', i + 1); });
+    enter($('.contact-in'), [$('.contact-say'), email, $('.corners')], [email]);
+    enter($('.kire-fit'), [$('.kire')], [$('.kire')]);
+    enter($('.foot-rows'), [$('.foot-rows'), $('.foot-legal')]);
+    root.classList.add('motion');
   }
 
   /* ---------- one scroll loop for every scroll effect ---------- */
