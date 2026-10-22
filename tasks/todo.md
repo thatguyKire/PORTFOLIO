@@ -279,9 +279,9 @@ It also runs the design gate when Node and the skill are present.
 **Estimated scope:** Small
 
 ### Checkpoint B: the whole page, without motion
-- [ ] The gate reports 0 FAIL at 1440, 768 and 390px. A "page barely moves" fail is allowed until Task 12.
-- [ ] First critique round written in the critique format. The top three problems are fixed.
-- [ ] Erik reviews the full-page screenshots.
+- [x] The gate reports 0 FAIL at 1440, 768 and 390px. A "page barely moves" fail is allowed until Task 12.
+- [x] First critique round written in the critique format. The top three problems are fixed.
+- [x] Erik reviews the full-page screenshots (asked for Samuel in the name).
 
 ---
 

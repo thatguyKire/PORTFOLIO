@@ -51,7 +51,7 @@ Why this one over the other two dealt options:
 
 ## The idea
 
-> On this page, **Erik's own name, which his handle *thatguyKire* spells backwards,** becomes **the monument**. **ERIK BIEN** opens the page at full width, and **KIRE** closes it at full width in the footer, linking to the GitHub where the code lives.
+> On this page, **Erik's own name, which his handle *thatguyKire* spells backwards,** becomes **the monument**. **ERIK SAMUEL BIEN** opens the page at full width, and **KIRE** closes it at full width in the footer, linking to the GitHub where the code lives.
 
 **Competitor test:** put any other student's name in that sentence and it stops working. The reversal only belongs to Erik.
 
@@ -77,7 +77,7 @@ Each section exists because it proves one claim. The blueprint is the section la
 
 | # | Section | Claim | Proof on the page | Blueprint |
 |---|---|---|---|---|
-| 1 | **Hero** | Erik builds web and Android apps and tests them until they hold. | The name **ERIK [screen] BIEN** on one line. A small screen from his own apps sits in the space between the two words and changes from app to app. Below it, one sentence: *"4th-year IT student who builds web and Android apps, then tries to break them. Open to internships."* One button, "See the work", and a Resume link. | Photograph for a letter |
+| 1 | **Hero** | Erik builds web and Android apps and tests them until they hold. | The full name in two lines, each fitted margin to margin: **ERIK [screen]**, then **SAMUEL BIEN**. A screen from his own apps fills the rest of the first line and changes from app to app. On phones and portrait tablets it stacks: ERIK, the screen, SAMUEL BIEN. Below it, one sentence: *"4th-year IT student who builds web and Android apps, then tries to break them. Open to internships."* One button, "See the work", and a Resume link. | Photograph for a letter |
 | 2 | **Work** | Four real apps, each shown by its own interface. | A pinned stage per project with two tall panels. The project title sits on the seam between them in giant capitals. As you scroll, the left half travels up and the right half travels down, so the title "tears" and lines up again when the project is centred. Under each title: what it is, the year, and its repo link. Then "Also built" as a plain list: TaskFlow MVC, Hotel Management System, Blog Platform and MangaReader. | Title torn at the seam |
 | 3 | **Proof** | It isn't done until the tests have tried to break it. | A full-width teal band of real test names, cropped by both screen edges and drifting slowly left. Under it: *"Real names from the 269 tests across LabaLink, InkHive and Seoul-Mate. All passing."* Then **Try to break it**. | Names running off the edges |
 | 4 | **Skills** | The stack is used, not listed. | One giant word, **STACK**, filling the column edge to edge. Under it, six bars that open in place: Languages, Backend, Frontend & Mobile, Data, Cloud & AI, Security & Testing, and Tools. Each skill appears with the project that uses it, aligned right where a menu would show the price. | Giant word, filled bar rows |
@@ -116,7 +116,7 @@ There are no photos of Erik and no app screenshots yet. Found photos of places a
 
 | Where | Picture | Source |
 |---|---|---|
-| Hero, between ERIK and BIEN | A crop of one of his app screens in a landscape frame one cap-height tall, changing between the four apps | rebuilt in HTML |
+| Hero, beside ERIK | A crop of one of his app screens in a landscape frame one cap-height tall, changing between the four apps | rebuilt in HTML |
 | Work, 2 tall panels per project (8 in all) | The current mock-ups rebuilt as tall panels in each app's real look: LabaLink's Android app beside its attendant dashboard, the Seoul-Mate staff stock toggle beside the phone menu in Korean, a PlayIT phonics screen beside Blend It, and the InkHive teacher board beside a student joining by code | rebuilt in HTML |
 | About | The 3 badge images. The two AWS PNGs are in `Desktop\CERTIFICATE`. IBM's comes from its Credly badge page. | Erik's own |
 
@@ -234,3 +234,4 @@ Erik answered these on 2026-10-22.
 | 3 | Remove the ink trail, the dot test run and the stats row | Yes |
 | 4 | Dark mode | Dark by default; the toggle switches to light. Changed from light-by-default at the first-screen review. |
 | 5 | First screen (Checkpoint A) | Direction approved |
+| 6 | The full name (Checkpoint B) | Add Samuel: the hero reads ERIK [screen] / SAMUEL BIEN, and the nav, page title and social title say Erik Samuel Bien. Approved to go on to the motion layer. |
