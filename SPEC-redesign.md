@@ -46,6 +46,8 @@ Why this one over the other two dealt options:
 | **Type sizes** | Five only: the monument, section heading (28–40px), lead (20–26px), body (17–19px), small (13–14px). |
 | **Colour** | **Teal on paper.** Ground `#f7f9f8`, surface `#ebf0ee`, ink `#06525c`, soft ink `#2f737d`. Teal is used for every word and shape, with no black. The accent is the same teal filled solid, on the one button and the inverted closing band. |
 | **Dark mode** | Dark by default, whatever the visitor's system setting: the same roles inverted, deep teal `#05333a` ground and paper-white `#eef5f3` text. The toggle switches to light (teal on paper) and remembers the choice. |
+| **Nav** | Body size, every control 3rem tall: the name left; the five sections as one bar of flat tabs on the page's centre line (from 1024px wide), whose labels roll on hover; on the right a "Light mode" switch in the app screens' square style and a solid Resume button with a download arrow. Phones keep the name, the switch and Resume. |
+| **Project details** | Each project's details open with a 3px bar across the full width, drawn in from the left as they arrive. |
 | **Shape** | Square corners everywhere. One button style: solid teal, square, 44px tall or more. |
 | **Frame** | One pair of tight outer margins (20–32px) on every section. Sections are 120–240px apart on desktop. |
 

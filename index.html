@@ -96,27 +96,48 @@
   .link { text-decoration-color: currentColor; transition: text-decoration-color var(--t-hover) ease; }
   @media (hover: hover) and (pointer: fine) { .link:hover { text-decoration-color: transparent; } }
 
-  /* ---------- nav: wordmark left, the rest spread across the right half ---------- */
-  .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem var(--margin); font-size: var(--step-small); }
-  .nav .mark { font-weight: 800; font-size: var(--step-small); text-decoration: none; }
-  .nav-right { display: flex; align-items: center; gap: 1.25rem; }
-  .nav-links { display: none; }
-  .nav-links a { padding: 0.75rem 0; text-decoration-color: transparent; transition: text-decoration-color var(--t-hover) ease; }
-  .nav-links a:focus-visible { text-decoration-color: currentColor; }
-  .nav .theme { min-height: 2.75rem; padding: 0 0.25rem; text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; transition: text-decoration-color var(--t-hover) ease; }
+  /* ---------- nav: wordmark left, the sections as one bar of flat tabs in the middle, the theme switch and
+     the resume on the right. Every control is 3rem tall and set at body size, in the page's flat panels. ---------- */
+  .nav { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 1rem; padding: 1rem var(--margin); font-size: var(--step-body); line-height: 1.15; }
+  .nav .mark { justify-self: start; padding-block: 0.75rem; font-weight: 800; letter-spacing: -0.01em; text-decoration: none; }
+  .nav-links { display: none; gap: 2px; }
+  .nav-links a { display: inline-flex; align-items: center; min-height: 3rem; padding: 0 1.1rem; background: var(--surface); font-weight: 500; text-decoration: none; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  .nav-tools { display: flex; align-items: center; gap: 0.5rem; justify-self: end; }
+  .nav .theme { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 3rem; padding: 0 0.95rem; background: var(--surface); font-weight: 500; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  /* the same square switch as the app screens: off is the dark page, on is the light one */
+  .theme .tg { position: relative; flex: none; width: 2.3em; height: 1.3em; background: color-mix(in srgb, currentColor 28%, transparent); transition: background-color var(--t-hover) ease; }
+  .theme .tg::after { content: ""; position: absolute; top: 0.2em; left: 0.2em; width: 0.9em; height: 0.9em; background: var(--ink); transition: transform var(--t-ui) var(--ease-out), background-color var(--t-hover) ease; }
+  .theme[aria-checked="true"] .tg { background: var(--ink); }
+  .theme[aria-checked="true"] .tg::after { transform: translate3d(1em, 0, 0); background: var(--bg); }
+  .nav .btn { min-height: 3rem; padding: 0 1.2rem; gap: 0.6rem; font-weight: 600; }
+  .btn-arrow { flex: none; width: 0.85em; height: 0.85em; fill: none; stroke: currentColor; stroke-width: 2; transition: transform var(--t-ui) var(--ease-out); }
   @media (hover: hover) and (pointer: fine) {
-    .nav-links a:hover { text-decoration-color: currentColor; }
-    .nav .theme:hover { text-decoration-color: transparent; }
+    .nav-links a:hover, .nav .theme:hover { background: var(--surface-2); }
+    .btn:hover .btn-arrow { transform: translate3d(0, 0.14em, 0); }
   }
-  .nav .btn { min-height: 2.75rem; padding: 0 1rem; }
-  @media (min-width: 960px) {
-    .nav-right { width: 50%; justify-content: space-between; }
-    .nav-links { display: contents; }
+  @media (min-width: 1024px) {
+    /* the side columns share the space evenly, so the tabs sit on the page's centre line */
+    .nav { grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr); }
+    .nav-links { display: flex; }
+  }
+  /* phones: the switch drops its word (it keeps its label) and the name may take two lines; on the
+     smallest the resume drops its arrow, so the name never needs three */
+  @media (max-width: 479px) {
+    .nav { column-gap: 0.75rem; }
+    .theme-label { display: none; }
+    .nav .theme { padding: 0 0.8rem; }
+    .nav .btn { padding: 0 1rem; }
+  }
+  @media (max-width: 359px) {
+    .nav .mark { font-size: 1rem; }
+    .nav .theme { padding: 0 0.6rem; }
+    .nav .btn { padding: 0 0.85rem; }
+    .nav .btn-arrow { display: none; }
   }
 
   /* ---------- hero: the name as a monument, an app screen set into it like a letter ---------- */
   /* A column: the name takes the free space above and below it, so the sentence and button stay on the first screen. */
-  .hero { min-height: calc(100svh - 5.25rem); display: flex; flex-direction: column; gap: 3rem; padding-bottom: var(--margin); overflow-x: clip; }
+  .hero { min-height: calc(100svh - 5rem); display: flex; flex-direction: column; gap: 3rem; padding-bottom: var(--margin); overflow-x: clip; }
   /* Two lines, each run margin to margin: ERIK and the screen, then SAMUEL BIEN.
      Font sizes come from the measured widths in the display cut (ERIK 3.035em, SAMUEL BIEN 9.057em). */
   .name { margin-block: auto; container-type: inline-size; white-space: nowrap; }
@@ -268,7 +289,9 @@
   /* the details under the stage: name in the left third, the facts in the right two-thirds */
   .notes { padding-top: calc(var(--section) / 2); }
   .notes > h3 { margin-bottom: 1.5rem; }
-  .note { display: grid; gap: 0.75rem; padding-block: 1.5rem; }
+  /* each project's details open with a bar across the full width */
+  .note { position: relative; display: grid; gap: 0.75rem; padding-block: 1.75rem 2.75rem; }
+  .note::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: currentColor; transform-origin: left; }
   .note dt { font-size: var(--step-head); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
   .note dd { margin: 0; }
   .note-name { display: block; }
@@ -452,13 +475,13 @@
   .shot { --shut: inset(0 100% 0 0); --gone: inset(0 0 0 100%); }
   @media (max-width: 899px) { .shot { --shut: inset(0 0 100% 0); --gone: inset(100% 0 0 0); } }
 
-  /* the solid buttons roll their label under the pointer */
+  /* the solid buttons and the section tabs roll their label under the pointer */
   .btn-roll { display: grid; overflow: clip; }
   .btn-roll > span { grid-area: 1 / 1; transition: transform var(--t-ui) var(--ease-out); }
   .btn-roll > span + span { transform: translate3d(0, 105%, 0); }
   @media (hover: hover) and (pointer: fine) {
-    .btn:hover .btn-roll > span:first-child { transform: translate3d(0, -105%, 0); }
-    .btn:hover .btn-roll > span + span { transform: none; }
+    .btn:hover .btn-roll > span:first-child, .nav-links a:hover .btn-roll > span:first-child { transform: translate3d(0, -105%, 0); }
+    .btn:hover .btn-roll > span + span, .nav-links a:hover .btn-roll > span + span { transform: none; }
     /* without the script the CSS loop runs, and stops under the pointer */
     .band:hover .band-track { animation-play-state: paused; }
   }
@@ -523,17 +546,20 @@
     .motion [data-in="chars"].is-in .ch { transform: none; transition: transform 800ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 30ms); }
     .motion [data-in="words"].is-in .ch { transform: none; transition: transform 900ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 70ms); }
     /* a project's screen opens like a shutter while the app inside settles, then its tags and tiles stamp */
-    .motion [data-in="open"] { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); }
+    .motion [data-in="open"] { opacity: 0; transform: none; clip-path: inset(0 100% 0 0); }
     .motion [data-in="open"] .crop { transform: scale(1.12); }
-    .motion [data-in="open"].is-in { clip-path: inset(0); transition: clip-path 1100ms var(--ease-in-out) calc(var(--i, 0) * 80ms); }
+    .motion [data-in="open"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 1100ms var(--ease-in-out) calc(var(--i, 0) * 80ms), opacity 150ms ease calc(var(--i, 0) * 80ms); }
     .motion [data-in="open"].is-in .crop { transform: none; transition: transform 1300ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
     .motion [data-in="open"].is-in .c-pill, .motion [data-in="open"].is-in .c-tiles i:not(.off) { animation: stamp 380ms var(--ease-out) 900ms both; }
+    /* a project's bar draws across from the left as its details arrive (the script marks the group .seen) */
+    .motion .note::before { transform: scaleX(0); }
+    .motion .note.seen::before { transform: none; transition: transform 1100ms var(--ease-expo); }
     /* a skill bar slides out from the left */
-    .motion [data-in="bar"] { opacity: 1; transform: none; clip-path: inset(0 100% 0 0); }
-    .motion [data-in="bar"].is-in { clip-path: inset(0); transition: clip-path 900ms var(--ease-expo) calc(var(--i, 0) * 70ms); }
+    .motion [data-in="bar"] { opacity: 0; transform: none; clip-path: inset(0 100% 0 0); }
+    .motion [data-in="bar"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 900ms var(--ease-expo) calc(var(--i, 0) * 70ms), opacity 150ms ease calc(var(--i, 0) * 70ms); }
     /* the verdict panel opens from the top */
-    .motion [data-in="drop"] { opacity: 1; transform: none; clip-path: inset(0 0 100% 0); }
-    .motion [data-in="drop"].is-in { clip-path: inset(0); transition: clip-path 1000ms var(--ease-in-out) calc(var(--i, 0) * 80ms); }
+    .motion [data-in="drop"] { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
+    .motion [data-in="drop"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 1000ms var(--ease-in-out) calc(var(--i, 0) * 80ms), opacity 150ms ease calc(var(--i, 0) * 80ms); }
     /* About's paragraph: words wait at 45% ink and fill in reading order as it rises (the script marks them) */
     .fill .w { opacity: 0.45; transition: opacity 300ms ease; }
     .fill .w.on { opacity: 1; }
@@ -543,13 +569,13 @@
     .verdict.is-landed .v-status span { transition: none; animation: slam 340ms var(--ease-out) both; }
 
     /* press */
-    .nav .theme:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
+    .nav .theme:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
     .bars summary:active { transform: scale(0.99); }
   }
   /* reduced motion keeps colour and opacity changes and drops the rest */
   @media (prefers-reduced-motion: reduce) {
     .btn:active { transform: none; }
-    .btn-roll > span, .atk::before, .bars summary::after, .v-status span, .v-guard, .v-proof { transition: none; }
+    .btn-roll > span, .atk::before, .bars summary::after, .v-status span, .v-guard, .v-proof, .theme .tg::after, .btn-arrow { transition: none; }
   }
   /* the bars open to their real height where the browser can animate to auto */
   @supports (interpolate-size: allow-keywords) {
@@ -590,8 +616,10 @@
     .pane, .tear .half { transform: none !important; }
     .layer *, .layer *::after { animation: none !important; }
     .layer-meta.is-off { opacity: 1; visibility: visible; }
-    .nav .theme, .hero-foot .btn { display: none; }
+    .nav .theme, .hero-foot .btn, .btn-arrow { display: none; }
     .nav .btn { background: none; color: var(--ink); padding: 0; }
+    .nav-links a { background: none; }
+    .note::before { transform: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .contact, .foot { background: none; color: var(--ink); }
   }
 </style>
@@ -600,16 +628,16 @@
 
 <nav class="nav" aria-label="Main">
   <a class="mark" href="#top">Erik Samuel Bien</a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#proof">Proof</a>
-      <a href="#skills">Skills</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="theme" id="theme" type="button" aria-label="Switch to light mode">Light</button>
-    <a class="btn" href="Bien_Resume.pdf" download>Resume</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#proof">Proof</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-tools">
+    <button class="theme" id="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
+    <a class="btn" href="Bien_Resume.pdf" download>Resume<svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v10M3.5 7l4.5 4.5L12.5 7M2 14.5h12"/></svg></a>
   </div>
 </nav>
 
@@ -1124,11 +1152,10 @@
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
   /* ---------- theme: dark unless the visitor picked light ---------- */
+  // The control is a switch named "Light mode": on is the light page, off the dark one.
   var themeBtn = $('#theme');
   function paintTheme() {
-    var light = root.getAttribute('data-theme') === 'light';
-    themeBtn.textContent = light ? 'Dark' : 'Light';
-    themeBtn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    themeBtn.setAttribute('aria-checked', String(root.getAttribute('data-theme') === 'light'));
   }
   themeBtn.addEventListener('click', function () {
     var light = root.getAttribute('data-theme') !== 'light';
@@ -1404,15 +1431,17 @@
     addEventListener('resize', function () { measureKire(); });
   }
 
-  /* ---------- buttons: a second copy of the label waits below and rolls up under the pointer ---------- */
-  if (!RM) $$('.btn').forEach(function (b) {
+  /* ---------- buttons and tabs: a second copy of the label waits below and rolls up under the pointer ---------- */
+  // Only the label's text is wrapped, so anything else in the control (the resume's arrow) stays as it is.
+  if (!RM) $$('.btn, .nav-links a').forEach(function (b) {
+    var t = Array.prototype.filter.call(b.childNodes, function (n) { return n.nodeType === 3 && n.nodeValue.trim(); })[0];
+    if (!t) return;
     var roll = document.createElement('span'), a = document.createElement('span'), c = document.createElement('span');
     roll.className = 'btn-roll';
-    a.textContent = c.textContent = b.textContent;
+    a.textContent = c.textContent = t.nodeValue.trim();
     c.setAttribute('aria-hidden', 'true');
     roll.appendChild(a); roll.appendChild(c);
-    b.textContent = '';
-    b.appendChild(roll);
+    b.replaceChild(roll, t);
   });
 
   /* ---------- entrances: each section's parts arrive once, in reading order, each in its own manner ---------- */
@@ -1426,6 +1455,7 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
+        e.target.classList.add('seen');
         var parts = e.target.inParts;
         parts.forEach(function (el) { el.classList.add('is-in'); });
         setTimeout(function () { parts.forEach(settle); }, 1700);
