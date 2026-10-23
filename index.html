@@ -9,7 +9,7 @@
 <meta property="og:description" content="Full-stack and Android developer. LabaLink, Seoul-Mate, PlayIT, InkHive. 269 tests that try to break them.">
 <meta name="theme-color" content="#05333a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2306525c'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='900' font-size='36' text-anchor='middle' fill='%23f7f9f8'%3EE%3C/text%3E%3C/svg%3E">
-<script>document.documentElement.classList.add("js");try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
+<script>document.documentElement.classList.add("js");if(window.HTMLDialogElement&&HTMLDialogElement.prototype.showModal)document.documentElement.classList.add("has-menu");try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
@@ -80,6 +80,8 @@
   ::selection { background: var(--accent); color: var(--accent-ink); }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   :target { scroll-margin-top: 1.5rem; }
+  /* a section the menu sends focus to is a starting point for Tab, not a control: no ring around it */
+  [tabindex="-1"]:focus { outline: none; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .wrap { padding-inline: var(--margin); }
   .sec { padding-block: calc(var(--section) / 2); }
@@ -98,12 +100,16 @@
 
   /* ---------- nav: wordmark left, the sections as one bar of flat tabs in the middle, the theme switch and
      the resume on the right. Every control is 3rem tall and set at body size, in the page's flat panels. ---------- */
-  .nav { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 1rem; padding: 1rem var(--margin); font-size: var(--step-body); line-height: 1.15; }
-  .nav .mark { justify-self: start; padding-block: 0.75rem; font-weight: 800; letter-spacing: -0.01em; text-decoration: none; }
+  /* stacked over the hero: on a short, wide screen the box of ERIK's line reaches up under the bar */
+  .nav { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 1rem; padding: 1rem var(--margin); font-size: var(--step-body); line-height: 1.15; }
+  .nav .mark, .menu .mark { justify-self: start; padding-block: 0.75rem; font-weight: 800; letter-spacing: -0.01em; text-decoration: none; }
   .nav-links { display: none; gap: 2px; }
   .nav-links a { display: inline-flex; align-items: center; min-height: 3rem; padding: 0 1.1rem; background: var(--surface); font-weight: 500; text-decoration: none; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
   .nav-tools { display: flex; align-items: center; gap: 0.5rem; justify-self: end; }
-  .nav .theme { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 3rem; padding: 0 0.95rem; background: var(--surface); font-weight: 500; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  .theme, .menu-btn, .menu-close { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 3rem; padding: 0 0.95rem; background: var(--surface); font-weight: 500; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  .menu-btn { display: none; }
+  /* the switch needs the script; without it, it would be a control that does nothing */
+  html:not(.js) .theme { display: none; }
   /* the same square switch as the app screens: off is the dark page, on is the light one */
   .theme .tg { position: relative; flex: none; width: 2.3em; height: 1.3em; background: color-mix(in srgb, currentColor 28%, transparent); transition: background-color var(--t-hover) ease; }
   .theme .tg::after { content: ""; position: absolute; top: 0.2em; left: 0.2em; width: 0.9em; height: 0.9em; background: var(--ink); transition: transform var(--t-ui) var(--ease-out), background-color var(--t-hover) ease; }
@@ -112,7 +118,7 @@
   .nav .btn { min-height: 3rem; padding: 0 1.2rem; gap: 0.6rem; font-weight: 600; }
   .btn-arrow { flex: none; width: 0.85em; height: 0.85em; fill: none; stroke: currentColor; stroke-width: 2; transition: transform var(--t-ui) var(--ease-out); }
   @media (hover: hover) and (pointer: fine) {
-    .nav-links a:hover, .nav .theme:hover { background: var(--surface-2); }
+    .nav-links a:hover, .theme:hover, .menu-btn:hover, .menu-close:hover { background: var(--surface-2); }
     .btn:hover .btn-arrow { transform: translate3d(0, 0.14em, 0); }
   }
   @media (min-width: 1024px) {
@@ -120,20 +126,45 @@
     .nav { grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr); }
     .nav-links { display: flex; }
   }
-  /* phones: the switch drops its word (it keeps its label) and the name may take two lines; on the
-     smallest the resume drops its arrow, so the name never needs three */
+  /* below 1024px the tabs fold into the menu (the head script marks .has-menu where a dialog can open);
+     without it they stay in the bar as a row of their own under the name */
+  @media (max-width: 1023px) {
+    .has-menu .menu-btn { display: inline-flex; }
+    html:not(.has-menu) .nav-links { display: flex; flex-wrap: wrap; grid-row: 2; grid-column: 1 / -1; margin-top: 0.5rem; }
+  }
+  /* phones: the bar keeps the name, the resume and the menu, and the switch moves into the menu; on the
+     smallest the resume drops its arrow, so the name never needs three lines */
+  @media (max-width: 599px) {
+    .has-menu .nav .theme { display: none; }
+  }
   @media (max-width: 479px) {
     .nav { column-gap: 0.75rem; }
-    .theme-label { display: none; }
-    .nav .theme { padding: 0 0.8rem; }
+    .nav .theme-label { display: none; }
+    .nav .theme, .menu-btn, .menu-close { padding: 0 0.8rem; }
     .nav .btn { padding: 0 1rem; }
   }
   @media (max-width: 359px) {
     .nav .mark { font-size: 1rem; }
-    .nav .theme { padding: 0 0.6rem; }
+    .nav .theme, .menu-btn, .menu-close { padding: 0 0.6rem; }
     .nav .btn { padding: 0 0.85rem; }
     .nav .btn-arrow { display: none; }
   }
+
+  /* ---------- the menu: a full-screen sheet in the field's teal. Its top row sits where the bar was, so Close
+     lands where Menu was; the sections are set in the display cut at the foot, where the thumb is, then the
+     switch and the resume. ---------- */
+  .menu { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .menu[open] { display: flex; flex-direction: column; }
+  .menu::backdrop { background: transparent; }
+  html:has(.menu[open]) { overflow: hidden; }
+  .menu-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--nav-h, 0); padding: 1rem var(--margin); font-size: var(--step-body); line-height: 1.15; }
+  .menu .menu-links { display: grid; gap: 0.25rem; margin-top: auto; padding: 2rem var(--margin) 1.5rem; }
+  .menu-links a { display: block; width: fit-content; padding-block: 0.12em; font-size: clamp(2.5rem, min(12.5vw, 11svh), 6rem); text-decoration: none; transition: transform var(--t-press) var(--ease-out); }
+  .menu-links a::after { content: ""; display: block; height: 3px; margin-top: 0.08em; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform var(--t-ui) var(--ease-out); }
+  .menu-links a:active { transform: scale(0.98); transform-origin: left; }
+  @media (hover: hover) and (pointer: fine) { .menu-links a:hover::after { transform: none; } }
+  .menu-foot { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 var(--margin) 1.5rem; font-size: var(--step-body); line-height: 1.15; }
+  .menu-foot .btn { min-height: 3rem; padding: 0 1.2rem; gap: 0.6rem; font-weight: 600; }
 
   /* ---------- hero: the name as a monument, an app screen set into it like a letter ---------- */
   /* A column: the name takes the free space above and below it, so the sentence and button stay on the first screen. */
@@ -568,8 +599,15 @@
     .verdict.is-landed .v-status { clip-path: none; }
     .verdict.is-landed .v-status span { transition: none; animation: slam 340ms var(--ease-out) both; }
 
+    /* the menu drops from the bar and lifts away the way it came; its sections rise from behind their
+       baselines, 50ms apart */
+    .menu { clip-path: inset(0 0 100% 0); transition: clip-path 300ms var(--ease-exit); }
+    .menu.is-open { clip-path: inset(0); transition: clip-path 600ms var(--ease-in-out); }
+    .menu-links .rise { transform: translate3d(0, calc(100% + 0.35em), 0); transition: transform 200ms var(--ease-exit); }
+    .menu.is-open .menu-links .rise { transform: none; transition: transform 900ms var(--ease-expo) calc(200ms + var(--i, 0) * 50ms); }
+
     /* press */
-    .nav .theme:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
+    .theme:active, .menu-btn:active, .menu-close:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
     .bars summary:active { transform: scale(0.99); }
   }
   /* reduced motion keeps colour and opacity changes and drops the rest */
@@ -616,7 +654,7 @@
     .pane, .tear .half { transform: none !important; }
     .layer *, .layer *::after { animation: none !important; }
     .layer-meta.is-off { opacity: 1; visibility: visible; }
-    .nav .theme, .hero-foot .btn, .btn-arrow { display: none; }
+    .theme, .menu-btn, .hero-foot .btn, .btn-arrow { display: none; }
     .nav .btn { background: none; color: var(--ink); padding: 0; }
     .nav-links a { background: none; }
     .note::before { transform: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -638,8 +676,27 @@
   <div class="nav-tools">
     <button class="theme" id="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
     <a class="btn" href="Bien_Resume.pdf" download>Resume<svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v10M3.5 7l4.5 4.5L12.5 7M2 14.5h12"/></svg></a>
+    <button class="menu-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
 </nav>
+
+<dialog class="menu field" id="menu" aria-label="Menu">
+  <div class="menu-top">
+    <a class="mark" href="#top">Erik Samuel Bien</a>
+    <button class="menu-close" type="button" autofocus>Close</button>
+  </div>
+  <ul class="menu-links wide">
+    <li><a href="#work"><span class="ln"><span class="rise">Work</span></span></a></li>
+    <li><a href="#proof"><span class="ln"><span class="rise" style="--i: 1">Proof</span></span></a></li>
+    <li><a href="#skills"><span class="ln"><span class="rise" style="--i: 2">Skills</span></span></a></li>
+    <li><a href="#about"><span class="ln"><span class="rise" style="--i: 3">About</span></span></a></li>
+    <li><a href="#contact"><span class="ln"><span class="rise" style="--i: 4">Contact</span></span></a></li>
+  </ul>
+  <div class="menu-foot">
+    <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
+    <a class="btn" href="Bien_Resume.pdf" download>Resume<svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v10M3.5 7l4.5 4.5L12.5 7M2 14.5h12"/></svg></a>
+  </div>
+</dialog>
 
 <main>
   <header class="hero wrap" id="top">
@@ -1152,18 +1209,65 @@
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
   /* ---------- theme: dark unless the visitor picked light ---------- */
-  // The control is a switch named "Light mode": on is the light page, off the dark one.
-  var themeBtn = $('#theme');
+  // The control is a switch named "Light mode": on is the light page, off the dark one. The bar and the
+  // menu each have one, and both always show the same state.
+  var themeBtns = $$('.theme');
   function paintTheme() {
-    themeBtn.setAttribute('aria-checked', String(root.getAttribute('data-theme') === 'light'));
+    themeBtns.forEach(function (b) { b.setAttribute('aria-checked', String(root.getAttribute('data-theme') === 'light')); });
   }
-  themeBtn.addEventListener('click', function () {
-    var light = root.getAttribute('data-theme') !== 'light';
-    if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
-    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
-    paintTheme();
+  themeBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var light = root.getAttribute('data-theme') !== 'light';
+      if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme');
+      try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+      paintTheme();
+    });
   });
   paintTheme();
+
+  /* ---------- the menu, below 1024px: a modal sheet that drops from the bar ---------- */
+  // A section link lifts the sheet off the section it has already scrolled to, then focus moves to that
+  // section, so the next Tab carries on from there rather than from the bar at the top.
+  var menu = $('#menu'), menuBtn = $('.menu-btn'), menuShut = 0;
+  if (root.classList.contains('has-menu')) {
+    var openMenu = function () {
+      clearTimeout(menuShut);
+      menu.style.setProperty('--nav-h', $('.nav').offsetHeight + 'px');
+      menu.showModal();
+      menuBtn.setAttribute('aria-expanded', 'true');
+      // two frames, so the sheet is painted shut before it drops
+      requestAnimationFrame(function () { requestAnimationFrame(function () { menu.classList.add('is-open'); }); });
+    };
+    var closeMenu = function (then) {
+      menu.classList.remove('is-open');
+      menuShut = setTimeout(function () {
+        if (menu.open) menu.close();
+        if (then) then();
+      }, RM ? 0 : 300);
+    };
+    menuBtn.addEventListener('click', openMenu);
+    $('.menu-close').addEventListener('click', function () { closeMenu(); });
+    // Escape asks to close: play the same lift instead of vanishing
+    menu.addEventListener('cancel', function (e) { e.preventDefault(); closeMenu(); });
+    menu.addEventListener('close', function () { menu.classList.remove('is-open'); menuBtn.setAttribute('aria-expanded', 'false'); });
+    $$('a[href^="#"]', menu).forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var target = document.getElementById(a.getAttribute('href').slice(1));
+        if (!target) return;
+        e.preventDefault();
+        if (location.hash === a.hash) target.scrollIntoView(); else location.hash = a.hash;
+        closeMenu(function () {
+          if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
+        });
+      });
+    });
+    // the sheet belongs to the narrow bar; widening past it puts the tabs back and closes the sheet
+    var wideMq = matchMedia('(min-width: 1024px)');
+    var onWide = function () { if (wideMq.matches && menu.open) { clearTimeout(menuShut); menu.close(); } };
+    if (wideMq.addEventListener) wideMq.addEventListener('change', onWide); else wideMq.addListener(onWide);
+  }
 
   $('#yr').textContent = new Date().getFullYear();
 
