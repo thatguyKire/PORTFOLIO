@@ -892,16 +892,16 @@
       <dt><span class="note-name">LabaLink</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><span><b>LabaLink</b> · Wallet</span><i class="c-pill">Paid</i></span>
         <span class="c-big">₱300.00</span>
-        <span class="c-item"><span>Top-up +₱200.00<small>Signed by Stripe, credited once</small></span></span>
+        <span class="c-item"><span>Top-up +₱200.00<small>Signed by Stripe</small></span></span>
       </span></span></dt>
       <dd>
       <p>Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
       <ul>
         <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST and WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
-        <li><strong>Security-first v1.0.0</strong>: STRIDE threat model, JWT with role and ownership checks, verified Google sign-in, lockout, and a privacy policy.</li>
-        <li><strong>Payments that can't be replayed</strong>: Stripe Checkout, signed webhooks, and idempotent wallet credits; the server won't start with a live key. <strong>34 tests</strong> on real PostgreSQL.</li>
+        <li><strong>Security-first v1.0.0</strong>: JWT with role and ownership checks, verified Google sign-in, lockout, and a privacy policy.</li>
+        <li><strong>Payments that can't be faked</strong>: Stripe Checkout and signed webhooks, and the server won't start with a live key. <strong>34 tests</strong> on real PostgreSQL.</li>
       </ul>
-      <p class="note-stack">Java, Spring Boot, Kotlin, React, TypeScript, PostgreSQL, Stripe, Flyway</p>
+      <p class="note-stack">Java, Spring Boot, Kotlin, React, TypeScript, PostgreSQL, Stripe</p>
       <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
       </dd>
     </div>
@@ -950,10 +950,10 @@
       <p>Real-time collaborative whiteboard for classrooms · Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
       <ul>
         <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
-        <li><strong>Rebuilt real-time sync</strong> on Django Channels WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
-        <li><strong>Launch-ready</strong>: CSP, brute-force lockout, upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
+        <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
+        <li><strong>Launch-ready</strong>: brute-force lockout, upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
       </ul>
-      <p class="note-stack">Python, Django 5.2, Channels, Daphne, WebSockets, SQLite</p>
+      <p class="note-stack">Python, Django 5.2, WebSockets, SQLite</p>
       <a class="link" href="https://github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard" target="_blank" rel="noopener">Source on GitHub</a>
       </dd>
     </div>
@@ -1056,7 +1056,6 @@
             <dt>Spring Security</dt><dd>LabaLink</dd>
             <dt>JWT and OAuth2</dt><dd>LabaLink</dd>
             <dt>Django</dt><dd>InkHive</dd>
-            <dt>Django Channels</dt><dd>InkHive</dd>
             <dt>REST APIs</dt><dd>LabaLink, InkHive</dd>
             <dt>WebSocket and Realtime</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
             <dt>Edge Functions</dt><dd>Seoul-Mate</dd>
@@ -1083,18 +1082,14 @@
             <dt>MySQL</dt><dd>Coursework</dd>
             <dt>Supabase</dt><dd>InkHive, Seoul-Mate</dd>
             <dt>Row Level Security</dt><dd>Seoul-Mate</dd>
-            <dt>Flyway</dt><dd>LabaLink</dd>
           </dl>
         </details>
         <details>
           <summary>Cloud, AI and DevOps</summary>
           <dl>
             <dt>AWS</dt><dd>AWS Academy badge</dd>
-            <dt>Render</dt><dd>InkHive</dd>
-            <dt>Docker</dt><dd>Coursework</dd>
             <dt>Git and GitHub</dt><dd>All four</dd>
             <dt>GitHub Actions CI</dt><dd>Seoul-Mate</dd>
-            <dt>Stripe API</dt><dd>LabaLink</dd>
             <dt>Speech recognition</dt><dd>PlayIT</dd>
             <dt>AI and ML foundations</dt><dd>IBM SkillsBuild badge</dd>
             <dt>Generative AI with Amazon Bedrock</dt><dd>AWS Academy badge</dd>
@@ -1103,7 +1098,6 @@
         <details>
           <summary>Security and design</summary>
           <dl>
-            <dt>STRIDE threat modeling</dt><dd>LabaLink</dd>
             <dt>Auth hardening</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
             <dt>Automated testing</dt><dd>All four</dd>
             <dt>End-to-end tests</dt><dd>Seoul-Mate</dd>
