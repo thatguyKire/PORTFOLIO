@@ -4,31 +4,32 @@
 <meta charset="utf-8">
 <title>Erik Samuel L. Bien — Resume</title>
 <style>
-  @page { size: Letter; margin: 0.36in 0.55in 0.3in; }
+  @page { size: Letter; margin: 0.45in 0.6in 0.4in; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 9.2pt; line-height: 1.18; color: #222; }
+  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 10pt; line-height: 1.24; color: #222; }
   a { color: inherit; text-decoration: none; }
-  header { position: relative; text-align: center; margin-bottom: 4pt; }
-  h1 { font-size: 20pt; color: #1f3864; letter-spacing: .3pt; line-height: 1.1; }
-  .tag { color: #555; font-size: 9.6pt; margin-top: 2pt; }
-  .contact { color: #333; font-size: 9.4pt; margin-top: 2pt; }
+  header { position: relative; text-align: center; margin-bottom: 5pt; }
+  h1 { font-size: 21pt; color: #1f3864; letter-spacing: .3pt; line-height: 1.1; }
+  .tag { color: #444; font-size: 10pt; margin-top: 2pt; }
+  .contact { color: #333; font-size: 9.8pt; margin-top: 2pt; }
   .contact + .contact { margin-top: 1pt; }
   .contact span + span::before { content: "|"; margin: 0 5pt; color: #888; }
-  .qr { position: absolute; top: 0; right: 0; width: .7in; font-size: 6.8pt; color: #555; text-align: center; }
-  .qr svg { display: block; width: .7in; height: .7in; margin-bottom: 1.5pt; }
-  h2 { font-size: 9.6pt; font-weight: 700; color: #1f3864; text-transform: uppercase; border-bottom: 1.4pt solid #1f3864; padding-bottom: 1pt; margin: 3.6pt 0 2.2pt; }
-  .proj { margin-bottom: 2pt; }
-  .proj h3 { font-size: 10.6pt; color: #1f3864; }
-  .proj h3 .link { font-size: 8.8pt; font-weight: 400; color: #555; margin-left: 4pt; }
-  .role, .env { font-style: italic; color: #555; font-size: 9.2pt; }
-  .env b { color: #333; }
-  ul { margin: 1.5pt 0 0 22pt; }
-  li { margin-bottom: .5pt; padding-left: 3pt; }
+  .qr { position: absolute; top: 0; right: 0; width: .68in; font-size: 7.5pt; color: #444; text-align: center; }
+  .qr svg { display: block; width: .68in; height: .68in; margin-bottom: 1.5pt; }
+  h2 { font-size: 10.8pt; font-weight: 700; color: #1f3864; text-transform: uppercase; letter-spacing: .3pt; border-bottom: 1.2pt solid #1f3864; padding-bottom: 1pt; margin: 7pt 0 3pt; }
+  .proj { margin-bottom: 6pt; }
+  .proj:last-of-type { margin-bottom: 0; }
+  .proj h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; font-size: 11pt; color: #1f3864; }
+  .proj h3 .link { font-size: 9.5pt; font-weight: 400; color: #444; white-space: nowrap; }
+  .role { color: #444; }
+  .env { color: #333; }
+  .env b { color: #222; }
+  ul { margin: 2pt 0 0 14pt; }
+  li { margin-bottom: 1pt; padding-left: 2pt; }
   li::marker { font-size: 8pt; }
   .skills p { margin-bottom: 1pt; }
-  .muted { color: #555; }
-  .ital { font-style: italic; }
-  .url { font-size: 8.3pt; color: #555; }
+  .muted { color: #444; }
+  .url { font-size: 9.5pt; color: #444; }
 </style>
 </head>
 <body>
@@ -42,12 +43,12 @@ Portfolio</a>
 </header>
 
 <h2>Career Objective</h2>
-<p>BSIT student who ships tested, security-hardened full-stack and Android applications, backed by foundations in AI and AWS cloud, seeking an internship opportunity to apply software engineering, applied AI, and cloud skills.</p>
+<p>BSIT student who ships tested, secure full-stack and Android apps, seeking an internship in software, AI, or cloud.</p>
 
 <h2>Education</h2>
 <p><b>Bachelor of Science in Information Technology (BSIT), 4th Year</b></p>
 <p class="muted">Cebu Institute of Technology – University (CIT-U), Cebu City &nbsp;|&nbsp; Expected Graduation: 2027</p>
-<p><b>Relevant Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, DBMS, Web &amp; Mobile Development</p>
+<p><b>Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, DBMS, Web &amp; Mobile Development</p>
 
 <h2>Technical Projects</h2>
 
@@ -56,7 +57,7 @@ Portfolio</a>
   <div class="role">Solo Developer &nbsp;|&nbsp; IT342 Application Development Project</div>
   <div class="env"><b>Environment:</b> Java, Spring Boot 3.5, PostgreSQL, Kotlin (Android), React 19, TypeScript, Tailwind CSS, Stripe, WebSocket</div>
   <ul>
-    <li>Built a complete three-tier system solo — Spring Boot REST + WebSocket API, a native Kotlin Android app for customers (QR-scan to start a machine, Stripe wallet top-up), and a React + TypeScript dashboard for shop attendants.</li>
+    <li>Built all three parts alone: a Spring Boot API, a Kotlin Android app for customers (QR-scan to start a machine, Stripe wallet top-up), and a React dashboard for shop attendants.</li>
     <li>Led a v1.0.0 security overhaul: JWT on every endpoint with role and ownership checks, verified Google ID tokens, rate limiting, and account lockout.</li>
     <li>Made payments tamper-proof with Stripe Checkout, signed webhooks, and a block on live Stripe keys.</li>
     <li>Wrote 34 backend tests on embedded PostgreSQL, a Privacy Policy (Data Privacy Act), and the SRS and SDD.</li>
@@ -69,7 +70,7 @@ Portfolio</a>
   <div class="env"><b>Environment:</b> React 19, TypeScript, Vite, Supabase (PostgreSQL + RLS, Realtime, Edge Functions), Vitest, pgTAP, GitHub Actions</div>
   <ul>
     <li>Building a three-language (English, Filipino, Korean) menu site where stock changes reach open pages within seconds.</li>
-    <li>Security first: Row Level Security on every table, a staff panel with optional two-factor login and session limits, photos checked by content and stripped of metadata, and a rate-limited contact function.</li>
+    <li>Security first: Row Level Security on every table, optional two-factor staff login, photos checked by content and stripped of metadata, and a rate-limited contact function.</li>
     <li>108 unit tests, 109 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all run in CI.</li>
   </ul>
 </div>
@@ -79,20 +80,9 @@ Portfolio</a>
   <div class="role">Developer &nbsp;|&nbsp; 3-member capstone team (IT411)</div>
   <div class="env"><b>Environment:</b> Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk (offline speech recognition), Python</div>
   <ul>
-    <li>Co-developing an offline-first Android phonics app (Marungko approach) with on-device speech evaluation for low-end phones.</li>
-    <li>Built child-focused accessibility and UX features — sound captions, mouth-shape cues, 64 dp touch targets, non-punitive feedback — and fixed core game logic in the Blend It word-building activity.</li>
-    <li>Authored the SRS, SDD, and test document; built a Python release tool that checks every figure against the JUnit results and APK.</li>
-  </ul>
-</div>
-
-<div class="proj">
-  <h3>InkHive — Real-Time Collaborative Whiteboard<span class="link">github.com/thatguyKire/CSIT327-G4-Collaborative-Whiteboard</span></h3>
-  <div class="role">Lead Developer &amp; Backend Developer &nbsp;|&nbsp; 3-member team (CSIT327-G4) &nbsp;|&nbsp; formerly COLLABoard</div>
-  <div class="env"><b>Environment:</b> Python, Django 5.2, WebSockets, SQLite/PostgreSQL, JavaScript</div>
-  <ul>
-    <li>Led a 3-person team and authored most of the codebase for a live classroom whiteboard: teacher-hosted sessions, QR/code join, per-student draw permissions, chat, file uploads, attendance, and PNG/PDF export.</li>
-    <li>Re-architected real-time sync from Supabase to WebSockets with presence, late-joiner board state, and server-enforced permissions.</li>
-    <li>Hardened it for launch (brute-force lockout, upload content checks, flood limits); added Terms, a Privacy Policy, data export, account deletion, and a one-click demo mode; 127 tests (29 security).</li>
+    <li>Co-developing an offline-first Android phonics app (Marungko approach) that evaluates speech on low-end phones.</li>
+    <li>Built child-focused accessibility features (sound captions, mouth-shape cues, 64 dp touch targets, non-punitive feedback) and fixed core game logic in the Blend It word-building activity.</li>
+    <li>Wrote the SRS, SDD, and test document; built a Python tool that checks every figure against the JUnit results and APK.</li>
   </ul>
 </div>
 

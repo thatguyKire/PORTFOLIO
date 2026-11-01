@@ -130,7 +130,7 @@ There is no test framework. Every change is checked against this list:
 ## Boundaries
 
 **Always:**
-- Keep the site and the resume in step. The projects, the order and the badges must match.
+- Keep the site and the resume in step. The badges and the order of the projects must match. The resume lists LabaLink, Seoul-Mate and PlayIT. InkHive is on the site only, by Erik's choice.
 - Rebuild `Bien_Resume.pdf` whenever `resume/resume.html` changes, and commit both files.
 - Run the content `grep` and the one-page check before committing.
 - Follow `CLAUDE.md`: short imperative commit messages and no trailers or attribution lines.
@@ -160,7 +160,7 @@ Any change is done only when all of these pass.
 1. The content `grep` prints nothing.
 2. The resume PDF is exactly 1 page.
 3. Every number on the site and the resume matches its source.
-4. The site and the resume list the same 4 projects in the same order and the same 3 badges.
+4. The site lists 4 projects and the resume lists 3 of them (all but InkHive) in the same order, with the same 3 badges.
 5. Each Credly link opens the right badge.
 6. Erik's phone number (0920 243 7737) is on the resume and in the site's contact section, as a `tel:` link.
 7. There are zero console errors on load and after scrolling to the bottom, in light and dark mode.
