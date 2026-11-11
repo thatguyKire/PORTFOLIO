@@ -117,3 +117,35 @@ Remaining:
 3. For a short stretch mid-swap, KIRE's letters overlap and read as one shape (they are one colour).
 4. The page runs about 13 screens on desktop and 16 on a phone.
 ```
+
+## Round 5 (2026-11-11, the PlayIT showcase)
+
+Erik: "Put the product like the app on the site, for example the PlayIT it needs to have a ShowCase".
+Gate after it: `lint.mjs` 0 FAIL 0 WARN. `inspect.mjs` 0 FAIL, 4 WARN at 1440, 768 and 390.
+`check-gaps.mjs` finds no blank stretch. No sideways scroll and no console errors from 320 to 1920px.
+
+```
+ROUND 5
+Added: under PlayIT's details, a Showcase of nine real screens in the order a child meets them,
+  each on a flat plate with a caption. The screens come from the app's own screenshot tests.
+Layout words by section: details=rows, and under PlayIT a strip that runs off both screen edges.
+Why a strip: it is how an app store shows a phone app's screens, it keeps each screen large enough
+  to read at every width, and it takes less than one screen. Nine screens wrapped onto rows would
+  run about two and a half screens on a phone.
+Found and fixed while building:
+1. On a phone the strip stretched the page to 2080px. The details' one column is now set to shrink.
+2. At 768 the inspector failed a caption that sat 6px from the screen edge. Only pictures are cut by
+   the edge now: a caption shows once its screen is wholly in view.
+3. A strip that waits clipped is not fetched. It waits clear instead, so the pictures in view are
+   on the page before the strip is reached (eight of the nine at 1440).
+Warnings, each defended:
+1. size-count, no-footage: unchanged from round 4.
+2. side-scroll (new): the strip scrolls sideways on purpose. The next screen is cut by the edge to
+   say so, two arrows sit beside the heading for a mouse, and it has its own bar.
+3. empty-middle: the band, as before, and now the details too. The meter counts the strip's screens
+   that wait off screen to the right as content at the edge; nothing on screen has a hole.
+Remaining:
+1. The rebuilt PlayIT screens (hero, stage, beside the note) are older than the real app. The one
+   beside the note shows a "tap the letter" Find it; the real step is "find the three pictures".
+2. LabaLink, Seoul-Mate and InkHive have no showcase yet: there are no real screens of them on disk.
+```

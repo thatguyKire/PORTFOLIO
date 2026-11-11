@@ -72,6 +72,11 @@ The work comes in two parts.
 - [x] Task 18: Scroll moments: the name pulls apart, the band answers the scroll, BLOCKED stamps, ERIK becomes KIRE
 - [x] Task 19: Gate and ship
 
+### Part 2, Phase 6: the real product
+- [x] Task 20: A Showcase of real screens under PlayIT's details
+- [ ] Task 21: Ship the showcase: Erik reviews it, then merge to `main` and check live
+- [ ] Task 22: Showcases for LabaLink, Seoul-Mate and InkHive, once each has real screens
+
 ## Risks and Mitigations
 
 | Risk | Impact | Mitigation |

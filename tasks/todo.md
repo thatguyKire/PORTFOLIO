@@ -384,3 +384,21 @@ Erik, 2026-10-22: "the design is kind feel like too empty like on the background
 ### Task 19: Gate and ship
 - [x] check.sh all PASS, no console errors, no sideways scroll from 320 to 1440, print still whole.
 - [x] Merge to `main`, push, confirm the live page (2026-10-22, `e8ce9bc`: served byte for byte, no console errors at 390 and 1440).
+
+## Phase 6: The real product
+
+Erik, 2026-11-11: "Put the product like the app on the site , for example the PlayIT it needs to have a ShowCase".
+
+### Task 20: A Showcase under PlayIT's details
+- [x] Nine real screens in the order a child meets them (Start, Map, Hear it, Say it, a mouth-shape cue, Find it, Blend it, Letter done, Parent view), from the app's own screenshot tests, as 548 × 1188 WebP in `assets/playit/`, 18 to 45 KB each, lazy-loaded.
+- [x] A strip that starts on the margin and runs off both screen edges; swipe, trackpad, arrow keys and its own bar scroll it, and two arrows move it a screenful for a mouse.
+- [x] Only pictures are cut by the screen edge: a caption shows once its screen is wholly in view. Every caption shows without the script.
+- [x] Each caption says only what its screen shows or what the app's code and tests confirm.
+- Verify: screenshots at 390, 768, 1366 and 1440, and in the light theme at 390 and 1440; no sideways scroll and no console errors from 320 to 1920; Tab reaches the arrows and the strip, and the arrow keys scroll it; reduced motion and no-JS show the finished strip; print shows all nine in rows of five; check.sh all PASS (inspector 0 FAIL, 4 WARN, defended in critique.md round 5).
+
+### Task 21: Ship the showcase
+- [ ] Erik has seen it and says merge.
+- [ ] Merge to `main`, push, confirm the live page serves the nine pictures.
+
+### Task 22: Showcases for the other three
+- [ ] LabaLink, Seoul-Mate and InkHive each get a Showcase once they have real screens. None are on disk yet.

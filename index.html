@@ -332,7 +332,8 @@
   .notes { padding-top: calc(var(--section) / 2); }
   .notes > h3 { margin-bottom: 1.5rem; }
   /* each project's details open with a bar across the full width */
-  .note { position: relative; display: grid; gap: 0.75rem; padding-block: 1.75rem 2.75rem; }
+  /* the one column is set to shrink: a showcase strip is wider than the screen and must scroll, not stretch it */
+  .note { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; padding-block: 1.75rem 2.75rem; }
   .note::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: currentColor; transform-origin: left; }
   .note dt { font-size: var(--step-head); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
   .note dd { margin: 0; }
@@ -351,6 +352,37 @@
   .also-list li + li { margin-top: 0.75rem; }
   @media (min-width: 900px) {
     .note { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); }
+  }
+  /* ---------- showcase: the real app, screen by screen, under a project's details ---------- */
+  /* The strip starts on the margin and runs off both screen edges. It scrolls on its own (swipe, trackpad,
+     arrow keys, its bar); with the script, two arrows move it a screenful for a mouse that only has a wheel.
+     Each screen sits on a flat plate a step above the ground, so a pale screen keeps its edge on paper. */
+  .show { grid-column: 1 / -1; margin-top: 1.75rem; }
+  .show-head { display: grid; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .show-head h4 { margin: 0; }
+  .show-say { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; }
+  .reel-nav { display: none; flex: none; gap: 2px; }
+  .reel-btn { display: inline-grid; place-items: center; width: 3rem; height: 3rem; background: var(--surface); transition: background-color var(--t-hover) ease, opacity var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+  .reel-btn svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; }
+  .reel-btn[aria-disabled="true"] { opacity: 0.4; cursor: default; }
+  .note .reel { display: flex; gap: clamp(0.75rem, 1.2vw, 1.25rem); margin: -0.25rem calc(-1 * var(--margin)) 0; padding: 0.25rem var(--margin) 0.75rem; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scroll-padding-inline: var(--margin); scrollbar-width: thin; scrollbar-color: var(--muted) transparent; }
+  .reel:focus-visible { outline-offset: -2px; }
+  /* a screen is never wider than the page between its margins, however large the reader's text is set:
+     its caption shows only when it is whole */
+  .note .reel li { flex: none; width: min(clamp(13.5rem, 17vw, 17rem), 100vw - 2 * var(--margin)); margin: 0; padding: 0.625rem 0.625rem 0.875rem; background: var(--surface); scroll-snap-align: start; }
+  .reel img { width: 100%; height: auto; }
+  .reel figcaption { margin-top: 0.75rem; font-size: var(--step-small); line-height: 1.45; }
+  .reel figcaption b { display: block; margin-bottom: 0.15rem; font-size: var(--step-body); font-weight: 600; line-height: 1.3; }
+  /* only pictures run off the screen: with the script a caption waits until its screen is wholly in view,
+     so no words are ever cut by the edge */
+  .reel.is-live figcaption { opacity: 0; visibility: hidden; transition: opacity var(--t-ui) ease, visibility var(--t-ui); }
+  .reel.is-live .is-whole figcaption { opacity: 1; visibility: visible; }
+  @media (hover: hover) and (pointer: fine) {
+    .js .reel-nav { display: flex; }
+    .reel-btn:not([aria-disabled="true"]):hover { background: var(--surface-2); }
+  }
+  @media (min-width: 900px) {
+    .show-head { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); align-items: end; }
   }
   /* ---------- proof: test names running off both edges, then the live thing ---------- */
   .proof { padding-bottom: calc(var(--section) / 2); }
@@ -593,6 +625,10 @@
     .motion [data-in="open"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 1100ms var(--ease-in-out) calc(var(--i, 0) * 80ms), opacity 150ms ease calc(var(--i, 0) * 80ms); }
     .motion [data-in="open"].is-in .crop { transform: none; transition: transform 1300ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
     .motion [data-in="open"].is-in .c-pill, .motion [data-in="open"].is-in .c-tiles i:not(.off) { animation: stamp 380ms var(--ease-out) 900ms both; }
+    /* a showcase strip opens like a shutter too. It waits clear rather than clipped: a clipped picture is
+       not fetched, and these should be on the page before the strip is reached */
+    .motion [data-in="reel"] { opacity: 0; transform: none; }
+    .motion [data-in="reel"].is-in { opacity: 1; animation: pen 1100ms var(--ease-in-out) calc(var(--i, 0) * 80ms) both; transition: opacity 150ms ease calc(var(--i, 0) * 80ms); }
     /* a project's bar draws across from the left as its details arrive (the script marks the group .seen) */
     .motion .note::before { transform: scaleX(0); }
     .motion .note.seen::before { transform: none; transition: transform 1100ms var(--ease-expo); }
@@ -618,7 +654,7 @@
     .menu.is-open .menu-links .rise { transform: none; transition: transform 900ms var(--ease-expo) calc(200ms + var(--i, 0) * 50ms); }
 
     /* press */
-    .theme:active, .menu-btn:active, .menu-close:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active { transform: scale(0.97); }
+    .theme:active, .menu-btn:active, .menu-close:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active, .reel-btn:not([aria-disabled="true"]):active { transform: scale(0.97); }
     .bars summary:active { transform: scale(0.99); }
   }
   /* reduced motion keeps colour and opacity changes and drops the rest */
@@ -669,6 +705,11 @@
     .nav .btn { background: none; color: var(--ink); padding: 0; }
     .nav-links a { background: none; }
     .note::before { transform: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    /* the showcase strip unrolls into rows of five, every screen on the page */
+    .note .reel { flex-wrap: wrap; gap: 2.5%; row-gap: 1rem; margin-inline: 0; padding-inline: 0; overflow: visible; }
+    .note .reel li { width: 18%; break-inside: avoid; }
+    .reel figcaption { opacity: 1 !important; visibility: visible !important; }
+    .js .reel-nav { display: none; }
     .contact, .foot { background: none; color: var(--ink); }
   }
 </style>
@@ -938,6 +979,29 @@
       </ul>
       <p class="note-stack">Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk speech recognition</p>
       <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a>
+      </dd>
+      <dd class="show" id="show-play">
+        <div class="show-head">
+          <h4 class="row-word">Showcase</h4>
+          <div class="show-say">
+            <p>Nine screens from the real app, in the order a child meets them. Each was rendered from the app's code by its own screenshot tests.</p>
+            <div class="reel-nav">
+              <button class="reel-btn" type="button" aria-label="Earlier screens"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14.5 8h-12M7 3.5 2.5 8 7 12.5"/></svg></button>
+              <button class="reel-btn" type="button" aria-label="Later screens"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 8h12M9 3.5 13.5 8 9 12.5"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <ol class="reel" tabindex="0" aria-label="PlayIT screens, in the order a child meets them">
+          <li><figure><img src="assets/playit/start.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's opening screen: the PlayIT logo, the line Mabuhay! Ready to learn to read?, Lily the tarsier and a Start button."><figcaption><b>Start</b> Lily, a Philippine tarsier, guides the child through every lesson.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/map.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's map of Chapter 1, Chocolate Hills: the letter M is open, S and A are locked, and Blend 1 waits further down the path."><figcaption><b>Map</b> Chapter 1, Chocolate Hills. Each letter opens the next. The long name is a layout test.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/hear-it.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Hear it step: a mouse above the letters Mm, the words M is for Mouse, and Sound: /m/."><figcaption><b>Hear it</b> The letter, a key word, and its sound written out as a caption.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/say-it.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Say it step: the prompt Say the word Mouse above a large microphone button."><figcaption><b>Say it</b> The child says the word and the phone checks it, with no internet.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/mouth-cue.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Say it step after two misses: a drawing of closed lips beside a Watch my lips button."><figcaption><b>A mouth-shape cue</b> After two misses, Lily shows how the lips make the sound.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/find-it.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Find it step: five picture cards, Map, Mom, Mouse, Ball and Nest, and a counter at 0 of 3."><figcaption><b>Find it</b> Pick the three pictures that start with the sound.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/blend-it.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Blend it game: three empty slots above the tiles M, A and S, under a picture of a boy."><figcaption><b>Blend it</b> Build the word from tiles. They are never dealt in answer order.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/letter-done.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Letter M Complete screen: one of three stars earned."><figcaption><b>Letter done</b> Stars for finishing a letter, then on to the next.</figcaption></figure></li>
+          <li><figure><img src="assets/playit/parent-view.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's parent screen, How your child is doing: three children with their progress, and a grid of letters marked as learned."><figcaption><b>Parent view</b> How each child is doing, in plain words, letter by letter.</figcaption></figure></li>
+        </ol>
       </dd>
     </div>
     <div class="note" id="note-ink">
@@ -1347,6 +1411,35 @@
       o.r[1].style.transform = 'translate3d(0,' + (f * 30) + 'svh,0)';
     });
   }
+
+  /* ---------- showcase: a strip of real screens that runs off the screen edges ---------- */
+  // The strip scrolls by itself (swipe, trackpad, arrow keys, its own bar); the two arrows move it a
+  // screenful for a mouse that only has a wheel. Each screen is watched for being wholly in view, 16px
+  // clear of the screen edges: its caption shows only then, so words are never cut by the edge, and an
+  // arrow rests while the first or the last screen is whole. The strip needs no scroll listener of its own.
+  $$('.show').forEach(function (show) {
+    var reel = $('.reel', show), btns = $$('.reel-btn', show), items = $$('li', reel), last = items.length - 1;
+    if (last < 1) return;
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () {
+        if (b.getAttribute('aria-disabled') === 'true') return;
+        // one screen and its gap, times the screens that fit whole between the margins
+        var step = items[1].offsetLeft - items[0].offsetLeft, gap = step - items[0].offsetWidth;
+        var room = reel.clientWidth - 2 * parseFloat(getComputedStyle(reel).paddingLeft);
+        reel.scrollBy({ left: (i ? 1 : -1) * Math.max(1, Math.floor((room + gap) / step)) * step, behavior: RM ? 'auto' : 'smooth' });
+      });
+    });
+    if (!('IntersectionObserver' in window)) return;
+    var whole = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var is = e.intersectionRatio > 0.98, at = items.indexOf(e.target);
+        e.target.classList.toggle('is-whole', is);
+        if (btns.length > 1 && (at === 0 || at === last)) btns[at ? 1 : 0].setAttribute('aria-disabled', String(is));
+      });
+    }, { root: reel, rootMargin: '0px -16px', threshold: [0.98, 1] });
+    items.forEach(function (li) { whole.observe(li); });
+    reel.classList.add('is-live');
+  });
 
   /* ---------- proof band: a steady reading speed whatever the names' length ---------- */
   var bandTrack = $('.band-track');
@@ -1842,9 +1935,9 @@
   /* ---------- entrances: each section's parts arrive once, in reading order, each in its own manner ---------- */
   // A group is watched; when its top passes 90% of the screen its parts arrive, 80ms apart and four steps
   // at most. A part is an element, or [element, manner]: "line" rises from behind its own baseline; "chars"
-  // and "words" rise a letter or a word at a time; "open" opens a picture like a shutter; "bar" slides out
-  // from the left; "drop" opens a panel from the top; no manner rises 24px. The marks come off once they
-  // have played, so the page is left exactly as it was built.
+  // and "words" rise a letter or a word at a time; "open" opens a picture like a shutter, and "reel" a strip
+  // of them; "bar" slides out from the left; "drop" opens a panel from the top; no manner rises 24px. The
+  // marks come off once they have played, so the page is left exactly as it was built.
   if (!RM && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -1910,6 +2003,8 @@
     enter($('.work-head'), [[$('#work-h'), 'chars'], $('.work-head p')]);
     enter($('.notes > h3'), [[$('.notes > h3'), 'chars']]);
     $$('.note').forEach(function (n) { enter(n, [[$('.note-name', n) || $('dt', n), 'line'], [$('.note-shot', n), 'open'], $('dd', n)]); });
+    // a showcase arrives on its own, when it is reached: its strip of screens opens like a shutter
+    $$('.show').forEach(function (s) { enter(s, [[$('h4', s), 'chars'], $('.show-say', s), [$('.reel', s), 'reel']]); });
     enter($('.band-note'), [$('.band-note')]);
     enter($('.try-head'), [[$('#proof-h'), 'words'], $('.try-head p')]);
     enter(attackList, $$('li', attackList));
