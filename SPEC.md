@@ -69,7 +69,7 @@ assets/             → pictures the site shows (added by the redesign)
 resume/resume.html  → resume source (Letter size, print CSS)
 Bien_Resume.pdf     → generated from resume.html; commit it with every resume change
 README.md           → what each file is
-CLAUDE.md           → git commit and PR rules
+CLAUDE.md           → how to build (clean and modular, stop and say so if it needs a refactor), then git commit and PR rules
 SPEC.md             → this file: the rules for every change
 SPEC-redesign.md    → the new look and motion
 check.sh            → runs every check: bash check.sh (or --quick)
