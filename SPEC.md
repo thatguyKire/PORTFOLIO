@@ -118,7 +118,7 @@ There is no test framework. Every change is checked against this list:
 | Level | What | How |
 |---|---|---|
 | Content | Banned words and links are absent from the site and the resume | the `grep` command above |
-| Content | Numbers match their sources | 34 (LabaLink) + 127 (InkHive) + 108 (Seoul-Mate) = 269. Project and badge counts match. |
+| Content | Numbers match their sources | 41 (LabaLink) + 127 (InkHive) + 132 (Seoul-Mate) = 300. Project and badge counts match. |
 | Runtime | No console errors | headless Chrome or DevTools, page loaded and scrolled to the bottom |
 | Layout | No sideways scroll and nothing clipped | widths 375, 768 and 1280px, and a 1366×768 laptop |
 | Themes | Dark by default, also when the system is light. The toggle switches to light and remembers it. Both are readable. | load with the system in light and in dark, then use the toggle and reload |
@@ -130,7 +130,7 @@ There is no test framework. Every change is checked against this list:
 ## Boundaries
 
 **Always:**
-- Keep the site and the resume in step. The badges and the order of the projects must match. The resume lists LabaLink, Seoul-Mate and PlayIT. InkHive is on the site only, by Erik's choice.
+- Keep the site and the resume in step. The badges and the order of the projects must match. The resume lists PlayIT, LabaLink and Seoul-Mate, in that order; the site adds InkHive last. InkHive is on the site only, by Erik's choice.
 - Rebuild `Bien_Resume.pdf` whenever `resume/resume.html` changes, and commit both files.
 - Run the content `grep` and the one-page check before committing.
 - Follow `CLAUDE.md`: short imperative commit messages and no trailers or attribution lines.
