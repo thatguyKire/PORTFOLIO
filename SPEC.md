@@ -11,7 +11,7 @@ Give recruiters and internship reviewers one place to see what Erik builds, prov
 
 - **Who reads it:** recruiters and internship supervisors, often on a phone, often for under a minute. Some will print the page or download the resume.
 - **What they should leave with:**
-  - Erik ships tested, security-minded full-stack and Android apps.
+  - Erik builds accessible, tested full-stack and Android apps that work for the people who use them.
   - The projects and numbers are real and can be checked.
   - How to reach him.
 - **Two outputs, kept in sync:**
