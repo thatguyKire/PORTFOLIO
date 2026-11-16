@@ -99,7 +99,7 @@
               <div class="ui-top">
                 <div class="ui-bar"><b>PlayIT</b><span class="ui-stars"><i></i><i></i><i></i></span></div>
                 <div class="ui-steps"><i>Hear it</i><i class="on">Say it</i><i>Find it</i><i>Blend it</i></div>
-                <div class="ui-letter"><b>m</b><span><b>/m/ as in mango</b><span class="ui-sub">Sound caption</span></span></div>
+                <div class="ui-letter"><b>m</b><span><b>/m/ as in mouse</b><span class="ui-sub">Sound caption</span></span></div>
               </div>
               <div class="ui-bot">
                 <div class="ui-row"><span>Lips together, then hum<small>Mouth-shape cue</small></span></div>
@@ -148,17 +148,17 @@
                 <div class="ui-row"><span>Washer 03</span><span data-clock>42:18</span><i class="ui-pill">Active</i></div>
               </div>
               <div class="ui-bot">
-                <div class="ui-bar"><b>Live</b><span>WebSocket · STOMP</span></div>
+                <div class="ui-bar"><b>Live</b><span>WebSocket</span></div>
                 <div class="ui-feed">
                   <span>Booking started on Washer 03</span>
-                  <span>Wallet +₱60.00 · Stripe webhook verified</span>
+                  <span>Wallet topped up +₱60.00</span>
                   <span>Dryer 01 finished</span>
                 </div>
               </div>
             </div>
           </div></div>
           <h3 class="tear wide" id="t-laba"><span class="half l">Laba</span><span class="half r">Link</span></h3>
-          <p class="layer-meta">Laundry booking with a Stripe wallet. Solo build, v1.0.0, 41 tests.<br><a class="link" href="#note-laba">The details</a> · <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a></p>
+          <p class="layer-meta">Laundry booking with machines started by QR code. Solo build, v1.0.0, 41 tests.<br><a class="link" href="#note-laba">The details</a> · <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a></p>
         </article>
 
         <article class="layer" aria-labelledby="t-seoul">
@@ -171,7 +171,7 @@
                 <div class="ui-row"><span>Honey Butter Chip</span><i class="ui-tg"></i></div>
               </div>
               <div class="ui-bot">
-                <div class="ui-row"><span>Saved<small>Open menus update in seconds</small></span><i class="ui-pill">Realtime</i></div>
+                <div class="ui-row"><span>Saved<small>Open menus update in seconds</small></span><i class="ui-pill">Live</i></div>
                 <div class="ui-row"><span>Two-factor on<small>Session ends after 60 minutes idle</small></span></div>
               </div>
             </div>
@@ -232,9 +232,9 @@
       <dl>
     <div class="note" id="note-play">
       <dt><span class="note-name">PlayIT</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
-        <span class="c-top"><span><b>PlayIT</b> · Find it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
-        <span>Tap the letter that says <b>/m/</b></span>
-        <span class="c-tiles"><i class="off">s</i><i>m</i><i class="off">a</i></span>
+        <span class="c-top"><span><b>PlayIT</b> · Hear it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
+        <span class="c-big">Mm</span>
+        <span>M is for Mouse · Sound: <b>/m/</b></span>
       </span></span></dt>
       <dd>
       <p>Offline English phonics app for Grade 1 learners · Capstone, team of 5 · IT411</p>
@@ -275,16 +275,16 @@
       <dt><span class="note-name">LabaLink</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
         <span class="c-top"><span><b>LabaLink</b> · Wallet</span><i class="c-pill">Paid</i></span>
         <span class="c-big">₱300.00</span>
-        <span class="c-item"><span>Top-up +₱200.00<small>Signed by Stripe</small></span></span>
+        <span class="c-item"><span>Top-up +₱200.00<small>Added to the wallet</small></span></span>
       </span></span></dt>
       <dd>
       <p>Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
       <ul>
         <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST and WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
-        <li><strong>Security-first v1.0.0</strong>: JWT with role and ownership checks, verified Google sign-in, lockout, and a privacy policy.</li>
-        <li><strong>Payments that can't be faked</strong>: Stripe Checkout and signed webhooks, and the server won't start with a live key. <strong>41 tests</strong> on real PostgreSQL.</li>
+        <li><strong>Google sign-in fixed for v1.0.0</strong>: the server verifies Google's signed ID token before anyone gets in.</li>
+        <li><strong>41 backend tests</strong> on real PostgreSQL, a privacy policy under the Data Privacy Act, and the SRS and SDD.</li>
       </ul>
-      <p class="note-stack">Java, Spring Boot, Kotlin, React, TypeScript, PostgreSQL, Stripe</p>
+      <p class="note-stack">Spring Boot, Kotlin, React, TypeScript, PostgreSQL</p>
       <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
       </dd>
     </div>
@@ -299,9 +299,9 @@
       <ul>
         <li><strong>Stock changes reach open pages within seconds</strong>, in English, Filipino and Korean, with search, store hours and ordering through Messenger.</li>
         <li><strong>Security first</strong>: Row Level Security on every table, staff login with optional two-factor, photo uploads checked by content and stripped of location data.</li>
-        <li><strong>Tested at three levels</strong>: 132 unit tests, 131 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all in CI.</li>
+        <li><strong>132 unit tests</strong>, all passing.</li>
       </ul>
-      <p class="note-stack">React 19, TypeScript, Supabase, PostgreSQL RLS, Edge Functions, Vitest, GitHub Actions</p>
+      <p class="note-stack">React 19, TypeScript, Supabase, PostgreSQL RLS</p>
       <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a>
       </dd>
     </div>
@@ -316,7 +316,7 @@
       <ul>
         <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
         <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
-        <li><strong>Launch-ready</strong>: brute-force lockout, upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
+        <li><strong>Launch-ready</strong>: upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
       </ul>
       <p class="note-stack">Python, Django 5.2, WebSockets, SQLite, PostgreSQL, JavaScript</p>
       <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a>
@@ -326,7 +326,6 @@
       <dt>Also built</dt>
       <dd>
       <ul class="also-list">
-        <li><strong>TaskFlow MVC</strong>: a zero-dependency PHP 8.3 MVC framework built from scratch, with a front controller, repositories, and a task-manager app on top. <span class="muted">PHP, SQLite</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/Hotel_Management_System" target="_blank" rel="noopener"><strong>Hotel Management System</strong></a>: a Python app for managing hotel rooms, guests, and reservations. <span class="muted">Python</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/Blog_Platform" target="_blank" rel="noopener"><strong>Blog Platform</strong></a>: a Python blogging platform with posts and user accounts. <span class="muted">Python</span></li>
         <li><a class="link" href="https://github.com/thatguyKire/MangaReader" target="_blank" rel="noopener"><strong>MangaReader</strong></a>: a practice website built with only HTML and CSS. <span class="muted">HTML, CSS</span></li>
@@ -343,11 +342,7 @@
         <ul aria-label="Some of the real test names">
           <li>bookingRequiresTheRealQrCode</li>
           <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
-          <li>switches language without a reload and remembers the choice</li>
-          <li>walletIsCreditedOnlyOnceAndOnlyWhenPaid</li>
-          <li>test_join_code_scanning_blocked</li>
           <li>refuses photos over 5 MB before reading them</li>
-          <li>repeatedFailedLoginsLockTheAccount</li>
           <li>test_png_named_jpg_rejected</li>
           <li>keeps the last good menu when a reload fails</li>
           <li>errorsNeverLeakInternals</li>
@@ -355,42 +350,16 @@
         <ul aria-hidden="true">
           <li>bookingRequiresTheRealQrCode</li>
           <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
-          <li>switches language without a reload and remembers the choice</li>
-          <li>walletIsCreditedOnlyOnceAndOnlyWhenPaid</li>
-          <li>test_join_code_scanning_blocked</li>
           <li>refuses photos over 5 MB before reading them</li>
-          <li>repeatedFailedLoginsLockTheAccount</li>
           <li>test_png_named_jpg_rejected</li>
           <li>keeps the last good menu when a reload fails</li>
           <li>errorsNeverLeakInternals</li>
         </ul>
       </div>
     </div>
-    <div class="wrap">
+    <div class="wrap proof-foot">
+      <h2 class="head" id="proof-h">Proof</h2>
       <p class="band-note">Real names from the 300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass.</p>
-
-      <div class="try">
-        <div class="try-head">
-          <h2 class="head" id="proof-h">Try to break it</h2>
-          <p>Pick an attack. Each one is stopped by code I wrote, and a test proves it on every change.</p>
-        </div>
-        <ul class="attacks" id="attacks">
-          <li data-project="LabaLink"><strong class="atk-name">Send a tampered login token</strong> <span class="atk-guard">The API refuses tampered and revoked tokens.</span> <span class="muted">LabaLink · <code>tamperedAndRevokedTokensAreRejected</code> · passed</span></li>
-          <li data-project="InkHive"><strong class="atk-name">Keep guessing a password</strong> <span class="atk-guard">After five failures the account locks, even if the next guess is right.</span> <span class="muted">InkHive · <code>test_lockout_after_five_failures_even_with_right_password</code> · passed</span></li>
-          <li data-project="InkHive"><strong class="atk-name">Upload a web page renamed as a photo</strong> <span class="atk-guard">Uploads are checked by what they contain, not by their name.</span> <span class="muted">InkHive · <code>test_html_disguised_as_image_rejected</code> · passed</span></li>
-          <li data-project="LabaLink"><strong class="atk-name">Fake a Stripe payment</strong> <span class="atk-guard">A webhook without Stripe's signature is rejected, so no wallet is credited.</span> <span class="muted">LabaLink · <code>forgedWebhooksAreRejected</code> · passed</span></li>
-          <li data-project="InkHive"><strong class="atk-name">Flood the whiteboard with messages</strong> <span class="atk-guard">Messages over the limit are dropped and malformed ones ignored.</span> <span class="muted">InkHive · <code>test_flooding_is_capped_and_garbage_ignored</code> · passed</span></li>
-          <li data-project="InkHive"><strong class="atk-name">Sign up as an admin</strong> <span class="atk-guard">Sign-up can't create an admin account.</span> <span class="muted">InkHive · <code>test_cannot_sign_up_as_admin</code> · passed</span></li>
-          <li data-project="Seoul-Mate"><strong class="atk-name">Type SQL into the menu search</strong> <span class="atk-guard">Search treats markup and SQL as plain text.</span> <span class="muted">Seoul-Mate · <code>treats markup and SQL as plain text that matches nothing</code> · passed</span></li>
-        </ul>
-        <div class="verdict" id="verdict" hidden>
-          <p class="v-status wide" aria-hidden="true"><span>Blocked</span></p>
-          <p class="v-try"></p>
-          <p class="v-guard lead"></p>
-          <p class="v-proof">Proved by <code data-v="test"></code> in <span data-v="project"></span>. Passed.</p>
-          <p class="sr" aria-live="polite" data-v="say"></p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -404,12 +373,10 @@
         <details open>
           <summary>Languages</summary>
           <dl>
-            <dt>Java</dt><dd>LabaLink</dd>
             <dt>Kotlin</dt><dd>LabaLink, PlayIT</dd>
             <dt>Python</dt><dd>InkHive, PlayIT</dd>
             <dt>TypeScript</dt><dd>LabaLink, Seoul-Mate</dd>
             <dt>JavaScript</dt><dd>InkHive, LabaLink</dd>
-            <dt>PHP</dt><dd>TaskFlow MVC, coursework</dd>
             <dt>SQL</dt><dd>All four</dd>
             <dt>HTML and CSS</dt><dd>InkHive, LabaLink, Seoul-Mate</dd>
           </dl>
@@ -418,12 +385,10 @@
           <summary>Backend</summary>
           <dl>
             <dt>Spring Boot</dt><dd>LabaLink</dd>
-            <dt>Spring Security</dt><dd>LabaLink</dd>
-            <dt>JWT and OAuth2</dt><dd>LabaLink</dd>
+            <dt>OAuth2 (Google sign-in)</dt><dd>LabaLink</dd>
             <dt>Django</dt><dd>InkHive</dd>
             <dt>REST APIs</dt><dd>LabaLink, InkHive</dd>
-            <dt>WebSocket and Realtime</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
-            <dt>Edge Functions</dt><dd>Seoul-Mate</dd>
+            <dt>WebSocket</dt><dd>LabaLink, InkHive</dd>
           </dl>
         </details>
         <details>
@@ -435,7 +400,6 @@
             <dt>Hilt</dt><dd>PlayIT</dd>
             <dt>React</dt><dd>LabaLink, Seoul-Mate</dd>
             <dt>Tailwind CSS</dt><dd>LabaLink</dd>
-            <dt>i18n in English, Filipino and Korean</dt><dd>Seoul-Mate</dd>
             <dt>Accessibility</dt><dd>Seoul-Mate, PlayIT</dd>
           </dl>
         </details>
@@ -453,7 +417,6 @@
           <dl>
             <dt>AWS</dt><dd>AWS Academy badge</dd>
             <dt>Git and GitHub</dt><dd>All four</dd>
-            <dt>GitHub Actions CI</dt><dd>Seoul-Mate</dd>
             <dt>Speech recognition</dt><dd>PlayIT</dd>
             <dt>AI and ML foundations</dt><dd>IBM SkillsBuild badge</dd>
             <dt>Generative AI with Amazon Bedrock</dt><dd>AWS Academy badge</dd>
@@ -462,9 +425,7 @@
         <details>
           <summary>Security and design</summary>
           <dl>
-            <dt>Auth hardening</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
             <dt>Automated testing</dt><dd>All four</dd>
-            <dt>End-to-end tests</dt><dd>Seoul-Mate</dd>
             <dt>UML and ERD</dt><dd>All four</dd>
             <dt>SRS and SDD</dt><dd>All four</dd>
             <dt>Data privacy (DPA 2012)</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
@@ -485,7 +446,7 @@
             <div><dt>Graduating</dt><dd>2027</dd></div>
           </dl>
         </div>
-        <p class="about-para">I'm a 4th-year IT student. I build full-stack web and Android apps, from Spring Boot, Django and Supabase backends to Kotlin and React clients, and I write the tests and threat models along with the features. I've led a team of three, built two apps on my own, and earned three training badges in cloud and AI.</p>
+        <p class="about-para">I'm a 4th-year IT student. I build full-stack web and Android apps, from Spring Boot, Django and Supabase backends to Kotlin and React clients, and I write the tests along with the features. I've led a team of three, built two apps on my own, and earned three training badges in cloud and AI.</p>
       </div>
 
       <div class="about-row">

@@ -368,7 +368,7 @@ html:has(.menu[open]) { overflow: hidden; }
 @media (min-width: 900px) {
   .show-head { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: var(--gutter); align-items: end; }
 }
-/* ---------- proof: test names running off both edges, then the live thing ---------- */
+/* ---------- proof: test names running off both edges ---------- */
 .proof { padding-bottom: calc(var(--section) / 2); }
 .band { height: 34vh; min-height: 11rem; display: flex; align-items: center; overflow: hidden; }
 .band-track { display: flex; width: max-content; animation: band var(--band-dur, 160s) linear infinite; }
@@ -376,45 +376,11 @@ html:has(.menu[open]) { overflow: hidden; }
 /* a solid round dot a third of the cap height between names */
 .band li::after { content: ""; display: inline-block; width: 0.24em; height: 0.24em; margin: 0 0.45em; vertical-align: 0.24em; border-radius: 50%; background: currentColor; }
 @keyframes band { to { transform: translateX(-50%); } }
-.band-note { margin-top: 1.25rem; }
-.try { margin-top: calc(var(--section) / 2); display: grid; gap: 1.5rem 2.5rem; }
-.try-head p { margin-top: 0.75rem; }
-.attacks { display: grid; gap: 1rem; }
-.attacks li { background: var(--surface); padding: 1rem 1.25rem; }
-.attacks code { overflow-wrap: anywhere; }
-/* with JS the list becomes a set of choices and the verdict panel shows the result */
-.attacks.is-live { gap: 0; }
-.attacks.is-live li { background: none; padding: 0; }
-.atk { display: flex; align-items: baseline; width: 100%; text-align: left; padding: 0.5rem 0; min-height: 2.75rem; font-size: var(--step-lead); line-height: 1.25; color: var(--muted); transition: color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
-/* the chosen attack's square grows in from its centre */
-.atk::before { content: ""; flex: none; width: 0.42em; height: 0.42em; margin-right: 0.55em; background: currentColor; opacity: 0; transform: scale(0.5); transition: opacity var(--t-hover) ease, transform var(--t-ui) var(--ease-out); }
-.atk[aria-pressed="true"] { color: var(--ink); }
-.atk[aria-pressed="true"]::before { opacity: 1; transform: none; }
-@media (hover: hover) and (pointer: fine) { .atk:hover { color: var(--ink); text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.18em; } }
-.verdict { background: var(--surface); padding: clamp(1.5rem, 3vw, 3rem); display: grid; align-content: start; gap: 1.25rem; container-type: inline-size; }
-.v-try { color: var(--muted); }
-/* "BLOCKED" in the wide cut is about 6.4em long; 15cqw keeps it inside the panel at any width */
-.v-status { font-size: min(15cqw, 7rem); }
-/* While an attack is tried, BLOCKED drops behind its own baseline; when the guard holds it rises again. */
-.v-status { clip-path: inset(-0.5em -0.5em 0 -0.5em); }
-.v-status span { display: inline-block; transition: transform 420ms var(--ease-out); }
-.verdict.is-trying .v-status span { transform: translate3d(0, 105%, 0); transition: transform 160ms var(--ease-exit); }
-.verdict.is-trying .v-guard, .verdict.is-trying .v-proof { opacity: 0; transform: translate3d(0, 8px, 0); }
-/* the attempt is struck through once the guard holds */
-.v-try { text-decoration: line-through; text-decoration-thickness: 0.08em; transition: text-decoration-color 300ms ease 140ms; }
-.verdict.is-trying .v-try { text-decoration-color: transparent; transition: none; }
-.v-guard, .v-proof { transition: opacity 0.3s ease, transform 420ms var(--ease-out); }
-.v-proof code { font-weight: 600; }
-/* desktop: heading row, the attacks as one wrapping line of choices, then the verdict at full width */
+.proof-foot { display: grid; gap: 0.75rem; margin-top: 1.25rem; }
+.band-note { margin: 0; }
 @media (min-width: 900px) {
-  .try-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--gutter); align-items: end; }
-  .try-head p { margin-top: 0; }
-  .attacks.is-live { display: flex; flex-wrap: wrap; gap: 0 2.25rem; }
-  .attacks.is-live .atk { width: auto; }
-  .verdict { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: 3rem; align-items: center; }
-  .v-status { grid-row: 1 / span 3; font-size: 7.8cqw; }
+  .proof-foot { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: var(--gutter); align-items: end; }
 }
-@media (max-width: 899px) { .verdict { order: -1; } .try-head { order: -2; } }
 @media (max-width: 759px) { .band { height: 22vh; } .band ul { font-size: 15vw; } }
 @media (prefers-reduced-motion: reduce) { .band-track { animation-play-state: paused; } }
 /* ---------- skills: one giant word filling its column, filled bars that open in place ---------- */
@@ -596,13 +562,12 @@ html:has(.menu[open]) { overflow: hidden; }
   .motion .badge[data-in] img { transform: scale(0.94); }
   .motion .badge[data-in].is-in img { transform: none; transition: transform 1100ms var(--ease-expo) calc(var(--i, 0) * 80ms); }
 
-  /* the manner follows the part. A short heading rises a letter at a time from behind its baseline,
-     30ms apart; from four words it rises a word at a time. Each word stays whole on its line. */
+  /* the manner follows the part. A heading rises a letter at a time from behind its baseline, 30ms
+     apart. Each word stays whole on its line. */
   .wd { display: inline-block; white-space: nowrap; }
-  .motion [data-in="chars"], .motion [data-in="words"] { opacity: 1; transform: none; clip-path: inset(-0.5em -0.5em -0.3em -0.5em); }
-  .motion [data-in="chars"] .ch, .motion [data-in="words"] .ch { display: inline-block; transform: translate3d(0, calc(100% + 0.35em), 0); }
+  .motion [data-in="chars"] { opacity: 1; transform: none; clip-path: inset(-0.5em -0.5em -0.3em -0.5em); }
+  .motion [data-in="chars"] .ch { display: inline-block; transform: translate3d(0, calc(100% + 0.35em), 0); }
   .motion [data-in="chars"].is-in .ch { transform: none; transition: transform 800ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 30ms); }
-  .motion [data-in="words"].is-in .ch { transform: none; transition: transform 900ms var(--ease-expo) calc(var(--i, 0) * 80ms + var(--c) * 70ms); }
   /* a project's screen opens like a shutter while the app inside settles, then its tags and tiles stamp */
   .motion [data-in="open"] { opacity: 0; transform: none; clip-path: inset(0 100% 0 0); }
   .motion [data-in="open"] .crop { transform: scale(1.12); }
@@ -619,16 +584,9 @@ html:has(.menu[open]) { overflow: hidden; }
   /* a skill bar slides out from the left */
   .motion [data-in="bar"] { opacity: 0; transform: none; clip-path: inset(0 100% 0 0); }
   .motion [data-in="bar"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 900ms var(--ease-expo) calc(var(--i, 0) * 70ms), opacity 150ms ease calc(var(--i, 0) * 70ms); }
-  /* the verdict panel opens from the top */
-  .motion [data-in="drop"] { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
-  .motion [data-in="drop"].is-in { opacity: 1; clip-path: inset(0); transition: clip-path 1000ms var(--ease-in-out) calc(var(--i, 0) * 80ms), opacity 150ms ease calc(var(--i, 0) * 80ms); }
   /* About's paragraph: words wait at 45% ink and fill in reading order as it rises (the script marks them) */
   .fill .w { opacity: 0.45; transition: opacity 300ms ease; }
   .fill .w.on { opacity: 1; }
-
-  /* when the guard holds, BLOCKED stamps down from a larger size (only after a visitor's own pick) */
-  .verdict.is-landed .v-status { clip-path: none; }
-  .verdict.is-landed .v-status span { transition: none; animation: slam 340ms var(--ease-out) both; }
 
   /* the menu drops from the bar and lifts away the way it came; its sections rise from behind their
      baselines, 50ms apart */
@@ -638,13 +596,13 @@ html:has(.menu[open]) { overflow: hidden; }
   .menu.is-open .menu-links .rise { transform: none; transition: transform 900ms var(--ease-expo) calc(200ms + var(--i, 0) * 50ms); }
 
   /* press */
-  .theme:active, .menu-btn:active, .menu-close:active, .nav-links a:active, .corners a:active, .corners button:active, .atk:active, .reel-btn:not([aria-disabled="true"]):active { transform: scale(0.97); }
+  .theme:active, .menu-btn:active, .menu-close:active, .nav-links a:active, .corners a:active, .corners button:active, .reel-btn:not([aria-disabled="true"]):active { transform: scale(0.97); }
   .bars summary:active { transform: scale(0.99); }
 }
 /* reduced motion keeps colour and opacity changes and drops the rest */
 @media (prefers-reduced-motion: reduce) {
   .btn:active { transform: none; }
-  .btn-roll > span, .atk::before, .bars summary::after, .v-status span, .v-guard, .v-proof, .theme .tg::after, .btn-arrow { transition: none; }
+  .btn-roll > span, .bars summary::after, .theme .tg::after, .btn-arrow { transition: none; }
 }
 /* the bars open to their real height where the browser can animate to auto */
 @supports (interpolate-size: allow-keywords) {
@@ -662,7 +620,6 @@ html:has(.menu[open]) { overflow: hidden; }
 @keyframes stamp { from { opacity: 0; transform: scale(1.3); } }
 @keyframes pen { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
 @keyframes fill { from { transform: scaleX(0); } }
-@keyframes slam { from { opacity: 0; transform: scale(1.25); } }
 @keyframes tg-ground { from { background: var(--ink); } }
 @keyframes tg-knob { from { transform: none; background: var(--bg); } }
 @keyframes drop { from { opacity: 0; transform: translate3d(0, -0.8em, 0); } }

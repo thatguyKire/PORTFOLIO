@@ -57,22 +57,6 @@ Why this one over the other two dealt options:
 
 **Competitor test:** put any other student's name in that sentence and it stops working. The reversal only belongs to Erik.
 
-**The one live thing: "Try to break it."** The site's main claim is that Erik tests his apps by attacking them.
-- The visitor picks an attack. The page shows the guard that stops it and the real test that proves it, with its real name, its project and "passed".
-- Every attack maps to a real test. These names are already in the current page's data, copied from the repos:
-
-| Attack | Project | Real test |
-|---|---|---|
-| Send a tampered login token | LabaLink | `tamperedAndRevokedTokensAreRejected` |
-| Keep guessing a password | InkHive | `test_lockout_after_five_failures_even_with_right_password` |
-| Upload a web page renamed as a photo | InkHive | `test_html_disguised_as_image_rejected` |
-| Fake a Stripe payment | LabaLink | `forgedWebhooksAreRejected` |
-| Flood the whiteboard with messages | InkHive | `test_flooding_is_capped_and_garbage_ignored` |
-| Sign up as an admin | InkHive | `test_cannot_sign_up_as_admin` |
-| Type SQL into the menu search | Seoul-Mate | "treats markup and SQL as plain text that matches nothing" |
-
-- It works with a thumb on a phone. Without JavaScript it shows as a plain list.
-
 ## The page, claim by claim
 
 Each section exists because it proves one claim. The blueprint is the section layout the design tool dealt for that slot.
@@ -81,7 +65,7 @@ Each section exists because it proves one claim. The blueprint is the section la
 |---|---|---|---|---|
 | 1 | **Hero** | Erik builds web and Android apps that work for the people who use them (Decision 12). | The full name in two lines, each fitted margin to margin: **ERIK [screen]**, then **SAMUEL BIEN**. A screen from his own apps fills the rest of the first line and changes from app to app. On phones and portrait tablets it stacks: ERIK, the screen, SAMUEL BIEN. Below it, one sentence: *"4th-year IT student who builds web and Android apps, then tries to break them. Open to internships."* One button, "See the work", and a Resume link. | Photograph for a letter |
 | 2 | **Work** | Four real apps, each shown by its own interface. | A pinned stage per project with two tall panels, in the order PlayIT, LabaLink, Seoul-Mate, InkHive (Decision 11). The project title sits on the seam between them in giant capitals. As you scroll, the left half travels up and the right half travels down, so the title "tears" and lines up again when the project is centred. Under each title: what it is, the year, and its repo link. In the details, a project that has real screens gets a **Showcase** under its facts: a strip of them with a caption each (PlayIT is the first, see Decision 10). Then "Also built" as a plain list: TaskFlow MVC, Hotel Management System, Blog Platform and MangaReader. | Title torn at the seam |
-| 3 | **Proof** | It isn't done until the tests have tried to break it. | A full-width teal band of real test names, cropped by both screen edges and drifting slowly left. Under it: *"Real names from the 300 tests across LabaLink, InkHive and Seoul-Mate. All passing."* Then **Try to break it**. | Names running off the edges |
+| 3 | **Proof** | The work is tested. | A full-width teal band of real test names, cropped by both screen edges and drifting slowly left. Under it, the heading **Proof** and *"Real names from the 300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass."* | Names running off the edges |
 | 4 | **Skills** | The stack is used, not listed. | One giant word, **STACK**, filling the column edge to edge. Under it, six bars that open in place: Languages, Backend, Frontend & Mobile, Data, Cloud & AI, Security & Testing, and Tools. Each skill appears with the project that uses it, aligned right where a menu would show the price. | Giant word, filled bar rows |
 | 5 | **About** | A real student with real, verifiable training. | Side facts: From Masbate City · Studying BSIT at CIT-U, Cebu City · Graduating 2027. Next to them, a short paragraph about how Erik works. Below, the record: the 3 badges with their real badge images, dates and Credly links, plus the relevant coursework. | Side facts, wide paragraph |
 | 6 | **Contact** | Easy to reach. | The full screen inverts to teal. `eriksamuelbien@gmail.com` is set as one line of display type, and the whole line is a mailto link. In the corners: the phone number with the city, and GitHub, LinkedIn and Resume. | The email as display type |
@@ -106,7 +90,7 @@ Behaviour that stays: the dark mode toggle, reduced-motion support, print styles
 | "01 / 04" numbering, emoji, outlined boxes, dot grids, shadows | space, size and tone steps |
 | The 4-number stats row | each number moves next to its proof: 269 in the Proof section, the badge count in About |
 | The hero whiteboard ink trail ("psst, this header is a whiteboard") | the monument name and the shutter reveal |
-| The 269-dot scroll-driven test run | the test-name band and Try to break it |
+| The 269-dot scroll-driven test run | the test-name band |
 | The skills marquee | the test-name band, the only moving line of text on the page |
 | The card grid for "Also built" | a plain list in the Work section |
 
@@ -151,11 +135,10 @@ Motion is built in two passes. The page must look finished with all motion off, 
 | **Hero exit** | Scroll-linked: as the hero leaves, ERIK and its screen drift left and SAMUEL BIEN drifts right, up to 8% of the line's width. | Still |
 | **Live work stage** | As each project arrives, its two screens deal in row by row and play one beat: LabaLink's clock runs, Seoul-Mate's staff switch flips and the menu's 품절 stamps a moment later, PlayIT's tiles fill their slots, InkHive's board draws. | The finished screens |
 | **Test-name band** | Runs left at 110px a second. The scroll's speed is added in its own direction, so scrolling back up runs it backwards, then it eases off. It stops under a mouse pointer and rests off screen. | Paused |
-| **Section entrances** | Once, in reading order, 80ms apart, in a manner that follows the part. Short headings rise a letter at a time and "Try to break it" a word at a time. Project screens open like a shutter, skill bars slide out from the left and the verdict panel opens from the top. Lists arrive row by row. Content stays visible if the script fails. | Shown at rest |
+| **Section entrances** | Once, in reading order, 80ms apart, in a manner that follows the part. Headings rise a letter at a time. Project screens open like a shutter and skill bars slide out from the left. Lists arrive row by row. Content stays visible if the script fails. | Shown at rest |
 | **Showcase** | Its heading rises a letter at a time, then the strip opens like a shutter from the left. It waits clear, not clipped, so its pictures are fetched before it is reached. A caption fades in when its screen is whole. | The strip is simply there; the arrows jump instead of gliding |
 | **About ink fill** | The paragraph's words wait at 45% ink and fill in reading order as it rises from 85% to 40% of the screen. It never empties again. | Full ink |
-| **Controls** | Press, hover and focus feedback on every button, link, skill bar and attack choice. The contact email line turns to the accent colour on hover. | Colour changes only |
-| **Try to break it** | Choosing an attack plays a short sequence. BLOCKED drops out, then stamps back down from 125%, and the attempt is struck through. | The result shows instantly, struck through |
+| **Controls** | Press, hover and focus feedback on every button, link and skill bar. The contact email line turns to the accent colour on hover. | Colour changes only |
 | **Footer** | The word arrives reading ERIK. Once it is wholly on screen its letters trade places, scroll-linked, into KIRE, which holds for the last stretch of the page. | KIRE |
 
 **Motion rules:**
@@ -205,7 +188,7 @@ The new token names come from the direction sheet:
 3. **Gate.** `lint.mjs` and `inspect.mjs` both report zero fails. Every warning is fixed or defended in one sentence.
 4. **Critique.** Up to three rounds using the design tool's critique format, written down, fixing the top three problems each round.
 5. **Regression.** Every check in `SPEC.md`, plus clicking every link that worked before: repos, Credly, resume, mailto and tel.
-6. **Keyboard.** Every link, button, skill bar and attack choice is reachable by Tab and shows a visible focus ring.
+6. **Keyboard.** Every link, button and skill bar is reachable by Tab and shows a visible focus ring.
 
 ## Boundaries
 
@@ -235,7 +218,6 @@ The new token names come from the direction sheet:
 4. In 5 seconds, a stranger looking at the first screen can say who this is, what he does and what to click.
 5. At least 4 real pictures, every found one credited.
 6. At least 8 moving elements, each with a reduced-motion fallback.
-7. Try to break it works by tap and by keyboard, uses only real test names, and shows as a plain list without JS.
 8. Every success criterion in `SPEC.md` still passes.
 9. First load, with fonts and images, is under 1.5 MB.
 
@@ -274,3 +256,4 @@ Erik answered these on 2026-10-22.
 | 10 | The real product on the site (2026-11-11): "Put the product like the app on the site, for example the PlayIT it needs to have a ShowCase" | PlayIT gets a Showcase under its details: nine real screens from its screenshot tests, as a strip (see Pictures). The rebuilt screens in the hero, on the stage and beside the notes stay as they are. LabaLink, Seoul-Mate and InkHive get a Showcase when they have real screens. The inspector now gives a fourth warning, `side-scroll`, defended in `tasks/critique.md`. Live since 2026-11-13. |
 | 11 | Project order (2026-11-14): "put the playit on the first on the portfolio" | PlayIT, the capstone, comes first everywhere: the hero's screen, the work stage, the details and the resume. Then LabaLink, Seoul-Mate and InkHive. LabaLink's Washer 03 clock follows LabaLink wherever it sits, so the order can change again without touching the script. |
 | 12 | The message once PlayIT leads (2026-11-14): "shouldnt the I test this break this not the priority anymore since like the it build around the playit now" | The hero line and the link previews say he builds web and Android apps that work for the people who use them, which is what PlayIT shows first. Testing stays as evidence, not the headline: the Proof band, its 300 passing tests and Try to break it are unchanged further down. The resume objective reads "accessible, tested". |
+| 13 | The demo and the skills (2026-11-16): "i dont want the try to break it demo", and a skills check where Erik marked 17 skills he can't explain yet | Try to break it is gone, with the two entrance manners only it used. Proof keeps the band of real test names and its caption under a plain heading, minus the names for skills marked No. The Stack, the project lines, About and Also built drop every skill marked No. The PlayIT screen beside its notes shows Hear it, as the real app does, instead of a Find it the app never had. |

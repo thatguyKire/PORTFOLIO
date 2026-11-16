@@ -209,50 +209,6 @@
     document.addEventListener('visibilitychange', runBand);
   }
 
-  /* ---------- try to break it ---------- */
-  // Without JS the list shows every attack with its guard and test. With JS each attack becomes a
-  // choice, and the verdict panel plays a short "trying, then blocked" beat before showing the proof.
-  var attackList = $('#attacks'), verdict = $('#verdict');
-  if (attackList && verdict) {
-    var v = {
-      tryLine: $('.v-try', verdict), guard: $('.v-guard', verdict),
-      test: $('[data-v="test"]', verdict), project: $('[data-v="project"]', verdict), say: $('[data-v="say"]', verdict)
-    };
-    var attacks = $$('li', attackList).map(function (li) {
-      var a = { name: $('.atk-name', li).textContent, guard: $('.atk-guard', li).textContent, test: $('code', li).textContent, project: li.getAttribute('data-project') };
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'atk'; b.textContent = a.name; b.setAttribute('aria-pressed', 'false');
-      li.textContent = ''; li.appendChild(b);
-      a.button = b;
-      return a;
-    });
-    var beat;
-    var pick = function (i, quiet) {
-      var a = attacks[i];
-      attacks.forEach(function (o) { o.button.setAttribute('aria-pressed', String(o === a)); });
-      clearTimeout(beat);
-      v.tryLine.textContent = 'You try to ' + a.name.charAt(0).toLowerCase() + a.name.slice(1) + '.';
-      var land = function () {
-        v.guard.textContent = a.guard;
-        v.test.textContent = a.test;
-        v.project.textContent = a.project;
-        verdict.classList.remove('is-trying');
-        if (!quiet) {
-          verdict.classList.add('is-landed');
-          v.say.textContent = 'Blocked. ' + a.guard + ' Proved by the test ' + a.test + ' in ' + a.project + '. Passed.';
-        }
-      };
-      if (quiet || RM) { land(); return; }
-      verdict.classList.remove('is-landed');
-      verdict.classList.add('is-trying');
-      beat = setTimeout(land, 520);
-    };
-    attacks.forEach(function (a, i) { a.button.addEventListener('click', function () { pick(i); }); });
-    attackList.classList.add('is-live');
-    verdict.hidden = false;
-    pick(Math.floor(Math.random() * attacks.length), true);
-  }
-
   /* ---------- hero: the screen beside ERIK runs through the four apps ---------- */
   // Every four seconds the next app pushes the last one out from the same edge; LabaLink's clock counts
   // down while it shows. None of it runs under reduced motion, and it pauses off screen or in a hidden tab.
@@ -665,9 +621,9 @@
   /* ---------- entrances: each section's parts arrive once, in reading order, each in its own manner ---------- */
   // A group is watched; when its top passes 90% of the screen its parts arrive, 80ms apart and four steps
   // at most. A part is an element, or [element, manner]: "line" rises from behind its own baseline; "chars"
-  // and "words" rise a letter or a word at a time; "open" opens a picture like a shutter, and "reel" a strip
-  // of them; "bar" slides out from the left; "drop" opens a panel from the top; no manner rises 24px. The
-  // marks come off once they have played, so the page is left exactly as it was built.
+  // rises a letter at a time; "open" opens a picture like a shutter, and "reel" a strip of them; "bar"
+  // slides out from the left; no manner rises 24px. The marks come off once they have played, so the page
+  // is left exactly as it was built.
   if (!RM && 'IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -688,9 +644,9 @@
       if (r) { while (r.firstChild) el.insertBefore(r.firstChild, r); el.removeChild(r); }
       $$('.rise', el).forEach(function (s) { s.classList.remove('rise'); s.style.removeProperty('--i'); });
     };
-    // A heading is split into letters (or words) for its rise. Screen readers get the whole heading from
+    // A heading is split into letters for its rise. Screen readers get the whole heading from
     // its label meanwhile, and the plain text comes back when the rise is over.
-    var split = function (el, byWord) {
+    var split = function (el) {
       var text = el.textContent, n = 0, box = document.createElement('span');
       el.inText = text;
       el.setAttribute('aria-label', text);
@@ -699,7 +655,7 @@
         if (wi) box.appendChild(document.createTextNode(' '));
         var w = document.createElement('span');
         w.className = 'wd';
-        (byWord ? [word] : word.split('')).forEach(function (c) {
+        word.split('').forEach(function (c) {
           var s = document.createElement('span');
           s.className = 'ch';
           s.textContent = c;
@@ -722,7 +678,7 @@
           el.appendChild(s);
           el.inRise = s;
         }
-        if (kind === 'chars' || kind === 'words') split(el, kind === 'words');
+        if (kind === 'chars') split(el);
         el.setAttribute('data-in', kind);
         el.style.setProperty('--i', Math.min(i, 3));
         return el;
@@ -735,10 +691,7 @@
     $$('.note').forEach(function (n) { enter(n, [[$('.note-name', n) || $('dt', n), 'line'], [$('.note-shot', n), 'open'], $('dd', n)]); });
     // a showcase arrives on its own, when it is reached: its strip of screens opens like a shutter
     $$('.show').forEach(function (s) { enter(s, [[$('h4', s), 'chars'], $('.show-say', s), [$('.reel', s), 'reel']]); });
-    enter($('.band-note'), [$('.band-note')]);
-    enter($('.try-head'), [[$('#proof-h'), 'words'], $('.try-head p')]);
-    enter(attackList, $$('li', attackList));
-    enter(verdict, [[verdict, 'drop']]);
+    enter($('.proof-foot'), [[$('#proof-h'), 'chars'], $('.band-note')]);
     // STACK rises whole: split into letters, a word this large would lose its kerning and shift when it rejoined
     enter($('.skills-word'), [[$('#skills-h'), 'line'], $('.skills-word p')]);
     enter($('.bars'), $$('.bars details').map(function (d) { return [d, 'bar']; }));
