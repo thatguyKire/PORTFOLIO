@@ -397,8 +397,31 @@ Erik, 2026-11-11: "Put the product like the app on the site , for example the Pl
 - Verify: screenshots at 390, 768, 1366 and 1440, and in the light theme at 390 and 1440; no sideways scroll and no console errors from 320 to 1920; Tab reaches the arrows and the strip, and the arrow keys scroll it; reduced motion and no-JS show the finished strip; print shows all nine in rows of five; check.sh all PASS (inspector 0 FAIL, 4 WARN, defended in critique.md round 5).
 
 ### Task 21: Ship the showcase
-- [ ] Erik has seen it and says merge.
-- [ ] Merge to `main`, push, confirm the live page serves the nine pictures.
+- [x] Erik has seen it and says merge.
+- [x] Merge to `main`, push, confirm the live page serves the nine pictures (2026-11-13, `624322f`: page and all nine pictures served byte for byte).
 
 ### Task 22: Showcases for the other three
 - [ ] LabaLink, Seoul-Mate and InkHive each get a Showcase once they have real screens. None are on disk yet.
+
+## Phase 7: The new resume, and only skills I can explain
+
+Erik, 2026-11-16: "i have updated something on my resume but the portfolio needs to update too" and "will need to remove some of the skills that i cant explain".
+
+### Task 23: Bring the site in step with the new resume
+- [x] InkHive links point to the renamed repo, `github.com/thatguyKire/InkHive`, as on the resume.
+- [x] InkHive's stack line matches the resume: SQLite, PostgreSQL and JavaScript.
+- [ ] Erik picks the site's project order: the resume's (PlayIT, InkHive, LabaLink, then Seoul-Mate) or as it is (PlayIT, LabaLink, Seoul-Mate, InkHive).
+
+### Task 24: Erik marks every skill Yes or No
+- [ ] Open `DesktopOJTskills-check.html`: 58 skills from the resume and the site. Yes only if he can say what it is and where he used it, without notes.
+- [ ] Download the CSV and send it.
+
+### Task 25: Take out every No
+- [ ] Resume: the Skills list and the project Environment lines; rebuild `Bien_Resume.pdf`, still one page.
+- [ ] Site: the Stack section, the project stack lines, and any sentence that claims it (About, project details).
+- [ ] Interview notes and practice sheet in `DesktopOJT`: drop terms that are gone.
+- [ ] Erik decides whether the site's Stack shows the resume's levels (Proficient, Intermediate, Basic).
+
+### Task 26: Gate and ship
+- [ ] check.sh all PASS; screenshots at 390 and 1440.
+- [ ] Merge to `main`, push, confirm the live page and resume are served byte for byte.
