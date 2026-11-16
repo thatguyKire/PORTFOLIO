@@ -16,8 +16,8 @@
   .contact span + span::before { content: "|"; margin: 0 5pt; color: #888; }
   .qr { position: absolute; top: 0; right: 0; width: .68in; font-size: 7.5pt; color: #444; text-align: center; }
   .qr svg { display: block; width: .68in; height: .68in; margin-bottom: 1.5pt; }
-  h2 { font-size: 10.8pt; font-weight: 700; color: #1f3864; text-transform: uppercase; letter-spacing: .3pt; border-bottom: 1.2pt solid #1f3864; padding-bottom: 1pt; margin: 7pt 0 3pt; }
-  .proj { margin-bottom: 6pt; }
+  h2 { font-size: 10.8pt; font-weight: 700; color: #1f3864; text-transform: uppercase; letter-spacing: .3pt; border-bottom: 1.2pt solid #1f3864; padding-bottom: 1pt; margin: 6pt 0 3pt; }
+  .proj { margin-bottom: 5pt; }
   .proj:last-of-type { margin-bottom: 0; }
   .proj h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; font-size: 11pt; color: #1f3864; }
   .proj h3 .link { font-size: 9.5pt; font-weight: 400; color: #444; white-space: nowrap; }
@@ -42,13 +42,8 @@
 Portfolio</a>
 </header>
 
-<h2>Career Objective</h2>
-<p>BSIT student who builds accessible, tested full-stack and Android apps, seeking an internship in software, AI, or cloud.</p>
-
-<h2>Education</h2>
-<p><b>Bachelor of Science in Information Technology (BSIT), 4th Year</b></p>
-<p class="muted">Cebu Institute of Technology – University (CIT-U), Cebu City &nbsp;|&nbsp; Expected Graduation: 2027</p>
-<p><b>Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, DBMS, Web &amp; Mobile Development</p>
+<h2>Professional Summary</h2>
+<p>Fourth-year BSIT student who builds and tests full-stack web and Android apps. Built a laundry booking platform alone and co-develops a phonics app with a five-member capstone team. Seeks an OJT placement in software development or testing.</p>
 
 <h2>Technical Projects</h2>
 
@@ -58,7 +53,7 @@ Portfolio</a>
   <div class="env"><b>Environment:</b> Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk (offline speech recognition), Python</div>
   <ul>
     <li>Co-developing an offline-first Android phonics app (Marungko approach) that evaluates speech on low-end phones.</li>
-    <li>Built child-focused accessibility features (sound captions, mouth-shape cues, 64 dp touch targets, non-punitive feedback) and fixed core game logic in the Blend It word-building activity.</li>
+    <li>Built accessibility features for young learners (sound captions, mouth-shape cues, 64 dp touch targets, non-punitive feedback) and fixed core game logic in the Blend It word-building activity.</li>
     <li>Wrote the SRS, SDD, and test document; built a Python tool that checks every figure against the JUnit results and APK.</li>
   </ul>
 </div>
@@ -70,7 +65,7 @@ Portfolio</a>
   <ul>
     <li>Built all three parts alone: a Spring Boot API, a Kotlin Android app for customers (QR-scan to start a machine, Stripe wallet top-up), and a React dashboard for shop attendants.</li>
     <li>Led a v1.0.0 security overhaul: JWT on every endpoint with role and ownership checks, verified Google ID tokens, rate limiting, and account lockout.</li>
-    <li>Made payments tamper-proof with Stripe Checkout, signed webhooks, and a block on live Stripe keys.</li>
+    <li>Secured payments with Stripe Checkout, signed webhooks, and a block on live Stripe keys.</li>
     <li>Wrote 41 backend tests on embedded PostgreSQL, a Privacy Policy (Data Privacy Act), and the SRS and SDD.</li>
   </ul>
 </div>
@@ -81,22 +76,27 @@ Portfolio</a>
   <div class="env"><b>Environment:</b> React 19, TypeScript, Vite, Supabase (PostgreSQL + RLS, Realtime, Edge Functions), Vitest, pgTAP, GitHub Actions</div>
   <ul>
     <li>Building a three-language (English, Filipino, Korean) menu site where stock changes reach open pages within seconds.</li>
-    <li>Security first: Row Level Security on every table, optional two-factor staff login, photos checked by content and stripped of metadata, and a rate-limited contact function.</li>
-    <li>132 unit tests, 131 end-to-end tests with accessibility checks on phone and desktop, and 97 database assertions, all run in CI.</li>
+    <li>Secured every table with Row Level Security; added optional two-factor staff login, upload checks, and contact rate limits.</li>
+    <li>Wrote 132 unit tests, 131 end-to-end tests with accessibility checks, and 97 database assertions, all run in CI.</li>
   </ul>
 </div>
 
-<h2>Skills and Competencies</h2>
+<h2>Skills</h2>
 <div class="skills">
-  <p><b>Languages:</b> Java, Kotlin, Python, TypeScript/JavaScript, PHP, SQL, HTML/CSS</p>
-  <p><b>Backend:</b> Spring Boot, Spring Security (JWT/OAuth2), Django, Supabase Edge Functions, REST APIs, WebSocket (STOMP)</p>
-  <p><b>Frontend &amp; Mobile:</b> React 19, TypeScript, Vite, Tailwind CSS, i18n, Android (Kotlin), Jetpack Compose, Room, Hilt</p>
-  <p><b>Data, Cloud &amp; AI:</b> PostgreSQL + RLS, SQLite, Supabase; AWS; Generative AI (Amazon Bedrock), AI/ML Fundamentals</p>
-  <p><b>Security &amp; Testing:</b> Auth hardening, rate limiting, Data Privacy Act; JUnit, Vitest, pgTAP</p>
-  <p><b>Tools &amp; Modeling:</b> Git, GitHub Actions CI, Android Studio; UML, ERD, SRS/SDD documentation</p>
+  <p><b>Proficient:</b> Java, Kotlin, TypeScript/JavaScript, SQL, HTML/CSS, Spring Boot, Spring Security (JWT/OAuth2), REST APIs, React 19, Jetpack Compose, PostgreSQL + RLS, Git</p>
+  <p><b>Intermediate:</b> Python, Vite, Tailwind CSS, Supabase (Edge Functions, Realtime), WebSocket (STOMP), Room, Hilt, i18n, SQLite, GitHub Actions CI, JUnit, Vitest, pgTAP</p>
+  <p><b>Basic:</b> PHP, Django, AWS, Generative AI (Amazon Bedrock), AI/ML Fundamentals</p>
+  <p><b>Practices:</b> Auth hardening, rate limiting, Data Privacy Act; UML, ERD, SRS/SDD documentation; Android Studio</p>
+  <p><b>Soft skills:</b> Teamwork (team of five), client communication (store owner), technical writing (SRS, SDD), self-directed learning</p>
+  <p><b>Languages:</b> English</p>
 </div>
 
-<h2>Trainings and Certifications</h2>
+<h2>Education</h2>
+<p><b>Bachelor of Science in Information Technology (BSIT), 4th Year</b></p>
+<p class="muted">Cebu Institute of Technology – University (CIT-U), Cebu City &nbsp;|&nbsp; Expected Graduation: 2027</p>
+<p><b>Coursework:</b> Data Structures &amp; Algorithms, Software Engineering, Systems Analysis &amp; Design, DBMS, Web &amp; Mobile Development</p>
+
+<h2>Certifications and Micro-credentials</h2>
 <ul>
   <li><b>AWS Academy Graduate — Generative AI Foundations</b> (12 hours, Oct. 18, 2026) — <a class="url" href="https://www.credly.com/badges/976f8e14-cea6-4e4d-8c51-9113375560bd">verify on Credly</a></li>
   <li><b>AWS Academy Graduate — Cloud Foundations</b> (20 hours, Oct. 15, 2026) — <a class="url" href="https://www.credly.com/go/bSIKMmgk">verify on Credly</a></li>
