@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Erik Samuel Bien — Portfolio</title>
-<meta name="description" content="Erik Samuel Bien, 4th-year BSIT student at CIT-U. He builds full-stack web and Android apps that work for the people who use them: PlayIT, LabaLink, Seoul-Mate and InkHive.">
+<meta name="description" content="Erik Samuel Bien, 4th-year BSIT student at CIT-U. He builds full-stack web and Android apps that work for the people who use them: PlayIT, InkHive, LabaLink and Seoul-Mate.">
 <meta property="og:title" content="Erik Samuel Bien — Portfolio">
-<meta property="og:description" content="Full-stack and Android developer. PlayIT, LabaLink, Seoul-Mate, InkHive. 300 passing tests behind them.">
+<meta property="og:description" content="Full-stack and Android developer. PlayIT, InkHive, LabaLink, Seoul-Mate. 300 passing tests behind them.">
 <meta name="theme-color" content="#1b2321">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236f8f82'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='700' font-size='36' text-anchor='middle' fill='%2317201d'%3EE%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");if(window.HTMLDialogElement&&HTMLDialogElement.prototype.showModal)document.documentElement.classList.add("has-menu");try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
@@ -72,9 +72,9 @@
         <h2 class="names-h" id="work-h">Selected work:</h2>
         <ul class="names-list">
           <li><a href="#play">PlayIT<span class="frame" aria-hidden="true"><img src="assets/playit/start.webp" width="548" height="1188" alt=""></span></a>,</li>
+          <li><a href="#ink">InkHive</a>,</li>
           <li><a href="#laba">LabaLink</a>,</li>
           <li><a href="#seoul">Seoul-Mate</a>,</li>
-          <li><a href="#ink">InkHive</a>,</li>
           <li><a href="#also">Hotel Management System</a>,</li>
           <li><a href="#also">Blog Platform</a></li>
           <li>and <a href="#also">MangaReader</a>.</li>
@@ -122,6 +122,21 @@
         </ol>
       </div>
 
+      <article class="proj" id="ink" aria-labelledby="ink-h">
+        <div class="proj-side">
+          <h3 class="proj-h" id="ink-h">InkHive</h3>
+          <p class="proj-what">Real-time collaborative whiteboard for classrooms</p>
+          <p class="proj-meta">Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
+          <p class="proj-stack">Python, Django 5.2, WebSockets, SQLite, PostgreSQL, JavaScript</p>
+          <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+        <ul class="proj-points">
+          <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
+          <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
+          <li><strong>Launch-ready</strong>: upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
+        </ul>
+      </article>
+
       <article class="proj" id="laba" aria-labelledby="laba-h">
         <div class="proj-side">
           <h3 class="proj-h" id="laba-h">LabaLink</h3>
@@ -152,21 +167,6 @@
         </ul>
       </article>
 
-      <article class="proj" id="ink" aria-labelledby="ink-h">
-        <div class="proj-side">
-          <h3 class="proj-h" id="ink-h">InkHive</h3>
-          <p class="proj-what">Real-time collaborative whiteboard for classrooms</p>
-          <p class="proj-meta">Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
-          <p class="proj-stack">Python, Django 5.2, WebSockets, SQLite, PostgreSQL, JavaScript</p>
-          <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a>
-        </div>
-        <ul class="proj-points">
-          <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
-          <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
-          <li><strong>Launch-ready</strong>: upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
-        </ul>
-      </article>
-
       <div class="also" id="also">
         <h3 class="also-h">Also built</h3>
         <ul class="also-list">
@@ -181,23 +181,23 @@
   <section class="proof chapter" id="proof" data-chapter="mist" aria-labelledby="proof-h">
     <div class="wrap">
       <h2 class="proof-h" id="proof-h"><span>Tested before</span> <span>it ships</span></h2>
-      <p class="proof-say">300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass. A few of their real names:</p>
+      <p class="proof-say">300 automated tests across InkHive (127), LabaLink (41) and Seoul-Mate (132). All of them pass. A few of their real names:</p>
       <table class="suites">
         <caption class="sr">Test suites by project, with real test names</caption>
         <thead>
           <tr><th scope="col">Project</th><th scope="col">Suite</th><th scope="col">A real test</th><th scope="col" class="num">Tests</th></tr>
         </thead>
         <tbody>
-          <tr class="tone"><th scope="row">LabaLink</th><td>Spring Boot API, on embedded PostgreSQL</td><td>bookingRequiresTheRealQrCode</td><td class="num">41</td></tr>
-          <tr class="cont tone"><th scope="row"><span class="sr">LabaLink</span></th><td></td><td>errorsNeverLeakInternals</td><td class="num"></td></tr>
+          <tr class="tone"><th scope="row">PlayIT</th><td>The team's JUnit suite</td><td>deal_isNeverTheAnswer_andAlwaysTheSameLetters</td><td class="num soft">Team repo</td></tr>
           <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
           <tr><th scope="row">InkHive</th><td>Django app, 29 of the tests on security</td><td>test_view_only_student_cannot_draw_until_teacher_allows</td><td class="num">127</td></tr>
           <tr class="cont"><th scope="row"><span class="sr">InkHive</span></th><td></td><td>test_png_named_jpg_rejected</td><td class="num"></td></tr>
           <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
-          <tr class="tone"><th scope="row">Seoul-Mate</th><td>Unit tests</td><td>refuses photos over 5 MB before reading them</td><td class="num">132</td></tr>
-          <tr class="cont tone"><th scope="row"><span class="sr">Seoul-Mate</span></th><td></td><td>keeps the last good menu when a reload fails</td><td class="num"></td></tr>
+          <tr class="tone"><th scope="row">LabaLink</th><td>Spring Boot API, on embedded PostgreSQL</td><td>bookingRequiresTheRealQrCode</td><td class="num">41</td></tr>
+          <tr class="cont tone"><th scope="row"><span class="sr">LabaLink</span></th><td></td><td>errorsNeverLeakInternals</td><td class="num"></td></tr>
           <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
-          <tr><th scope="row">PlayIT</th><td>The team's JUnit suite</td><td>deal_isNeverTheAnswer_andAlwaysTheSameLetters</td><td class="num soft">Team repo</td></tr>
+          <tr><th scope="row">Seoul-Mate</th><td>Unit tests</td><td>refuses photos over 5 MB before reading them</td><td class="num">132</td></tr>
+          <tr class="cont"><th scope="row"><span class="sr">Seoul-Mate</span></th><td></td><td>keeps the last good menu when a reload fails</td><td class="num"></td></tr>
         </tbody>
       </table>
     </div>

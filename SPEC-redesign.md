@@ -61,5 +61,6 @@ The hand-built app screens (three per project), the torn work stage, the Washer 
 |---|---|---|
 | 1 | Direction (2026-11-16) | B, "Type and nothing else", from three shown on a preview page. |
 | 2 | Colours | Calm and easy on the eyes: mist and sage, above. Dark stays the default with the light switch (`SPEC.md`). |
-| 3 | Project order | Unchanged (PlayIT, LabaLink, Seoul-Mate, InkHive) until Erik decides whether the site follows the resume's (PlayIT, InkHive, LabaLink). |
+| 3 | Project order (2026-11-17) | The resume's: PlayIT, InkHive, LabaLink, then Seoul-Mate, which is on the site only. The names line, the details and the proof table all follow it. |
 | 4 | Gate warnings | Each defended in `tasks/critique.md`. |
+| 5 | Skill levels on the Stack (2026-11-17) | Not shown. Erik wants to refresh those skills first; the Stack stays a plain list of skills and where each was used. |

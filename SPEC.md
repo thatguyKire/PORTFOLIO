@@ -132,7 +132,7 @@ There is no test framework. Every change is checked against this list:
 ## Boundaries
 
 **Always:**
-- Keep the site and the resume in step. The badges must match. The resume lists PlayIT, InkHive and LabaLink, in that order, by Erik's choice; the site also shows Seoul-Mate. Seoul-Mate stays on the site only until it's finished.
+- Keep the site and the resume in step. The badges must match. The resume lists PlayIT, InkHive and LabaLink, in that order, by Erik's choice; the site shows them in the same order and adds Seoul-Mate last. Seoul-Mate stays on the site only until it's finished.
 - Rebuild `Bien_Resume.pdf` whenever `resume/resume.html` changes, and commit both files.
 - Run the content `grep` and the one-page check before committing.
 - Follow `CLAUDE.md`: short imperative commit messages and no trailers or attribution lines.
