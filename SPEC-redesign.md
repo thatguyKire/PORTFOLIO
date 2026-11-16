@@ -34,7 +34,7 @@ One family, **Bricolage Grotesque** (Google Fonts, optical size on), weights 400
 | # | Section | Field | Composition |
 |---|---|---|---|
 | 1 | **Hero** | sage | "Erik Bien" across the width in two inks, pale then dark; the sentence bottom-left, "Deal again" and See the work bottom-right. The field holds its content, so the next chapter shows at the foot of the first screen. |
-| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, LabaLink, …"), with a crop of PlayIT's real Start screen after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
+| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, LabaLink, …"), with PlayIT's logo (the team's TekCon 2026 product logo) after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
 | 3 | **Proof** | mist | "Tested before / it ships", the 300 total, then a table: project, suite, a real test name, count. A tone step on every other project instead of lines. |
 | 4 | **Stack** | ground | Two-ended rows in three columns: the skill at the left, the project at the right. |
 | 5 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
