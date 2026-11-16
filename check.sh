@@ -31,9 +31,9 @@ else
 fi
 
 # 4. The three suite counts add up to the total the site shows
-laba=$(grep -oE 'LabaLink \([0-9]+\)' index.html | grep -oE '[0-9]+') # LabaLink is on the site only
+laba=$(grep -oE '[0-9]+ backend tests' resume/resume.html | grep -oE '^[0-9]+')
 ink=$(grep -oE '[0-9]+ tests \([0-9]+ security\)' resume/resume.html | grep -oE '^[0-9]+')
-seoul=$(grep -oE '[0-9]+ unit tests' resume/resume.html | grep -oE '^[0-9]+')
+seoul=$(grep -oE 'Seoul-Mate \([0-9]+\)' index.html | grep -oE '[0-9]+') # Seoul-Mate is on the site only
 if [ -n "$laba" ] && [ -n "$ink" ] && [ -n "$seoul" ]; then
   total=$((laba + ink + seoul))
   if grep -q "\b$total\b" index.html; then pass "Test total $laba + $ink + $seoul = $total appears on the site"
