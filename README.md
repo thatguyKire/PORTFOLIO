@@ -2,7 +2,9 @@
 
 Personal portfolio site: **https://thatguyKire.github.io/PORTFOLIO/**
 
-- `index.html` — the site (single file, no build step)
+- `index.html` — the site's content (no build step; it opens straight from disk)
+- `css/site.css` — every style
+- `js/site.js` — every script
 - `assets/` — the three badge images, taken from each badge's public Credly record
 - `assets/playit/` — the nine PlayIT screens in the site's Showcase, rendered by the app's own screenshot tests (the `*_phone.png` files they write to `app/build/outputs/roborazzi/` in the team repo), resized to 548 × 1188 WebP
 - `Bien_Resume.pdf` — current resume

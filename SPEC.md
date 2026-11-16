@@ -20,16 +20,16 @@ Give recruiters and internship reviewers one place to see what Erik builds, prov
 
 ### Assumptions
 
-1. The site is a static page with no build step and no framework: one `index.html`, plus an `assets/` folder for images once the redesign adds pictures.
+1. The site is static, with no build step and no framework: the content in `index.html`, the styles in `css/site.css`, the script in `js/site.js`, and pictures in `assets/`. It still opens straight from disk.
 2. GitHub Pages serves `main` from the repo root. Pushing to `main` is publishing.
 3. Erik is the only editor. There is no PR review, so the checks in this spec are the review.
 4. Content must be true and checkable. Every number traces back to a repo, test suite or badge.
 
 ## Tech Stack
 
-- **Site:** HTML, CSS and vanilla JavaScript in `index.html`.
+- **Site:** HTML in `index.html`, CSS in `css/site.css`, vanilla JavaScript in `js/site.js`.
 - **External requests:** fonts from Google Fonts only. No JS libraries.
-- **Resume:** `resume/resume.html`, printed to PDF with headless Chrome.
+- **Resume:** `resume/resume.html`, printed to PDF with headless Edge (Chrome isn't installed on this machine).
 - **Hosting:** GitHub Pages at `thatguyKire/PORTFOLIO`, branch `main`, root folder.
 
 ## Commands
@@ -41,7 +41,7 @@ Run these from the repo root in Git Bash. PowerShell can't find `git` on this ma
 start index.html
 
 # Rebuild the resume PDF from its HTML source
-"/c/Program Files/Google/Chrome/Application/chrome.exe" --headless=new --disable-gpu \
+"/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --headless=new --disable-gpu \
   --no-pdf-header-footer \
   --print-to-pdf="C:\\Users\\Erik\\Desktop\\PORTFOLIO\\Bien_Resume.pdf" \
   "file:///C:/Users/Erik/Desktop/PORTFOLIO/resume/resume.html"
@@ -64,8 +64,10 @@ curl -s https://thatguykire.github.io/PORTFOLIO/ | grep -c "<text from the chang
 ## Project Structure
 
 ```
-index.html          → the site: CSS in <style>, icons as SVG <symbol>s, JS in one IIFE at the end
-assets/             → pictures the site shows (added by the redesign)
+index.html          → the content, the icons as SVG <symbol>s, and one inline line that sets the theme before the page paints
+css/site.css        → every style: tokens, sections, motion and print
+js/site.js          → every script, in one strict IIFE, one banner per feature
+assets/             → pictures the site shows
 resume/resume.html  → resume source (Letter size, print CSS)
 Bien_Resume.pdf     → generated from resume.html; commit it with every resume change
 README.md           → what each file is
@@ -73,11 +75,11 @@ CLAUDE.md           → how to build (clean and modular, stop and say so if it n
 SPEC.md             → this file: the rules for every change
 SPEC-redesign.md    → the new look and motion
 check.sh            → runs every check: bash check.sh (or --quick)
-tasks/              → the build plan (plan.md) and task list (todo.md)
+tasks/              → open work (todo.md) and the design gate's defended warnings (critique.md)
 .gitignore          → keeps the design tool's working folder (.taste-skill/) out of git
 ```
 
-The current page order is Nav, Hero with stats, Projects, Proof, Skills, Credentials and Contact. `SPEC-redesign.md` replaces this order.
+The page order is Nav, Hero, Work, Proof, Stack, About and Contact. `SPEC-redesign.md` describes each.
 
 ## Code Style
 
@@ -88,7 +90,7 @@ The current page order is Nav, Hero with stats, Projects, Proof, Skills, Credent
 - Compact one-line rules are fine.
 
 **JS:**
-- Write ES5 in one strict IIFE: `var`, `function` and `Array.prototype` helpers.
+- Write ES5 in one strict IIFE in `js/site.js`: `var`, `function` and `Array.prototype` helpers. Keep each feature's code together. It loads at the end of `<body>` as a classic script, not a module, so the page still works opened from disk.
 - Use the `$` and `$$` query helpers.
 - Mark each feature with a `/* ---------- name ---------- */` banner.
 - Comments explain *why*, not what.
@@ -168,16 +170,6 @@ Any change is done only when all of these pass.
 9. With reduced motion, all text is visible and nothing animates.
 10. Print preview shows every section with no blank or hidden content.
 11. The live URL serves the latest commit within a few minutes of pushing.
-
-## Content changes waiting to be made
-
-These come from Erik's answers on 2026-10-22. They will be tasks in the plan.
-
-- **Resume:** remove Playwright from the Seoul-Mate tools line and from Security & Testing.
-- **Resume:** remove the InkHive Render address from the InkHive heading. Show the team's GitHub repo instead.
-- **Resume:** replace the References section's names, phone numbers and emails with "Available on request."
-- **Site:** remove the InkHive live-demo link and the "1 app live in production on Render" stat.
-- **Site:** add the phone number to the contact section.
 
 ## Decisions
 

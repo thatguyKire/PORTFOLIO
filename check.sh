@@ -12,8 +12,8 @@ skip() { printf 'SKIP  %s (%s)\n' "$1" "$2"; }
 BANNED='psite|student congress|playwright|codechum|collaboard-z4sx'
 
 # 1. Banned content on the site and in the resume source
-hits=$(grep -niE "$BANNED" index.html resume/resume.html)
-if [ -z "$hits" ]; then pass "No banned words or links in index.html or resume.html"
+hits=$(grep -niE "$BANNED" index.html css/site.css js/site.js resume/resume.html)
+if [ -z "$hits" ]; then pass "No banned words or links in the site or resume.html"
 else fail "Banned words or links found" "$(echo "$hits" | cut -c1-120 | head -5)"; fi
 
 if command -v pdftotext >/dev/null; then
@@ -49,7 +49,7 @@ if [ "$1" = "--quick" ]; then
 elif ! command -v node >/dev/null || [ ! -f "$T/inspect.mjs" ]; then
   skip "Design gate" "Node or the design-taste-frontend skill not found"
 else
-  lint=$(node "$T/lint.mjs" index.html 2>&1 | grep -E '^RESULT')
+  lint=$(node "$T/lint.mjs" index.html css/site.css js/site.js 2>&1 | grep -E '^RESULT')
   case "$lint" in *" 0 FAIL"*) pass "Design lint: ${lint#RESULT: }" ;; *) fail "Design lint: ${lint#RESULT: }" ;; esac
   # The inspector walks at most 12 screens and this page is longer, so the entrances below that never
   # play during its walk. Its blank-gap rule is run instead by check-gaps.mjs over the whole page.
