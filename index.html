@@ -7,251 +7,102 @@
 <meta name="description" content="Erik Samuel Bien, 4th-year BSIT student at CIT-U. He builds full-stack web and Android apps that work for the people who use them: PlayIT, LabaLink, Seoul-Mate and InkHive.">
 <meta property="og:title" content="Erik Samuel Bien — Portfolio">
 <meta property="og:description" content="Full-stack and Android developer. PlayIT, LabaLink, Seoul-Mate, InkHive. 300 passing tests behind them.">
-<meta name="theme-color" content="#05333a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2306525c'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='900' font-size='36' text-anchor='middle' fill='%23f7f9f8'%3EE%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#1b2321">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%236f8f82'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-weight='700' font-size='36' text-anchor='middle' fill='%2317201d'%3EE%3C/text%3E%3C/svg%3E">
 <script>document.documentElement.classList.add("js");if(window.HTMLDialogElement&&HTMLDialogElement.prototype.showModal)document.documentElement.classList.add("has-menu");try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wdth,wght@75..150,300..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
 
-<nav class="nav" aria-label="Main">
+<header class="bar" data-chapter="sage">
   <a class="mark" href="#top">Erik Samuel Bien</a>
-  <div class="nav-links">
+  <nav class="bar-links" aria-label="Main">
     <a href="#work">Work</a>
     <a href="#proof">Proof</a>
-    <a href="#skills">Skills</a>
+    <a href="#stack">Stack</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
-  </div>
-  <div class="nav-tools">
-    <button class="theme" id="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
-    <a class="btn" href="Bien_Resume.pdf" download>Resume<svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v10M3.5 7l4.5 4.5L12.5 7M2 14.5h12"/></svg></a>
+  </nav>
+  <div class="bar-tools">
+    <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
+    <a class="btn" href="Bien_Resume.pdf" download>Resume</a>
     <button class="menu-btn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">Menu</button>
   </div>
-</nav>
+</header>
 
-<dialog class="menu field" id="menu" aria-label="Menu">
+<dialog class="menu" id="menu" aria-label="Menu">
   <div class="menu-top">
     <a class="mark" href="#top">Erik Samuel Bien</a>
     <button class="menu-close" type="button" autofocus>Close</button>
   </div>
-  <ul class="menu-links wide">
-    <li><a href="#work"><span class="ln"><span class="rise">Work</span></span></a></li>
-    <li><a href="#proof"><span class="ln"><span class="rise" style="--i: 1">Proof</span></span></a></li>
-    <li><a href="#skills"><span class="ln"><span class="rise" style="--i: 2">Skills</span></span></a></li>
-    <li><a href="#about"><span class="ln"><span class="rise" style="--i: 3">About</span></span></a></li>
-    <li><a href="#contact"><span class="ln"><span class="rise" style="--i: 4">Contact</span></span></a></li>
+  <ul class="menu-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#proof">Proof</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="menu-foot">
     <button class="theme" type="button" role="switch" aria-checked="false" aria-label="Light mode"><span class="tg" aria-hidden="true"></span><span class="theme-label">Light</span></button>
-    <a class="btn" href="Bien_Resume.pdf" download>Resume<svg class="btn-arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5v10M3.5 7l4.5 4.5L12.5 7M2 14.5h12"/></svg></a>
+    <a class="btn" href="Bien_Resume.pdf" download>Resume</a>
   </div>
 </dialog>
 
 <main>
-  <header class="hero wrap" id="top">
-    <div class="board" data-ui aria-hidden="true"><canvas></canvas><span class="pen"><span>Teacher</span></span><span class="pen"><span>Ana</span></span></div>
-    <h1 class="name wide" aria-label="Erik Samuel Bien">
-      <span class="name-a">
-        <span class="ln"><span class="rise">Erik</span></span>
-        <span class="shot" data-ui aria-hidden="true">
-          <span class="crop is-on">
-            <span class="c-top"><span><b>PlayIT</b> · Blend it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
-            <span class="c-tiles"><i>s</i><i>u</i><i>m</i></span>
-          </span>
-          <span class="crop">
-            <span class="c-top"><span><b>LabaLink</b> · Washer 03</span><i class="c-pill">Active</i></span>
-            <span class="c-big" data-clock>42:18</span>
-            <span class="c-meter"><i></i></span>
-          </span>
-          <span class="crop">
-            <span class="c-top"><b>Seoul-Mate</b><span class="c-lang"><i>EN</i><i>FIL</i><i class="on">KO</i></span></span>
-            <span class="c-item"><span><b lang="ko">불닭볶음면</b><small>₱85.00</small></span><i class="c-pill" lang="ko">품절</i></span>
-          </span>
-          <span class="crop">
-            <span class="c-top"><b>InkHive</b><span>3 live</span></span>
-            <span class="c-board"><svg viewBox="0 0 160 60" preserveAspectRatio="none"><path d="M8 46 C 30 8, 52 54, 80 26 S 122 10, 152 36"/></svg><span class="c-cur">Teacher</span></span>
-          </span>
-        </span>
-      </span>
-      <span class="name-b ln"><span class="rise" style="--i: 1">Samuel Bien</span></span>
+  <section class="hero chapter" id="top" data-chapter="sage" aria-labelledby="name">
+    <h1 class="name" id="name">
+      <span class="word w1" data-word="Erik">Erik</span>
+      <span class="word w2" data-word="Bien">Bien</span>
     </h1>
     <div class="hero-foot">
-      <p class="lead">4th-year IT student who builds web and Android apps that work for the people who use them. Open to internships.</p>
-      <a class="btn" href="#work">See the work</a>
-    </div>
-  </header>
-
-  <section class="work" id="work" aria-labelledby="work-h">
-    <div class="wrap work-head">
-      <h2 class="head" id="work-h">Selected work</h2>
-      <p>Four apps I built or led, each shown through its own screens. The full details follow.</p>
-    </div>
-    <div class="track" style="--n: 4">
-      <div class="stage">
-
-        <article class="layer is-on" aria-labelledby="t-play">
-          <div class="pane l"><div class="frame" data-ui role="img" aria-label="PlayIT's Say it step: the letter m with a sound caption and a mouth-shape cue.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>PlayIT</b><span class="ui-stars"><i></i><i></i><i></i></span></div>
-                <div class="ui-steps"><i>Hear it</i><i class="on">Say it</i><i>Find it</i><i>Blend it</i></div>
-                <div class="ui-letter"><b>m</b><span><b>/m/ as in mouse</b><span class="ui-sub">Sound caption</span></span></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-row"><span>Lips together, then hum<small>Mouth-shape cue</small></span></div>
-                <div class="ui-btn">Say it</div>
-              </div>
-            </div>
-          </div></div>
-          <div class="pane r"><div class="frame" data-ui role="img" aria-label="PlayIT's Blend It activity: the tiles s, u and m are blended into the word sum.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>Blend it</b><span>Offline</span></div>
-                <div class="ui-tiles slots"><i>s</i><i>u</i><i>m</i></div>
-                <div class="ui-bar"><span>s · u · m</span><b>sum</b></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-tiles"><i class="gone">m</i><i class="gone">s</i><i class="gone">u</i></div>
-                <div class="ui-row"><span>Nice blending!<small>No red, no buzzers</small></span></div>
-              </div>
-            </div>
-          </div></div>
-          <h3 class="tear wide" id="t-play"><span class="half l">Play</span><span class="half r">IT</span></h3>
-          <p class="layer-meta">An offline phonics app for Grade 1 learners on low-end phones. Capstone, team of 5.<br><a class="link" href="#note-play">The details</a> · <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a></p>
-        </article>
-
-        <article class="layer" aria-labelledby="t-laba">
-          <div class="pane l"><div class="frame" data-ui role="img" aria-label="LabaLink's Android app: Washer 03 is running with 42 minutes left, paid from a 240-peso wallet.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>LabaLink</b><span>Wallet <b>₱240.00</b></span></div>
-                <div class="ui-row"><span><b>Washer 03</b><small>Started by QR scan, paid from wallet</small></span><i class="ui-pill">Active</i></div>
-                <div class="ui-big" data-clock>42:18</div>
-                <div class="ui-meter" style="--w: 30%"><i></i></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-row"><span>Charged<small>Priced by the server</small></span><b>₱60.00</b></div>
-                <div class="ui-btn">Scan machine QR</div>
-              </div>
-            </div>
-          </div></div>
-          <div class="pane r"><div class="frame" data-ui role="img" aria-label="LabaLink's attendant dashboard: machine statuses and a live event feed over WebSocket.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>Attendant dashboard</b><span>Shop 1</span></div>
-                <div class="ui-row"><span>Washer 01</span><span>12:40</span><i class="ui-pill">Active</i></div>
-                <div class="ui-row"><span>Washer 02</span><span></span><i class="ui-pill off">Ready</i></div>
-                <div class="ui-row"><span>Washer 03</span><span data-clock>42:18</span><i class="ui-pill">Active</i></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-bar"><b>Live</b><span>WebSocket</span></div>
-                <div class="ui-feed">
-                  <span>Booking started on Washer 03</span>
-                  <span>Wallet topped up +₱60.00</span>
-                  <span>Dryer 01 finished</span>
-                </div>
-              </div>
-            </div>
-          </div></div>
-          <h3 class="tear wide" id="t-laba"><span class="half l">Laba</span><span class="half r">Link</span></h3>
-          <p class="layer-meta">Laundry booking with machines started by QR code. Solo build, v1.0.0, 41 tests.<br><a class="link" href="#note-laba">The details</a> · <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a></p>
-        </article>
-
-        <article class="layer" aria-labelledby="t-seoul">
-          <div class="pane l"><div class="frame" data-ui role="img" aria-label="Seoul-Mate's staff panel: Buldak Ramen has just been switched to out of stock.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>Staff panel</b><span>/admin</span></div>
-                <div class="ui-row"><span>Shin Ramyun</span><i class="ui-tg"></i></div>
-                <div class="ui-row"><span><b>Buldak Ramen</b><small class="b-late">Out of stock, just now</small></span><i class="ui-tg off b-flip"></i></div>
-                <div class="ui-row"><span>Honey Butter Chip</span><i class="ui-tg"></i></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-row"><span>Saved<small>Open menus update in seconds</small></span><i class="ui-pill">Live</i></div>
-                <div class="ui-row"><span>Two-factor on<small>Session ends after 60 minutes idle</small></span></div>
-              </div>
-            </div>
-          </div></div>
-          <div class="pane r"><div class="frame" data-ui role="img" aria-label="Seoul-Mate's menu on a phone in Korean, showing Buldak Ramen as sold out.">
-            <div class="ui" lang="ko">
-              <div class="ui-top">
-                <div class="ui-bar"><b lang="en">Seoul-Mate</b><span class="ui-lang" lang="en"><i>EN</i><i>FIL</i><i class="on">KO</i></span></div>
-                <div class="ui-search">라면, 과자 검색</div>
-                <div class="ui-bar"><b>메뉴</b><span>라면</span></div>
-                <div class="ui-row"><span><b>신라면</b><small>₱70.00</small></span><i class="ui-pill">재고 있음</i></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-row"><span><b>불닭볶음면</b><small>₱85.00</small></span><i class="ui-pill off b-stamp">품절</i></div>
-                <div class="ui-row"><span><b>허니버터칩</b><small>₱95.00</small></span><i class="ui-pill">재고 있음</i></div>
-              </div>
-            </div>
-          </div></div>
-          <h3 class="tear wide" id="t-seoul"><span class="half l">Seoul</span><span class="half r">-Mate</span></h3>
-          <p class="layer-meta">A live menu for a Korean minimart in Masbate City, in three languages. Solo build, in progress.<br><a class="link" href="#note-seoul">The details</a> · <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a></p>
-        </article>
-
-        <article class="layer" aria-labelledby="t-ink">
-          <div class="pane l"><div class="frame" data-ui role="img" aria-label="InkHive's teacher board: the teacher and a student draw on one whiteboard in real time.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>InkHive</b><span><i class="ui-av">T</i><i class="ui-av">A</i><i class="ui-av">B</i> 3 live</span></div>
-                <div class="ui-row"><span>Session: Fractions, Grade 5</span><span>Code <b>K7Q-42M</b></span></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-board"><svg viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden="true"><path d="M150 108 C 180 70, 220 118, 280 74"/><path d="M40 32 L 50 22 L 50 64 M 64 66 L 88 18 M 96 34 C 100 20, 124 20, 122 37 C 120 50, 100 55, 96 66 L 126 66"/></svg><span class="ui-cur" style="left: 62%; top: 20%">Teacher</span><span class="ui-cur" style="left: 18%; top: 66%">Ana</span></div>
-                <div class="ui-row"><span>WebSocket connected</span><i class="ui-pill">Live</i></div>
-              </div>
-            </div>
-          </div></div>
-          <div class="pane r"><div class="frame" data-ui role="img" aria-label="InkHive's join code and QR, with per-student draw permissions set by the teacher.">
-            <div class="ui">
-              <div class="ui-top">
-                <div class="ui-bar"><b>Join with code</b><span>or scan</span></div>
-                <div class="ui-row"><span class="ui-big">K7Q-42M</span></div>
-                <div class="ui-qr"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-              </div>
-              <div class="ui-bot">
-                <div class="ui-bar"><b>Who can draw</b><span>Set by the teacher</span></div>
-                <div class="ui-row"><span>Ana</span><i class="ui-tg"></i></div>
-                <div class="ui-row"><span>Ben<small>View only</small></span><i class="ui-tg off"></i></div>
-              </div>
-            </div>
-          </div></div>
-          <h3 class="tear wide" id="t-ink"><span class="half l">Ink</span><span class="half r">Hive</span></h3>
-          <p class="layer-meta">A real-time classroom whiteboard. Lead and backend developer, team of 3, 127 tests.<br><a class="link" href="#note-ink">The details</a> · <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a></p>
-        </article>
+      <p class="hero-say">4th-year IT student who builds web and Android apps that work for the people who use them. Open to internships.</p>
+      <div class="hero-act">
+        <button class="deal" type="button" hidden>Deal again</button>
+        <a class="btn btn-ink" href="#work">See the work</a>
       </div>
     </div>
+  </section>
 
-    <div class="wrap notes">
-      <h3 class="head">The details</h3>
-      <dl>
-    <div class="note" id="note-play">
-      <dt><span class="note-name">PlayIT</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
-        <span class="c-top"><span><b>PlayIT</b> · Hear it</span><span class="c-stars"><i></i><i></i><i></i></span></span>
-        <span class="c-big">Mm</span>
-        <span>M is for Mouse · Sound: <b>/m/</b></span>
-      </span></span></dt>
-      <dd>
-      <p>Offline English phonics app for Grade 1 learners · Capstone, team of 5 · IT411</p>
-      <ul>
-        <li>An <strong>offline-first Android app</strong> for 2 GB phones that teaches Marungko phonics with <strong>on-device speech recognition</strong>.</li>
-        <li><strong>Child-friendly accessibility</strong>: sound captions, mouth-shape cues, 64 dp touch targets, and "no red" feedback.</li>
-        <li>Fixed core <strong>Blend It</strong> game logic so tiles are never dealt in answer order, and wrote the SRS, SDD, and test docs.</li>
-        <li><strong>Release QA</strong>: a Python tool that stops the submission if any number disagrees with the JUnit results or APK checksum.</li>
-      </ul>
-      <p class="note-stack">Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk speech recognition</p>
-      <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a>
-      </dd>
-      <dd class="show" id="show-play">
+  <section class="work chapter" id="work" data-chapter="base" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="names">
+        <h2 class="names-h" id="work-h">Selected work:</h2>
+        <ul class="names-list">
+          <li><a href="#play">PlayIT<span class="frame" aria-hidden="true"><img src="assets/playit/start.webp" width="548" height="1188" alt=""></span></a>,</li>
+          <li><a href="#laba">LabaLink</a>,</li>
+          <li><a href="#seoul">Seoul-Mate</a>,</li>
+          <li><a href="#ink">InkHive</a>,</li>
+          <li><a href="#also">Hotel Management System</a>,</li>
+          <li><a href="#also">Blog Platform</a></li>
+          <li>and <a href="#also">MangaReader</a>.</li>
+        </ul>
+      </div>
+      <p class="names-note">Four apps I built or led, then three smaller ones. The details follow.</p>
+
+      <article class="proj" id="play" aria-labelledby="play-h">
+        <div class="proj-side">
+          <h3 class="proj-h" id="play-h">PlayIT</h3>
+          <p class="proj-what">Offline English phonics app for Grade 1 learners</p>
+          <p class="proj-meta">Capstone, team of 5 · IT411</p>
+          <p class="proj-stack">Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk speech recognition</p>
+          <a class="link" href="https://github.com/zendrix-hub/playIT-v2" target="_blank" rel="noopener">Team repo on GitHub</a>
+        </div>
+        <ul class="proj-points">
+          <li>An <strong>offline-first Android app</strong> for 2 GB phones that teaches Marungko phonics with <strong>on-device speech recognition</strong>.</li>
+          <li><strong>Child-friendly accessibility</strong>: sound captions, mouth-shape cues, 64 dp touch targets, and "no red" feedback.</li>
+          <li>Fixed core <strong>Blend It</strong> game logic so tiles are never dealt in answer order, and wrote the SRS, SDD, and test docs.</li>
+          <li><strong>Release QA</strong>: a Python tool that stops the submission if any number disagrees with the JUnit results or APK checksum.</li>
+        </ul>
+      </article>
+
+      <div class="show" id="show-play">
         <div class="show-head">
-          <h4 class="row-word">Showcase</h4>
+          <h4 class="show-h">Nine screens from the real app</h4>
           <div class="show-say">
-            <p>Nine screens from the real app, in the order a child meets them. Each was rendered from the app's code by its own screenshot tests.</p>
+            <p>In the order a child meets them. Each was rendered from the app's code by its own screenshot tests.</p>
             <div class="reel-nav">
               <button class="reel-btn" type="button" aria-label="Earlier screens"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M14.5 8h-12M7 3.5 2.5 8 7 12.5"/></svg></button>
               <button class="reel-btn" type="button" aria-label="Later screens"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 8h12M9 3.5 13.5 8 9 12.5"/></svg></button>
@@ -269,177 +120,166 @@
           <li><figure><img src="assets/playit/letter-done.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's Letter M Complete screen: one of three stars earned."><figcaption><b>Letter done</b> Stars for finishing a letter, then on to the next.</figcaption></figure></li>
           <li><figure><img src="assets/playit/parent-view.webp" width="548" height="1188" loading="lazy" decoding="async" alt="PlayIT's parent screen, How your child is doing: three children with their progress, and a grid of letters marked as learned."><figcaption><b>Parent view</b> How each child is doing, in plain words, letter by letter.</figcaption></figure></li>
         </ol>
-      </dd>
-    </div>
-    <div class="note" id="note-laba">
-      <dt><span class="note-name">LabaLink</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
-        <span class="c-top"><span><b>LabaLink</b> · Wallet</span><i class="c-pill">Paid</i></span>
-        <span class="c-big">₱300.00</span>
-        <span class="c-item"><span>Top-up +₱200.00<small>Added to the wallet</small></span></span>
-      </span></span></dt>
-      <dd>
-      <p>Smart laundry booking and payment platform · Solo build, v1.0.0 · IT342 Application Development</p>
-      <ul>
-        <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST and WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
-        <li><strong>Google sign-in fixed for v1.0.0</strong>: the server verifies Google's signed ID token before anyone gets in.</li>
-        <li><strong>41 backend tests</strong> on real PostgreSQL, a privacy policy under the Data Privacy Act, and the SRS and SDD.</li>
-      </ul>
-      <p class="note-stack">Spring Boot, Kotlin, React, TypeScript, PostgreSQL</p>
-      <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
-      </dd>
-    </div>
-    <div class="note" id="note-seoul">
-      <dt><span class="note-name">Seoul-Mate</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
-        <span class="c-top"><b>Seoul-Mate</b><span class="c-lang"><i class="on">EN</i><i>FIL</i><i>KO</i></span></span>
-        <span class="c-item"><span><b>Buldak Ramen</b><small>₱85.00</small></span><i class="c-pill off">Sold out</i></span>
-        <span class="c-item"><span><b>Honey Butter Chip</b><small>₱95.00</small></span><i class="c-pill">In stock</i></span>
-      </span></span></dt>
-      <dd>
-      <p>Live menu website for a Korean minimart in Masbate City · Solo build, in progress</p>
-      <ul>
-        <li><strong>Stock changes reach open pages within seconds</strong>, in English, Filipino and Korean, with search, store hours and ordering through Messenger.</li>
-        <li><strong>Security first</strong>: Row Level Security on every table, staff login with optional two-factor, photo uploads checked by content and stripped of location data.</li>
-        <li><strong>132 unit tests</strong>, all passing.</li>
-      </ul>
-      <p class="note-stack">React 19, TypeScript, Supabase, PostgreSQL RLS</p>
-      <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a>
-      </dd>
-    </div>
-    <div class="note" id="note-ink">
-      <dt><span class="note-name">InkHive</span><span class="note-shot" data-ui aria-hidden="true"><span class="crop is-on">
-        <span class="c-top"><b>InkHive</b><span>Session ended</span></span>
-        <span class="c-item"><span><b>Fractions, Grade 5</b><small>Attendance saved</small></span><i class="c-pill">PDF</i></span>
-        <span class="c-item"><span><b>Whiteboard</b><small>Exported for the class</small></span><i class="c-pill">PNG</i></span>
-      </span></span></dt>
-      <dd>
-      <p>Real-time collaborative whiteboard for classrooms · Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
-      <ul>
-        <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
-        <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
-        <li><strong>Launch-ready</strong>: upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
-      </ul>
-      <p class="note-stack">Python, Django 5.2, WebSockets, SQLite, PostgreSQL, JavaScript</p>
-      <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a>
-      </dd>
-    </div>
-    <div class="note" id="also">
-      <dt>Also built</dt>
-      <dd>
-      <ul class="also-list">
-        <li><a class="link" href="https://github.com/thatguyKire/Hotel_Management_System" target="_blank" rel="noopener"><strong>Hotel Management System</strong></a>: a Python app for managing hotel rooms, guests, and reservations. <span class="muted">Python</span></li>
-        <li><a class="link" href="https://github.com/thatguyKire/Blog_Platform" target="_blank" rel="noopener"><strong>Blog Platform</strong></a>: a Python blogging platform with posts and user accounts. <span class="muted">Python</span></li>
-        <li><a class="link" href="https://github.com/thatguyKire/MangaReader" target="_blank" rel="noopener"><strong>MangaReader</strong></a>: a practice website built with only HTML and CSS. <span class="muted">HTML, CSS</span></li>
-      </ul>
-      </dd>
-    </div>
-      </dl>
-    </div>
-  </section>
+      </div>
 
-  <section class="proof flip" id="proof" aria-labelledby="proof-h">
-    <div class="band marquee">
-      <div class="band-track">
-        <ul aria-label="Some of the real test names">
-          <li>bookingRequiresTheRealQrCode</li>
-          <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
-          <li>refuses photos over 5 MB before reading them</li>
-          <li>test_png_named_jpg_rejected</li>
-          <li>keeps the last good menu when a reload fails</li>
-          <li>errorsNeverLeakInternals</li>
+      <article class="proj" id="laba" aria-labelledby="laba-h">
+        <div class="proj-side">
+          <h3 class="proj-h" id="laba-h">LabaLink</h3>
+          <p class="proj-what">Laundry booking with machines started by QR code</p>
+          <p class="proj-meta">Solo build, v1.0.0 · IT342 Application Development</p>
+          <p class="proj-stack">Spring Boot, Kotlin, React, TypeScript, PostgreSQL</p>
+          <a class="link" href="https://github.com/thatguyKire/IT342-Bien-Labalink" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+        <ul class="proj-points">
+          <li>A <strong>three-tier system, built solo</strong>: Spring Boot REST and WebSocket API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
+          <li><strong>Google sign-in fixed for v1.0.0</strong>: the server verifies Google's signed ID token before anyone gets in.</li>
+          <li><strong>41 backend tests</strong> on real PostgreSQL, a privacy policy under the Data Privacy Act, and the SRS and SDD.</li>
         </ul>
-        <ul aria-hidden="true">
-          <li>bookingRequiresTheRealQrCode</li>
-          <li>test_view_only_student_cannot_draw_until_teacher_allows</li>
-          <li>refuses photos over 5 MB before reading them</li>
-          <li>test_png_named_jpg_rejected</li>
-          <li>keeps the last good menu when a reload fails</li>
-          <li>errorsNeverLeakInternals</li>
+      </article>
+
+      <article class="proj" id="seoul" aria-labelledby="seoul-h">
+        <div class="proj-side">
+          <h3 class="proj-h" id="seoul-h">Seoul-Mate</h3>
+          <p class="proj-what">Live menu website for a Korean minimart in Masbate City</p>
+          <p class="proj-meta">Solo build, in progress</p>
+          <p class="proj-stack">React 19, TypeScript, Supabase, PostgreSQL RLS</p>
+          <a class="link" href="https://github.com/thatguyKire/seoul-mate-minimart" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+        <ul class="proj-points">
+          <li><strong>Stock changes reach open pages within seconds</strong>, in English, Filipino and Korean, with search, store hours and ordering through Messenger.</li>
+          <li><strong>Security first</strong>: Row Level Security on every table, staff login with optional two-factor, photo uploads checked by content and stripped of location data.</li>
+          <li><strong>132 unit tests</strong>, all passing, and 8 of its 11 build steps done.</li>
+        </ul>
+      </article>
+
+      <article class="proj" id="ink" aria-labelledby="ink-h">
+        <div class="proj-side">
+          <h3 class="proj-h" id="ink-h">InkHive</h3>
+          <p class="proj-what">Real-time collaborative whiteboard for classrooms</p>
+          <p class="proj-meta">Lead and backend developer, team of 3 · CSIT327-G4, formerly COLLABoard</p>
+          <p class="proj-stack">Python, Django 5.2, WebSockets, SQLite, PostgreSQL, JavaScript</p>
+          <a class="link" href="https://github.com/thatguyKire/InkHive" target="_blank" rel="noopener">Source on GitHub</a>
+        </div>
+        <ul class="proj-points">
+          <li><strong>Led a 3-person team</strong> and wrote most of the code: live sessions with QR join, per-student draw permissions, chat, uploads, attendance, and PNG/PDF export.</li>
+          <li><strong>Rebuilt real-time sync</strong> on WebSockets with presence and late-joiner board state, plus a <strong>one-click demo mode</strong> whose shared accounts reset daily.</li>
+          <li><strong>Launch-ready</strong>: upload checks, Terms and Privacy Policy, data export and account deletion, verified by <strong>127 tests (29 security)</strong>.</li>
+        </ul>
+      </article>
+
+      <div class="also" id="also">
+        <h3 class="also-h">Also built</h3>
+        <ul class="also-list">
+          <li><a class="link" href="https://github.com/thatguyKire/Hotel_Management_System" target="_blank" rel="noopener">Hotel Management System</a>: a Python app for managing hotel rooms, guests, and reservations. <span class="soft">Python</span></li>
+          <li><a class="link" href="https://github.com/thatguyKire/Blog_Platform" target="_blank" rel="noopener">Blog Platform</a>: a Python blogging platform with posts and user accounts. <span class="soft">Python</span></li>
+          <li><a class="link" href="https://github.com/thatguyKire/MangaReader" target="_blank" rel="noopener">MangaReader</a>: a practice website built with only HTML and CSS. <span class="soft">HTML, CSS</span></li>
         </ul>
       </div>
     </div>
-    <div class="wrap proof-foot">
-      <h2 class="head" id="proof-h">Proof</h2>
-      <p class="band-note">Real names from the 300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass.</p>
+  </section>
+
+  <section class="proof chapter" id="proof" data-chapter="mist" aria-labelledby="proof-h">
+    <div class="wrap">
+      <h2 class="proof-h" id="proof-h"><span>Tested before</span> <span>it ships</span></h2>
+      <p class="proof-say">300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass. A few of their real names:</p>
+      <table class="suites">
+        <caption class="sr">Test suites by project, with real test names</caption>
+        <thead>
+          <tr><th scope="col">Project</th><th scope="col">Suite</th><th scope="col">A real test</th><th scope="col" class="num">Tests</th></tr>
+        </thead>
+        <tbody>
+          <tr class="tone"><th scope="row">LabaLink</th><td>Spring Boot API, on embedded PostgreSQL</td><td>bookingRequiresTheRealQrCode</td><td class="num">41</td></tr>
+          <tr class="cont tone"><th scope="row"><span class="sr">LabaLink</span></th><td></td><td>errorsNeverLeakInternals</td><td class="num"></td></tr>
+          <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
+          <tr><th scope="row">InkHive</th><td>Django app, 29 of the tests on security</td><td>test_view_only_student_cannot_draw_until_teacher_allows</td><td class="num">127</td></tr>
+          <tr class="cont"><th scope="row"><span class="sr">InkHive</span></th><td></td><td>test_png_named_jpg_rejected</td><td class="num"></td></tr>
+          <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
+          <tr class="tone"><th scope="row">Seoul-Mate</th><td>Unit tests</td><td>refuses photos over 5 MB before reading them</td><td class="num">132</td></tr>
+          <tr class="cont tone"><th scope="row"><span class="sr">Seoul-Mate</span></th><td></td><td>keeps the last good menu when a reload fails</td><td class="num"></td></tr>
+          <tr class="gap" aria-hidden="true"><td colspan="4"></td></tr>
+          <tr><th scope="row">PlayIT</th><td>The team's JUnit suite</td><td>deal_isNeverTheAnswer_andAlwaysTheSameLetters</td><td class="num soft">Team repo</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <section class="sec field" id="skills" aria-labelledby="skills-h">
-    <div class="wrap skills-grid">
-      <div class="skills-word">
-        <h2 class="wide stack-word" id="skills-h">Stack</h2>
-        <p>Every skill, with the project where I used it. Open a group to see them.</p>
+  <section class="stack chapter" id="stack" data-chapter="base" aria-labelledby="stack-h">
+    <div class="wrap stack-grid">
+      <div class="stack-head">
+        <h2 class="stack-h" id="stack-h">Stack</h2>
+        <p>Every skill, with the project where I used it.</p>
       </div>
-      <div class="bars">
-        <details open>
-          <summary>Languages</summary>
+      <div class="groups">
+        <div class="group">
+          <h3>Languages</h3>
           <dl>
-            <dt>Kotlin</dt><dd>LabaLink, PlayIT</dd>
-            <dt>Python</dt><dd>InkHive, PlayIT</dd>
-            <dt>TypeScript</dt><dd>LabaLink, Seoul-Mate</dd>
-            <dt>JavaScript</dt><dd>InkHive, LabaLink</dd>
-            <dt>SQL</dt><dd>All four</dd>
-            <dt>HTML and CSS</dt><dd>InkHive, LabaLink, Seoul-Mate</dd>
+            <div><dt>Kotlin</dt><dd>LabaLink, PlayIT</dd></div>
+            <div><dt>Python</dt><dd>InkHive, PlayIT</dd></div>
+            <div><dt>TypeScript</dt><dd>LabaLink, Seoul-Mate</dd></div>
+            <div><dt>JavaScript</dt><dd>InkHive, LabaLink</dd></div>
+            <div><dt>SQL</dt><dd>All four</dd></div>
+            <div><dt>HTML and CSS</dt><dd>InkHive, LabaLink, Seoul-Mate</dd></div>
           </dl>
-        </details>
-        <details>
-          <summary>Backend</summary>
+        </div>
+        <div class="group">
+          <h3>Backend</h3>
           <dl>
-            <dt>Spring Boot</dt><dd>LabaLink</dd>
-            <dt>OAuth2 (Google sign-in)</dt><dd>LabaLink</dd>
-            <dt>Django</dt><dd>InkHive</dd>
-            <dt>REST APIs</dt><dd>LabaLink, InkHive</dd>
-            <dt>WebSocket</dt><dd>LabaLink, InkHive</dd>
+            <div><dt>Spring Boot</dt><dd>LabaLink</dd></div>
+            <div><dt>OAuth2 (Google sign-in)</dt><dd>LabaLink</dd></div>
+            <div><dt>Django</dt><dd>InkHive</dd></div>
+            <div><dt>REST APIs</dt><dd>LabaLink, InkHive</dd></div>
+            <div><dt>WebSocket</dt><dd>LabaLink, InkHive</dd></div>
           </dl>
-        </details>
-        <details>
-          <summary>Mobile and frontend</summary>
+        </div>
+        <div class="group">
+          <h3>Mobile and frontend</h3>
           <dl>
-            <dt>Android</dt><dd>LabaLink, PlayIT</dd>
-            <dt>Jetpack Compose</dt><dd>PlayIT</dd>
-            <dt>Room</dt><dd>PlayIT</dd>
-            <dt>Hilt</dt><dd>PlayIT</dd>
-            <dt>React</dt><dd>LabaLink, Seoul-Mate</dd>
-            <dt>Tailwind CSS</dt><dd>LabaLink</dd>
-            <dt>Accessibility</dt><dd>Seoul-Mate, PlayIT</dd>
+            <div><dt>Android</dt><dd>LabaLink, PlayIT</dd></div>
+            <div><dt>Jetpack Compose</dt><dd>PlayIT</dd></div>
+            <div><dt>Room</dt><dd>PlayIT</dd></div>
+            <div><dt>Hilt</dt><dd>PlayIT</dd></div>
+            <div><dt>React</dt><dd>LabaLink, Seoul-Mate</dd></div>
+            <div><dt>Tailwind CSS</dt><dd>LabaLink</dd></div>
+            <div><dt>Accessibility</dt><dd>Seoul-Mate, PlayIT</dd></div>
           </dl>
-        </details>
-        <details>
-          <summary>Data</summary>
+        </div>
+        <div class="group">
+          <h3>Data</h3>
           <dl>
-            <dt>PostgreSQL</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
-            <dt>SQLite</dt><dd>InkHive, PlayIT, coursework</dd>
-            <dt>Supabase</dt><dd>InkHive, Seoul-Mate</dd>
-            <dt>Row Level Security</dt><dd>Seoul-Mate</dd>
+            <div><dt>PostgreSQL</dt><dd>LabaLink, InkHive, Seoul-Mate</dd></div>
+            <div><dt>SQLite</dt><dd>InkHive, PlayIT, coursework</dd></div>
+            <div><dt>Supabase</dt><dd>InkHive, Seoul-Mate</dd></div>
+            <div><dt>Row Level Security</dt><dd>Seoul-Mate</dd></div>
           </dl>
-        </details>
-        <details>
-          <summary>Cloud, AI and DevOps</summary>
+        </div>
+        <div class="group">
+          <h3>Cloud and AI</h3>
           <dl>
-            <dt>AWS</dt><dd>AWS Academy badge</dd>
-            <dt>Git and GitHub</dt><dd>All four</dd>
-            <dt>Speech recognition</dt><dd>PlayIT</dd>
-            <dt>AI and ML foundations</dt><dd>IBM SkillsBuild badge</dd>
-            <dt>Generative AI with Amazon Bedrock</dt><dd>AWS Academy badge</dd>
+            <div><dt>AWS</dt><dd>AWS Academy badge</dd></div>
+            <div><dt>Git and GitHub</dt><dd>All four</dd></div>
+            <div><dt>Speech recognition</dt><dd>PlayIT</dd></div>
+            <div><dt>AI and ML foundations</dt><dd>IBM SkillsBuild badge</dd></div>
+            <div><dt>Generative AI with Amazon Bedrock</dt><dd>AWS Academy badge</dd></div>
           </dl>
-        </details>
-        <details>
-          <summary>Security and design</summary>
+        </div>
+        <div class="group">
+          <h3>Testing and design</h3>
           <dl>
-            <dt>Automated testing</dt><dd>All four</dd>
-            <dt>UML and ERD</dt><dd>All four</dd>
-            <dt>SRS and SDD</dt><dd>All four</dd>
-            <dt>Data privacy (DPA 2012)</dt><dd>LabaLink, InkHive, Seoul-Mate</dd>
+            <div><dt>Automated testing</dt><dd>All four</dd></div>
+            <div><dt>UML and ERD</dt><dd>All four</dd></div>
+            <div><dt>SRS and SDD</dt><dd>All four</dd></div>
+            <div><dt>Data privacy (DPA 2012)</dt><dd>LabaLink, InkHive, Seoul-Mate</dd></div>
           </dl>
-        </details>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="about" aria-labelledby="about-h">
+  <section class="about chapter" id="about" data-chapter="base" aria-labelledby="about-h">
     <div class="wrap">
       <div class="about-row">
         <div class="about-side">
-          <h2 class="head" id="about-h">About</h2>
+          <h2 class="about-h" id="about-h">About</h2>
           <dl class="facts">
             <div><dt>From</dt><dd>Masbate City</dd></div>
             <div><dt>Studying</dt><dd>BS Information Technology, Cebu Institute of Technology – University, Cebu City</dd></div>
@@ -448,82 +288,65 @@
         </div>
         <p class="about-para">I'm a 4th-year IT student. I build full-stack web and Android apps, from Spring Boot, Django and Supabase backends to Kotlin and React clients, and I write the tests along with the features. I've led a team of three, built two apps on my own, and earned three training badges in cloud and AI.</p>
       </div>
-
       <div class="about-row">
-        <h3 class="row-word">Badges</h3>
-        <ul class="badges">
-          <li class="badge">
-            <img src="assets/aws-genai-foundations.png" width="601" height="601" loading="lazy" alt="AWS Academy Graduate, Generative AI Foundations, Trained badge">
-            <h4>AWS Academy: Generative AI Foundations</h4>
-            <p>12 course hours on foundation models, Amazon Bedrock, prompt engineering and responsible AI. <span class="muted">October 2026</span></p>
-            <a class="link" href="https://www.credly.com/badges/976f8e14-cea6-4e4d-8c51-9113375560bd" target="_blank" rel="noopener">Verify on Credly</a>
-          </li>
-          <li class="badge">
-            <img src="assets/aws-cloud-foundations.png" width="601" height="601" loading="lazy" alt="AWS Academy Graduate, Cloud Foundations, Trained badge">
-            <h4>AWS Academy: Cloud Foundations</h4>
-            <p>20 course hours on core AWS services, architecture, security and pricing. <span class="muted">October 2026</span></p>
-            <a class="link" href="https://www.credly.com/go/bSIKMmgk" target="_blank" rel="noopener">Verify on Credly</a>
-          </li>
-          <li class="badge">
-            <img src="assets/ibm-ai-fundamentals.png" width="600" height="600" loading="lazy" alt="IBM SkillsBuild, Artificial Intelligence Fundamentals badge">
-            <h4>IBM SkillsBuild: Artificial Intelligence Fundamentals</h4>
-            <p>Core AI concepts, machine learning, neural networks and trustworthy AI. <span class="muted">July 2026</span></p>
-            <a class="link" href="https://www.credly.com/badges/3faa1c77-dac7-47b8-a1bf-51d536927c77" target="_blank" rel="noopener">Verify on Credly</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="about-row">
-        <h3 class="row-word">Coursework</h3>
-        <ul class="course">
-          <li>Data Structures and Algorithms</li>
-          <li>Software Engineering</li>
-          <li>Systems Analysis and Design</li>
-          <li>Database Management Systems</li>
-          <li>Web and Mobile Development</li>
-        </ul>
+        <h3 class="about-word">Record</h3>
+        <div class="record">
+          <div class="rec">
+            <h4>Badges</h4>
+            <ul class="badges">
+              <li><img src="assets/aws-genai-foundations.png" width="601" height="601" loading="lazy" alt="AWS Academy Graduate, Generative AI Foundations, Trained badge"><span><b>AWS Academy: Generative AI Foundations</b>12 course hours on foundation models, Amazon Bedrock, prompt engineering and responsible AI. <a class="link" href="https://www.credly.com/badges/976f8e14-cea6-4e4d-8c51-9113375560bd" target="_blank" rel="noopener">Verify on Credly</a></span><span class="soft">Oct 2026</span></li>
+              <li><img src="assets/aws-cloud-foundations.png" width="601" height="601" loading="lazy" alt="AWS Academy Graduate, Cloud Foundations, Trained badge"><span><b>AWS Academy: Cloud Foundations</b>20 course hours on core AWS services, architecture, security and pricing. <a class="link" href="https://www.credly.com/go/bSIKMmgk" target="_blank" rel="noopener">Verify on Credly</a></span><span class="soft">Oct 2026</span></li>
+              <li><img src="assets/ibm-ai-fundamentals.png" width="600" height="600" loading="lazy" alt="IBM SkillsBuild, Artificial Intelligence Fundamentals badge"><span><b>IBM SkillsBuild: Artificial Intelligence Fundamentals</b>Core AI concepts, machine learning, neural networks and trustworthy AI. <a class="link" href="https://www.credly.com/badges/3faa1c77-dac7-47b8-a1bf-51d536927c77" target="_blank" rel="noopener">Verify on Credly</a></span><span class="soft">Jul 2026</span></li>
+            </ul>
+          </div>
+          <div class="rec">
+            <h4>Coursework</h4>
+            <ul class="course">
+              <li>Data Structures and Algorithms</li>
+              <li>Software Engineering</li>
+              <li>Systems Analysis and Design</li>
+              <li>Database Management Systems</li>
+              <li>Web and Mobile Development</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-h">
+  <section class="contact chapter" id="contact" data-chapter="mist" aria-labelledby="contact-h">
     <div class="wrap contact-in">
       <h2 class="contact-say" id="contact-h">Looking for an internship where I can ship real software.</h2>
-      <div class="email-fit">
-        <a class="email" href="mailto:eriksamuelbien@gmail.com"><span>eriksamuelbien@</span><span>gmail.com</span></a>
-      </div>
+      <a class="email" href="mailto:eriksamuelbien@gmail.com"><span>eriksamuelbien@</span><span>gmail.com</span></a>
       <div class="corners">
-        <p class="corner-l"><a href="tel:+639202437737">0920 243 7737</a><br>Masbate City and Cebu City, Philippines</p>
+        <p><a href="tel:+639202437737">0920 243 7737</a><br>Masbate City and Cebu City, Philippines</p>
         <p class="corner-r">
           <a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/eriksamuel-bien" target="_blank" rel="noopener">LinkedIn</a>
           <a href="Bien_Resume.pdf" download>Resume (PDF)</a>
-          <button type="button" id="copy" data-copy="eriksamuelbien@gmail.com">Copy email</button>
+          <button type="button" class="copy" data-copy="eriksamuelbien@gmail.com">Copy email</button>
         </p>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap kire-fit">
-    <a class="kire wide" href="https://github.com/thatguyKire" target="_blank" rel="noopener" aria-label="Kire: thatguyKire on GitHub">Kire</a>
-  </div>
-  <div class="wrap foot-rows">
-    <p>Kire is Erik, backwards. It's my handle on GitHub: thatguyKire.</p>
+<footer class="foot chapter" data-chapter="base">
+  <div class="wrap foot-cols">
     <ul aria-label="Sections">
       <li><a href="#work">Work</a></li>
       <li><a href="#proof">Proof</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#stack">Stack</a></li>
       <li><a href="#about">About</a></li>
     </ul>
     <ul aria-label="Elsewhere">
-      <li><a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://github.com/thatguyKire" target="_blank" rel="noopener">GitHub, as thatguyKire</a></li>
       <li><a href="https://www.linkedin.com/in/eriksamuel-bien" target="_blank" rel="noopener">LinkedIn</a></li>
       <li><a href="Bien_Resume.pdf" download>Resume (PDF)</a></li>
     </ul>
   </div>
-  <div class="wrap foot-legal small">
+  <p class="wordmark" aria-hidden="true">Erik Bien</p>
+  <div class="wrap foot-legal">
     <span>© <span id="yr">2026</span> Erik Samuel L. Bien</span>
     <a href="#top">Back to top</a>
   </div>

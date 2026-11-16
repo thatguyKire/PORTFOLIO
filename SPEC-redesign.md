@@ -1,259 +1,65 @@
-# Spec: Portfolio redesign
+# Spec: the design (2026-11-16)
 
-Module id: `redesign` · Status: approved 2026-10-22 · Rules: everything in `SPEC.md` still applies
+The look and motion of the site. It follows every rule in `SPEC.md`. The previous design (the name as a monument, the torn work stage, KIRE) and its decision log are in git history: `git log -p -- SPEC-redesign.md`.
 
-## Objective
+## Direction
 
-The site reads as machine-made. Erik spotted the italic serif headline. A measured pass on 2026-10-22 found more:
+**Type and nothing else**, dealt by the design-taste skill (seed 1249965762) and chosen by Erik from three on 2026-11-16. The first screen is only words, colour and space; pictures arrive later, large and few, and only where they are real (PlayIT's screens, the badges).
 
-- **Inspector:** 16 fails and 10 warnings at 1440, 768 and 390px. The results are saved in `.taste-skill/before/`.
-- **Source lint:** 50 fails and 22 warnings.
+**The idea:** PlayIT's Blend It deals a word's tiles in any order but the right one; that was Erik's fix. On this page **Erik's name is dealt the same way**: its letters arrive as shuffled tiles that slide into place and fade into the plain name.
 
-| What the tools found on the current site | Where |
-|---|---|
-| Italic serif accent words in 4 headlines, and 3 typefaces | hero, section headings |
-| A pill label above the name, and small caps labels above every heading | "Open to internship opportunities", "Toolkit", "Learning" |
-| Monospace captions | school, city and class year line |
-| Index numbers | "01 / 04" … "04 / 04" |
-| 22 boxes with 1px outlines, hairline dividers, dot-grid gradients | project demos, stats, marquee |
-| Shadows on cards at rest | project cards |
-| The cream-and-terracotta palette, plus violet | whole page |
-| Emoji used as UI | ✎ ✦ ✓ |
-| 58 pieces of text under 13px, and 22 font sizes | everywhere |
-| No real pictures (0) | whole page |
+**The one live thing:** "Deal again" deals a new order, never the right one.
 
-**Goal:** rebuild the look and the motion of `index.html`, keeping all the real content. The new page should feel designed for Erik and nobody else, and it must pass the design gate with zero fails.
+## Colour: mist and sage
 
-**Skills that drive the work:**
-- `design-taste-frontend`: the art direction, the gate and the critique.
-- `frontend-ui-engineering`: accessibility, states and production quality.
-- `incremental-implementation`: building one section at a time and checking each.
+Erik asked for colours that are "calming and doesn't hurt on the eyes but still interesting but minimalist". The palettes the skill dealt (and three redraws) were all high-contrast or loud, so the colours are Erik's brief, kept in the direction's proportions: one ground, one ink, one accent, and chapter fields.
 
-## The direction
-
-Dealt by the design tool on 2026-10-22, seed `105366155`. The full sheet is saved in `.taste-skill/direction.json`.
-
-**Direction: the name as a monument.** The name is set so large it becomes the structure of the first screen. Everything after it is calm and smaller, so the contrast holds.
-
-Why this one over the other two dealt options:
-- *Contact sheet* needs dozens of real pictures, and the project doesn't have them.
-- *Type-only statement* is closest to the current hero, a big sentence, which is the look being replaced.
-- The monument can carry something only Erik has (see The idea).
-
-| | |
-|---|---|
-| **Type** | **TikTok Sans**, one variable family. The display is weight 800, stretched to 150% width, in capitals with tight tracking. Body text is normal width at weight 400. **No italics anywhere, no serif, no monospace.** |
-| **Type sizes** | Five only: the monument, section heading (28–40px), lead (20–26px), body (17–19px), small (13–14px). |
-| **Colour** | **Teal on paper.** Ground `#f7f9f8`, surface `#ebf0ee`, ink `#06525c`, soft ink `#2f737d`. Teal is used for every word and shape, with no black. The accent is the same teal filled solid, on the one button and the inverted closing band. |
-| **Dark mode** | Dark by default, whatever the visitor's system setting: the same roles inverted, deep teal `#05333a` ground and paper-white `#eef5f3` text. The toggle switches to light (teal on paper) and remembers the choice. |
-| **Nav** | Body size, every control 3rem tall: the name left; the five sections as one bar of flat tabs on the page's centre line (from 1024px wide), whose labels roll on hover; on the right a "Light mode" switch in the app screens' square style and a solid Resume button with a download arrow. Below 1024px the tabs fold into a Menu button: a full-screen sheet in the Skills teal drops from the bar, Close sits where Menu was, the five sections are set in the display cut at the foot where the thumb is (rising in as it opens), then the switch and Resume. A section link lifts the sheet off the section and moves focus there; Escape lifts it too. Under 600px the bar keeps the name, Resume and Menu, and the switch lives in the sheet. Without the script the tabs stay in the bar as a wrapped row and the switch is hidden. |
-| **Project details** | Each project's details open with a 3px bar across the full width, drawn in from the left as they arrive. |
-| **Shape** | Square corners everywhere. One button style: solid teal, square, 44px tall or more. |
-| **Frame** | One pair of tight outer margins (20–32px) on every section. Sections are 120–240px apart on desktop. |
-
-## The idea
-
-> On this page, **Erik's own name, which his handle *thatguyKire* spells backwards,** becomes **the monument**. **ERIK SAMUEL BIEN** opens the page at full width, and **KIRE** closes it at full width in the footer, linking to the GitHub where the code lives.
-
-**Competitor test:** put any other student's name in that sentence and it stops working. The reversal only belongs to Erik.
-
-## The page, claim by claim
-
-Each section exists because it proves one claim. The blueprint is the section layout the design tool dealt for that slot.
-
-| # | Section | Claim | Proof on the page | Blueprint |
-|---|---|---|---|---|
-| 1 | **Hero** | Erik builds web and Android apps that work for the people who use them (Decision 12). | The full name in two lines, each fitted margin to margin: **ERIK [screen]**, then **SAMUEL BIEN**. A screen from his own apps fills the rest of the first line and changes from app to app. On phones and portrait tablets it stacks: ERIK, the screen, SAMUEL BIEN. Below it, one sentence: *"4th-year IT student who builds web and Android apps, then tries to break them. Open to internships."* One button, "See the work", and a Resume link. | Photograph for a letter |
-| 2 | **Work** | Four real apps, each shown by its own interface. | A pinned stage per project with two tall panels, in the order PlayIT, LabaLink, Seoul-Mate, InkHive (Decision 11). The project title sits on the seam between them in giant capitals. As you scroll, the left half travels up and the right half travels down, so the title "tears" and lines up again when the project is centred. Under each title: what it is, the year, and its repo link. In the details, a project that has real screens gets a **Showcase** under its facts: a strip of them with a caption each (PlayIT is the first, see Decision 10). Then "Also built" as a plain list: TaskFlow MVC, Hotel Management System, Blog Platform and MangaReader. | Title torn at the seam |
-| 3 | **Proof** | The work is tested. | A full-width teal band of real test names, cropped by both screen edges and drifting slowly left. Under it, the heading **Proof** and *"Real names from the 300 automated tests across LabaLink (41), InkHive (127) and Seoul-Mate (132). All of them pass."* | Names running off the edges |
-| 4 | **Skills** | The stack is used, not listed. | One giant word, **STACK**, filling the column edge to edge. Under it, six bars that open in place: Languages, Backend, Frontend & Mobile, Data, Cloud & AI, Security & Testing, and Tools. Each skill appears with the project that uses it, aligned right where a menu would show the price. | Giant word, filled bar rows |
-| 5 | **About** | A real student with real, verifiable training. | Side facts: From Masbate City · Studying BSIT at CIT-U, Cebu City · Graduating 2027. Next to them, a short paragraph about how Erik works. Below, the record: the 3 badges with their real badge images, dates and Credly links, plus the relevant coursework. | Side facts, wide paragraph |
-| 6 | **Contact** | Easy to reach. | The full screen inverts to teal. `eriksamuelbien@gmail.com` is set as one line of display type, and the whole line is a mailto link. In the corners: the phone number with the city, and GitHub, LinkedIn and Resume. | The email as display type |
-| 7 | **Footer** | The page closes on the handle. | **KIRE** at full width, cropped at the bottom edge, linking to github.com/thatguyKire. Under it: Masbate City and Cebu City, the section links, "© 2026 Erik Samuel L. Bien", back to top, and the credit line for any found pictures. | Name first, places under it |
-
-### What stays
-
-All real content stays:
-- the 4 main projects and the 4 smaller ones, with every repo link
-- the test numbers and the skill-to-project mapping
-- the 3 badges with their Credly links, and education
-- email, GitHub, LinkedIn and the resume download
-
-Behaviour that stays: the dark mode toggle, reduced-motion support, print styles, the no-build setup and having no JS library.
-
-### What goes
-
-| Removed | Replaced by |
-|---|---|
-| Fraunces, Inter and JetBrains Mono, and every italic accent word | TikTok Sans only |
-| "Open to internship opportunities" pill, and the small labels above headings | the same information inside the hero sentence and the headings |
-| "01 / 04" numbering, emoji, outlined boxes, dot grids, shadows | space, size and tone steps |
-| The 4-number stats row | each number moves next to its proof: 269 in the Proof section, the badge count in About |
-| The hero whiteboard ink trail ("psst, this header is a whiteboard") | the monument name and the shutter reveal |
-| The 269-dot scroll-driven test run | the test-name band |
-| The skills marquee | the test-name band, the only moving line of text on the page |
-| The card grid for "Also built" | a plain list in the Work section |
-
-## Pictures
-
-The design tool requires **at least 4 real pictures** on the page, and 6–12 is normal. SVG drawings don't count.
-
-There are no photos of Erik. Found photos of places are not used. So the pictures are Erik's own interfaces, rebuilt in HTML, plus his real badge images and, since 2026-11-11, real screens of PlayIT. The design tool counts interface fragments as pictures when they carry `data-ui`.
-
-| Where | Picture | Source |
+| Role | Dark (default) | Light |
 |---|---|---|
-| Hero, beside ERIK | A crop of one of his app screens in a landscape frame one cap-height tall, changing between the four apps | rebuilt in HTML |
-| Work, 2 tall panels per project (8 in all) | The current mock-ups rebuilt as tall panels in each app's real look: LabaLink's Android app beside its attendant dashboard, the Seoul-Mate staff stock toggle beside the phone menu in Korean, a PlayIT phonics screen beside Blend It, and the InkHive teacher board beside a student joining by code | rebuilt in HTML |
-| Work, the Showcase under PlayIT's details | Nine real screens in the order a child meets them: Start, Map, Hear it, Say it, a mouth-shape cue, Find it, Blend it, Letter done and Parent view. They are in `assets/playit/`, 548 × 1188 WebP, 18 to 45 KB each. | The app's own screenshot tests. `LayoutMatrixTest` and `ParentDashboardScreenshotTest` render each screen from the app's code and write `*_phone.png` to `app/build/outputs/roborazzi/`. Taken at the team repo's commit `67fe890`. |
-| About | The 3 badge images. The two AWS PNGs are in `Desktop\CERTIFICATE`. IBM's comes from its Credly badge page. | Erik's own |
+| Ground | `#1b2321` | `#eef2ef` |
+| Ink | `#dfe6e1` | `#1d2724` |
+| Soft ink | `#9db0a7` | `#51645c` |
+| Accent (the one button) | `#a9c7b9` | `#3d6a5c` |
+| The other field (Proof, Contact) | `#d9e3dd` | `#1f2926` |
+| The name's field (both themes) | `#6f8f82`, with `#eef3ef` and `#17201d` as its two inks | same |
 
-When Erik has a professional photo, or real screens of another app, they go in the same way: a photo replaces a rebuilt picture with no layout change, and real screens become that project's Showcase.
+No pure black or white anywhere. Every text colour passes WCAG AA on its ground; the name's pale line is display size, where 3:1 applies.
 
-The Showcase:
-- One `dd.show` under a project's facts: the heading "Showcase", one sentence saying what the screens are and where they come from, then the strip.
-- The strip starts on the page margin and runs off both screen edges, as an app store shows an app's screens. It scrolls by swipe, trackpad, arrow keys and its own bar. With the script, two arrows move it a screenful for a mouse that only has a wheel.
-- Only pictures are cut by the screen edge. A caption shows once its screen is wholly in view. Without the script every caption shows.
-- A caption says only what the screen shows or what the app's code and tests confirm.
-- On paper the strip unrolls into rows of five.
+## Type
 
-Rules:
-- Square corners and one treatment for every picture.
-- Every image has width, height and alt text. Images below the first screen use `loading="lazy"`.
-- Each image is under about 200 KB, stored in `assets/`.
-- A found photo is never presented as Erik's own work, place or person.
-- A rebuilt mock-up is never captioned as a screenshot.
+One family, **Bricolage Grotesque** (Google Fonts, optical size on), weights 400 to 600. Five steps: small 14px, body 17 to 19px, lead 20 to 26px, head 32 to 64px, display 26vw (the name and the footer wordmark). The email address is fitted to the width. Kerning is off on the name so its letters can be tiles without moving.
+
+## The page
+
+| # | Section | Field | Composition |
+|---|---|---|---|
+| 1 | **Hero** | sage | "Erik Bien" across the width in two inks, pale then dark; the sentence bottom-left, "Deal again" and See the work bottom-right. The field holds its content, so the next chapter shows at the foot of the first screen. |
+| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, LabaLink, …"), with a crop of PlayIT's real Start screen after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
+| 3 | **Proof** | mist | "Tested before / it ships", the 300 total, then a table: project, suite, a real test name, count. A tone step on every other project instead of lines. |
+| 4 | **Stack** | ground | Two-ended rows in three columns: the skill at the left, the project at the right. |
+| 5 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
+| 6 | **Contact** | mist | The email address as the display line; phone and city at the left, links at the right. |
+| 7 | **Footer** | ground | Two short lists, then "Erik Bien" from margin to margin. |
+
+The bar is fixed and takes the field of the chapter under it, so it never sits on the page as a band of another colour. Below 1024px its links fold into a full-screen menu.
 
 ## Motion
 
-Motion is built in two passes. The page must look finished with all motion off, then the motion layer goes on top.
+- **Signature:** the name's deal on load and on "Deal again" (transforms only).
+- **Colour by chapter:** the bar cross-fades to the field beneath it in 300ms. The fields themselves never change colour.
+- **Entrances:** each section's parts arrive once, 80ms apart: headings a letter at a time, the rest rising 24px, PlayIT's strip opening like a shutter. Anything already on the first screen at load is never hidden.
+- **Feedback:** press on every button, hover on links and the project names.
+- Reduced motion: no deal, no entrances, nothing hidden. Without JavaScript: the plain name, every part shown, no switch or "Deal again". Print: black on white, every part shown, the strip in rows of five.
 
-| Part | What moves | Reduced motion |
-|---|---|---|
-| **Signature** | The hero picture opens from one edge with a clip-path shutter over about 1.1s while the photo inside settles from 112% to 100% scale. It runs once and is the page's one loud moment. | The picture is simply there |
-| **Work tear** | Scroll-linked: panels move ±20% of screen height and title halves ±30%, meeting exactly when the project is centred. | The halves stay aligned and the projects crossfade |
-| **Hero board** | The hero's ground is an InkHive board. Teacher and Ana take turns drawing sumi-e brush strokes in a tone a step above the ground: the teacher's circle, wave, arrow and loop, Ana's tick and her 1/2. Each lands heavy, thins with speed and runs dry at the lift, is placed clear of the name, the screen, the sentence and the button, and is wiped from the left after 7 to 9 seconds. It runs at 30 frames a second, only while the hero is on screen. | A still drawing: a few finished marks and the teacher's cursor at rest |
-| **Hero exit** | Scroll-linked: as the hero leaves, ERIK and its screen drift left and SAMUEL BIEN drifts right, up to 8% of the line's width. | Still |
-| **Live work stage** | As each project arrives, its two screens deal in row by row and play one beat: LabaLink's clock runs, Seoul-Mate's staff switch flips and the menu's 품절 stamps a moment later, PlayIT's tiles fill their slots, InkHive's board draws. | The finished screens |
-| **Test-name band** | Runs left at 110px a second. The scroll's speed is added in its own direction, so scrolling back up runs it backwards, then it eases off. It stops under a mouse pointer and rests off screen. | Paused |
-| **Section entrances** | Once, in reading order, 80ms apart, in a manner that follows the part. Headings rise a letter at a time. Project screens open like a shutter and skill bars slide out from the left. Lists arrive row by row. Content stays visible if the script fails. | Shown at rest |
-| **Showcase** | Its heading rises a letter at a time, then the strip opens like a shutter from the left. It waits clear, not clipped, so its pictures are fetched before it is reached. A caption fades in when its screen is whole. | The strip is simply there; the arrows jump instead of gliding |
-| **About ink fill** | The paragraph's words wait at 45% ink and fill in reading order as it rises from 85% to 40% of the screen. It never empties again. | Full ink |
-| **Controls** | Press, hover and focus feedback on every button, link and skill bar. The contact email line turns to the accent colour on hover. | Colour changes only |
-| **Footer** | The word arrives reading ERIK. Once it is wholly on screen its letters trade places, scroll-linked, into KIRE, which holds for the last stretch of the page. | KIRE |
+## What went with the old design
 
-**Motion rules:**
-- Animate transform, opacity and clip-path only, plus colour on small interface parts (a switch's ground, a struck-through line).
-- All scroll effects share the existing single rAF loop; the band runs its own loop only while it is on screen.
-- The design inspector must count at least 8 elements that move on load and scroll; the target is 16.
-
-## Commands
-
-As well as the ones in `SPEC.md`:
-
-```bash
-T=~/.claude/skills/design-taste-frontend/scripts
-
-# Source lint for generated-page tells (before: 50 FAIL)
-node $T/lint.mjs index.html
-
-# Real-browser gate at 1440, 768 and 390px, with screenshots (before: 16 FAIL)
-node $T/inspect.mjs index.html --out .taste-skill/after
-
-# Re-print the direction sheet while building
-node $T/draw.mjs --show
-```
-
-## Code Style
-
-Follow `SPEC.md`: ES5 in one IIFE, tokens on `:root`, banner comments.
-
-The new token names come from the direction sheet:
-
-```css
-:root {
-  --bg: #f7f9f8; --surface: #ebf0ee; --ink: #06525c; --muted: #2f737d;
-  --accent: #06525c; --accent-ink: #f7f9f8;
-  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
-  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-}
-.monument { font: 800 clamp(96px, 10.5vw, 168px)/0.9 "TikTok Sans"; font-stretch: 150%; letter-spacing: -0.04em; text-transform: uppercase; }
-```
-
-## Testing Strategy
-
-1. **Before.** Already recorded in `.taste-skill/before/`.
-2. **Per section.** Build the section, run `inspect.mjs`, look at the screenshots at all three widths, then fix.
-3. **Gate.** `lint.mjs` and `inspect.mjs` both report zero fails. Every warning is fixed or defended in one sentence.
-4. **Critique.** Up to three rounds using the design tool's critique format, written down, fixing the top three problems each round.
-5. **Regression.** Every check in `SPEC.md`, plus clicking every link that worked before: repos, Credly, resume, mailto and tel.
-6. **Keyboard.** Every link, button and skill bar is reachable by Tab and shows a visible focus ring.
-
-## Boundaries
-
-**Always:**
-- Adopt the dealt direction. Redraw a part only for a reason you can state, and record it here.
-- Keep every real fact.
-- Credit every found picture in the footer.
-- Build one section at a time and check it before moving on.
-
-**Ask first:**
-- Dropping or merging any section or project.
-- Using a found photo in the hero.
-- Adding any library, such as GSAP or Lenis. None is planned.
-- Changing any claim in the copy.
-
-**Never:**
-- Italic or serif accent words, labels above headings, monospace, index numbers, hairlines, gradients or shadows at rest.
-- Fake screenshots presented as real.
-- A found photo presented as Erik or his work.
-- A second font family.
-
-## Success Criteria
-
-1. `inspect.mjs` reports **0 FAIL** at 1440, 768 and 390px. It was 16 before.
-2. `lint.mjs` reports **0 FAIL**. It was 50 before.
-3. The whole page uses one font family, TikTok Sans, and has no italic text.
-4. In 5 seconds, a stranger looking at the first screen can say who this is, what he does and what to click.
-5. At least 4 real pictures, every found one credited.
-6. At least 8 moving elements, each with a reduced-motion fallback.
-8. Every success criterion in `SPEC.md` still passes.
-9. First load, with fonts and images, is under 1.5 MB.
-
-## Before and after
-
-Measured with the design tool's own scripts on 2026-10-22. Before is the page that was live on `main`.
-
-| | Before | After |
-|---|---|---|
-| `inspect.mjs` at 1440, 768 and 390 | 16 FAIL, 10 WARN | 0 FAIL, 3 WARN, each defended in `tasks/critique.md` |
-| `lint.mjs` | 50 FAIL | 0 FAIL, 0 WARN |
-| Typefaces | Fraunces, Inter and JetBrains Mono, with italic accent words | TikTok Sans only, no italics |
-| Pictures | none of Erik's own | 13 app screens rebuilt in HTML (the hero, eight on the work stage, one beside each project's notes) and 3 real badge images |
-| Grounds | one dark teal throughout | colour by chapter, cut hard at section edges: Proof on paper, Skills on a brighter teal field, Contact and footer on paper (teal and pale fields in the light theme) |
-| Elements moving on load and scroll | 431 to 466, nearly all of them the ink trail and the 269-dot test run | 261 at 1440 (68 to 84 before the upgrade): the name, the screen, the stage and its screens, the band, every section's entrance, the ink fill and KIRE |
-| `index.html` | 116 KB | 98 KB |
-| First load | not measured | about 330 KB: the page, about 154 KB of font, 78 KB of badges |
-| Reduced motion | not measured | the finished page, with nothing hidden and nothing cycling |
-| Print | not measured | teal on paper, every section, one project a page |
+The hand-built app screens (three per project), the torn work stage, the Washer 03 clock, the hero's ink canvas, the test-name band, Try to break it and the ERIK → KIRE footer. Real pictures replace drawn ones: PlayIT's nine screens and the three badges.
 
 ## Decisions
 
-Erik answered these on 2026-10-22.
-
 | # | Question | Answer |
 |---|---|---|
-| 1 | Photo of Erik for the hero | None yet. Use no found city photo either. The hero frame shows his own app screens. |
-| 2 | App screenshots | None. Rebuild the mock-ups as panels. |
-| 3 | Remove the ink trail, the dot test run and the stats row | Yes |
-| 4 | Dark mode | Dark by default; the toggle switches to light. Changed from light-by-default at the first-screen review. |
-| 5 | First screen (Checkpoint A) | Direction approved |
-| 6 | The full name (Checkpoint B) | Add Samuel: the hero reads ERIK [screen] / SAMUEL BIEN, and the nav, page title and social title say Erik Samuel Bien. Approved to go on to the motion layer. |
-| 7 | The design gate on a long page | The inspector photographs at most 12 screens and this page is 13 to 15, so the entrances further down never play during its walk. check.sh runs it with `--allow blank-gap` and runs that same rule over the whole page in `check-gaps.mjs`, after a real wheel scroll to the bottom. |
-| 8 | After going live (2026-10-22): "too empty on the background", "the motion design is kind of bland" | Merged as it was, then upgraded on the same direction. Fuller grounds: colour by chapter and a screen beside each project's notes. Richer motion: a live work stage, entrances that differ with the content, the About ink fill, the name pulling apart, a band that answers the scroll, BLOCKED stamping, and ERIK turning into KIRE. No new colours beyond the teal family, no texture or gradient, no cursor effects. |
-| 9 | A background effect (2026-10-23), picked from a list of 20 canvas styles | One effect, in one place: Sumi-e brush, made from InkHive, on the hero's ground only. Photos and a whole-page effect were turned down: the work and the text keep the page's attention, and phones keep their battery. A matching board at Contact was offered and declined. |
-| 10 | The real product on the site (2026-11-11): "Put the product like the app on the site, for example the PlayIT it needs to have a ShowCase" | PlayIT gets a Showcase under its details: nine real screens from its screenshot tests, as a strip (see Pictures). The rebuilt screens in the hero, on the stage and beside the notes stay as they are. LabaLink, Seoul-Mate and InkHive get a Showcase when they have real screens. The inspector now gives a fourth warning, `side-scroll`, defended in `tasks/critique.md`. Live since 2026-11-13. |
-| 11 | Project order (2026-11-14): "put the playit on the first on the portfolio" | PlayIT, the capstone, comes first everywhere: the hero's screen, the work stage, the details and the resume. Then LabaLink, Seoul-Mate and InkHive. LabaLink's Washer 03 clock follows LabaLink wherever it sits, so the order can change again without touching the script. |
-| 12 | The message once PlayIT leads (2026-11-14): "shouldnt the I test this break this not the priority anymore since like the it build around the playit now" | The hero line and the link previews say he builds web and Android apps that work for the people who use them, which is what PlayIT shows first. Testing stays as evidence, not the headline: the Proof band, its 300 passing tests and Try to break it are unchanged further down. The resume objective reads "accessible, tested". |
-| 13 | The demo and the skills (2026-11-16): "i dont want the try to break it demo", and a skills check where Erik marked 17 skills he can't explain yet | Try to break it is gone, with the two entrance manners only it used. Proof keeps the band of real test names and its caption under a plain heading, minus the names for skills marked No. The Stack, the project lines, About and Also built drop every skill marked No. The PlayIT screen beside its notes shows Hear it, as the real app does, instead of a Find it the app never had. |
+| 1 | Direction (2026-11-16) | B, "Type and nothing else", from three shown on a preview page. |
+| 2 | Colours | Calm and easy on the eyes: mist and sage, above. Dark stays the default with the light switch (`SPEC.md`). |
+| 3 | Project order | Unchanged (PlayIT, LabaLink, Seoul-Mate, InkHive) until Erik decides whether the site follows the resume's (PlayIT, InkHive, LabaLink). |
+| 4 | Gate warnings | Each defended in `tasks/critique.md`. |

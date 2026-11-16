@@ -64,7 +64,7 @@ curl -s https://thatguykire.github.io/PORTFOLIO/ | grep -c "<text from the chang
 ## Project Structure
 
 ```
-index.html          → the content, the icons as SVG <symbol>s, and one inline line that sets the theme before the page paints
+index.html          → the content, and one inline line that sets the theme before the page paints
 css/site.css        → every style: tokens, sections, motion and print
 js/site.js          → every script, in one strict IIFE, one banner per feature
 assets/             → pictures the site shows
