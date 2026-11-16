@@ -39,7 +39,7 @@ One family, **Bricolage Grotesque** (Google Fonts, optical size on), weights 400
 | 4 | **Stack** | ground | Two-ended rows in three columns: the skill at the left, the project at the right. |
 | 5 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
 | 6 | **Contact** | mist | The email address as the display line; phone and city at the left, links at the right. |
-| 7 | **Footer** | ground | Two short lists, then "Erik Bien" from margin to margin. |
+| 7 | **Footer** | ground | The section links, then "Erik Bien" from margin to margin. GitHub, LinkedIn and the resume are not repeated here; they sit in Contact just above. |
 
 The bar is fixed and takes the field of the chapter under it, so it never sits on the page as a band of another colour. Below 1024px its links fold into a full-screen menu.
 
