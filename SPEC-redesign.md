@@ -4,7 +4,7 @@ The look and motion of the site. It follows every rule in `SPEC.md`. The previou
 
 ## Direction
 
-**Type and nothing else**, dealt by the design-taste skill (seed 1249965762) and chosen by Erik from three on 2026-11-16. The first screen is only words, colour and space; pictures arrive later, large and few, and only where they are real (PlayIT's screens, the badges).
+**Type and nothing else**, dealt by the design-taste skill (seed 1249965762) and chosen by Erik from three on 2026-11-16. The first screen is only words, colour and space; pictures arrive later, large and few, and only where they are real (PlayIT's and LabaLink's screens, the badges).
 
 **The idea:** PlayIT's Blend It deals a word's tiles in any order but the right one; that was Erik's fix. On this page **Erik's name is dealt the same way**: its letters arrive as shuffled tiles that slide into place and fade into the plain name.
 
@@ -34,7 +34,7 @@ One family, **Bricolage Grotesque** (Google Fonts, optical size on), weights 400
 | # | Section | Field | Composition |
 |---|---|---|---|
 | 1 | **Hero** | sage | "Erik Bien" across the width in two inks, pale then dark; the sentence bottom-left, "Deal again" and See the work bottom-right. The field holds its content, so the next chapter shows at the foot of the first screen. |
-| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, InkHive, …"), with PlayIT's logo (the team's TekCon 2026 product logo) after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
+| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, InkHive, …"), with PlayIT's logo (the team's TekCon 2026 product logo) after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Under LabaLink's points, its attendant dashboard runs wide, then five screens of the customer app in the same kind of strip, captured on the app's sample data (2026-11-17). Then Also built. |
 | 3 | **Stack** | mist | Two-ended rows in three columns: the skill at the left, the project at the right. |
 | 4 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
 | 5 | **Contact** | mist | The email address as the display line; phone and city at the left, links at the right. |

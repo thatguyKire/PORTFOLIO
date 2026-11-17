@@ -4,6 +4,6 @@ Open work only. Everything finished (the content fixes, the first and second des
 
 ## Later
 - [ ] Erik refreshes the skills he wants to keep; then decide whether the Stack shows levels (Proficient, Intermediate, Basic) like the resume.
-- [ ] Real screens for LabaLink, Seoul-Mate and InkHive, each shown like PlayIT's strip once they exist.
+- [ ] Real screens for Seoul-Mate and InkHive, each shown like PlayIT's and LabaLink's once they exist.
 
 Before every push: `bash check.sh` all PASS and screenshots at 390 and 1440. After it: confirm the live page and resume are served byte for byte.
