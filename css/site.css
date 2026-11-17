@@ -64,7 +64,8 @@
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: var(--bar-h); }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--step-body); line-height: 1.5; font-optical-sizing: auto; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, h4, p, figure, ul, ol, dl, dd { margin: 0; }
-ul[class], ol[class] { padding: 0; list-style: none; }
+/* :where() keeps this reset at zero priority, so each list's own spacing (the strips, the menu) still applies */
+:where(ul[class], ol[class]) { padding: 0; list-style: none; }
 h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; text-wrap: balance; }
 img, svg { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
@@ -183,7 +184,7 @@ html:has(.menu[open]) { overflow: hidden; }
 .proj-what { font-size: var(--step-lead); line-height: 1.3; }
 .proj-meta, .proj-stack { color: var(--muted); }
 .proj-side .link { justify-self: start; margin-top: 0.4rem; }
-.proj-points { grid-column: 5 / span 8; padding-left: 1.1em; display: grid; gap: 1rem; align-content: start; }
+.proj-points { grid-column: 5 / span 8; display: grid; gap: 1rem; align-content: start; }
 .proj-points li { max-width: 60ch; }
 .proj-points li::marker { color: var(--muted); }
 @media (max-width: 899px) {
@@ -214,6 +215,7 @@ html:has(.menu[open]) { overflow: hidden; }
 .reel.is-live .is-whole figcaption { opacity: 1; visibility: visible; }
 @media (hover: hover) and (pointer: fine) {
   .js .reel-nav { display: flex; }
+  .js .fits .reel-nav { display: none; }
   .reel-btn:not([aria-disabled="true"]):hover { background: var(--surface-2); }
 }
 @media (min-width: 900px) {
