@@ -125,13 +125,13 @@ html:not(.js) .theme { display: none; }
 }
 @media (max-width: 380px) { .mark { font-size: var(--step-small); } }
 
-/* ---------- the menu: a full-screen sheet in the page's ground, the sections large at the thumb ---------- */
+/* ---------- the menu: a full-screen sheet in the page's ground, the sections large at the top, where a menu is looked for ---------- */
 .menu { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--bg); color: var(--ink); }
 .menu[open] { display: flex; flex-direction: column; }
 .menu::backdrop { background: transparent; }
 html:has(.menu[open]) { overflow: hidden; }
 .menu-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--bar-h); padding-inline: var(--margin); font-size: var(--step-small); }
-.menu-links { display: grid; gap: 0.25rem; margin-top: auto; padding: 2rem var(--margin) 1.5rem; }
+.menu-links { display: grid; gap: 0.25rem; padding: 2rem var(--margin) 1.5rem; }
 .menu-links a { display: block; width: fit-content; padding-block: 0.1em; font-size: var(--step-head); font-weight: 600; letter-spacing: -0.02em; text-decoration: none; transition: transform var(--t-press) var(--ease-out); }
 .menu-links a:active { transform: scale(0.98); transform-origin: left; }
 .menu-foot { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0 var(--margin) 1.5rem; font-size: var(--step-small); }
