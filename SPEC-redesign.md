@@ -46,7 +46,8 @@ The bar is fixed and takes the field of the chapter under it, so it never sits o
 
 - **Signature:** the name's deal on load and on "Deal again" (transforms only).
 - **Colour by chapter:** the bar cross-fades to the field beneath it in 300ms. The fields themselves never change colour.
-- **Entrances:** each section's parts arrive once, 80ms apart: headings a letter at a time, the rest rising 24px, PlayIT's strip opening like a shutter. Anything already on the first screen at load is never hidden.
+- **Entrances:** each section's parts arrive once, 80ms apart: headings a letter at a time, the rest rising 24px. In each strip of screens, every screen is uncovered by its own slat of the ground with a faint lit edge, narrowing to its centre line, left to right, 70ms apart (the motion-effects "image reveal", 2026-11-17). Anything already on the first screen at load is never hidden.
+- **Screens open large** (the motion-effects "card to workspace", 2026-11-17): pressing a screen in a strip opens it in a sheet, grown from its exact place and size while the page dims to its own ground; the caption follows once the picture has room, and a dashed outline holds the screen's place. Close, Esc or a click anywhere folds it back and returns focus to it. LabaLink's dashboard is not in the viewer: it is already near full width on a desktop, and a phone could not show it any larger.
 - **Feedback:** press on every button, hover on links and the project names.
 - Reduced motion: no deal, no entrances, nothing hidden. Without JavaScript: the plain name, every part shown, no switch or "Deal again". Print: black on white, every part shown, the strip in rows of five.
 

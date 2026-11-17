@@ -145,6 +145,8 @@
     var fit = function () { show.classList.toggle('fits', reel.scrollWidth <= reel.clientWidth + 1); };
     fit();
     window.addEventListener('resize', fit);
+    // each screen's place in the strip, so the entrance uncovers them one after another
+    items.forEach(function (li, k) { li.style.setProperty('--k', k); });
     btns.forEach(function (b, i) {
       b.addEventListener('click', function () {
         if (b.getAttribute('aria-disabled') === 'true') return;
@@ -165,6 +167,79 @@
     items.forEach(function (li) { whole.observe(li); });
     reel.classList.add('is-live');
   });
+
+  /* ---------- viewer: a screen opens large from where it sits, and folds back ---------- */
+  // Each screen in a strip becomes a button. Pressing it opens the same picture in a sheet, grown from its
+  // exact place and size while the page dims; the caption waits until the picture has room, and a dashed
+  // outline holds the screen's place in the strip. Closing (the button, Esc or a click anywhere) folds it
+  // back into that place and returns focus there. With reduced motion it simply opens and closes.
+  var viewer = $('#viewer');
+  if (viewer && viewer.showModal) {
+    var vCap = $('figcaption', viewer), vImg = document.createElement('img'), opener = null, closing = false;
+    $('.viewer-fig', viewer).insertBefore(vImg, vCap);
+    // the transform that lays the large picture exactly over a small one, measured from its resting place
+    var over = function (small) {
+      vImg.style.transition = 'none';
+      vImg.style.transform = 'none';
+      var big = vImg.getBoundingClientRect();
+      return 'translate(' + (small.left - big.left) + 'px, ' + (small.top - big.top) + 'px) scale(' + small.width / big.width + ')';
+    };
+    // jump to a start without a transition, then let the move run from there
+    var move = function (start, end) {
+      vImg.style.transform = start;
+      vImg.getBoundingClientRect();
+      vImg.style.transition = '';
+      vImg.style.transform = end;
+    };
+    var open = function (btn) {
+      var img = $('img', btn), cap = $('figcaption', btn.parentNode);
+      opener = btn;
+      vImg.src = img.currentSrc || img.src;
+      vImg.alt = img.alt;
+      vImg.setAttribute('width', img.getAttribute('width'));
+      vImg.setAttribute('height', img.getAttribute('height'));
+      vCap.textContent = '';
+      if (cap) Array.prototype.forEach.call(cap.childNodes, function (n) { vCap.appendChild(n.cloneNode(true)); });
+      var from = img.getBoundingClientRect();
+      viewer.showModal();
+      btn.closest('li').classList.add('is-origin');
+      if (!RM) move(over(from), 'none');
+      viewer.classList.add('is-open');
+    };
+    var close = function () {
+      if (!viewer.open || closing) return;
+      closing = true;
+      viewer.classList.remove('is-open');
+      if (RM) { viewer.close(); return; }
+      var to = over($('img', opener).getBoundingClientRect()), timer;
+      var done = function () { vImg.removeEventListener('transitionend', done); clearTimeout(timer); viewer.close(); };
+      vImg.addEventListener('transitionend', done);
+      timer = setTimeout(done, 650);
+      move('none', to);
+    };
+    // every way out ends here: the screen returns to its place and focus goes back to it
+    viewer.addEventListener('close', function () {
+      closing = false;
+      viewer.classList.remove('is-open');
+      vImg.style.transition = '';
+      vImg.style.transform = '';
+      if (opener) { opener.closest('li').classList.remove('is-origin'); opener.focus({ preventScroll: true }); }
+    });
+    viewer.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+    viewer.addEventListener('click', close);
+    $$('.reel figure img').forEach(function (img) {
+      var btn = document.createElement('button'), hint = document.createElement('span');
+      btn.type = 'button';
+      btn.className = 'zoom';
+      btn.setAttribute('aria-haspopup', 'dialog');
+      hint.className = 'sr';
+      hint.textContent = ' (opens larger)';
+      img.parentNode.insertBefore(btn, img);
+      btn.appendChild(img);
+      btn.appendChild(hint);
+      btn.addEventListener('click', function () { open(btn); });
+    });
+  }
 
   /* ---------- entrances: each section's parts arrive once, in reading order ---------- */
   // A group is watched; when its top passes 90% of the screen its parts arrive, 80ms apart and four steps
