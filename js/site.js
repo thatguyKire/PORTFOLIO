@@ -222,7 +222,6 @@
     $$('.proj').forEach(function (p) { enter(p, [[$('.proj-h', p), 'chars'], $('.proj-what', p), $('.proj-meta', p), $('.proj-points', p)]); });
     $$('.show').forEach(function (s) { enter(s, [[$('.show-h', s), 'chars'], $('.show-say', s), [$('.reel', s), 'reel']]); });
     enter($('.also'), [[$('.also-h'), 'chars'], $('.also-list')]);
-    enter($('.proof'), [$('.proof-h'), $('.proof-say'), $('.suites')]);
     enter($('.stack-head'), [[$('.stack-h'), 'chars'], $('.stack-head p')]);
     enter($('.groups'), $$('.group'));
     var rows = $$('.about-row');

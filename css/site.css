@@ -1,6 +1,6 @@
 /* ---------- tokens: mist and sage. Dark is the default; light is opt-in through the switch. ---------- */
 /* Calm on the eyes: no pure black or white, one muted sage accent, and three chapter fields (the base
-   ground, a sage field for the name, a mist field for proof and contact) instead of decoration. */
+   ground, a sage field for the name, a mist field for the stack and contact) instead of decoration. */
 :root {
   --font: "Bricolage Grotesque", system-ui, sans-serif;
   --bg: #1b2321;
@@ -226,34 +226,6 @@ html:has(.menu[open]) { overflow: hidden; }
 .also-list .link { font-weight: 600; }
 .also-list .soft { font-size: var(--step-small); padding-left: 0.4em; }
 @media (max-width: 899px) { .also-h, .also-list { grid-column: 1 / -1; } }
-
-/* ---------- proof: the suites as a table on the mist field, a tone step on every other project ---------- */
-.proof { padding-block: var(--section); }
-.proof-h { font-size: var(--step-head); }
-.proof-h span { display: block; }
-.proof-h span + span { padding-left: calc((100vw - 2 * var(--margin)) / 6); }
-.proof-say { margin: 1.5rem 0 clamp(2.5rem, 5vw, 4.5rem); max-width: 54ch; }
-.suites { width: 100%; border-collapse: collapse; }
-.suites th, .suites td { padding: 0.85rem 1rem; text-align: left; vertical-align: top; font-weight: 400; overflow-wrap: anywhere; }
-.suites thead th { padding-block: 0 0.75rem; color: var(--muted); font-size: var(--step-small); font-weight: 500; }
-.suites tbody th { font-weight: 600; }
-.suites .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.suites tbody td.num { font-weight: 600; }
-.suites tbody td.num.soft { font-weight: 400; }
-.suites .gap td { padding: 0; height: 0.75rem; }
-.suites .tone { background: var(--surface); }
-.suites thead th:first-child { width: 16%; }
-.suites thead th:nth-child(2) { width: 30%; }
-@media (max-width: 699px) {
-  .proof-h span + span { padding-left: 0; }
-  .suites thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  .suites, .suites tbody, .suites tr, .suites th, .suites td { display: block; }
-  .suites tbody tr { padding: 0.6rem 0.9rem; }
-  .suites tbody th, .suites tbody td { padding: 0.15rem 0; text-align: left; }
-  .suites .num { text-align: left; }
-  .suites tbody tr.cont td:empty, .suites tbody tr.cont .num:empty { display: none; }
-  .suites .gap { padding: 0; height: 0.75rem; }
-}
 
 /* ---------- stack: two-ended rows, skill at the left and the project at the right ---------- */
 .stack { padding-block: var(--section); }

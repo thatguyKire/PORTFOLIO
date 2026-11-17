@@ -30,17 +30,14 @@ else
   skip "Resume PDF checks" "pdftotext not found"
 fi
 
-# 4. The three suite counts add up to the total the site shows
-laba=$(grep -oE '[0-9]+ backend tests' resume/resume.html | grep -oE '^[0-9]+')
-ink=$(grep -oE '[0-9]+ tests \([0-9]+ security\)' resume/resume.html | grep -oE '^[0-9]+')
-seoul=$(grep -oE 'Seoul-Mate \([0-9]+\)' index.html | grep -oE '[0-9]+') # Seoul-Mate is on the site only
-if [ -n "$laba" ] && [ -n "$ink" ] && [ -n "$seoul" ]; then
-  total=$((laba + ink + seoul))
-  if grep -q "\b$total\b" index.html; then pass "Test total $laba + $ink + $seoul = $total appears on the site"
-  else fail "The suites add up to $total, but the site never shows $total"; fi
-else
-  fail "Could not read the three suite counts from resume.html and index.html"
-fi
+# 4. The test counts the site shows match the resume's (Seoul-Mate is on the site only)
+for pat in '[0-9]+ backend tests' '[0-9]+ tests \([0-9]+ security\)'; do
+  site=$(grep -oE "$pat" index.html | sort -u)
+  resume=$(grep -oE "$pat" resume/resume.html | sort -u)
+  if [ -z "$site" ] || [ -z "$resume" ]; then fail "Could not find \"$pat\" on the site and in resume.html"
+  elif [ "$site" = "$resume" ]; then pass "Test count \"$site\" is the same on the site and the resume"
+  else fail "Test counts differ" "site: $site / resume: $resume"; fi
+done
 
 # 5. The design gate: source lint and the real-browser inspector
 T="$HOME/.claude/skills/design-taste-frontend/scripts"

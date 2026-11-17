@@ -79,7 +79,7 @@ tasks/              → open work (todo.md) and the design gate's defended warni
 .gitignore          → keeps the design tool's working folder (.taste-skill/) out of git
 ```
 
-The page order is Nav, Hero, Work, Proof, Stack, About and Contact. `SPEC-redesign.md` describes each.
+The page order is Nav, Hero, Work, Stack, About and Contact. `SPEC-redesign.md` describes each.
 
 ## Code Style
 
@@ -120,7 +120,7 @@ There is no test framework. Every change is checked against this list:
 | Level | What | How |
 |---|---|---|
 | Content | Banned words and links are absent from the site and the resume | the `grep` command above |
-| Content | Numbers match their sources | 41 (LabaLink) + 127 (InkHive) + 132 (Seoul-Mate) = 300. Project and badge counts match. |
+| Content | Numbers match their sources | Each project states its own test count: LabaLink 41, InkHive 127 (29 security), Seoul-Mate 132. The first two match the resume. Project and badge counts match. |
 | Runtime | No console errors | headless Chrome or DevTools, page loaded and scrolled to the bottom |
 | Layout | No sideways scroll and nothing clipped | widths 375, 768 and 1280px, and a 1366×768 laptop |
 | Themes | Dark by default, also when the system is light. The toggle switches to light and remembers it. Both are readable. | load with the system in light and in dark, then use the toggle and reload |

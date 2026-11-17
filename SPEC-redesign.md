@@ -20,7 +20,7 @@ Erik asked for colours that are "calming and doesn't hurt on the eyes but still 
 | Ink | `#dfe6e1` | `#1d2724` |
 | Soft ink | `#9db0a7` | `#51645c` |
 | Accent (the one button) | `#a9c7b9` | `#3d6a5c` |
-| The other field (Proof, Contact) | `#d9e3dd` | `#1f2926` |
+| The other field (Stack, Contact) | `#d9e3dd` | `#1f2926` |
 | The name's field (both themes) | `#6f8f82`, with `#eef3ef` and `#17201d` as its two inks | same |
 
 No pure black or white anywhere. Every text colour passes WCAG AA on its ground; the name's pale line is display size, where 3:1 applies.
@@ -34,12 +34,11 @@ One family, **Bricolage Grotesque** (Google Fonts, optical size on), weights 400
 | # | Section | Field | Composition |
 |---|---|---|---|
 | 1 | **Hero** | sage | "Erik Bien" across the width in two inks, pale then dark; the sentence bottom-left, "Deal again" and See the work bottom-right. The field holds its content, so the next chapter shows at the foot of the first screen. |
-| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, LabaLink, …"), with PlayIT's logo (the team's TekCon 2026 product logo) after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
-| 3 | **Proof** | mist | "Tested before / it ships", the 300 total, then a table: project, suite, a real test name, count. A tone step on every other project instead of lines. |
-| 4 | **Stack** | ground | Two-ended rows in three columns: the skill at the left, the project at the right. |
-| 5 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
-| 6 | **Contact** | mist | The email address as the display line; phone and city at the left, links at the right. |
-| 7 | **Footer** | ground | The section links, then "Erik Bien" from margin to margin. GitHub, LinkedIn and the resume are not repeated here; they sit in Contact just above. |
+| 2 | **Work** | ground | Every project name as one paragraph at head size ("Selected work: PlayIT, InkHive, …"), with PlayIT's logo (the team's TekCon 2026 product logo) after its name. Then each project in two columns: name, what it is, role, stack and repo link on the left third; the points on the right two thirds. PlayIT's nine real screens run as a strip under its points. Then Also built. |
+| 3 | **Stack** | mist | Two-ended rows in three columns: the skill at the left, the project at the right. |
+| 4 | **About** | ground | Side facts and a wide paragraph meeting at 34% of the width; then the record: badges with their Credly links, and coursework. |
+| 5 | **Contact** | mist | The email address as the display line; phone and city at the left, links at the right. |
+| 6 | **Footer** | ground | The section links, then "Erik Bien" from margin to margin. GitHub, LinkedIn and the resume are not repeated here; they sit in Contact just above. |
 
 The bar is fixed and takes the field of the chapter under it, so it never sits on the page as a band of another colour. Below 1024px its links fold into a full-screen menu.
 
@@ -61,6 +60,7 @@ The hand-built app screens (three per project), the torn work stage, the Washer 
 |---|---|---|
 | 1 | Direction (2026-11-16) | B, "Type and nothing else", from three shown on a preview page. |
 | 2 | Colours | Calm and easy on the eyes: mist and sage, above. Dark stays the default with the light switch (`SPEC.md`). |
-| 3 | Project order (2026-11-17) | The resume's: PlayIT, InkHive, LabaLink, then Seoul-Mate, which is on the site only. The names line, the details and the proof table all follow it. |
+| 3 | Project order (2026-11-17) | The resume's: PlayIT, InkHive, LabaLink, then Seoul-Mate, which is on the site only. The names line and the details follow it. |
 | 4 | Gate warnings | Each defended in `tasks/critique.md`. |
 | 5 | Skill levels on the Stack (2026-11-17) | Not shown. Erik wants to refresh those skills first; the Stack stays a plain list of skills and where each was used. |
+| 6 | The Proof section (2026-11-17) | Removed. It repeated the test counts each project already states; the site leads with PlayIT, not testing. Stack takes its mist field so the fields still alternate. |
