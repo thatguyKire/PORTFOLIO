@@ -141,6 +141,10 @@
   $$('.show').forEach(function (show) {
     var reel = $('.reel', show), btns = $$('.reel-btn', show), items = $$('li', reel), last = items.length - 1;
     if (last < 1) return;
+    // A strip that fits whole has nothing to move, so its arrows hide until the window is narrow enough.
+    var fit = function () { show.classList.toggle('fits', reel.scrollWidth <= reel.clientWidth + 1); };
+    fit();
+    window.addEventListener('resize', fit);
     btns.forEach(function (b, i) {
       b.addEventListener('click', function () {
         if (b.getAttribute('aria-disabled') === 'true') return;
