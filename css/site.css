@@ -236,7 +236,8 @@ html:has(.viewer[open]) { overflow: hidden; }
 /* the dim is the page's own ground, laid over it */
 .viewer::before { content: ""; position: fixed; inset: 0; background: var(--bg); opacity: 0; }
 .viewer.is-open::before { opacity: 0.96; }
-.viewer-close { position: fixed; top: calc((var(--bar-h) - 2.75rem) / 2); right: var(--margin); z-index: 1; }
+/* on its own ground, so it stays legible over a picture that pans beneath it */
+.viewer-close { position: fixed; top: calc((var(--bar-h) - 2.75rem) / 2); right: var(--margin); z-index: 1; background: var(--bg); }
 .viewer-fig { position: relative; display: grid; justify-items: center; gap: 1rem; }
 .viewer-fig img { width: auto; height: auto; max-width: 100%; max-height: calc(100svh - var(--bar-h) - var(--margin) - 6rem); transform-origin: 0 0; }
 .viewer-fig figcaption { max-width: 34ch; opacity: 0; }
@@ -246,6 +247,11 @@ html:has(.viewer[open]) { overflow: hidden; }
   .viewer-fig { grid-template-columns: auto minmax(0, 20rem); align-items: end; column-gap: var(--gutter); }
   .viewer-fig img { max-height: calc(100svh - var(--bar-h) - var(--margin)); }
 }
+/* a wide screen on a narrow window: held at a readable width, and the sheet pans sideways to read it */
+.viewer.is-pan { place-items: start; overflow: auto; }
+.viewer.is-pan .viewer-fig { justify-items: start; }
+.viewer.is-pan .viewer-fig img { width: 70rem; max-width: none; max-height: none; }
+.viewer.is-pan .viewer-fig figcaption { position: sticky; left: 0; max-width: calc(100vw - 2 * var(--margin)); }
 
 /* ---------- also built: three rows, name, what it is and its language ---------- */
 .also { margin-top: clamp(4.5rem, 9vw, 8rem); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 1rem; }

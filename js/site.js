@@ -173,9 +173,11 @@
   // exact place and size while the page dims; the caption waits until the picture has room, and a dashed
   // outline holds the screen's place in the strip. Closing (the button, Esc or a click anywhere) folds it
   // back into that place and returns focus there. With reduced motion it simply opens and closes.
+  // A wide screen (LabaLink's dashboard) opens only on a narrow window, where it shows too small to read:
+  // the sheet holds it at a readable width and pans sideways.
   var viewer = $('#viewer');
   if (viewer && viewer.showModal) {
-    var vCap = $('figcaption', viewer), vImg = document.createElement('img'), opener = null, closing = false;
+    var vCap = $('figcaption', viewer), vImg = document.createElement('img'), opener = null, origin = null, closing = false;
     $('.viewer-fig', viewer).insertBefore(vImg, vCap);
     // the transform that lays the large picture exactly over a small one, measured from its resting place
     var over = function (small) {
@@ -194,6 +196,8 @@
     var open = function (btn) {
       var img = $('img', btn), cap = $('figcaption', btn.parentNode);
       opener = btn;
+      origin = btn.parentNode;
+      viewer.classList.toggle('is-pan', origin.classList.contains('wide'));
       vImg.src = img.currentSrc || img.src;
       vImg.alt = img.alt;
       vImg.setAttribute('width', img.getAttribute('width'));
@@ -202,7 +206,7 @@
       if (cap) Array.prototype.forEach.call(cap.childNodes, function (n) { vCap.appendChild(n.cloneNode(true)); });
       var from = img.getBoundingClientRect();
       viewer.showModal();
-      btn.closest('li').classList.add('is-origin');
+      origin.classList.add('is-origin');
       if (!RM) move(over(from), 'none');
       viewer.classList.add('is-open');
     };
@@ -220,14 +224,16 @@
     // every way out ends here: the screen returns to its place and focus goes back to it
     viewer.addEventListener('close', function () {
       closing = false;
-      viewer.classList.remove('is-open');
+      viewer.classList.remove('is-open', 'is-pan');
       vImg.style.transition = '';
       vImg.style.transform = '';
-      if (opener) { opener.closest('li').classList.remove('is-origin'); opener.focus({ preventScroll: true }); }
+      if (origin) origin.classList.remove('is-origin');
+      if (opener && opener.isConnected) opener.focus({ preventScroll: true });
     });
     viewer.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
     viewer.addEventListener('click', close);
-    $$('.reel figure img').forEach(function (img) {
+    // a picture becomes a button that opens it, and can become a plain picture again
+    var zoom = function (img) {
       var btn = document.createElement('button'), hint = document.createElement('span');
       btn.type = 'button';
       btn.className = 'zoom';
@@ -238,6 +244,23 @@
       btn.appendChild(img);
       btn.appendChild(hint);
       btn.addEventListener('click', function () { open(btn); });
+      return btn;
+    };
+    var unzoom = function (btn) {
+      if (viewer.open && opener === btn) viewer.close();
+      btn.parentNode.insertBefore($('img', btn), btn);
+      btn.parentNode.removeChild(btn);
+    };
+    $$('.reel figure img').forEach(zoom);
+    var narrow = matchMedia('(max-width: 899px)');
+    $$('.wide img').forEach(function (img) {
+      var btn = null;
+      var fit = function () {
+        if (narrow.matches && !btn) btn = zoom(img);
+        else if (!narrow.matches && btn) { unzoom(btn); btn = null; }
+      };
+      fit();
+      if (narrow.addEventListener) narrow.addEventListener('change', fit); else narrow.addListener(fit);
     });
   }
 
