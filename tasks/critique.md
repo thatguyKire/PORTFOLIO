@@ -9,7 +9,7 @@ The current design (`SPEC-redesign.md`, 2026-11-16). Earlier rounds are in git h
 1. **no-footage**: no video. There is no honest clip of this subject; the moving thing on the first screen is the name being dealt.
 2. **side-scroll**: PlayIT's strip of nine screens scrolls sideways on purpose. The next screen is cut by the edge to say so, two arrows sit beside its heading for a mouse, and it has its own bar.
 3. **empty-middle**: the inspector reads the strip's screens waiting off screen to the right (x 2107 and beyond) as a gap from the screen's edge. Nothing on screen has a hole.
-4. **card-rows** (2026-11-17): the two "rows of identical boxed cards" are PlayIT's and LabaLink's strips of real screens. They are pictures of the apps, not cards of icons and text, and they are framed alike because they are the same kind of thing.
+4. **card-rows** (2026-11-17): the three "rows of identical boxed cards" are PlayIT's, InkHive's and LabaLink's strips of real screens. They are pictures of the apps, not cards of icons and text, and they are framed alike because they are the same kind of thing.
 
 ## Round 1 (2026-11-16, the new design)
 
