@@ -16,7 +16,7 @@ Give recruiters and internship reviewers one place to see what Erik builds, prov
   - How to reach him.
 - **Two outputs, kept in sync:**
   - `index.html` is the interactive site.
-  - `Bien_Resume.pdf` is the one-page resume the site links to.
+  - `Erik_Samuel_Bien_Resume.pdf` is the one-page resume the site links to.
 
 ### Assumptions
 
@@ -43,11 +43,11 @@ start index.html
 # Rebuild the resume PDF from its HTML source
 "/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" --headless=new --disable-gpu \
   --no-pdf-header-footer \
-  --print-to-pdf="C:\\Users\\Erik\\Desktop\\PORTFOLIO\\Bien_Resume.pdf" \
+  --print-to-pdf="C:\\Users\\Erik\\Desktop\\PORTFOLIO\\Erik_Samuel_Bien_Resume.pdf" \
   "file:///C:/Users/Erik/Desktop/PORTFOLIO/resume/resume.html"
 
 # The resume must be exactly one page (prints 1)
-pdftotext Bien_Resume.pdf - | tr -cd '\f' | wc -c
+pdftotext Erik_Samuel_Bien_Resume.pdf - | tr -cd '\f' | wc -c
 
 # Content that must never appear on the site or the resume (prints nothing)
 grep -niE 'psite|student congress|playwright|codechum|collaboard-z4sx' index.html resume/resume.html
@@ -69,7 +69,7 @@ css/site.css        → every style: tokens, sections, motion and print
 js/site.js          → every script, in one strict IIFE, one banner per feature
 assets/             → pictures the site shows
 resume/resume.html  → resume source (Letter size, print CSS)
-Bien_Resume.pdf     → generated from resume.html; commit it with every resume change
+Erik_Samuel_Bien_Resume.pdf     → generated from resume.html; commit it with every resume change
 README.md           → what each file is
 CLAUDE.md           → how to build (clean and modular, stop and say so if it needs a refactor), then git commit and PR rules
 SPEC.md             → this file: the rules for every change
@@ -133,7 +133,7 @@ There is no test framework. Every change is checked against this list:
 
 **Always:**
 - Keep the site and the resume in step. The badges must match. The resume lists PlayIT, InkHive and LabaLink, in that order, by Erik's choice; the site shows them in the same order and adds Seoul-Mate last. Seoul-Mate stays on the site only until it's finished.
-- Rebuild `Bien_Resume.pdf` whenever `resume/resume.html` changes, and commit both files.
+- Rebuild `Erik_Samuel_Bien_Resume.pdf` whenever `resume/resume.html` changes, and commit both files.
 - Run the content `grep` and the one-page check before committing.
 - Follow `CLAUDE.md`: short imperative commit messages and no trailers or attribution lines.
 - Check the live site after every push.

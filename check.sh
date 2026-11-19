@@ -18,12 +18,12 @@ else fail "Banned words or links found" "$(echo "$hits" | cut -c1-120 | head -5)
 
 if command -v pdftotext >/dev/null; then
   # 2. The PDF matches its source: a stale PDF still carries what the HTML dropped
-  hits=$(pdftotext Bien_Resume.pdf - | grep -niE "$BANNED")
-  if [ -z "$hits" ]; then pass "No banned words or links in Bien_Resume.pdf"
-  else fail "Banned words or links in Bien_Resume.pdf (rebuild it from resume.html)" "$hits"; fi
+  hits=$(pdftotext Erik_Samuel_Bien_Resume.pdf - | grep -niE "$BANNED")
+  if [ -z "$hits" ]; then pass "No banned words or links in Erik_Samuel_Bien_Resume.pdf"
+  else fail "Banned words or links in Erik_Samuel_Bien_Resume.pdf (rebuild it from resume.html)" "$hits"; fi
 
   # 3. One page
-  pages=$(pdftotext Bien_Resume.pdf - | tr -cd '\f' | wc -c)
+  pages=$(pdftotext Erik_Samuel_Bien_Resume.pdf - | tr -cd '\f' | wc -c)
   if [ "$pages" -eq 1 ]; then pass "Resume is one page"
   else fail "Resume is $pages pages, should be 1"; fi
 else
