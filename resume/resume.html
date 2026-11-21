@@ -6,22 +6,24 @@
 <style>
   @page { size: Letter; margin: 0.45in 0.6in 0.4in; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 10.5pt; line-height: 1.24; color: #222; }
+  body { font-family: Calibri, Carlito, "Segoe UI", Arial, sans-serif; font-size: 10.2pt; line-height: 1.2; color: #222; }
   a { color: inherit; text-decoration: none; }
   a:not(.qr) { text-decoration: underline; text-decoration-thickness: .5pt; text-underline-offset: 1.5pt; }
   header { position: relative; min-height: .84in; text-align: center; margin-bottom: 5pt; }
   h1 { font-size: 22pt; color: #1f3864; letter-spacing: .3pt; line-height: 1.1; }
-  .contact { color: #333; font-size: 10.3pt; margin-top: 2pt; }
+  .contact { color: #333; font-size: 10.1pt; margin-top: 2pt; }
   .contact + .contact { margin-top: 1pt; }
   .contact span + span::before { content: "|"; margin: 0 5pt; color: #888; }
   .qr { position: absolute; top: 0; right: 0; width: .68in; font-size: 7.5pt; color: #444; text-align: center; }
   .qr svg { display: block; width: .68in; height: .68in; margin-bottom: 1.5pt; }
-  h2 { font-size: 11.3pt; font-weight: 700; color: #1f3864; text-transform: uppercase; letter-spacing: .3pt; border-bottom: 1.2pt solid #1f3864; padding-bottom: 1pt; margin: 6pt 0 3pt; }
-  .proj { margin-bottom: 5pt; }
+  h2 { font-size: 11.3pt; font-weight: 700; color: #1f3864; text-transform: uppercase; letter-spacing: .3pt; border-bottom: 1.2pt solid #1f3864; padding-bottom: 1pt; margin: 5pt 0 2.5pt; }
+  .proj { margin-bottom: 4pt; }
   .proj:last-of-type { margin-bottom: 0; }
-  .proj h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; font-size: 11.5pt; color: #1f3864; }
+  .proj h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; font-size: 11.2pt; color: #1f3864; }
   .proj h3 .link { font-size: 10pt; font-weight: 400; color: #444; white-space: nowrap; }
-  .role { color: #444; }
+  .role { color: #444; display: flex; justify-content: space-between; gap: 10pt; }
+  .role .date { white-space: nowrap; }
+  .summary { text-align: justify; }
   .env { color: #333; }
   .env b { color: #222; }
   ul { margin: 2pt 0 0 14pt; }
@@ -41,6 +43,9 @@
 Portfolio</a>
 </header>
 
+<h2>Professional Summary</h2>
+<p class="summary">Fourth-year BSIT student at CIT-U seeking an OJT placement in software development or testing from January to May 2027. Builds web and Android apps in Kotlin, Python and TypeScript, and backs them with automated tests: 177 across InkHive and LabaLink. Has led a three-person team and built a full-stack system alone, and is now learning AI and automation through AWS and IBM courses.</p>
+
 <h2>Education</h2>
 <p><b>Bachelor of Science in Information Technology (BSIT), 4th Year</b></p>
 <p class="muted">Cebu Institute of Technology – University (CIT-U), Cebu City &nbsp;|&nbsp; Expected Graduation: 2027</p>
@@ -50,7 +55,7 @@ Portfolio</a>
 
 <div class="proj">
   <h3>PlayIT — Offline English Phonics App for Grade 1 Learners<a class="link" href="https://github.com/zendrix-hub/playIt">github.com/zendrix-hub/playIt</a></h3>
-  <div class="role">Developer &nbsp;|&nbsp; 5-member capstone team</div>
+  <div class="role"><span>Developer &nbsp;|&nbsp; 5-member capstone team &nbsp;|&nbsp; ~29% of commits (playIt + playIT-v2)</span><span class="date">May 2026 – Present</span></div>
   <div class="env"><b>Environment:</b> Kotlin, Jetpack Compose, Clean Architecture + MVVM, Room, Hilt, Vosk (offline speech recognition), Python</div>
   <ul>
     <li>Co-developing an offline-first Android phonics app (Marungko approach) that evaluates speech on low-end phones.</li>
@@ -61,7 +66,7 @@ Portfolio</a>
 
 <div class="proj">
   <h3>InkHive — Real-Time Collaborative Whiteboard<a class="link" href="https://github.com/thatguyKire/InkHive">github.com/thatguyKire/InkHive</a></h3>
-  <div class="role">Lead Developer &amp; Backend Developer &nbsp;|&nbsp; 3-member team</div>
+  <div class="role"><span>Lead Developer &amp; Backend Developer &nbsp;|&nbsp; 3-member team &nbsp;|&nbsp; ~80% of commits</span><span class="date">Sept – Dec 2025</span></div>
   <div class="env"><b>Environment:</b> Python, Django 5.2, WebSockets, SQLite/PostgreSQL, JavaScript</div>
   <ul>
     <li>Led a three-person team and wrote most of the code for a live classroom whiteboard: teacher-hosted sessions, QR/code join, per-student draw permissions, chat, file uploads, attendance, and PNG/PDF export.</li>
@@ -72,7 +77,7 @@ Portfolio</a>
 
 <div class="proj">
   <h3>LabaLink — Smart Laundry Booking &amp; Payment Platform (v1.0.0)<a class="link" href="https://github.com/thatguyKire/labalink">github.com/thatguyKire/labalink</a></h3>
-  <div class="role">Solo Developer &nbsp;|&nbsp; Application Development course project</div>
+  <div class="role"><span>Solo Developer &nbsp;|&nbsp; 100% of commits &nbsp;|&nbsp; Application Development course project</span><span class="date">Mar – Nov 2026</span></div>
   <div class="env"><b>Environment:</b> Spring Boot 3.5, PostgreSQL, Kotlin (Android), React 19, TypeScript, Tailwind CSS, WebSocket</div>
   <ul>
     <li>Built all three parts alone: a Spring Boot API, a Kotlin Android app for customers, and a React dashboard for shop attendants.</li>
@@ -89,7 +94,7 @@ Portfolio</a>
   <p><b>APIs and tools:</b> REST APIs, WebSocket, OAuth2 (Google sign-in), Hilt, Vite, Git, Android Studio</p>
   <p><b>Testing:</b> Unit, integration, regression and security tests (JUnit, Django); test documentation</p>
   <p><b>Design docs:</b> UML, ERD, SRS/SDD</p>
-  <p><b>Soft skills:</b> Leadership (InkHive team lead), teamwork (team of five), technical writing (SRS, SDD), self-directed learning</p></div>
+  <p><b>Soft skills:</b> Leadership, teamwork, problem-solving, time management, technical writing</p></div>
 
 <h2>Certifications and Micro-credentials</h2>
 <ul>
