@@ -180,6 +180,6 @@ Any change is done only when all of these pass.
 | 3 | CodeChum certificates | Leave them off |
 | 4 | InkHive live link | Remove it until the Render deploy is updated |
 | 5 | Check script | Yes: `check.sh` |
-| 6 | References on the resume | "Available on request", with no names, phones or emails |
+| 6 | References on the resume | None. The section was removed in November 2026, since references are assumed to be available on request; never list names, phones or emails |
 | 7 | Dark mode | Dark by default; the toggle switches to light (changed from light-by-default at the first-screen review) |
 
