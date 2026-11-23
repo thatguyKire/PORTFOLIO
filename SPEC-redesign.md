@@ -53,7 +53,7 @@ The bar is fixed and takes the field of the chapter under it, so it never sits o
 
 ## What went with the old design
 
-The hand-built app screens (three per project), the torn work stage, the Washer 03 clock, the hero's ink canvas, the test-name band, Try to break it and the ERIK → KIRE footer. Real pictures replace drawn ones: PlayIT's nine screens and the three badges.
+The hand-built app screens (three per project), the torn work stage, the Washer 03 clock, the hero's ink canvas, the test-name band, Try to break it and the ERIK → KIRE footer. Real pictures replace drawn ones: PlayIT's nine screens and the four badges.
 
 ## Decisions
 

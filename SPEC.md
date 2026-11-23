@@ -162,7 +162,7 @@ Any change is done only when all of these pass.
 1. The content `grep` prints nothing.
 2. The resume PDF is exactly 1 page.
 3. Every number on the site and the resume matches its source.
-4. The site lists 4 projects and the resume lists 3 of them (PlayIT, InkHive, LabaLink; not Seoul-Mate), with the same 3 badges.
+4. The site lists 4 projects and the resume lists 3 of them (PlayIT, InkHive, LabaLink; not Seoul-Mate), with the same 4 badges.
 5. Each Credly link opens the right badge.
 6. Erik's phone number (0920 243 7737) is on the resume and in the site's contact section, as a `tel:` link.
 7. There are zero console errors on load and after scrolling to the bottom, in light and dark mode.
