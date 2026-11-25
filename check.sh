@@ -9,7 +9,7 @@ pass() { printf 'PASS  %s\n' "$1"; }
 fail() { printf 'FAIL  %s\n' "$1"; [ -n "$2" ] && printf '%s\n' "$2" | sed 's/^/      /'; failed=1; }
 skip() { printf 'SKIP  %s (%s)\n' "$1" "$2"; }
 
-BANNED='psite|student congress|playwright|codechum|collaboard-z4sx'
+BANNED='psite|student congress|codechum|collaboard-z4sx'
 
 # 1. Banned content on the site and in the resume source
 hits=$(grep -niE "$BANNED" index.html css/site.css js/site.js resume/resume.html)

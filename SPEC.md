@@ -50,7 +50,7 @@ start index.html
 pdftotext Erik_Samuel_Bien_Resume.pdf - | tr -cd '\f' | wc -c
 
 # Content that must never appear on the site or the resume (prints nothing)
-grep -niE 'psite|student congress|playwright|codechum|collaboard-z4sx' index.html resume/resume.html
+grep -niE 'psite|student congress|codechum|collaboard-z4sx' index.html resume/resume.html
 
 # Publish (GitHub Pages updates about a minute later)
 git push origin main
@@ -148,7 +148,6 @@ There is no test framework. Every change is checked against this list:
 
 **Never:**
 - Mention the Cebu ICT Student Congress (PSITE), on the site or the resume.
-- Mention Playwright, on the site or the resume.
 - Add the CodeChum course certificates (CSIT226, CSIT228).
 - Link to the InkHive Render deploy, or claim InkHive is live, until Erik says it is updated.
 - Invent or round up tests, users, dates or results.
@@ -175,7 +174,7 @@ Any change is done only when all of these pass.
 
 | # | Question | Answer |
 |---|---|---|
-| 1 | Playwright on the resume | Banned there too |
+| 1 | Playwright on the resume | Allowed from November 2026, once Erik wrote his own Playwright tests in Python; it was banned before that. Name only his own Python tests as proof, not Seoul-Mate's suite |
 | 2 | Phone number | Erik's own number goes on the resume and the site |
 | 3 | CodeChum certificates | Leave them off |
 | 4 | InkHive live link | Remove it until the Render deploy is updated |
